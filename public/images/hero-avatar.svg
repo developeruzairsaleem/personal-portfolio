@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none">
+  <!-- Background circle -->
+  <circle cx="240" cy="240" r="240" fill="#111111"/>
+
+  <!-- Green glow ring -->
+  <circle cx="240" cy="240" r="230" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.3"/>
+
+  <!-- Floating code blocks -->
+  <rect x="32" y="80" width="100" height="56" rx="8" fill="#1a1a1a" stroke="#22c55e" stroke-width="1" opacity="0.8"/>
+  <text x="42" y="100" font-family="monospace" font-size="8" fill="#22c55e" opacity="0.9">const ship =</text>
+  <text x="42" y="114" font-family="monospace" font-size="8" fill="#ffffff" opacity="0.6">  () =&gt; fast</text>
+  <text x="42" y="128" font-family="monospace" font-size="8" fill="#22c55e" opacity="0.7">// ✓ deployed</text>
+
+  <rect x="348" y="60" width="96" height="48" rx="8" fill="#1a1a1a" stroke="#22c55e" stroke-width="1" opacity="0.7"/>
+  <text x="358" y="80" font-family="monospace" font-size="8" fill="#22c55e">next build</text>
+  <text x="358" y="94" font-family="monospace" font-size="8" fill="#4ade80">✓ success</text>
+  <text x="358" y="100" font-family="monospace" font-size="7" fill="#ffffff" opacity="0.4">2.3s</text>
+
+  <rect x="360" y="360" width="88" height="48" rx="8" fill="#1a1a1a" stroke="#22c55e" stroke-width="1" opacity="0.6"/>
+  <text x="370" y="379" font-family="monospace" font-size="7.5" fill="#22c55e">npm test</text>
+  <text x="370" y="393" font-family="monospace" font-size="7.5" fill="#4ade80">8/8 passed</text>
+  <text x="370" y="401" font-family="monospace" font-size="6" fill="#ffffff" opacity="0.4">0.64s</text>
+
+  <rect x="28" y="350" width="104" height="48" rx="8" fill="#1a1a1a" stroke="#22c55e" stroke-width="1" opacity="0.7"/>
+  <text x="38" y="369" font-family="monospace" font-size="7.5" fill="#22c55e">MRR $24,689</text>
+  <text x="38" y="383" font-family="monospace" font-size="7" fill="#4ade80">↑ +12.5%</text>
+  <text x="38" y="391" font-family="monospace" font-size="6" fill="#ffffff" opacity="0.4">indiecator.com</text>
+
+  <!-- Center avatar body -->
+  <!-- Torso / shirt -->
+  <path d="M155 310 C155 270 185 248 240 248 C295 248 325 270 325 310 L325 400 L155 400 Z" fill="#1a1a1a"/>
+  <!-- Collar accent -->
+  <path d="M210 248 L240 275 L270 248" stroke="#22c55e" stroke-width="2" fill="none" opacity="0.8"/>
+
+  <!-- Head -->
+  <ellipse cx="240" cy="195" rx="68" ry="78" fill="#2d1f17"/>
+  <!-- Face highlight -->
+  <ellipse cx="240" cy="190" rx="58" ry="66" fill="#3d2a1e"/>
+
+  <!-- Hair -->
+  <path d="M172 175 C172 120 175 105 240 102 C305 105 308 120 308 175 C308 155 300 135 290 128 C275 118 260 115 240 115 C220 115 205 118 190 128 C180 135 172 155 172 175Z" fill="#111111"/>
+  <path d="M172 175 C170 165 170 150 172 140 C178 118 200 105 240 103 C240 103 220 110 208 125 C196 140 175 155 172 175Z" fill="#0a0a0a"/>
+
+  <!-- Eyes -->
+  <ellipse cx="214" cy="190" rx="10" ry="11" fill="#1a1a1a"/>
+  <ellipse cx="266" cy="190" rx="10" ry="11" fill="#1a1a1a"/>
+  <circle cx="216" cy="189" r="6" fill="#22c55e" opacity="0.9"/>
+  <circle cx="268" cy="189" r="6" fill="#22c55e" opacity="0.9"/>
+  <circle cx="218" cy="187" r="2.5" fill="#111111"/>
+  <circle cx="270" cy="187" r="2.5" fill="#111111"/>
+  <!-- Eye shine -->
+  <circle cx="220" cy="185" r="1.2" fill="white" opacity="0.8"/>
+  <circle cx="272" cy="185" r="1.2" fill="white" opacity="0.8"/>
+
+  <!-- Nose -->
+  <path d="M236 198 C234 210 232 215 234 220 C236 224 244 224 246 220 C248 215 246 210 244 198" fill="none" stroke="#2a1a10" stroke-width="1.5"/>
+
+  <!-- Mouth - slight smile -->
+  <path d="M222 234 C228 242 252 242 258 234" stroke="#1a0e08" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Beard/stubble hint -->
+  <ellipse cx="240" cy="240" rx="48" ry="14" fill="#2a1810" opacity="0.5"/>
+
+  <!-- Ears -->
+  <ellipse cx="172" cy="196" rx="10" ry="14" fill="#2d1f17"/>
+  <ellipse cx="308" cy="196" rx="10" ry="14" fill="#2d1f17"/>
+
+  <!-- Laptop in front -->
+  <rect x="168" y="340" width="144" height="88" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+  <rect x="176" y="348" width="128" height="72" rx="4" fill="#0d0d0d"/>
+  <!-- Code on laptop screen -->
+  <rect x="182" y="355" width="60" height="5" rx="2" fill="#22c55e" opacity="0.8"/>
+  <rect x="182" y="364" width="80" height="4" rx="2" fill="#ffffff" opacity="0.2"/>
+  <rect x="182" y="372" width="70" height="4" rx="2" fill="#22c55e" opacity="0.4"/>
+  <rect x="182" y="380" width="90" height="4" rx="2" fill="#ffffff" opacity="0.15"/>
+  <rect x="182" y="388" width="50" height="4" rx="2" fill="#4ade80" opacity="0.6"/>
+  <rect x="182" y="396" width="75" height="4" rx="2" fill="#22c55e" opacity="0.3"/>
+  <!-- Laptop base -->
+  <rect x="158" y="428" width="164" height="8" rx="4" fill="#222222" stroke="#333" stroke-width="1"/>
+
+  <!-- Floating dot particles -->
+  <circle cx="130" cy="160" r="3" fill="#22c55e" opacity="0.4"/>
+  <circle cx="115" cy="220" r="2" fill="#22c55e" opacity="0.3"/>
+  <circle cx="140" cy="290" r="2.5" fill="#22c55e" opacity="0.25"/>
+  <circle cx="350" cy="155" r="2.5" fill="#22c55e" opacity="0.35"/>
+  <circle cx="365" cy="225" r="2" fill="#22c55e" opacity="0.3"/>
+  <circle cx="345" cy="300" r="3" fill="#22c55e" opacity="0.2"/>
+  <circle cx="200" cy="68" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="280" cy="60" r="2.5" fill="#22c55e" opacity="0.4"/>
+
+  <!-- Connecting lines (circuit-like) -->
+  <line x1="132" y1="80" x2="172" y2="170" stroke="#22c55e" stroke-width="0.5" opacity="0.15"/>
+  <line x1="348" y1="84" x2="310" y2="170" stroke="#22c55e" stroke-width="0.5" opacity="0.15"/>
+  <line x1="132" y1="350" x2="160" y2="320" stroke="#22c55e" stroke-width="0.5" opacity="0.15"/>
+  <line x1="360" y1="360" x2="325" y2="325" stroke="#22c55e" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- Green glow under avatar -->
+  <ellipse cx="240" cy="438" rx="90" ry="12" fill="#22c55e" opacity="0.08"/>
+</svg>
