@@ -1,7 +1,21 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
-  "private": true,
+  "name": "personal-portfolio",
+  "version": "1.0.0",
+  "description": "A modern developer portfolio template built with Next.js, Tailwind CSS, and Framer Motion",
+  "author": "Uzair Saleem <uzairsaleemdev@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/developeruzairsaleem/personal-portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "tailwindcss",
+    "framer-motion",
+    "typescript",
+    "template"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
