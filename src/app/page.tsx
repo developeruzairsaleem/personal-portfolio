@@ -13,6 +13,99 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
+const stats = [
+  { value: "4+", label: "Years Building Products" },
+  { value: "6", label: "Resume Projects Highlighted" },
+  { value: "35%", label: "API Performance Improvement" },
+  { value: "AWS", label: "Cloud and DevOps Experience" },
+];
+
+const selectedProjects = [
+  {
+    name: "Chatalize",
+    status: "AI SaaS",
+    summary:
+      "Built AI-driven automation tools and SaaS workflows using OpenAI integrations, intelligent data pipelines, and end-to-end product ownership.",
+    stack: ["OpenAI", "Automation", "Node.js", "SaaS"],
+  },
+  {
+    name: "Thumbffice",
+    status: "Analytics Platform",
+    summary:
+      "Developed a real-time workforce analytics system with WebSockets, RBAC, live tracking, and automated reporting for operational visibility.",
+    stack: ["WebSockets", "RBAC", "Analytics", "Reporting"],
+  },
+  {
+    name: "BogoExpress",
+    status: "Logistics System",
+    summary:
+      "Delivered a scalable delivery platform with real-time tracking, route optimization, and automated dispatch workflows for logistics teams.",
+    stack: ["MERN", "Realtime Tracking", "Route Optimization", "Dispatching"],
+  },
+];
+
+const experience = [
+  {
+    company: "Chatalize Technologies",
+    role: "Full Stack Developer",
+    period: "Nov 2025 - Feb 2026",
+    points: [
+      "Built AI-powered automation tools and SaaS workflows for business operations.",
+      "Integrated OpenAI APIs for intelligent data processing and decision-making.",
+      "Owned delivery from ideation and system design through deployment and optimization.",
+    ],
+  },
+  {
+    company: "Routox Solutions",
+    role: "Technical Product Manager",
+    period: "Jan 2025 - Nov 2025",
+    points: [
+      "Led a team of 5 developers building a delivery management platform.",
+      "Shipped real-time tracking and route optimization for logistics businesses.",
+      "Worked across product, engineering, and operations to improve workflow efficiency.",
+    ],
+  },
+  {
+    company: "Antelope Developers",
+    role: "Senior ERP Engineer",
+    period: "Jul 2023 - Jan 2025",
+    points: [
+      "Built a real-time employee monitoring system with analytics and reporting.",
+      "Improved system scalability through API optimization and cloud tuning.",
+      "Raised API performance by about 35% using caching, indexing, and query improvements.",
+    ],
+  },
+  {
+    company: "CityForce LLC",
+    role: "Lead Software Engineer (MERN)",
+    period: "Jun 2021 - Apr 2023",
+    points: [
+      "Led development of scalable MERN applications for production use.",
+      "Architected microservices-based systems to improve modularity and performance.",
+      "Designed and optimized data models for high availability and fast retrieval.",
+    ],
+  },
+];
+
+const skills = [
+  "React.js",
+  "Node.js",
+  "Express.js",
+  "FastAPI",
+  "Tailwind CSS",
+  "ShadCN",
+  "MongoDB",
+  "OpenAI",
+  "AI Workflows",
+  "WebSockets",
+  "Socket.io",
+  "AWS",
+  "Docker",
+  "CI/CD",
+  "RBAC",
+  "Microservices",
+];
+
 function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -30,12 +123,18 @@ function ContactForm() {
         body: JSON.stringify(form),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to send");
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send");
+      }
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
-    } catch (err: any) {
+    } catch (err: unknown) {
       setStatus("error");
-      setErrorMsg(err.message || "Something went wrong. Try emailing directly.");
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Try emailing directly.",
+      );
     }
   };
 
@@ -71,15 +170,13 @@ function ContactForm() {
           required
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="Tell me what you're building..."
+          placeholder="Tell me about the role, product, or problem you want help with..."
           rows={5}
           className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#22c55e]/50 transition-colors resize-none"
         />
       </div>
 
-      {status === "error" && (
-        <p className="text-red-400 text-sm">{errorMsg}</p>
-      )}
+      {status === "error" && <p className="text-red-400 text-sm">{errorMsg}</p>}
 
       {status === "success" ? (
         <div className="flex items-center gap-2 text-[#22c55e] font-medium">
@@ -102,12 +199,11 @@ function ContactForm() {
 export default function Home() {
   return (
     <main className="bg-[#0a0a0a] text-white min-h-screen font-sans">
-      {/* Nav */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-sm">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2.5">
             <Image src="/logo.svg" alt="US" width={34} height={34} />
-            <span className="text-xl font-bold text-white tracking-tight">Uzair Saleem</span>
+            <span className="text-xl font-bold text-white tracking-tight">Usama Saleem</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm text-white/60">
             <a href="#work" className="hover:text-white transition-colors">Work</a>
@@ -123,7 +219,6 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero */}
       <section className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -134,17 +229,19 @@ export default function Home() {
           >
             <motion.div variants={fadeUp} className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 text-sm text-white/70">
               <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-              Available for Projects
+              Full-Stack &amp; AI Engineer
             </motion.div>
 
             <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-              I build SaaS products<br />
-              <span className="text-white/40">that ship fast.</span>
+              I build SaaS products,
+              <br />
+              <span className="text-white/40">AI workflows, and real-time systems.</span>
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-lg text-white/50 max-w-xl leading-relaxed">
-              Full-stack developer specializing in Next.js + Supabase. Trusted by
-              founders who need to move fast without building a full team.
+              Full-stack engineer focused on MERN, automation systems, cloud delivery,
+              and scalable backend architecture. Experienced across SaaS platforms,
+              analytics products, logistics systems, and AI-powered workflows.
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
@@ -152,18 +249,17 @@ export default function Home() {
                 href="#work"
                 className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/90 transition-colors"
               >
-                See My Work
+                View Experience
               </a>
               <a
                 href="#contact"
                 className="px-6 py-3 border border-white/20 text-white rounded-lg hover:bg-white/5 transition-colors"
               >
-                Let&apos;s Talk
+                Contact Me
               </a>
             </motion.div>
           </motion.div>
 
-          {/* Hero Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -171,29 +267,23 @@ export default function Home() {
             className="hidden md:flex justify-center"
           >
             <div className="relative w-72 h-80">
-              {/* Green glow bg */}
               <div className="absolute -inset-4 bg-[#22c55e]/15 rounded-3xl blur-2xl" />
-              {/* Green ring border */}
               <div className="absolute inset-0 rounded-2xl border border-[#22c55e]/30 z-20 pointer-events-none" />
-              {/* Photo with duotone CSS effect */}
               <div className="relative w-full h-full rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/uzair-linkedin.jpeg"
-                  alt="Uzair Saleem - SaaS Developer"
+                  src="/images/usama-portrait.png"
+                  alt="Usama Saleem - Full-Stack and AI Engineer"
                   fill
                   className="object-cover object-center"
-                  style={{ filter: "grayscale(15%) contrast(1.05) brightness(0.95)" }}
                   priority
                 />
-                {/* Green duotone overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60" />
-                <div className="absolute inset-0 bg-[#22c55e] opacity-[0.06] mix-blend-color" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-45" />
+                <div className="absolute inset-0 bg-[#22c55e] opacity-[0.04] mix-blend-color" />
               </div>
-              {/* Floating badge */}
               <div className="absolute -bottom-3 -right-3 bg-[#0a0a0a] border border-[#22c55e]/40 rounded-xl px-3 py-2 z-30">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-                  <span className="text-xs text-white/80 font-medium">Available</span>
+                  <span className="text-xs text-white/80 font-medium">Open to opportunities</span>
                 </div>
               </div>
             </div>
@@ -201,15 +291,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats */}
       <section className="border-y border-white/5 py-10 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { value: "4+", label: "Years Experience" },
-            { value: "10+", label: "Products Shipped" },
-            { value: "3x", label: "Faster with AI Dev" },
-            { value: "🌍", label: "Global Remote" },
-          ].map((stat) => (
+          {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl font-bold text-[#22c55e]">{stat.value}</div>
               <div className="text-sm text-white/40 mt-1">{stat.label}</div>
@@ -218,7 +302,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects */}
       <section id="work" className="py-24 px-6 max-w-5xl mx-auto">
         <motion.div
           initial="hidden"
@@ -226,87 +309,61 @@ export default function Home() {
           viewport={{ once: true }}
           variants={stagger}
         >
-          <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// selected work</motion.p>
+          <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">selected work</motion.p>
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">
-            Products I&apos;ve shipped
+            Projects and product work
           </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04]">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Live</span>
-                <a href="https://indiecator.com" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                  indiecator.com ↗
-                </a>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Indiecator</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
-                SaaS analytics for indie hackers. Connects Stripe, LemonSqueezy, Paddle, and Shopify.
-                Shows true MRR, take-home revenue after fees, and diligence-ready exports.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["Next.js", "Supabase", "Stripe API", "TypeScript"].map((tag) => (
-                  <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all bg-white/[0.02] hover:bg-white/[0.04]">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-white/10 text-white/60 px-3 py-1 rounded-full">Shipped</span>
-                <a href="https://diffed.gg" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                  diffed.gg ↗
-                </a>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Diffed.gg</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
-                Competitive gaming matchmaking and coaching platform. Smart opponent pairing
-                + verified coach network. Full-stack from architecture to production.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["Next.js", "React", "Node.js", "WebSockets"].map((tag) => (
-                  <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all bg-white/[0.02] hover:bg-white/[0.04] md:col-span-2">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-white/10 text-white/60 px-3 py-1 rounded-full">Client Work</span>
-                <span className="text-white/20 text-xs">Germany · Remote</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Scraping API Dashboard</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
-                Real-time data dashboard with batch processing and performance optimization.
-                Reduced API response time by 60%. Built for a Germany-based SaaS client with
-                role-based access, live metrics, and automated reporting pipelines.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["Next.js", "Zustand", "Supabase", "Ant Design", "REST APIs"].map((tag) => (
-                  <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                ))}
-              </div>
-            </motion.div>
+            {selectedProjects.map((project, index) => (
+              <motion.div
+                key={project.name}
+                variants={fadeUp}
+                className={`group border border-white/10 rounded-2xl p-6 transition-all bg-white/[0.02] hover:bg-white/[0.04] ${index === 2 ? "md:col-span-2 hover:border-white/20" : "hover:border-[#22c55e]/40"}`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${index === 0 ? "bg-[#22c55e]/15 text-[#22c55e]" : "bg-white/10 text-white/60"}`}>
+                    {project.status}
+                  </span>
+                  <span className="text-white/20 text-xs">Selected from resume</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">{project.name}</h3>
+                <p className="text-white/50 text-sm leading-relaxed mb-4">{project.summary}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.stack.map((tag) => (
+                    <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </section>
 
-      {/* How I Work */}
       <section className="py-24 px-6 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-5xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// how it works</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">Why founders hire me</motion.h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { icon: "⚡", title: "Ship Fast", desc: "AI-assisted development with Claude Code. Features that take traditional teams weeks ship in days. You're not paying for slow." },
-                { icon: "🏗️", title: "End-to-End", desc: "Architecture, frontend, backend, deployment. No handoffs, no communication overhead. One person, full ownership." },
-                { icon: "🤝", title: "Stay Honest", desc: "Real timelines. Real updates. You'll never wonder what's happening. I treat your product like it's mine." }
-              ].map((item) => (
-                <motion.div key={item.title} variants={fadeUp} className="space-y-3">
-                  <div className="text-3xl">{item.icon}</div>
-                  <h3 className="text-lg font-bold">{item.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">experience</motion.p>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">Recent work experience</motion.h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {experience.map((item) => (
+                <motion.div key={item.company} variants={fadeUp} className="border border-white/10 rounded-2xl p-6 bg-white/[0.02]">
+                  <div className="flex items-center justify-between gap-4 mb-3">
+                    <div>
+                      <h3 className="text-lg font-bold">{item.company}</h3>
+                      <p className="text-sm text-[#22c55e]">{item.role}</p>
+                    </div>
+                    <span className="text-xs text-white/30 text-right">{item.period}</span>
+                  </div>
+                  <div className="space-y-2">
+                    {item.points.map((point) => (
+                      <p key={point} className="text-sm leading-relaxed text-white/55">
+                        {point}
+                      </p>
+                    ))}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -314,13 +371,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stack */}
       <section className="py-24 px-6 max-w-5xl mx-auto">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// tech stack</motion.p>
-          <motion.h2 variants={fadeUp} className="text-3xl font-bold mb-10">Tools I ship with</motion.h2>
+          <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">skills</motion.p>
+          <motion.h2 variants={fadeUp} className="text-3xl font-bold mb-10">Core stack and strengths</motion.h2>
           <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
-            {["Next.js", "React", "TypeScript", "Node.js", "Supabase", "PostgreSQL", "Stripe", "Tailwind CSS", "Vercel", "REST APIs", "Framer Motion", "Zustand"].map((tech) => (
+            {skills.map((tech) => (
               <span key={tech} className="px-4 py-2 border border-white/10 rounded-lg text-sm text-white/60 hover:border-[#22c55e]/30 hover:text-white transition-all cursor-default">
                 {tech}
               </span>
@@ -329,39 +385,41 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* About */}
       <section id="about" className="py-24 px-6 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="max-w-2xl">
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// about</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="max-w-3xl">
+            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">about</motion.p>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">Full-stack builder with AI and systems thinking</motion.h2>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I&apos;m Uzair — a full-stack developer from Islamabad, Pakistan building SaaS products for founders worldwide.
-              4+ years shipping Next.js applications for clients in Germany, the US, and beyond.
+              Usama Saleem is a full-stack and AI-focused engineer based in Islamabad,
+              Pakistan, with hands-on experience building analytics platforms, automation
+              systems, dynamic form builders, logistics software, and real-time applications.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I use AI-assisted development daily to move faster than a traditional dev team.
-              Not as a crutch — as leverage. I still own the architecture, the decisions, and the quality.
-              I just don&apos;t waste your time on boilerplate.
+              His background spans MERN development, API design, microservices, WebSockets,
+              AWS, Docker, CI/CD, and LLM-powered workflow automation. He has also led teams
+              and shipped cross-functional products as both an engineer and technical product manager.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed">
-              Final year of a BS in Artificial Intelligence. Building in public.
+              Education: Bachelor of Computer Science, Capital University of Science and Technology
+              (2019 - 2023), with coursework in data structures, algorithms, databases,
+              operating systems, and software engineering.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact */}
       <section id="contact" className="py-32 px-6 max-w-5xl mx-auto">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           <div className="text-center mb-12">
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// contact</motion.p>
+            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">contact</motion.p>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold mb-4">
-              Building something?<br />
-              <span className="text-white/40">Let&apos;s ship it.</span>
+              Need a builder for SaaS, AI, or automation?
+              <br />
+              <span className="text-white/40">Let&apos;s talk.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-white/40">
-              Available for remote SaaS projects. Response within 24 hours.
+              Open to product engineering roles, consulting work, and full-stack collaboration.
             </motion.p>
           </div>
 
@@ -369,21 +427,20 @@ export default function Home() {
             <ContactForm />
           </motion.div>
 
-          <motion.div variants={fadeUp} className="flex justify-center gap-6 mt-8 pt-8 border-t border-white/5">
-            <a href="mailto:uzairsaleemdev@gmail.com" className="text-sm text-white/40 hover:text-white transition-colors">
-              uzairsaleemdev@gmail.com
+          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-6 mt-8 pt-8 border-t border-white/5">
+            <a href="mailto:itsoxama@gmail.com" className="text-sm text-white/40 hover:text-white transition-colors">
+              itsoxama@gmail.com
             </a>
             <span className="text-white/20">·</span>
-            <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/40 hover:text-white transition-colors">
-              LinkedIn
+            <a href="tel:+3150582855" className="text-sm text-white/40 hover:text-white transition-colors">
+              +31 50582855
             </a>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Footer */}
       <footer className="border-t border-white/5 py-8 px-6 text-center text-white/20 text-sm">
-        <p>© {new Date().getFullYear()} Uzair Saleem · Built with Next.js + Tailwind</p>
+        <p>© {new Date().getFullYear()} Usama Saleem · Built with Next.js + Tailwind</p>
       </footer>
     </main>
   );

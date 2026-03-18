@@ -2,16 +2,39 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 
-// Mock framer-motion — strip animation props before passing to DOM
+// Mock framer-motion and strip animation props before passing to DOM
 jest.mock('framer-motion', () => {
-  const strip = ({ children, initial, animate, variants, whileInView, viewport, transition, ...rest }: any) =>
-    ({ children, ...rest })
+  const strip = (props: Record<string, unknown>) => {
+    const cleanProps = { ...props }
+
+    delete cleanProps.initial
+    delete cleanProps.animate
+    delete cleanProps.variants
+    delete cleanProps.whileInView
+    delete cleanProps.viewport
+    delete cleanProps.transition
+
+    return cleanProps
+  }
+
   return {
     motion: {
-      div: (props: any) => { const p = strip(props); return React.createElement('div', p) },
-      h1:  (props: any) => { const p = strip(props); return React.createElement('h1', p) },
-      h2:  (props: any) => { const p = strip(props); return React.createElement('h2', p) },
-      p:   (props: any) => { const p = strip(props); return React.createElement('p', p) },
+      div: (props: Record<string, unknown>) => {
+        const p = strip(props)
+        return React.createElement('div', p)
+      },
+      h1: (props: Record<string, unknown>) => {
+        const p = strip(props)
+        return React.createElement('h1', p)
+      },
+      h2: (props: Record<string, unknown>) => {
+        const p = strip(props)
+        return React.createElement('h2', p)
+      },
+      p: (props: Record<string, unknown>) => {
+        const p = strip(props)
+        return React.createElement('p', p)
+      },
     },
   }
 })
@@ -19,51 +42,50 @@ jest.mock('framer-motion', () => {
 import Home from '../app/page'
 
 describe('Portfolio Homepage', () => {
-  it('renders the hero headline', () => {
+  it('renders the updated hero headline', () => {
     render(<Home />)
     expect(screen.getByText(/I build SaaS products/i)).toBeInTheDocument()
+    expect(screen.getByText(/AI workflows, and real-time systems/i)).toBeInTheDocument()
   })
 
-  it('shows the available for projects badge', () => {
+  it('shows the updated role badge', () => {
     render(<Home />)
-    expect(screen.getByText(/Available for Projects/i)).toBeInTheDocument()
+    expect(screen.getByText(/Full-Stack & AI Engineer/i)).toBeInTheDocument()
   })
 
-  it('renders all 3 projects', () => {
+  it('renders selected projects from the resume', () => {
     render(<Home />)
-    expect(screen.getByText('Indiecator')).toBeInTheDocument()
-    expect(screen.getByText('Diffed.gg')).toBeInTheDocument()
-    expect(screen.getByText('Scraping API Dashboard')).toBeInTheDocument()
+    expect(screen.getByText('Chatalize')).toBeInTheDocument()
+    expect(screen.getByText('Thumbffice')).toBeInTheDocument()
+    expect(screen.getByText('BogoExpress')).toBeInTheDocument()
   })
 
-  it('renders the stats bar', () => {
+  it('renders the updated stats bar', () => {
     render(<Home />)
-    expect(screen.getByText('Years Experience')).toBeInTheDocument()
-    expect(screen.getByText('Products Shipped')).toBeInTheDocument()
-    expect(screen.getByText('Faster with AI Dev')).toBeInTheDocument()
-    expect(screen.getByText('Global Remote')).toBeInTheDocument()
+    expect(screen.getByText('Years Building Products')).toBeInTheDocument()
+    expect(screen.getByText('Resume Projects Highlighted')).toBeInTheDocument()
+    expect(screen.getByText('API Performance Improvement')).toBeInTheDocument()
+    expect(screen.getByText('Cloud and DevOps Experience')).toBeInTheDocument()
   })
 
-  it('has a contact email link', () => {
+  it('has the updated contact links', () => {
     render(<Home />)
-    const emailLink = screen.getByRole('link', { name: /uzairsaleemdev@gmail\.com/i })
-    expect(emailLink).toHaveAttribute('href', 'mailto:uzairsaleemdev@gmail.com')
+    const emailLink = screen.getByRole('link', { name: /itsoxama@gmail\.com/i })
+    expect(emailLink).toHaveAttribute('href', 'mailto:itsoxama@gmail.com')
+
+    const phoneLink = screen.getByRole('link', { name: /\+31 50582855/i })
+    expect(phoneLink).toHaveAttribute('href', 'tel:+3150582855')
   })
 
-  it('renders the nav logo', () => {
+  it('renders the updated nav name', () => {
     render(<Home />)
-    expect(screen.getByText('Uzair Saleem')).toBeInTheDocument()
+    expect(screen.getByText('Usama Saleem')).toBeInTheDocument()
   })
 
-  it('has a LinkedIn link', () => {
+  it('renders the experience section content', () => {
     render(<Home />)
-    const linkedinLink = screen.getByRole('link', { name: /linkedin/i })
-    expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/in/uzair-saleem-5a399825a/')
-  })
-
-  it('has an indiecator.com link', () => {
-    render(<Home />)
-    const indiecatorLink = screen.getByRole('link', { name: /indiecator\.com/i })
-    expect(indiecatorLink).toHaveAttribute('href', 'https://indiecator.com')
+    expect(screen.getByText('Chatalize Technologies')).toBeInTheDocument()
+    expect(screen.getByText('Routox Solutions')).toBeInTheDocument()
+    expect(screen.getByText('CityForce LLC')).toBeInTheDocument()
   })
 })

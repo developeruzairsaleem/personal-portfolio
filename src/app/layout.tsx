@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Uzair Saleem — Full-Stack SaaS Developer",
-  description: "I build SaaS products that ship fast. Full-stack developer specializing in Next.js + Supabase.",
+  title: "Usama Saleem — Full-Stack & AI Engineer",
+  description:
+    "Portfolio of Usama Saleem, a full-stack and AI engineer building SaaS products, automation workflows, and real-time systems.",
 };
 
 export default function RootLayout({

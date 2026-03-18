@@ -25,13 +25,13 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['uzairsaleemdev@gmail.com'],
+      to: ['itsoxama@gmail.com'],
       replyTo: email,
       subject: `Portfolio inquiry from ${name}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; padding: 32px; border-radius: 12px; border: 1px solid #22c55e33;">
           <h2 style="color: #22c55e; margin-top: 0;">New Portfolio Inquiry</h2>
-          <p style="color: #999; margin-bottom: 24px;">Someone reached out via uzairsaleem.dev</p>
+          <p style="color: #999; margin-bottom: 24px;">Someone reached out via the Usama Saleem portfolio</p>
           
           <div style="background: #111; padding: 20px; border-radius: 8px; margin-bottom: 16px;">
             <p style="color: #888; margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">From</p>
