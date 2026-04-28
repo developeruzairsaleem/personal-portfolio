@@ -58,7 +58,7 @@ export default function Home() {
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed">
-              Next.js + Supabase + Stripe. Solo dev, AI-assisted workflow, fixed scope, fixed price.
+              Next.js + Supabase + Stripe. Solo dev, AI-assisted workflow.
               Shipped Indiecator and 10+ products for clients in the US and Germany.
             </motion.p>
 
