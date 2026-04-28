@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+
+const CALENDLY_URL = "https://calendly.com/uzairsaleemdev/30min";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -12,92 +13,6 @@ const fadeUp = {
 const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
-
-function ContactForm() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMsg("");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to send");
-      setStatus("success");
-      setForm({ name: "", email: "", message: "" });
-    } catch (err: any) {
-      setStatus("error");
-      setErrorMsg(err.message || "Something went wrong. Try emailing directly.");
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm text-white/50 mb-1.5">Name</label>
-          <input
-            type="text"
-            required
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            placeholder="Your name"
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#22c55e]/50 transition-colors"
-          />
-        </div>
-        <div>
-          <label className="block text-sm text-white/50 mb-1.5">Email</label>
-          <input
-            type="email"
-            required
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            placeholder="you@company.com"
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#22c55e]/50 transition-colors"
-          />
-        </div>
-      </div>
-      <div>
-        <label className="block text-sm text-white/50 mb-1.5">Message</label>
-        <textarea
-          required
-          value={form.message}
-          onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="Tell me what you're building..."
-          rows={5}
-          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#22c55e]/50 transition-colors resize-none"
-        />
-      </div>
-
-      {status === "error" && (
-        <p className="text-red-400 text-sm">{errorMsg}</p>
-      )}
-
-      {status === "success" ? (
-        <div className="flex items-center gap-2 text-[#22c55e] font-medium">
-          <span>✓</span>
-          <span>Message sent! I&apos;ll respond within 24 hours.</span>
-        </div>
-      ) : (
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="w-full py-3 bg-[#22c55e] text-black font-semibold rounded-lg hover:bg-[#16a34a] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          {status === "loading" ? "Sending..." : "Send Message"}
-        </button>
-      )}
-    </form>
-  );
-}
 
 export default function Home() {
   return (
@@ -360,16 +275,33 @@ export default function Home() {
               Building something?<br />
               <span className="text-white/40">Let&apos;s ship it.</span>
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-white/40">
-              Available for remote SaaS projects. Response within 24 hours.
+            <motion.p variants={fadeUp} className="text-white/40 max-w-md mx-auto">
+              Indie founders making a real call before paying — let&apos;s talk before any commitment.
             </motion.p>
           </div>
 
-          <motion.div variants={fadeUp}>
-            <ContactForm />
+          <motion.div variants={fadeUp} className="max-w-lg mx-auto">
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between gap-4 w-full bg-[#22c55e] text-black font-semibold rounded-xl px-6 py-5 hover:bg-[#16a34a] transition-colors"
+            >
+              <span className="flex items-center gap-3">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+                <span className="text-base md:text-lg">Book a 30-min intro call</span>
+              </span>
+              <span className="text-xl transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
+            <p className="text-center text-sm text-white/50 mt-4">
+              Free. No pitch. Just a conversation about what you&apos;re building.
+            </p>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="flex justify-center gap-6 mt-8 pt-8 border-t border-white/5">
+          <motion.div variants={fadeUp} className="flex justify-center gap-6 mt-12 pt-8 border-t border-white/5">
             <a href="mailto:uzairsaleemdev@gmail.com" className="text-sm text-white/40 hover:text-white transition-colors">
               uzairsaleemdev@gmail.com
             </a>
