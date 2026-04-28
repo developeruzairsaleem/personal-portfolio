@@ -52,28 +52,30 @@ export default function Home() {
               Available for Projects
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-              I build SaaS products<br />
-              <span className="text-white/40">that ship fast.</span>
+            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-bold leading-tight tracking-tight">
+              I ship SaaS products for indie founders<br />
+              in <span className="text-[#22c55e]">4–6 weeks</span>.
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="text-lg text-white/50 max-w-xl leading-relaxed">
-              Full-stack developer specializing in Next.js + Supabase. Trusted by
-              founders who need to move fast without building a full team.
+            <motion.p variants={fadeUp} className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed">
+              Next.js + Supabase + Stripe. Solo dev, AI-assisted workflow, fixed scope, fixed price.
+              Shipped Indiecator and 10+ products for clients in the US and Germany.
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
               <a
-                href="#work"
-                className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/90 transition-colors"
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-[#22c55e] text-black font-semibold rounded-lg hover:bg-[#16a34a] transition-colors"
               >
-                See My Work
+                Book a 30-min call
               </a>
               <a
-                href="#contact"
+                href="#work"
                 className="px-6 py-3 border border-white/20 text-white rounded-lg hover:bg-white/5 transition-colors"
               >
-                Let&apos;s Talk
+                See My Work
               </a>
             </motion.div>
           </motion.div>

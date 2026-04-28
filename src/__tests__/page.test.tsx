@@ -21,7 +21,7 @@ import Home from '../app/page'
 describe('Portfolio Homepage', () => {
   it('renders the hero headline', () => {
     render(<Home />)
-    expect(screen.getByText(/I build SaaS products/i)).toBeInTheDocument()
+    expect(screen.getByText(/I ship SaaS products/i)).toBeInTheDocument()
   })
 
   it('shows the available for projects badge', () => {
