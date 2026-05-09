@@ -21,33 +21,40 @@ import Home from '../app/page'
 describe('Portfolio Homepage', () => {
   it('renders the hero headline', () => {
     render(<Home />)
-    expect(screen.getByText(/I ship SaaS products/i)).toBeInTheDocument()
+    // Hero headline contains "B2B SaaS" inside a span — uniquely identifies hero
+    expect(screen.getByText('B2B SaaS')).toBeInTheDocument()
+    // "products end to end" appears in hero + about — use getAllByText
+    const matches = screen.getAllByText(/products end to end/i)
+    expect(matches.length).toBeGreaterThanOrEqual(1)
   })
 
-  it('shows the available for projects badge', () => {
+  it('shows the role-availability badge', () => {
     render(<Home />)
-    expect(screen.getByText(/Available for Projects/i)).toBeInTheDocument()
+    // Both hero badge and about section use this phrasing — assert at least one exists
+    const matches = screen.getAllByText(/Open to Senior Full-Stack/i)
+    expect(matches.length).toBeGreaterThanOrEqual(1)
   })
 
   it('renders all 3 projects', () => {
     render(<Home />)
     expect(screen.getByText('Indiecator')).toBeInTheDocument()
     expect(screen.getByText('Diffed.gg')).toBeInTheDocument()
-    expect(screen.getByText('Scraping API Dashboard')).toBeInTheDocument()
+    expect(screen.getByText(/Sat-Raj/i)).toBeInTheDocument()
   })
 
   it('renders the stats bar', () => {
     render(<Home />)
     expect(screen.getByText('Years Experience')).toBeInTheDocument()
-    expect(screen.getByText('Products Shipped')).toBeInTheDocument()
-    expect(screen.getByText('Faster with AI Dev')).toBeInTheDocument()
-    expect(screen.getByText('Global Remote')).toBeInTheDocument()
+    expect(screen.getByText('Live SaaS Products')).toBeInTheDocument()
+    expect(screen.getByText('Client Projects Shipped')).toBeInTheDocument()
+    expect(screen.getByText('Remote, Global')).toBeInTheDocument()
   })
 
   it('has a contact email link', () => {
     render(<Home />)
-    const emailLink = screen.getByRole('link', { name: /uzairsaleemdev@gmail\.com/i })
-    expect(emailLink).toHaveAttribute('href', 'mailto:uzairsaleemdev@gmail.com')
+    const emailLinks = screen.getAllByRole('link', { name: /uzairsaleemdev@gmail\.com|email me/i })
+    const mailto = emailLinks.find(el => el.getAttribute('href') === 'mailto:uzairsaleemdev@gmail.com')
+    expect(mailto).toBeDefined()
   })
 
   it('renders the nav logo', () => {
@@ -65,5 +72,17 @@ describe('Portfolio Homepage', () => {
     render(<Home />)
     const indiecatorLink = screen.getByRole('link', { name: /indiecator\.com/i })
     expect(indiecatorLink).toHaveAttribute('href', 'https://indiecator.com')
+  })
+
+  it('has a satrajinc.com link', () => {
+    render(<Home />)
+    const satrajLink = screen.getByRole('link', { name: /satrajinc\.com/i })
+    expect(satrajLink).toHaveAttribute('href', 'https://app.satrajinc.com')
+  })
+
+  it('has case study PDF links for each project', () => {
+    render(<Home />)
+    const caseStudyLinks = screen.getAllByText(/Read case study/i)
+    expect(caseStudyLinks.length).toBe(3)
   })
 })

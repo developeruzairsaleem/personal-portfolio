@@ -49,33 +49,34 @@ export default function Home() {
           >
             <motion.div variants={fadeUp} className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 text-sm text-white/70">
               <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-              Available for Projects
+              Open to Senior Full-Stack Roles
             </motion.div>
 
             <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-bold leading-tight tracking-tight">
-              I ship SaaS products for indie founders<br />
-              in <span className="text-[#22c55e]">4–6 weeks</span>.
+              I build <span className="text-[#22c55e]">B2B SaaS</span><br />
+              products end to end.
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed">
-              Next.js + Supabase + Stripe. Solo dev, AI-assisted workflow.
-              Shipped Indiecator and 10+ products for clients in the US and Germany.
+              Product-focused Full-Stack Engineer. Three production SaaS apps shipped solo —
+              revenue analytics, a marketplace, and an internal platform for a 30-year-old NJ business.
+              Next.js · TypeScript · Postgres · AWS.
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
               <a
+                href="#work"
+                className="px-6 py-3 bg-[#22c55e] text-black font-semibold rounded-lg hover:bg-[#16a34a] transition-colors"
+              >
+                See My Work
+              </a>
+              <a
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-[#22c55e] text-black font-semibold rounded-lg hover:bg-[#16a34a] transition-colors"
-              >
-                Book a 30-min call
-              </a>
-              <a
-                href="#work"
                 className="px-6 py-3 border border-white/20 text-white rounded-lg hover:bg-white/5 transition-colors"
               >
-                See My Work
+                Book a Call
               </a>
             </motion.div>
           </motion.div>
@@ -123,9 +124,9 @@ export default function Home() {
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { value: "4+", label: "Years Experience" },
-            { value: "10+", label: "Products Shipped" },
-            { value: "3x", label: "Faster with AI Dev" },
-            { value: "🌍", label: "Global Remote" },
+            { value: "3", label: "Live SaaS Products" },
+            { value: "10+", label: "Client Projects Shipped" },
+            { value: "🌍", label: "Remote, Global" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl font-bold text-[#22c55e]">{stat.value}</div>
@@ -149,60 +150,80 @@ export default function Home() {
           </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04]">
+            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Live</span>
+                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Live · Solo Built</span>
                 <a href="https://indiecator.com" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
                   indiecator.com ↗
                 </a>
               </div>
               <h3 className="text-xl font-bold mb-2">Indiecator</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
-                SaaS analytics for indie hackers. Connects Stripe, LemonSqueezy, Paddle, and Shopify.
-                Shows true MRR, take-home revenue after fees, and diligence-ready exports.
+              <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Baremetrics-style revenue analytics for indie SaaS</p>
+              <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
+                Connect Stripe via OAuth, get a fully reconstructed historical view in minutes. The hard part isn&apos;t the chart —
+                it&apos;s classifying every subscription change as New / Expansion / Contraction / Churn / Reactivation correctly,
+                under partial outages, webhook retries, trials, and proration math. 15+ Prisma models, 3 reconciling sync paths,
+                full Baremetrics metric suite (MRR, ARR, churn, ARPU, LTV).
               </p>
-              <div className="flex flex-wrap gap-2">
-                {["Next.js", "Supabase", "Stripe API", "TypeScript"].map((tag) => (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {["Next.js 16", "Node.js", "Express", "Prisma", "PostgreSQL", "Stripe Connect", "TypeScript"].map((tag) => (
                   <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
                 ))}
               </div>
+              <a href="/case-studies/indiecator.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
+                → Read case study (PDF)
+              </a>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all bg-white/[0.02] hover:bg-white/[0.04]">
+            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-white/10 text-white/60 px-3 py-1 rounded-full">Shipped</span>
+                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Solo Built</span>
                 <a href="https://diffed.gg" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
                   diffed.gg ↗
                 </a>
               </div>
               <h3 className="text-xl font-bold mb-2">Diffed.gg</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
-                Competitive gaming matchmaking and coaching platform. Smart opponent pairing
-                + verified coach network. Full-stack from architecture to production.
+              <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Two-sided gaming services marketplace</p>
+              <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
+                End-to-end marketplace connecting gamers with vetted coaches and boosters. Customer, provider, and admin flows
+                in one product — Stripe + PayPal checkout, real-time chat over Socket.IO, in-platform wallets, screenshot
+                proof-of-completion, fee-split payouts, and email-based admin invites. Money handled as integer cents to
+                avoid float drift on multi-provider order splits.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {["Next.js", "React", "Node.js", "WebSockets"].map((tag) => (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {["Next.js 15", "Socket.IO", "Stripe", "PayPal", "Prisma", "PostgreSQL", "NextAuth"].map((tag) => (
                   <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
                 ))}
               </div>
+              <a href="/case-studies/diffed.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
+                → Read case study (PDF)
+              </a>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all bg-white/[0.02] hover:bg-white/[0.04] md:col-span-2">
+            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] md:col-span-2 flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-white/10 text-white/60 px-3 py-1 rounded-full">Client Work</span>
-                <span className="text-white/20 text-xs">Germany · Remote</span>
+                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Client Work</span>
+                <a href="https://app.satrajinc.com" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
+                  app.satrajinc.com ↗
+                </a>
               </div>
-              <h3 className="text-xl font-bold mb-2">Scraping API Dashboard</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
-                Real-time data dashboard with batch processing and performance optimization.
-                Reduced API response time by 60%. Built for a Germany-based SaaS client with
-                role-based access, live metrics, and automated reporting pipelines.
+              <h3 className="text-xl font-bold mb-2">Sat-Raj — Fuel Distribution Platform</h3>
+              <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Internal ops platform for a 30-year-old NJ fuel wholesaler</p>
+              <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
+                Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and
+                invoice generator. Pulls supplier costs from the DTN feed, calculates daily prices for 24 customers across
+                NJ &amp; PA tax structures, sends per-customer emails via SES, ingests bills of lading from the Samsara API,
+                and pushes invoices to QuickBooks. <span className="text-white/70 font-medium">Cut the daily pricing run
+                from 45–60 minutes of manual work to under 90 seconds.</span> Built end-to-end as the sole engineer.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {["Next.js", "Zustand", "Supabase", "Ant Design", "REST APIs"].map((tag) => (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {["Next.js 16", "Prisma", "PostgreSQL", "AWS Amplify", "AWS RDS", "AWS SES", "S3", "NextAuth", "Samsara API", "DTN", "QuickBooks"].map((tag) => (
                   <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
                 ))}
               </div>
+              <a href="/case-studies/satraj.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
+                → Read case study (PDF)
+              </a>
             </motion.div>
           </div>
         </motion.div>
@@ -213,12 +234,12 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// how it works</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">Why founders hire me</motion.h2>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">How I work</motion.h2>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { icon: "⚡", title: "Ship Fast", desc: "AI-assisted development with Claude Code. Features that take traditional teams weeks ship in days. You're not paying for slow." },
-                { icon: "🏗️", title: "End-to-End", desc: "Architecture, frontend, backend, deployment. No handoffs, no communication overhead. One person, full ownership." },
-                { icon: "🤝", title: "Stay Honest", desc: "Real timelines. Real updates. You'll never wonder what's happening. I treat your product like it's mine." }
+                { icon: "🏗️", title: "End-to-End Ownership", desc: "Architecture, backend, frontend, infra, deploys. Three production SaaS apps shipped solo prove it. I think in products, not tickets." },
+                { icon: "🎯", title: "Correctness First", desc: "MRR math that has to match the bank account. Money handled as integer cents. Idempotent webhooks. The bar is the numbers being right, not just the UI looking right." },
+                { icon: "⚡", title: "AI as Leverage", desc: "AI-assisted development daily — not as a crutch, as leverage. I still own the architecture, the decisions, the quality. I just don't waste time on boilerplate." }
               ].map((item) => (
                 <motion.div key={item.title} variants={fadeUp} className="space-y-3">
                   <div className="text-3xl">{item.icon}</div>
@@ -237,7 +258,7 @@ export default function Home() {
           <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// tech stack</motion.p>
           <motion.h2 variants={fadeUp} className="text-3xl font-bold mb-10">Tools I ship with</motion.h2>
           <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
-            {["Next.js", "React", "TypeScript", "Node.js", "Supabase", "PostgreSQL", "Stripe", "Tailwind CSS", "Vercel", "REST APIs", "Framer Motion", "Zustand"].map((tech) => (
+            {["Next.js", "React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Supabase", "NextAuth", "Stripe Connect", "Socket.IO", "AWS (Amplify, RDS, SES, S3)", "Tailwind CSS", "REST APIs", "Framer Motion"].map((tech) => (
               <span key={tech} className="px-4 py-2 border border-white/10 rounded-lg text-sm text-white/60 hover:border-[#22c55e]/30 hover:text-white transition-all cursor-default">
                 {tech}
               </span>
@@ -253,16 +274,17 @@ export default function Home() {
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// about</motion.p>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I&apos;m Uzair — a full-stack developer from Islamabad, Pakistan building SaaS products for founders worldwide.
-              4+ years shipping Next.js applications for clients in Germany, the US, and beyond.
+              I&apos;m Uzair — a Full-Stack Engineer based in Islamabad, Pakistan, building B2B SaaS products end to end.
+              4+ years shipping Next.js applications for clients in the US and Germany.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I use AI-assisted development daily to move faster than a traditional dev team.
-              Not as a crutch — as leverage. I still own the architecture, the decisions, and the quality.
-              I just don&apos;t waste your time on boilerplate.
+              I think in products, not tickets. The visible thing is a UI. The actual work is making sure the
+              MRR math matches the bank account, the webhooks are idempotent, the BOL pipeline doesn&apos;t silently
+              misattribute deliveries, and the dashboard tells the truth under partial outages. That&apos;s the bar
+              I hold my own SaaS to — and it&apos;s the bar I bring to production work.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed">
-              Final year of a BS in Artificial Intelligence. Building in public.
+              BS in Artificial Intelligence. Currently open to senior full-stack roles at product-focused companies — remote, any time zone with reasonable overlap.
             </motion.p>
           </motion.div>
         </div>
@@ -274,33 +296,43 @@ export default function Home() {
           <div className="text-center mb-12">
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// contact</motion.p>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold mb-4">
-              Building something?<br />
-              <span className="text-white/40">Let&apos;s ship it.</span>
+              Hiring or building?<br />
+              <span className="text-white/40">Let&apos;s talk.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-white/40 max-w-md mx-auto">
-              Indie founders making a real call before paying — let&apos;s talk before any commitment.
+              Open to senior full-stack roles and select consulting. Replies within 24 hours.
             </motion.p>
           </div>
 
-          <motion.div variants={fadeUp} className="max-w-lg mx-auto">
+          <motion.div variants={fadeUp} className="max-w-lg mx-auto space-y-3">
+            <a
+              href="mailto:uzairsaleemdev@gmail.com"
+              className="group flex items-center justify-between gap-4 w-full bg-[#22c55e] text-black font-semibold rounded-xl px-6 py-5 hover:bg-[#16a34a] transition-colors"
+            >
+              <span className="flex items-center gap-3">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m3 7 9 6 9-6" />
+                </svg>
+                <span className="text-base md:text-lg">Email me</span>
+              </span>
+              <span className="text-xl transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
             <a
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 w-full bg-[#22c55e] text-black font-semibold rounded-xl px-6 py-5 hover:bg-[#16a34a] transition-colors"
+              className="group flex items-center justify-between gap-4 w-full border border-white/15 text-white font-semibold rounded-xl px-6 py-5 hover:bg-white/5 transition-colors"
             >
               <span className="flex items-center gap-3">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="3" y="4" width="18" height="18" rx="2" />
                   <path d="M16 2v4M8 2v4M3 10h18" />
                 </svg>
-                <span className="text-base md:text-lg">Book a 30-min intro call</span>
+                <span className="text-base md:text-lg">Book a 30-min call</span>
               </span>
               <span className="text-xl transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
             </a>
-            <p className="text-center text-sm text-white/50 mt-4">
-              Free. No pitch. Just a conversation about what you&apos;re building.
-            </p>
           </motion.div>
 
           <motion.div variants={fadeUp} className="flex justify-center gap-6 mt-12 pt-8 border-t border-white/5">
