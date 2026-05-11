@@ -144,118 +144,114 @@ export default function Home() {
         >
           <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// selected work</motion.p>
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">
-            Products I&apos;ve shipped
+            Selected work
           </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
-              <a href="https://indiecator.com" target="_blank" rel="noopener noreferrer" className="block relative aspect-[16/8] overflow-hidden bg-[#0a0a0a] border-b border-white/5">
-                <Image
-                  src="/images/indiecator.png"
-                  alt="Indiecator — revenue analytics dashboard preview"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              </a>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Live · Solo Built</span>
-                  <a href="https://indiecator.com" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                    indiecator.com ↗
-                  </a>
-                </div>
-                <h3 className="text-xl font-bold mb-2">Indiecator</h3>
-                <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Baremetrics-style revenue analytics for indie SaaS</p>
-                <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
-                  Connect Stripe via OAuth, get a fully reconstructed historical view in minutes. The hard part isn&apos;t the chart —
-                  it&apos;s classifying every subscription change as New / Expansion / Contraction / Churn / Reactivation correctly,
-                  under partial outages, webhook retries, trials, and proration math. 15+ Prisma models, 3 reconciling sync paths,
-                  full Baremetrics metric suite (MRR, ARR, churn, ARPU, LTV).
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {["Next.js 16", "Node.js", "Express", "Prisma", "PostgreSQL", "Stripe Connect", "TypeScript"].map((tag) => (
-                    <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                  ))}
-                </div>
-                <a href="/case-studies/indiecator.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
-                  → Read case study (PDF)
+            {[
+              {
+                name: "Indiecator",
+                tagline: "Baremetrics-style revenue analytics for indie SaaS",
+                description: "Connect Stripe via OAuth, get every MRR movement — New, Expansion, Contraction, Churn — classified correctly from invoice line items, not Stripe events. Three reconciling sync paths heal a missed webhook within 24 hours.",
+                status: "Live · Solo Built",
+                live: "https://indiecator.com",
+                liveLabel: "indiecator.com",
+                caseStudy: "/case-studies/indiecator.pdf",
+                image: "/images/indiecator.png",
+                stack: ["Next.js 16", "Prisma", "Stripe Connect", "PostgreSQL"],
+                imageBg: "#0a0a0a",
+                wide: false,
+              },
+              {
+                name: "Diffed.gg",
+                tagline: "Two-sided gaming services marketplace",
+                description: "Coaching, boosting, and real-time team formation in one product. Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts with admin-mediated verification — no Discord, no Wise.",
+                status: "Live · Solo Built",
+                live: "https://diffed.gg",
+                liveLabel: "diffed.gg",
+                caseStudy: "/case-studies/diffed.pdf",
+                image: "/images/diffed.png",
+                stack: ["Next.js 15", "Socket.IO", "Stripe", "Prisma"],
+                imageBg: "#1a0a1f",
+                wide: false,
+              },
+              {
+                name: "Sat-Raj — Fuel Distribution Platform",
+                tagline: "Internal platform for a 30-year-old NJ fuel wholesaler",
+                description: "Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, DTN supplier ingestion, and a Samsara → QuickBooks invoice pipeline. Daily pricing run dropped from 45–60 minutes to under 90 seconds.",
+                status: "Live · Client Work",
+                live: "https://satraj.inc",
+                liveLabel: "satraj.inc",
+                caseStudy: "/case-studies/satraj.pdf",
+                image: "/images/satraj.png",
+                stack: ["Next.js 16", "Prisma", "AWS", "Samsara API"],
+                imageBg: "#0a0a0a",
+                wide: true,
+              },
+            ].map((p) => (
+              <motion.article
+                key={p.name}
+                variants={fadeUp}
+                className={`group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col ${p.wide ? "md:col-span-2" : ""}`}
+              >
+                <a
+                  href={p.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block relative overflow-hidden border-b border-white/5 ${p.wide ? "aspect-[21/8]" : "aspect-[16/9]"}`}
+                  style={{ backgroundColor: p.imageBg }}
+                >
+                  <Image
+                    src={p.image}
+                    alt={`${p.name} screenshot`}
+                    fill
+                    sizes={p.wide ? "(max-width: 768px) 100vw, 1024px" : "(max-width: 768px) 100vw, 50vw"}
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  {/* Subtle gradient overlay — softens bright screenshots, blends into card */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/10 to-transparent pointer-events-none" />
+                  {/* Status badge floats over the image */}
+                  <span className="absolute top-4 left-4 text-[11px] font-semibold bg-black/60 backdrop-blur-sm text-[#22c55e] px-3 py-1 rounded-full border border-[#22c55e]/30">
+                    {p.status}
+                  </span>
                 </a>
-              </div>
-            </motion.div>
 
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
-              <a href="https://diffed.gg" target="_blank" rel="noopener noreferrer" className="block relative aspect-[16/8] overflow-hidden bg-[#1a0a1f] border-b border-white/5">
-                <Image
-                  src="/images/diffed.png"
-                  alt="Diffed.gg — gaming services marketplace homepage"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              </a>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Solo Built</span>
-                  <a href="https://diffed.gg" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                    diffed.gg ↗
-                  </a>
-                </div>
-                <h3 className="text-xl font-bold mb-2">Diffed.gg</h3>
-                <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Two-sided gaming services marketplace</p>
-                <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
-                  End-to-end marketplace connecting gamers with vetted coaches and boosters. Customer, provider, and admin flows
-                  in one product — Stripe + PayPal checkout, real-time chat over Socket.IO, in-platform wallets, screenshot
-                  proof-of-completion, fee-split payouts, and email-based admin invites. Money handled as integer cents to
-                  avoid float drift on multi-provider order splits.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {["Next.js 15", "Socket.IO", "Stripe", "PayPal", "Prisma", "PostgreSQL", "NextAuth"].map((tag) => (
-                    <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                  ))}
-                </div>
-                <a href="/case-studies/diffed.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
-                  → Read case study (PDF)
-                </a>
-              </div>
-            </motion.div>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold mb-1.5">{p.name}</h3>
+                  <p className="text-[#22c55e]/80 text-xs font-mono mb-3">{p.tagline}</p>
+                  <p className="text-white/55 text-sm leading-relaxed mb-5 flex-1">
+                    {p.description}
+                  </p>
 
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] md:col-span-2 flex flex-col">
-              <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="block relative aspect-[16/6] overflow-hidden bg-[#0a0a0a] border-b border-white/5">
-                <Image
-                  src="/images/satraj.png"
-                  alt="Sat-Raj fuel distribution platform homepage"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 1024px"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              </a>
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Client Work</span>
-                  <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                    satraj.inc ↗
-                  </a>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {p.stack.map((tag) => (
+                      <span key={tag} className="text-[11px] bg-white/5 text-white/50 px-2 py-1 rounded-md">{tag}</span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 pt-3 border-t border-white/5">
+                    <a
+                      href={p.caseStudy}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#22c55e]/15 hover:bg-[#22c55e]/25 text-[#22c55e] px-3.5 py-2 rounded-md transition-colors"
+                    >
+                      Case study
+                      <span aria-hidden="true">→</span>
+                    </a>
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 hover:text-white px-3 py-2 transition-colors"
+                    >
+                      {p.liveLabel}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Sat-Raj — Fuel Distribution Platform</h3>
-                <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Internal ops platform for a 30-year-old NJ fuel wholesaler</p>
-                <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
-                  Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and
-                  invoice generator. Pulls supplier costs from the DTN feed, calculates daily prices for 24 customers across
-                  NJ &amp; PA tax structures, sends per-customer emails via SES, ingests bills of lading from the Samsara API,
-                  and pushes invoices to QuickBooks. <span className="text-white/70 font-medium">Cut the daily pricing run
-                  from 45–60 minutes of manual work to under 90 seconds.</span> Built end-to-end as the sole engineer.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {["Next.js 16", "Prisma", "PostgreSQL", "AWS Amplify", "AWS RDS", "AWS SES", "S3", "NextAuth", "Samsara API", "DTN", "QuickBooks"].map((tag) => (
-                    <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                  ))}
-                </div>
-                <a href="/case-studies/satraj.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
-                  → Read case study (PDF)
-                </a>
-              </div>
-            </motion.div>
+              </motion.article>
+            ))}
           </div>
         </motion.div>
       </section>

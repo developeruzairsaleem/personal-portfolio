@@ -8,10 +8,11 @@ jest.mock('framer-motion', () => {
     ({ children, ...rest })
   return {
     motion: {
-      div: (props: any) => { const p = strip(props); return React.createElement('div', p) },
-      h1:  (props: any) => { const p = strip(props); return React.createElement('h1', p) },
-      h2:  (props: any) => { const p = strip(props); return React.createElement('h2', p) },
-      p:   (props: any) => { const p = strip(props); return React.createElement('p', p) },
+      div:     (props: any) => { const p = strip(props); return React.createElement('div', p) },
+      article: (props: any) => { const p = strip(props); return React.createElement('article', p) },
+      h1:      (props: any) => { const p = strip(props); return React.createElement('h1', p) },
+      h2:      (props: any) => { const p = strip(props); return React.createElement('h2', p) },
+      p:       (props: any) => { const p = strip(props); return React.createElement('p', p) },
     },
   }
 })
@@ -82,7 +83,7 @@ describe('Portfolio Homepage', () => {
 
   it('has case study PDF links for each project', () => {
     render(<Home />)
-    const caseStudyLinks = screen.getAllByText(/Read case study/i)
+    const caseStudyLinks = screen.getAllByText(/^Case study$/i)
     expect(caseStudyLinks.length).toBe(3)
   })
 })
