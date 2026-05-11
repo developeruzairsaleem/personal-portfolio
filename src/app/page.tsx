@@ -122,7 +122,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { value: "4+", label: "Years Experience" },
-            { value: "3", label: "Live SaaS Products" },
+            { value: "6", label: "Live SaaS Products" },
             { value: "10+", label: "Client Projects Shipped" },
             { value: "🌍", label: "Remote, Global" },
           ].map((stat) => (
