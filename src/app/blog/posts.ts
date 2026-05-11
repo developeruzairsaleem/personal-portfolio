@@ -5,166 +5,170 @@ export type Post = {
   date: string;
   readTime: string;
   tag: string;
-  body: string; // simple HTML — kept inline so we don't need an MDX pipeline
+  body: string;
 };
 
 export const posts: Post[] = [
   {
-    slug: "store-movements-not-mrr",
-    title: "Don't store MRR. Store movements.",
+    slug: "ai-as-leverage-not-autocomplete",
+    title: "AI is leverage. It's not autocomplete.",
     excerpt:
-      "The hard part of revenue analytics isn't drawing the chart — it's deciding what number to draw. Here's why I rebuilt Indiecator's data model around movements, not snapshots.",
+      "Most engineers use AI to type faster. A smaller group uses it to ship faster. The gap between those two is the entire story of what changed about this job in the last 18 months.",
     date: "Apr 2026",
-    readTime: "8 min",
-    tag: "Architecture",
+    readTime: "5 min",
+    tag: "AI Agents",
     body: `
-<p>The first version of Indiecator stored MRR. Every night, a cron job summed up active subscriptions, wrote a number to a <code>daily_mrr</code> table, and that's what the dashboard rendered. Clean. Obvious. Wrong.</p>
+<p>The first six months I used AI to code, I used it wrong. I had Copilot inline. It finished my sentences. The autocomplete was good. I shipped a little faster than I used to. I told myself this was the future.</p>
 
-<p>It was wrong because the moment a founder asked the only question that actually matters — <em>"why did MRR go up?"</em> — the answer was a shrug.</p>
+<p>It wasn&#x2019;t. The future was something else, and I missed it for a while.</p>
 
-<h2>The thing you actually need is movements</h2>
+<h2>Two ways to use AI, two completely different jobs</h2>
 
-<p>The hard part of MRR analytics isn't the chart. It's deciding what number the chart should draw. And Stripe's API gives you invoices and subscriptions, not movements. To explain why MRR went from $9,400 to $9,700 last month, you have to classify every change:</p>
+<p>There are two ways an engineer uses AI right now, and they look similar from the outside but they are not the same job at all.</p>
 
-<ul>
-<li>A new subscription at $50/mo → <strong>+$50 New MRR</strong></li>
-<li>An existing customer upgrading from $50 to $80 → <strong>+$30 Expansion</strong></li>
-<li>A downgrade from yearly to monthly → <strong>Contraction</strong> (and the math is non-obvious)</li>
-<li>A canceled subscription → <strong>Churn</strong>, but <em>when</em>? At cancellation, or at period end?</li>
-<li>A trial converting → <strong>New MRR</strong>, but only at conversion, not trial start</li>
-<li>A proration invoice for $4.27 → <strong>not a movement at all</strong>, just an accounting artifact</li>
-</ul>
+<p>The first way is <strong>autocomplete</strong>. You write a function name, the model suggests the body, you tab to accept. You write a comment, the model writes the code below it. It is the same job you were doing before — sitting at the editor, holding the whole problem in your head, typing things out — except your hands move a little less. You ship maybe 1.3x faster. You are not transformed.</p>
 
-<p>Get any of these wrong and the dashboard lies. Worse — the lies are silent. The chart still looks plausible. The founder makes a decision based on it. Six months later, somebody runs a manual reconciliation against Stripe and the trust is gone.</p>
+<p>The second way is <strong>leverage</strong>. You don&#x2019;t write a function name. You write a <em>brief</em>. You describe the outcome — what should be true after the change — and you hand the whole thing to an agent. While the agent works, you go review the previous one&#x2019;s pull request. You ship 5x faster, sometimes 10x, and the job has changed.</p>
 
-<h2>The model: store the event, derive the state</h2>
+<p>The job has changed because the bottleneck has moved. When you&#x2019;re using autocomplete, your bottleneck is the same as it ever was: how fast you can think and type. When you&#x2019;re using leverage, your bottleneck is how clearly you can specify what you want, and how well you can verify what came back.</p>
 
-<p>So I threw out <code>daily_mrr</code> and built around a single insight: <strong>don't store MRR. Store movements.</strong></p>
+<h2>The thing nobody tells you about agents</h2>
 
-<p>Every change to a customer's subscription is recorded as an <code>MrrMovement</code> row with a type (<code>NEW</code>, <code>EXPANSION</code>, <code>CONTRACTION</code>, <code>CHURN</code>, <code>REACTIVATION</code>), a signed dollar impact, and a reference to the invoice or subscription event that caused it. Daily snapshots are derived by walking the movement history. If a webhook is missed, the daily sync re-derives the truth from invoices. The state is always reconstructable from first principles.</p>
+<p>I run two or three agents in parallel most days. One refactoring something, one writing tests, one investigating a bug. Sometimes I&#x2019;m the bottleneck — I can&#x2019;t read the diffs fast enough — and that is a new feeling. Twelve months ago the bottleneck was always typing. Now the bottleneck is whatever isn&#x2019;t the agent.</p>
 
-<p>This is the kind of decision that looks like over-engineering until the third time you need it. By the time you've shipped trial handling, proration filtering, churn detection, and weighted aggregation across multiple Stripe integrations, you stop debating it.</p>
+<p>What this does to your day is strange. The actual hands-on-keyboard time drops. The reading time goes up. The thinking time stays roughly the same. The decisions per hour goes way up. By 4pm you are mentally exhausted in a way you weren&#x2019;t before, because you spent the day making twenty decisions about other code instead of writing your own.</p>
 
-<h2>The three traps I fell into</h2>
+<p>This is also why "AI replaces programmers" is the wrong frame. The agent is not the programmer. The agent is the typist. <em>You</em> are still the programmer — but the verb you do most is no longer "write," it&#x2019;s "review."</p>
 
-<p><strong>Trap one: sourcing NEW from <code>subscription.created</code>.</strong> Stripe's <code>subscription.created</code> event tells you a subscription exists. It does not tell you what the customer actually paid — promo codes, taxes, prorations, and discounts all live in the invoice. The first version of Indiecator used the event. The numbers didn't match what hit the bank account. I now source NEW from <code>invoice.paid</code> line items. MRR matches the bank.</p>
+<h2>The two skills that actually matter now</h2>
 
-<p><strong>Trap two: rejecting webhook retries.</strong> Idempotency is hard. The naive solution — refuse any movement that already exists for a subscription — breaks legitimate same-day upgrades. The correct solution has different rules per movement type. NEW is one-per-subscription (you can never have two "first" payments). Expansion, contraction, and churn use a 60-second window keyed on subscription + type + signed amount. Webhook retries get absorbed. Real same-day changes get through.</p>
+<p>If the bottleneck has moved from typing to specification + verification, then the skills that pay are the ones that produce a tight specification and a fast verification loop. Specifically:</p>
 
-<p><strong>Trap three: assuming canceled means churned.</strong> Naively, when a subscription cancels you record churn equal to the subscription's amount. But for a sub on a 100% off coupon, the real MRR was $0. Recording $X of churn would invent revenue that never existed. The churn helper queries the customer's last movement with <code>calculatedMrr &gt; 0</code> and only falls back to the subscription amount if prior movements prove real MRR existed.</p>
+<p><strong>Skill one: writing briefs that survive interpretation.</strong> An agent will do exactly what you said, which is not the same as what you wanted. You learn to write tasks that have no ambiguity — the way you used to write Jira tickets for a contractor in a different timezone you&#x2019;d never met. "Refactor the auth flow" is not a brief. "Replace the JWT verification in <code>src/lib/auth.ts</code> with the helper in <code>src/lib/jose.ts</code>, keep the public function signature unchanged, update the three callers, run the test suite" is a brief.</p>
 
-<h2>The bar</h2>
+<p><strong>Skill two: building a verification surface the agent can hit.</strong> If the only way to know whether the agent did the right thing is to read the diff and run the app, you will be a bottleneck. If there&#x2019;s a test suite, a typecheck, a build, a smoke test — the agent runs through them itself and only surfaces work that&#x2019;s passing. The verification surface IS your leverage. People who think "tests are slow" are about to find out that tests are the only thing that lets them go fast.</p>
 
-<p>I don't think any of this is brilliant engineering. It's just the bar.</p>
+<h2>The honest part</h2>
 
-<p>The cost of a wrong number on a founder's MRR chart isn't a bug report — it's "they stop trusting the tool." For a small SaaS, trust is the entire product. The visible thing is the dashboard. The actual product is a sync pipeline that has to be correct under partial Stripe outages, webhook retries, trial edge cases, and proration math. Most of the engineering work isn't building features. It's making the numbers that look right <em>be</em> right.</p>
+<p>Autocomplete still works. I still use it. It&#x2019;s genuinely helpful when I&#x2019;m in the middle of something and just need the next 4 lines. But it is a small win. The leverage win is the big one. And the leverage win is invisible to people who haven&#x2019;t made the switch — because from the outside it just looks like the same job, slightly faster.</p>
 
-<p>That's the bar I hold this kind of work to. If you're building revenue analytics, store the movements.</p>
+<p>It&#x2019;s not the same job. It&#x2019;s a different one. Worth knowing.</p>
     `,
   },
   {
-    slug: "integer-cents-marketplaces",
-    title: "Floats killed the marketplace. I banished them.",
+    slug: "the-agent-that-worked-while-i-slept",
+    title: "The agent that worked while I slept",
     excerpt:
-      "Splitting an order between three providers, deducting a 20% fee, and getting it to round to exactly the same number on the customer receipt and the provider wallet — three different times — taught me to never trust floats again.",
+      "I set up a Claude Code loop to refactor a noisy module overnight. I woke up to a clean diff, 47 passing tests, and a commit message that was funnier than mine usually are. Here's what I learned about scoping work for an agent that doesn't sleep.",
     date: "Mar 2026",
     readTime: "6 min",
-    tag: "Payments",
+    tag: "AI Agents",
     body: `
-<p>The first marketplace bug that ever cost me a weekend was a 1-cent rounding mismatch.</p>
+<p>On a Wednesday in February I went to bed at midnight with an open laptop, a long-running Claude Code session, and a single instruction: <em>refactor the BOL ingestion module to use the shared error helper. Run tests after each file. Stop if anything red.</em></p>
 
-<p>A customer paid $59.99 for a duo-queue order on Diffed.gg. The order went to three providers, a 20% platform fee was deducted, and the remainder was supposed to split evenly. The customer receipt said the platform took $11.998. The provider wallet showed the three wallets received $15.997 each. Add it up: that's $59.989. Off by one cent.</p>
+<p>I woke up at 7am to a clean diff, 47 passing tests, and a commit message that opened with "this one was annoying." I had not, at any point during the previous seven hours, been awake.</p>
 
-<p>It looked like a rounding bug. It was actually a floats-everywhere bug. And once I started looking, it was floats-everywhere, everywhere.</p>
+<p>This is not the part of AI I expected to find useful. I&#x2019;m a paranoid reviewer. I don&#x2019;t trust generated code without reading it. The idea of letting an agent loose overnight on production code felt insane. And then it kept working, and now it&#x2019;s a habit.</p>
 
-<h2>The places floats hide</h2>
+<h2>What actually works overnight</h2>
 
-<p>JavaScript's <code>Number</code> is IEEE-754 floating-point. You know this. I know this. We all type <code>0.1 + 0.2</code> into the console once a year and laugh. And yet I had floats in:</p>
+<p>Not everything works. I&#x2019;ve killed agents at 3am via a phone notification more than once. After a few months of doing this regularly, the rough taxonomy of overnight work I trust looks like:</p>
 
 <ul>
-<li>The <code>price</code> column on the subpackage table (Decimal in Prisma, but pulled into JS as a Number for calculations)</li>
-<li>Every helper that computed a per-provider split</li>
-<li>The Stripe checkout intent builder, which multiplied by 100 to convert to cents</li>
-<li>The PayPal builder, which did the same</li>
-<li>The wallet credit function, which converted cents back to dollars for display</li>
+<li><strong>Rename / refactor with green tests as the contract.</strong> "Pull this helper out into its own file, update all callers, keep the test suite green." The test suite is the guardrail. The agent runs them, sees red, fixes, sees red, fixes, eventually it&#x2019;s green or it stops.</li>
+<li><strong>Adding tests to under-tested code.</strong> "Write tests for every exported function in this module. Make them pass against the current implementation." This one is wonderful. The agent reads the code, writes tests, runs them, fixes the tests until they describe the actual current behavior. You wake up with a regression net.</li>
+<li><strong>Following a migration playbook.</strong> "Migrate the API routes in <code>app/api</code> from the pages-router pattern to the App Router pattern using this one already-migrated file as the template." Templated work is great for agents. They are pattern-matchers; this is exactly that.</li>
 </ul>
 
-<p>Every one of these was a chance to lose a cent. And the bug doesn't show up on a single transaction. It shows up after a hundred, when one wallet is off by enough to notice and the provider asks why.</p>
+<p>What I do <em>not</em> trust overnight:</p>
 
-<h2>The fix is boring. That's why it works.</h2>
+<ul>
+<li>Anything where the contract is "make it better." No green-test guardrail = no overnight job.</li>
+<li>Anything that touches money, auth, or data integrity. Those need me awake.</li>
+<li>Anything that involves making a product decision. Agents will pick a defensible answer and move on. I want to be the one picking.</li>
+</ul>
 
-<p>I rewrote every money-handling path to follow one rule: <strong>money is integer cents from the moment it enters the system until the moment it leaves.</strong></p>
+<h2>The scoping mistake I kept making</h2>
 
-<p>Database: integer column. Type: integer (Prisma <code>Int</code>, not <code>Decimal</code>). Function signatures: integer cents in, integer cents out. Display: formatted at the edges, only at the edges, with a single shared helper.</p>
+<p>The first three times I tried this, I wrote the brief like I would write a Jira ticket. "Refactor the X module, simplify the Y logic, clean up the Z helpers." I&#x2019;d wake up to a diff that touched 40 files, with three things I liked, two things I didn&#x2019;t, and one thing that broke a feature in production. Net negative.</p>
 
-<p>The split algorithm became:</p>
+<p>What I do now is the opposite. I write the brief like a contract: <strong>one verb, one scope, one stop condition.</strong></p>
 
-<pre><code>function splitOrder(totalCents: number, providerCount: number, feeRateBps: number) {
-  const feeCents = Math.floor((totalCents * feeRateBps) / 10000);
-  const payoutCents = totalCents - feeCents;
-  const perProvider = Math.floor(payoutCents / providerCount);
-  const remainder = payoutCents - perProvider * providerCount;
-  // Distribute the remainder pennies to the first N providers, deterministically
-  return Array.from({ length: providerCount }, (_, i) =&gt; perProvider + (i &lt; remainder ? 1 : 0));
-}</code></pre>
+<p>One verb: "Rename." Not "rename and clean up." Just rename.</p>
 
-<p>It's not clever. It's the boring algorithm. <code>Math.floor</code> instead of <code>Math.round</code>. The remainder pennies go somewhere specific (the first N providers) rather than disappearing. Every test runs through edge cases: odd totals, single providers, zero-fee orders, totals that don't divide evenly.</p>
+<p>One scope: "Files matching <code>src/lib/billing/*</code>." Not "wherever it seems necessary."</p>
 
-<h2>Server-side price recomputation</h2>
+<p>One stop condition: "Tests pass. If you can&#x2019;t make them pass, stop and leave a note." Not "make it work."</p>
 
-<p>The other thing I now do everywhere is recompute the price on the server before the Stripe or PayPal intent is created. Never trust the client. Even if a customer is honest, a stale browser tab can submit a price that no longer exists. Every checkout endpoint pulls the subpackage + configuration from the database, runs the same split algorithm, and uses that result as the source of truth. The client number is only ever an input to the UI, never to the gateway.</p>
+<p>The diff I wake up to with this kind of brief is small, surgical, and reviewable in fifteen minutes over coffee. The diff I used to wake up to was sprawling and required half a day to disentangle. Same agent. Different brief. Different outcome.</p>
 
-<h2>The thing nobody teaches you</h2>
+<h2>The economic insight</h2>
 
-<p>Money correctness in a marketplace isn't a feature. It's not on a Trello card. Nobody asks for it in the spec. But the day a provider notices they were short two cents on every order for a month is the day you find out whether your foundation was built on floats or integers.</p>
+<p>The thing I didn&#x2019;t expect about overnight agents is how much it changes the calculus of "is this worth doing." There is a class of work — boring refactors, test backfill, dependency upgrades, dead code removal — that I knew was valuable but never prioritized because the activation energy was too high. "It would take me a day. I don&#x2019;t have a day."</p>
 
-<p>If you're building a marketplace: integer cents. From day one. Don't let yourself be talked out of it because Decimal types feel more flexible. They're not. They're a different kind of trap. Integer cents is one of the very few things in a codebase that's actually correct by construction.</p>
+<p>An overnight agent costs me about ten minutes of writing the brief and forty minutes the next morning of reviewing the diff. Fifty minutes for a day&#x2019;s worth of code hygiene. That math is not subtle. Things that used to be "maybe next sprint" now happen on a Tuesday because I had a free hour before bed.</p>
+
+<h2>The thing that still surprises me</h2>
+
+<p>What I keep finding is that the agent does the work I find boring and exhausting better than I do it. Not because it&#x2019;s smarter — it isn&#x2019;t, on those tasks — but because it doesn&#x2019;t get bored. The 47th identical rename in the 47th file is just as careful as the first. I can&#x2019;t honestly say that about my own work. By the 30th rename I&#x2019;m skimming.</p>
+
+<p>The agent doesn&#x2019;t skim. That&#x2019;s the underrated thing.</p>
     `,
   },
   {
-    slug: "replacing-30-years-of-sheets",
-    title: "How we replaced 30 years of Google Sheets in 90 days",
+    slug: "the-hardest-part-of-ai-agents-isnt-the-ai",
+    title: "The hardest part of working with AI agents isn't the AI",
     excerpt:
-      "When you migrate a business off spreadsheets, parity isn't the goal — it's the precondition. Here's the human-in-the-loop approach I used at Sat-Raj to keep the client trusting the system through every cutover.",
+      "After a year of building with agents in the loop, the bottleneck has stopped being the model and started being me. Specifically: my ability to say what I want clearly enough that an agent can execute it without supervision.",
     date: "May 2026",
     readTime: "7 min",
-    tag: "Process",
+    tag: "AI Agents",
     body: `
-<p>Sat-Raj is a fuel wholesaler in New Jersey. They sell gasoline and diesel to about 24 gas stations across NJ and PA. They've been doing it since 1992. And until this year, the entire business — the pricing, the customer data, the freight matrix, the daily distribution — lived in 39 hand-edited tabs in a single Google Sheets document.</p>
+<p>The longer I work with AI agents, the more convinced I am that the model is not the bottleneck. The bottleneck is me, articulating what I want in a way the model can act on without me hovering over it.</p>
 
-<p>One person fully understood the formulas. Every afternoon, that person typed new supplier prices into a master template, watched 39 dependent tabs recalculate, copy-pasted each tab into 24 separate emails, and sent. Bills of lading from the Samsara driver app were re-typed into the sheet, then re-typed again into QuickBooks for invoicing.</p>
+<p>If you&#x2019;ve ever managed a junior engineer in a different timezone, you already know this skill. The hardest part wasn&#x2019;t their code. The hardest part was the four-paragraph email at the end of each day describing exactly what you wanted them to do tomorrow, in enough detail that they wouldn&#x2019;t have to guess, in clear enough English that a non-native speaker reading it at 2am their time would arrive at the right answer.</p>
 
-<p>This isn't unusual. This is what most 30-year-old businesses look like under the hood. And the question isn't whether the software can do better — it's whether you can ship the replacement without breaking the business in transit.</p>
+<p>Working with agents is that. All day. For everything.</p>
 
-<h2>Parity isn't the goal. Parity is the precondition.</h2>
+<h2>What "good at this" actually looks like</h2>
 
-<p>The first decision I made was to not improve anything in v1. No new features. No better margin logic. No clever automation. The first launch had to produce <em>byte-identical</em> prices to the spreadsheet on a test day. If a customer's diesel price was $3.4271 in the sheet, it had to be $3.4271 in the new system. Not $3.4270. Not $3.4272. Identical.</p>
+<p>I&#x2019;ve been keeping notes on what separates the briefs that work from the ones that don&#x2019;t. After about a hundred briefs of various sizes, the pattern is depressingly consistent. The ones that work share a structure. The ones that fail share a different one. Here&#x2019;s the shape of the working ones:</p>
 
-<p>This sounds obvious. It is not what most engineers do when they replace a legacy system. The instinct is to fix the obvious dumb things first — the margins that have drifted, the tax rules that have quietly diverged, the freight rates that don't match across customer tabs. Don't. Every change you make in v1 is a change the client can't tell apart from a bug. Replicate the formula exactly. Pin the rates from the legacy sheet in tests. Earn the trust to make the improvements you actually want to ship in v2.</p>
+<p><strong>Start with the outcome, not the steps.</strong> "After this change, calling <code>getCustomerMRR(customerId)</code> should return a number, not a Promise. All current callers should still compile." Not "convert the function from async to sync." The agent figures out the steps. You own the outcome.</p>
 
-<h2>Human-in-the-loop on the things that should never be silent</h2>
+<p><strong>Name the artifacts that already exist.</strong> If you mean a specific file, give the path. If you mean a specific function, give the function name. If there&#x2019;s an existing helper that should be reused, name it. The hours an agent wastes searching for the right thing to import is the most boring failure mode.</p>
 
-<p>The harder problem in Sat-Raj wasn't the pricing engine — that was determined math. The harder problem was the bills of lading. The Samsara driver app generates a signed BOL when a delivery is completed, but Samsara's geofences don't always line up with the client locations in the database. A driver dropping off at "Bobby's Avalon" might be inside a geofence labeled "BP Avalon" — same place, different label.</p>
+<p><strong>State the boundaries.</strong> "Don&#x2019;t touch the public API." "Don&#x2019;t add new dependencies." "Don&#x2019;t change the database schema." Agents have a powerful tendency to fix things you didn&#x2019;t ask them to fix. Stating what is out of scope is at least as valuable as stating what is in.</p>
 
-<p>The naive approach is to auto-match by proximity. Don't. The first time the system silently misattributes a delivery, you've created an invoice that bills the wrong customer for fuel they didn't receive. That's the kind of bug that doesn't get caught for a month and costs both money and trust to fix.</p>
+<p><strong>Name the verification surface.</strong> "Run <code>pnpm test:unit</code> when done. If anything fails, stop and surface it." If you don&#x2019;t name the verification, the agent picks one. You will not like the one it picks.</p>
 
-<p>Instead, I built a review queue. Every ambiguous mapping — new locations, renamed sites, drop-offs near a boundary — gets flagged for human approval before it can flow into an invoice. Once a Samsara address is mapped, the system remembers it via a <code>location_aliases</code> table. The queue gets shorter every week as the alias table grows.</p>
+<p><strong>Tell it what to do if blocked.</strong> "If you can&#x2019;t figure out which helper to use, stop and ask." Without this, an agent gets stuck and starts inventing. With it, an agent stops and you save an hour.</p>
 
-<p>This is not the elegant solution. The elegant solution is automatic matching. But "elegant" and "correct" are not the same thing, and on a system that prints invoices for actual money, correctness wins.</p>
+<h2>The brief I wrote at 9am that saved me six hours</h2>
 
-<h2>Configuration in the database, not in the deploy</h2>
+<p>One concrete example. I needed to migrate a Prisma schema from a soft-delete pattern (using a <code>deletedAt</code> column) to hard deletes for one specific table — but only that table, while keeping soft deletes elsewhere. Roughly forty queries touched it. The naive prompt would have been: "Convert this table from soft delete to hard delete."</p>
 
-<p>One small thing that paid for itself in the first month: nothing about the pricing logic — tax rates, margins, supplier configs, freight tiers — is hardcoded. It all lives in the database, editable from the in-app settings page. The client doesn't need me to push a deploy when New Jersey changes the gas tax. They change a number. They move on.</p>
+<p>The actual brief was about eight bullet points. It named the table. It named the migration file. It said "the goal is that after this change, calling <code>prisma.fooBar.delete()</code> actually removes the row from the database." It listed the four query helpers that I knew needed to change. It said "don&#x2019;t touch any other table&#x2019;s delete behavior." It said "run the test suite. If <code>foo-bar-deletion.test.ts</code> breaks, that&#x2019;s expected — update the test. If anything else breaks, stop."</p>
 
-<p>This sounds like an obvious principle. In practice, "obvious" engineering decisions are the first ones to get traded away under deadline pressure. Don't trade this one away. The cost of a deploy you didn't need to do is small; the cost of being on-call for a tax rate change is high.</p>
+<p>The brief took me about twenty minutes to write. The agent took about an hour to execute. Total: under two hours. Estimated hand-coded time: most of a day, because I&#x2019;d have had to find all forty call sites myself, and I would have gotten interrupted in the middle, and I would have lost the thread by lunch.</p>
 
-<h2>The result that's actually the point</h2>
+<p>The win was not the agent. The win was the brief. The agent could have failed completely and I&#x2019;d still have a useful artifact — the brief — to hand to a junior engineer or to use as a checklist for myself.</p>
 
-<p>The launch metrics looked good: the daily pricing run dropped from 45–60 minutes of manual spreadsheet work to under 90 seconds of one-click distribution. Per-customer formula drift went from frequent and undetected to zero. Bus-factor on pricing went from one person to anyone with a login. BOL data entry went from being typed twice (Samsara → Sheets → QuickBooks) to being pulled once and flowing through.</p>
+<h2>The thing I still struggle with</h2>
 
-<p>But the metric I care about most isn't on that list. It's that the client trusted the new system from day one — because the prices on day one were the prices they would have produced themselves. Once the trust was there, every subsequent improvement (the validation warnings, the DTN auto-ingestion, the per-delivery profit visibility) shipped without friction.</p>
+<p>I&#x2019;m a worse brief-writer when I&#x2019;m in flow. When I&#x2019;m deep in a problem and want the agent to handle something adjacent, I write sloppy briefs because I don&#x2019;t want to context-switch out of the main thing. Those sloppy briefs produce sloppy agents that produce sloppy code that I have to clean up later. Net negative.</p>
 
-<p>That's the part of legacy migration nobody talks about. The engineering is hard, but the engineering isn't the project. The project is keeping the business alive through the cutover, and you do that by treating parity as table stakes — not as a feature.</p>
+<p>What I&#x2019;ve started doing — and this is the most counterintuitive habit I&#x2019;ve picked up this year — is <em>writing the brief in the morning, before I start working on anything</em>. The day&#x2019;s entire backlog of agent-able tasks gets briefs written for it at 9am, when I have the most patience and clearest head. The agents run while I work on the main thing. By 4pm I have a backlog of finished diffs to review.</p>
+
+<p>This is not how anyone described knowledge work to me in 2022. It feels strange. It also works.</p>
+
+<h2>The skill</h2>
+
+<p>If I had to name the single skill that gets the most out of AI agents in 2026, it&#x2019;s not prompt engineering or model selection or any of the things people talk about on Twitter. It&#x2019;s clear writing.</p>
+
+<p>Specifically: the kind of clear writing where the next person who reads what you wrote — even if they have never been in your head before — knows exactly what you want them to do, what success looks like, what they should not touch, and what to do if they get stuck.</p>
+
+<p>That&#x2019;s a writing skill. It is also, it turns out, an engineering skill. It always was. The AI just made the cost of doing it badly visible in a way it wasn&#x2019;t before.</p>
     `,
   },
 ];

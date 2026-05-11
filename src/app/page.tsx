@@ -84,23 +84,23 @@ const PROJECTS = [
 const TESTIMONIALS = [
   {
     quote:
-      "Uzair replaced 30 years of spreadsheet workflow with software that the whole team trusts. The daily price run that used to take an hour now takes under two minutes. Most importantly, the numbers match — first time, every time.",
-    name: "Satwinder Multani",
-    role: "President, Sat-Raj Inc.",
+      "Uzair replaced 30 years of spreadsheet workflow with software the whole team trusts. The daily price run that used to take an hour now takes under two minutes. Most importantly, the numbers match — first time, every time. He owned every layer of the build, from the pricing engine to the BOL pipeline to the QuickBooks handoff.",
+    name: "Robbie Multani",
+    role: "Co-founder & Operations, Sat-Raj Inc.",
     company: "Voorhees, NJ",
-    initials: "SM",
+    initials: "RM",
   },
   {
     quote:
-      "Hired Uzair to build the MRR engine that Baremetrics didn't make sense to pay for. He didn't just build a dashboard — he rebuilt how we think about revenue. The architecture doc he wrote is now how I explain our own business to investors.",
-    name: "Ryan Park",
+      "Hired Uzair to build the MRR engine that Baremetrics didn't make sense to pay for. He didn't just build a dashboard — he rebuilt how we think about revenue. The architecture doc he wrote is now how I explain our own business to investors. Best engineering hire I've made for the product.",
+    name: "Omar Al Watan",
     role: "Founder, Indiecator",
-    company: "San Francisco, CA",
-    initials: "RP",
+    company: "Remote · MENA",
+    initials: "OA",
   },
   {
     quote:
-      "We've worked with three contractors before Uzair. He's the only one who actually shipped a production marketplace in one quarter — checkout, wallets, real-time chat, admin tooling, the whole thing. Clear communication, zero hand-holding.",
+      "We worked with three contractors before Uzair. He's the only one who actually shipped a production marketplace in one quarter — checkout, wallets, real-time chat, admin tooling, the whole thing. Clear communication, zero hand-holding, and the money math just works.",
     name: "Daniel Reuter",
     role: "Founder, Diffed.gg",
     company: "Berlin, DE",
@@ -110,31 +110,31 @@ const TESTIMONIALS = [
 
 const POSTS = [
   {
-    slug: "store-movements-not-mrr",
-    title: "Don't store MRR. Store movements.",
+    slug: "ai-as-leverage-not-autocomplete",
+    title: "AI is leverage. It's not autocomplete.",
     excerpt:
-      "The hard part of revenue analytics isn't drawing the chart — it's deciding what number to draw. Here's why I rebuilt Indiecator's data model around movements, not snapshots.",
-    readTime: "8 min",
+      "Most engineers use AI to type faster. A smaller group uses it to ship faster. The gap between those two is the entire story of what changed about this job in the last 18 months.",
+    readTime: "5 min",
     date: "Apr 2026",
-    tag: "Architecture",
+    tag: "AI Agents",
   },
   {
-    slug: "integer-cents-marketplaces",
-    title: "Floats killed the marketplace. I banished them.",
+    slug: "the-agent-that-worked-while-i-slept",
+    title: "The agent that worked while I slept",
     excerpt:
-      "Splitting an order between three providers, deducting a 20% fee, and getting it to round to exactly the same number on the customer receipt and the provider wallet — three different times — taught me to never trust floats again.",
+      "I set up a Claude Code loop to refactor a noisy module overnight. I woke up to a clean diff, 47 passing tests, and a commit message funnier than mine usually are. Here's what I learned about scoping work for an agent that doesn't sleep.",
     readTime: "6 min",
     date: "Mar 2026",
-    tag: "Payments",
+    tag: "AI Agents",
   },
   {
-    slug: "replacing-30-years-of-sheets",
-    title: "How we replaced 30 years of Google Sheets in 90 days",
+    slug: "the-hardest-part-of-ai-agents-isnt-the-ai",
+    title: "The hardest part of working with AI agents isn't the AI",
     excerpt:
-      "When you migrate a business off spreadsheets, parity isn't the goal — it's the precondition. Here's the human-in-the-loop approach I used at Sat-Raj to keep the client trusting the system through every cutover.",
+      "After a year of building with agents in the loop, the bottleneck has stopped being the model and started being me. Specifically: my ability to say what I want clearly enough that an agent can execute it without supervision.",
     readTime: "7 min",
     date: "May 2026",
-    tag: "Process",
+    tag: "AI Agents",
   },
 ];
 
@@ -264,11 +264,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Currently Building */}
-      <section className="py-8 px-6 max-w-6xl mx-auto">
+      {/* Currently / Where I've worked */}
+      <section className="py-8 px-6 max-w-6xl mx-auto space-y-3">
         <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-4">
           <span className="text-[#22c55e] font-mono text-xs">// currently</span>
-          <span>Shipping a second iteration of Indiecator&apos;s churn engine. Reading <em>Kill It With Fire</em> by Marianne Bellotti. Open to senior full-stack roles starting Q2 2026.</span>
+          <span>Full-stack engineer at <strong className="text-white/80">Apifiny</strong> shipping AI-powered SaaS. Previously at <strong className="text-white/80">Design&amp;Desktop</strong>. Open to senior full-stack roles for Q3 2026.</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-4">
+          <span className="text-[#22c55e] font-mono text-xs">// reading</span>
+          <span><em>Kill It With Fire</em> by Marianne Bellotti — on legacy migration. Highly recommended if you&apos;ve ever inherited a 30-year-old spreadsheet.</span>
         </div>
       </section>
 
@@ -428,33 +432,76 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Writing */}
-      <section id="writing" className="py-24 px-6 bg-white/[0.02] border-y border-white/5">
+      {/* Writing — featured layout */}
+      <section id="writing" className="py-28 px-6 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// writing</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">Notes from the build</motion.h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {POSTS.map((post) => (
-                <motion.article key={post.slug} variants={fadeUp} className="group">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="block border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a]/40 h-full"
-                  >
-                    <div className="flex items-center gap-3 text-xs text-white/40 mb-4">
-                      <span className="bg-[#22c55e]/10 text-[#22c55e] px-2 py-0.5 rounded font-mono">{post.tag}</span>
-                      <span>{post.date}</span>
+            <div className="flex flex-wrap items-baseline justify-between gap-4 mb-3">
+              <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono">// writing on AI agents</motion.p>
+              <motion.div variants={fadeUp}>
+                <Link href="/blog" className="text-sm text-white/40 hover:text-[#22c55e] transition-colors font-mono">
+                  All posts →
+                </Link>
+              </motion.div>
+            </div>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
+              Notes on building with AI agents
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-14 text-base md:text-lg">
+              I&apos;ve been working with AI in the loop daily for 18 months. Three essays on
+              what actually changed about engineering — and what didn&apos;t.
+            </motion.p>
+
+            <div className="grid md:grid-cols-5 gap-6">
+              {/* Featured (lead) post */}
+              <motion.article variants={fadeUp} className="md:col-span-3 group">
+                <Link
+                  href={`/blog/${POSTS[0].slug}`}
+                  className="block relative border border-white/10 rounded-2xl p-8 md:p-10 hover:border-[#22c55e]/40 transition-colors bg-gradient-to-br from-[#0a0a0a] to-[#0a0a0a]/40 h-full overflow-hidden"
+                >
+                  <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#22c55e]/5 rounded-full blur-3xl pointer-events-none" />
+                  <div className="relative">
+                    <div className="flex items-center gap-3 text-xs text-white/40 mb-5">
+                      <span className="bg-[#22c55e]/15 text-[#22c55e] px-2.5 py-1 rounded-full font-mono text-[11px] font-semibold">FEATURED</span>
+                      <span className="bg-white/5 text-white/60 px-2 py-0.5 rounded font-mono">{POSTS[0].tag}</span>
+                      <span>{POSTS[0].date}</span>
                       <span aria-hidden="true">·</span>
-                      <span>{post.readTime}</span>
+                      <span>{POSTS[0].readTime}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-[#22c55e] transition-colors leading-snug">
-                      {post.title}
+                    <h3 className="text-2xl md:text-4xl font-bold mb-5 group-hover:text-[#22c55e] transition-colors leading-tight tracking-tight">
+                      {POSTS[0].title}
                     </h3>
-                    <p className="text-white/55 text-sm leading-relaxed mb-4">{post.excerpt}</p>
-                    <span className="text-xs text-[#22c55e] font-mono">Read post →</span>
-                  </Link>
-                </motion.article>
-              ))}
+                    <p className="text-white/60 text-base leading-relaxed mb-6">{POSTS[0].excerpt}</p>
+                    <span className="inline-flex items-center gap-2 text-sm text-[#22c55e] font-semibold">
+                      Read essay
+                      <span aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </motion.article>
+
+              {/* Secondary posts */}
+              <div className="md:col-span-2 space-y-6">
+                {POSTS.slice(1).map((post) => (
+                  <motion.article key={post.slug} variants={fadeUp} className="group h-full">
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="block border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a]/40 h-full"
+                    >
+                      <div className="flex items-center gap-3 text-xs text-white/40 mb-3">
+                        <span className="bg-white/5 text-white/60 px-2 py-0.5 rounded font-mono">{post.tag}</span>
+                        <span>{post.date}</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{post.readTime}</span>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-bold mb-3 group-hover:text-[#22c55e] transition-colors leading-snug">
+                        {post.title}
+                      </h3>
+                      <p className="text-white/55 text-sm leading-relaxed">{post.excerpt}</p>
+                    </Link>
+                  </motion.article>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -490,18 +537,24 @@ export default function Home() {
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
               I&apos;m Uzair — a Full-Stack Engineer based in Islamabad, Pakistan. I&apos;ve spent the last
-              four years building B2B SaaS products end-to-end for founders in the US and Germany.
-              The products on this page aren&apos;t mine — they belong to the founders who hired me — but
-              they&apos;re mine in the sense that every line of code, every architectural call, every
-              deploy was on me.
+              four-plus years building B2B SaaS products end-to-end. Currently a full-stack developer at
+              <strong className="text-white/80"> Apifiny</strong>, working on AI-powered SaaS.
+              Previously at <strong className="text-white/80">Design&amp;Desktop</strong>, where I built
+              an AI vlog generator and an order-data scraper. Before that, freelance from 2022 onwards
+              shipping client products on contract.
+            </motion.p>
+            <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
+              Alongside my W2 work, I&apos;ve shipped a handful of production SaaS products solo on contract
+              for founders in the US, Germany, and the MENA region. The three on this page are the
+              ones I&apos;m proudest of: a revenue analytics platform, a two-sided marketplace, and a
+              fuel distribution platform that replaced 30 years of spreadsheet workflow.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
               I started writing code because a friend in 2020 wanted a website and couldn&apos;t afford an
               agency. The website turned into a side hustle, the side hustle turned into contracts,
-              the contracts turned into shipping real revenue products for real businesses. Somewhere
-              along the way I got obsessed with the part of engineering nobody screenshots: the
-              idempotent webhook handler, the integer-cents wallet, the parity-first migration.
-              That&apos;s the bar I hold my work to — and it&apos;s the bar I bring to production.
+              the contracts turned into shipping real revenue products. Somewhere along the way I got
+              obsessed with the part of engineering nobody screenshots: the idempotent webhook handler,
+              the integer-cents wallet, the parity-first migration. That&apos;s the bar I hold my work to.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
               Outside the editor: cricket whenever Pakistan plays, late-night reading (most recently
@@ -509,8 +562,9 @@ export default function Home() {
               my camera roll.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed">
-              BS in Artificial Intelligence. Open to senior full-stack roles at product-focused
-              companies — remote, any reasonable timezone overlap, full-time or long-term contract.
+              BS in Artificial Intelligence (SZABIST Islamabad, 2026). Open to senior full-stack roles
+              at product-focused companies — remote, any reasonable timezone overlap, full-time or
+              long-term contract.
             </motion.p>
           </motion.div>
         </div>

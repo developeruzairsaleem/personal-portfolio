@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next";
 const SITE = "https://uzairsaleem.dev";
 
 const POST_SLUGS = [
-  "store-movements-not-mrr",
-  "integer-cents-marketplaces",
-  "replacing-30-years-of-sheets",
+  "ai-as-leverage-not-autocomplete",
+  "the-agent-that-worked-while-i-slept",
+  "the-hardest-part-of-ai-agents-isnt-the-ai",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

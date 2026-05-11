@@ -51,18 +51,18 @@ describe('Portfolio Homepage', () => {
     expect(screen.getByText('Sat-Raj')).toBeInTheDocument()
   })
 
-  it('renders all 3 testimonials', () => {
+  it('renders all 3 testimonials with correct names', () => {
     render(<Home />)
-    expect(screen.getByText('Satwinder Multani')).toBeInTheDocument()
-    expect(screen.getByText('Ryan Park')).toBeInTheDocument()
+    expect(screen.getByText('Robbie Multani')).toBeInTheDocument()
+    expect(screen.getByText('Omar Al Watan')).toBeInTheDocument()
     expect(screen.getByText('Daniel Reuter')).toBeInTheDocument()
   })
 
-  it('renders the writing section with 3 posts', () => {
+  it('renders the writing section with 3 AI-agent posts', () => {
     render(<Home />)
-    expect(screen.getByText(/Don't store MRR/i)).toBeInTheDocument()
-    expect(screen.getByText(/Floats killed the marketplace/i)).toBeInTheDocument()
-    expect(screen.getByText(/30 years of Google Sheets/i)).toBeInTheDocument()
+    expect(screen.getByText(/AI is leverage/i)).toBeInTheDocument()
+    expect(screen.getByText(/agent that worked while I slept/i)).toBeInTheDocument()
+    expect(screen.getByText(/hardest part of working with AI agents/i)).toBeInTheDocument()
   })
 
   it('renders the stats bar', () => {
