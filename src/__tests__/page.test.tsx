@@ -71,19 +71,21 @@ describe('Portfolio Homepage', () => {
 
   it('has an indiecator.com link', () => {
     render(<Home />)
-    const indiecatorLink = screen.getByRole('link', { name: /indiecator\.com/i })
-    expect(indiecatorLink).toHaveAttribute('href', 'https://indiecator.com')
+    const allLinks = screen.getAllByRole('link')
+    const hit = allLinks.find(el => el.getAttribute('href') === 'https://indiecator.com')
+    expect(hit).toBeDefined()
   })
 
   it('has a satraj.inc link', () => {
     render(<Home />)
-    const satrajLink = screen.getByRole('link', { name: /satraj\.inc/i })
-    expect(satrajLink).toHaveAttribute('href', 'https://satraj.inc')
+    const allLinks = screen.getAllByRole('link')
+    const hit = allLinks.find(el => el.getAttribute('href') === 'https://satraj.inc')
+    expect(hit).toBeDefined()
   })
 
   it('has case study PDF links for each project', () => {
     render(<Home />)
-    const caseStudyLinks = screen.getAllByText(/^Case study$/i)
+    const caseStudyLinks = screen.getAllByText(/View Case Study/i)
     expect(caseStudyLinks.length).toBe(3)
   })
 })

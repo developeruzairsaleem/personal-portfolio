@@ -135,7 +135,7 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section id="work" className="py-24 px-6 max-w-5xl mx-auto">
+      <section id="work" className="py-24 px-6 max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -143,109 +143,110 @@ export default function Home() {
           variants={stagger}
         >
           <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// selected work</motion.p>
-          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-16">
             Selected work
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-20 md:space-y-28">
             {[
               {
                 name: "Indiecator",
                 tagline: "Baremetrics-style revenue analytics for indie SaaS",
-                description: "Connect Stripe via OAuth, get every MRR movement — New, Expansion, Contraction, Churn — classified correctly from invoice line items, not Stripe events. Three reconciling sync paths heal a missed webhook within 24 hours.",
-                status: "Live",
+                description:
+                  "Connect Stripe via OAuth and get a fully reconstructed historical view of your business in minutes. The hard part isn't the chart — it's classifying every subscription change as New, Expansion, Contraction, Churn, or Reactivation correctly, under partial outages, webhook retries, trials, and proration math. 15+ Prisma models, three reconciling sync paths, full Baremetrics-style metric suite (MRR, ARR, churn, ARPU, LTV).",
                 live: "https://indiecator.com",
                 liveLabel: "indiecator.com",
                 caseStudy: "/case-studies/indiecator.pdf",
                 image: "/images/indiecator.png",
-                stack: ["Next.js 16", "Prisma", "Stripe Connect", "PostgreSQL"],
+                stack: ["Next.js 16", "Node.js", "Express", "Prisma", "PostgreSQL", "Stripe Connect", "TypeScript"],
                 imageBg: "#0a0a0a",
-                wide: false,
               },
               {
                 name: "Diffed.gg",
                 tagline: "Two-sided gaming services marketplace",
-                description: "Coaching, boosting, and real-time team formation in one product. Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts with admin-mediated verification — no Discord, no Wise.",
-                status: "Live",
+                description:
+                  "End-to-end marketplace connecting gamers with vetted coaches and boosters. Customer, provider, and admin flows in one product — Stripe + PayPal checkout, real-time chat over Socket.IO, in-platform wallets, screenshot proof-of-completion, fee-split payouts, and email-based admin invites. Money handled as integer cents to avoid float drift on multi-provider order splits.",
                 live: "https://diffed.gg",
                 liveLabel: "diffed.gg",
                 caseStudy: "/case-studies/diffed.pdf",
                 image: "/images/diffed.png",
-                stack: ["Next.js 15", "Socket.IO", "Stripe", "Prisma"],
+                stack: ["Next.js 15", "Socket.IO", "Stripe", "PayPal", "Prisma", "PostgreSQL", "NextAuth"],
                 imageBg: "#1a0a1f",
-                wide: false,
               },
               {
-                name: "Sat-Raj — Fuel Distribution Platform",
-                tagline: "Internal platform for a 30-year-old NJ fuel wholesaler",
-                description: "Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, DTN supplier ingestion, and a Samsara → QuickBooks invoice pipeline. Daily pricing run dropped from 45–60 minutes to under 90 seconds.",
-                status: "Live",
+                name: "Sat-Raj",
+                tagline: "Fuel distribution platform for a 30-year-old NJ wholesaler",
+                description:
+                  "Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and invoice generator. Pulls supplier costs from the DTN feed, calculates daily prices for 24 customers across NJ and PA tax structures, sends per-customer emails via SES, ingests bills of lading from the Samsara API, and pushes invoices to QuickBooks. Daily pricing run dropped from 45–60 minutes to under 90 seconds — with full audit history and zero per-customer formula drift.",
                 live: "https://satraj.inc",
                 liveLabel: "satraj.inc",
                 caseStudy: "/case-studies/satraj.pdf",
                 image: "/images/satraj.png",
-                stack: ["Next.js 16", "Prisma", "AWS", "Samsara API"],
+                stack: ["Next.js 16", "Prisma", "PostgreSQL", "AWS Amplify", "AWS RDS", "AWS SES", "Samsara API", "DTN", "QuickBooks"],
                 imageBg: "#0a0a0a",
-                wide: true,
               },
-            ].map((p) => (
+            ].map((p, i) => (
               <motion.article
                 key={p.name}
                 variants={fadeUp}
-                className={`group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col ${p.wide ? "md:col-span-2" : ""}`}
+                className="grid md:grid-cols-12 gap-8 md:gap-12 items-center"
               >
+                {/* Image */}
                 <a
                   href={p.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block relative overflow-hidden border-b border-white/5 ${p.wide ? "aspect-[21/8]" : "aspect-[16/9]"}`}
+                  className={`group block relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 hover:border-[#22c55e]/40 transition-colors md:col-span-7 ${i % 2 === 1 ? "md:order-2" : ""}`}
                   style={{ backgroundColor: p.imageBg }}
                 >
                   <Image
                     src={p.image}
                     alt={`${p.name} screenshot`}
                     fill
-                    sizes={p.wide ? "(max-width: 768px) 100vw, 1024px" : "(max-width: 768px) 100vw, 50vw"}
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 100vw, 56vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                  {/* Subtle gradient overlay — softens bright screenshots, blends into card */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/10 to-transparent pointer-events-none" />
-                  {/* Status badge floats over the image */}
-                  <span className="absolute top-4 left-4 text-[11px] font-semibold bg-black/60 backdrop-blur-sm text-[#22c55e] px-3 py-1 rounded-full border border-[#22c55e]/30">
-                    {p.status}
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-transparent pointer-events-none" />
                 </a>
 
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold mb-1.5">{p.name}</h3>
-                  <p className="text-[#22c55e]/80 text-xs font-mono mb-3">{p.tagline}</p>
-                  <p className="text-white/55 text-sm leading-relaxed mb-5 flex-1">
-                    {p.description}
-                  </p>
+                {/* Content */}
+                <div className="md:col-span-5 space-y-5">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#22c55e]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" />
+                      LIVE
+                    </span>
+                    <span className="text-white/20">·</span>
+                    <span className="text-xs text-white/40 font-mono">0{i + 1} / 03</span>
+                  </div>
 
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">{p.name}</h3>
+                  <p className="text-[#22c55e]/90 text-sm font-mono">{p.tagline}</p>
+                  <p className="text-white/60 text-[15px] leading-relaxed">{p.description}</p>
+
+                  <div className="flex flex-wrap gap-2 pt-1">
                     {p.stack.map((tag) => (
-                      <span key={tag} className="text-[11px] bg-white/5 text-white/50 px-2 py-1 rounded-md">{tag}</span>
+                      <span key={tag} className="text-xs bg-white/5 text-white/50 px-2.5 py-1 rounded-md">{tag}</span>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-2 pt-3 border-t border-white/5">
+                  <div className="flex flex-wrap items-center gap-3 pt-3">
                     <a
                       href={p.caseStudy}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#22c55e]/15 hover:bg-[#22c55e]/25 text-[#22c55e] px-3.5 py-2 rounded-md transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-semibold bg-[#22c55e] hover:bg-[#16a34a] text-black px-5 py-3 rounded-lg transition-colors"
                     >
-                      Case study
+                      View Case Study
                       <span aria-hidden="true">→</span>
                     </a>
                     <a
                       href={p.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 hover:text-white px-3 py-2 transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-semibold border border-white/15 hover:border-white/40 hover:bg-white/5 text-white px-5 py-3 rounded-lg transition-colors"
                     >
-                      {p.liveLabel}
+                      Live App
                       <span aria-hidden="true">↗</span>
                     </a>
                   </div>
