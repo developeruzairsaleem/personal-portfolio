@@ -150,80 +150,113 @@ export default function Home() {
           </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Live · Solo Built</span>
-                <a href="https://indiecator.com" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                  indiecator.com ↗
+            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
+              <a href="https://indiecator.com" target="_blank" rel="noopener noreferrer" className="block relative aspect-[16/8] overflow-hidden bg-[#0a0a0a] border-b border-white/5">
+                <Image
+                  src="/images/indiecator.png"
+                  alt="Indiecator — revenue analytics dashboard preview"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </a>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Live · Solo Built</span>
+                  <a href="https://indiecator.com" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
+                    indiecator.com ↗
+                  </a>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Indiecator</h3>
+                <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Baremetrics-style revenue analytics for indie SaaS</p>
+                <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
+                  Connect Stripe via OAuth, get a fully reconstructed historical view in minutes. The hard part isn&apos;t the chart —
+                  it&apos;s classifying every subscription change as New / Expansion / Contraction / Churn / Reactivation correctly,
+                  under partial outages, webhook retries, trials, and proration math. 15+ Prisma models, 3 reconciling sync paths,
+                  full Baremetrics metric suite (MRR, ARR, churn, ARPU, LTV).
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["Next.js 16", "Node.js", "Express", "Prisma", "PostgreSQL", "Stripe Connect", "TypeScript"].map((tag) => (
+                    <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
+                  ))}
+                </div>
+                <a href="/case-studies/indiecator.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
+                  → Read case study (PDF)
                 </a>
               </div>
-              <h3 className="text-xl font-bold mb-2">Indiecator</h3>
-              <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Baremetrics-style revenue analytics for indie SaaS</p>
-              <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
-                Connect Stripe via OAuth, get a fully reconstructed historical view in minutes. The hard part isn&apos;t the chart —
-                it&apos;s classifying every subscription change as New / Expansion / Contraction / Churn / Reactivation correctly,
-                under partial outages, webhook retries, trials, and proration math. 15+ Prisma models, 3 reconciling sync paths,
-                full Baremetrics metric suite (MRR, ARR, churn, ARPU, LTV).
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {["Next.js 16", "Node.js", "Express", "Prisma", "PostgreSQL", "Stripe Connect", "TypeScript"].map((tag) => (
-                  <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                ))}
-              </div>
-              <a href="/case-studies/indiecator.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
-                → Read case study (PDF)
-              </a>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Solo Built</span>
-                <a href="https://diffed.gg" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                  diffed.gg ↗
+            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] flex flex-col">
+              <a href="https://diffed.gg" target="_blank" rel="noopener noreferrer" className="block relative aspect-[16/8] overflow-hidden bg-[#1a0a1f] border-b border-white/5">
+                <Image
+                  src="/images/diffed.png"
+                  alt="Diffed.gg — gaming services marketplace homepage"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </a>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Solo Built</span>
+                  <a href="https://diffed.gg" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
+                    diffed.gg ↗
+                  </a>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Diffed.gg</h3>
+                <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Two-sided gaming services marketplace</p>
+                <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
+                  End-to-end marketplace connecting gamers with vetted coaches and boosters. Customer, provider, and admin flows
+                  in one product — Stripe + PayPal checkout, real-time chat over Socket.IO, in-platform wallets, screenshot
+                  proof-of-completion, fee-split payouts, and email-based admin invites. Money handled as integer cents to
+                  avoid float drift on multi-provider order splits.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["Next.js 15", "Socket.IO", "Stripe", "PayPal", "Prisma", "PostgreSQL", "NextAuth"].map((tag) => (
+                    <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
+                  ))}
+                </div>
+                <a href="/case-studies/diffed.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
+                  → Read case study (PDF)
                 </a>
               </div>
-              <h3 className="text-xl font-bold mb-2">Diffed.gg</h3>
-              <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Two-sided gaming services marketplace</p>
-              <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
-                End-to-end marketplace connecting gamers with vetted coaches and boosters. Customer, provider, and admin flows
-                in one product — Stripe + PayPal checkout, real-time chat over Socket.IO, in-platform wallets, screenshot
-                proof-of-completion, fee-split payouts, and email-based admin invites. Money handled as integer cents to
-                avoid float drift on multi-provider order splits.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {["Next.js 15", "Socket.IO", "Stripe", "PayPal", "Prisma", "PostgreSQL", "NextAuth"].map((tag) => (
-                  <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                ))}
-              </div>
-              <a href="/case-studies/diffed.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
-                → Read case study (PDF)
-              </a>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] md:col-span-2 flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Client Work</span>
-                <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                  satraj.inc ↗
+            <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl overflow-hidden hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] md:col-span-2 flex flex-col">
+              <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="block relative aspect-[16/6] overflow-hidden bg-[#0a0a0a] border-b border-white/5">
+                <Image
+                  src="/images/satraj.png"
+                  alt="Sat-Raj fuel distribution platform homepage"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1024px"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </a>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Client Work</span>
+                  <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
+                    satraj.inc ↗
+                  </a>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Sat-Raj — Fuel Distribution Platform</h3>
+                <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Internal ops platform for a 30-year-old NJ fuel wholesaler</p>
+                <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
+                  Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and
+                  invoice generator. Pulls supplier costs from the DTN feed, calculates daily prices for 24 customers across
+                  NJ &amp; PA tax structures, sends per-customer emails via SES, ingests bills of lading from the Samsara API,
+                  and pushes invoices to QuickBooks. <span className="text-white/70 font-medium">Cut the daily pricing run
+                  from 45–60 minutes of manual work to under 90 seconds.</span> Built end-to-end as the sole engineer.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["Next.js 16", "Prisma", "PostgreSQL", "AWS Amplify", "AWS RDS", "AWS SES", "S3", "NextAuth", "Samsara API", "DTN", "QuickBooks"].map((tag) => (
+                    <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
+                  ))}
+                </div>
+                <a href="/case-studies/satraj.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
+                  → Read case study (PDF)
                 </a>
               </div>
-              <h3 className="text-xl font-bold mb-2">Sat-Raj — Fuel Distribution Platform</h3>
-              <p className="text-[#22c55e]/80 text-xs font-mono mb-3">Internal ops platform for a 30-year-old NJ fuel wholesaler</p>
-              <p className="text-white/50 text-sm leading-relaxed mb-4 flex-1">
-                Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and
-                invoice generator. Pulls supplier costs from the DTN feed, calculates daily prices for 24 customers across
-                NJ &amp; PA tax structures, sends per-customer emails via SES, ingests bills of lading from the Samsara API,
-                and pushes invoices to QuickBooks. <span className="text-white/70 font-medium">Cut the daily pricing run
-                from 45–60 minutes of manual work to under 90 seconds.</span> Built end-to-end as the sole engineer.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {["Next.js 16", "Prisma", "PostgreSQL", "AWS Amplify", "AWS RDS", "AWS SES", "S3", "NextAuth", "Samsara API", "DTN", "QuickBooks"].map((tag) => (
-                  <span key={tag} className="text-xs bg-white/5 text-white/40 px-2.5 py-1 rounded-md">{tag}</span>
-                ))}
-              </div>
-              <a href="/case-studies/satraj.pdf" target="_blank" rel="noopener noreferrer" className="text-xs text-[#22c55e] hover:text-[#16a34a] transition-colors font-mono">
-                → Read case study (PDF)
-              </a>
             </motion.div>
           </div>
         </motion.div>
@@ -335,13 +368,17 @@ export default function Home() {
             </a>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="flex justify-center gap-6 mt-12 pt-8 border-t border-white/5">
+          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-white/5">
             <a href="mailto:uzairsaleemdev@gmail.com" className="text-sm text-white/40 hover:text-white transition-colors">
               uzairsaleemdev@gmail.com
             </a>
             <span className="text-white/20">·</span>
             <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/40 hover:text-white transition-colors">
               LinkedIn
+            </a>
+            <span className="text-white/20">·</span>
+            <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer" className="text-sm text-white/40 hover:text-white transition-colors">
+              GitHub
             </a>
           </motion.div>
         </motion.div>

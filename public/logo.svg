@@ -1,10 +1,13 @@
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Dark rounded square -->
-  <rect width="40" height="40" rx="10" fill="#0a0a0a" stroke="#22c55e" stroke-width="1.5"/>
-  <!-- Left angle bracket < -->
-  <path d="M17 12L9 20L17 28" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Slash / -->
-  <path d="M22 12L18 28" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-  <!-- Right angle bracket > -->
-  <path d="M23 12L31 20L23 28" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Background: rounded square -->
+  <rect width="40" height="40" rx="10" fill="#0a0a0a"/>
+  <!-- Subtle inner ring for depth -->
+  <rect x="0.5" y="0.5" width="39" height="39" rx="9.5"
+        stroke="#22c55e" stroke-opacity="0.18" stroke-width="1"/>
+  <!-- Lowercase "u" monogram — confident, bold sans -->
+  <path d="M 11 10 L 11 22.5 Q 11 30 19 30 Q 27 30 27 22.5 L 27 10"
+        stroke="#fafafa" stroke-width="4.2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Green dot — the period/signature mark -->
+  <circle cx="32" cy="30" r="3" fill="#22c55e"/>
 </svg>
