@@ -58,9 +58,7 @@ export default function Home() {
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed">
-              Product-focused Full-Stack Engineer. Three production SaaS apps shipped solo —
-              revenue analytics, a marketplace, and an internal platform for a 30-year-old NJ business.
-              Next.js · TypeScript · Postgres · AWS.
+              Product-focused Full-Stack Engineer. Next.js · TypeScript · Postgres · AWS.
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
