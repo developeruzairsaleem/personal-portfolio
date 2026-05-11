@@ -74,10 +74,10 @@ describe('Portfolio Homepage', () => {
     expect(indiecatorLink).toHaveAttribute('href', 'https://indiecator.com')
   })
 
-  it('has a satrajinc.com link', () => {
+  it('has a satraj.inc link', () => {
     render(<Home />)
-    const satrajLink = screen.getByRole('link', { name: /satrajinc\.com/i })
-    expect(satrajLink).toHaveAttribute('href', 'https://app.satrajinc.com')
+    const satrajLink = screen.getByRole('link', { name: /satraj\.inc/i })
+    expect(satrajLink).toHaveAttribute('href', 'https://satraj.inc')
   })
 
   it('has case study PDF links for each project', () => {

@@ -203,8 +203,8 @@ export default function Home() {
             <motion.div variants={fadeUp} className="group border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-all bg-white/[0.02] hover:bg-white/[0.04] md:col-span-2 flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-semibold bg-[#22c55e]/15 text-[#22c55e] px-3 py-1 rounded-full">Production · Client Work</span>
-                <a href="https://app.satrajinc.com" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
-                  app.satrajinc.com ↗
+                <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-xs transition-colors">
+                  satraj.inc ↗
                 </a>
               </div>
               <h3 className="text-xl font-bold mb-2">Sat-Raj — Fuel Distribution Platform</h3>
