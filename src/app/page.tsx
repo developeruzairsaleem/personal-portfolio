@@ -268,7 +268,7 @@ export default function Home() {
       <section className="py-8 px-6 max-w-6xl mx-auto space-y-3">
         <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-4">
           <span className="text-[#22c55e] font-mono text-xs">// currently</span>
-          <span>Full-stack engineer at <strong className="text-white/80">Apifiny</strong> shipping AI-powered SaaS. Previously at <strong className="text-white/80">Design&amp;Desktop</strong>. Open to senior full-stack roles for Q3 2026.</span>
+          <span>Full-stack engineer at <strong className="text-white/80">Rocket Devs</strong> — senior contractor for founder clients. Previously <strong className="text-white/80">Design&amp;Desktop</strong> and <strong className="text-white/80">Apifiny</strong>. Open to senior full-stack roles for Q3 2026.</span>
         </div>
         <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-4">
           <span className="text-[#22c55e] font-mono text-xs">// reading</span>
@@ -537,17 +537,17 @@ export default function Home() {
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
               I&apos;m Uzair — a Full-Stack Engineer based in Islamabad, Pakistan. I&apos;ve spent the last
-              four-plus years building B2B SaaS products end-to-end. Currently a full-stack developer at
-              <strong className="text-white/80"> Apifiny</strong>, working on AI-powered SaaS.
-              Previously at <strong className="text-white/80">Design&amp;Desktop</strong>, where I built
-              an AI vlog generator and an order-data scraper. Before that, freelance from 2022 onwards
-              shipping client products on contract.
+              four-plus years building B2B SaaS products end-to-end. Currently at
+              <strong className="text-white/80"> Rocket Devs</strong> as a senior contractor for
+              founder clients in the US, EU, and MENA — the three products on this page were all
+              shipped through Rocket Devs. Previously at <strong className="text-white/80">Design&amp;Desktop</strong>
+              (AI vlog generator + data scraper) and <strong className="text-white/80">Apifiny</strong>
+              from 2022–2024, where I cut my teeth on Stripe integrations and client dashboards.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              Alongside my W2 work, I&apos;ve shipped a handful of production SaaS products solo on contract
-              for founders in the US, Germany, and the MENA region. The three on this page are the
-              ones I&apos;m proudest of: a revenue analytics platform, a two-sided marketplace, and a
-              fuel distribution platform that replaced 30 years of spreadsheet workflow.
+              The three products on this page — Indiecator (revenue analytics), Diffed.gg (two-sided
+              marketplace), and Sat-Raj (fuel platform that replaced 30 years of spreadsheets) —
+              are the ones I&apos;m proudest of. Each one shipped solo, end-to-end.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
               I started writing code because a friend in 2020 wanted a website and couldn&apos;t afford an
