@@ -518,7 +518,7 @@ export default function Home() {
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed">
               Outside the editor: cricket whenever Pakistan plays, late-night reading, and badly-photographed
-              Islamabad sunsets. BS in Artificial Intelligence (SZABIST Islamabad, 2026).
+              Islamabad sunsets. BS in Artificial Intelligence, SZABIST Islamabad.
               Open to senior full-stack roles — remote, any reasonable timezone overlap.
             </motion.p>
           </motion.div>
