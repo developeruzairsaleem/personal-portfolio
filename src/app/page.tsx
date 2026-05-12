@@ -329,82 +329,110 @@ export default function Home() {
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-3">
             Selected work
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-14">
-            Three production SaaS products. Shipped solo, end-to-end.
+          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-16">
+            Three production SaaS products. Shipped solo, end-to-end, as senior contractor.
           </motion.p>
 
-          <div className="space-y-20 md:space-y-28">
+          <div className="space-y-24">
             {PROJECTS.map((p, i) => (
               <motion.article
                 key={p.name}
                 variants={fadeUp}
-                className="grid md:grid-cols-12 gap-8 md:gap-12 items-center"
+                className="grid md:grid-cols-12 gap-10 md:gap-14 items-center"
               >
-                {/* Image */}
+                {/* Image — browser-chrome framed preview */}
                 <a
                   href={p.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group block relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 hover:border-[#22c55e]/40 transition-colors md:col-span-7 ${i % 2 === 1 ? "md:order-2" : ""}`}
-                  style={{ backgroundColor: p.imageBg }}
+                  className={`group block relative md:col-span-7 ${i % 2 === 1 ? "md:order-2" : ""}`}
                   aria-label={`Visit ${p.name} live`}
                 >
-                  <Image
-                    src={p.image}
-                    alt={`${p.name} — ${p.tagline}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 56vw"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-transparent pointer-events-none" />
+                  {/* Green glow behind frame on hover */}
+                  <div className="absolute -inset-1 bg-gradient-to-br from-[#22c55e]/0 to-[#22c55e]/0 group-hover:from-[#22c55e]/20 group-hover:to-[#22c55e]/5 rounded-2xl blur-2xl transition-all duration-500 pointer-events-none" />
+
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 group-hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a] shadow-2xl shadow-black/40">
+                    {/* Browser chrome */}
+                    <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#0f0f10] border-b border-white/[0.06]">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/70" aria-hidden="true" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]/70" aria-hidden="true" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]/70" aria-hidden="true" />
+                      <span className="mx-auto -ml-7 text-[10.5px] text-white/40 font-mono truncate max-w-[60%]">
+                        {p.liveLabel}
+                      </span>
+                    </div>
+                    {/* Screenshot */}
+                    <div
+                      className="relative aspect-[16/9]"
+                      style={{ backgroundColor: p.imageBg }}
+                    >
+                      <Image
+                        src={p.image}
+                        alt={`${p.name} — ${p.tagline}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 56vw"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/30 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  </div>
                 </a>
 
-                {/* Content */}
-                <div className="md:col-span-5 space-y-5">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#22c55e]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" aria-hidden="true" />
-                      LIVE
-                    </span>
-                    <span className="text-white/20" aria-hidden="true">·</span>
-                    <span className="text-xs text-white/40 font-mono">0{i + 1} / 03</span>
-                    <span className="text-white/20" aria-hidden="true">·</span>
-                    <span className="text-xs text-white/40">{p.role}</span>
+                {/* Content — with large decorative index */}
+                <div className={`md:col-span-5 relative ${i % 2 === 1 ? "md:order-1" : ""}`}>
+                  {/* Large decorative index number */}
+                  <div
+                    className="absolute -top-14 -left-3 text-[140px] md:text-[180px] font-bold text-[#22c55e]/[0.05] leading-none select-none pointer-events-none tracking-tighter"
+                    aria-hidden="true"
+                  >
+                    0{i + 1}
                   </div>
 
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">{p.name}</h3>
-                  <p className="text-[#22c55e]/90 text-sm font-mono">{p.tagline}</p>
-                  <p className="text-white/60 text-[15px] leading-relaxed">{p.description}</p>
+                  <div className="relative space-y-5">
+                    <div className="flex items-center gap-2.5 text-xs">
+                      <span className="inline-flex items-center gap-1.5 font-semibold text-[#22c55e]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" aria-hidden="true" />
+                        LIVE
+                      </span>
+                      <span className="text-white/20" aria-hidden="true">·</span>
+                      <span className="text-white/40 font-mono">{p.tagline}</span>
+                    </div>
 
-                  <div className="text-xs text-white/50 font-mono bg-white/[0.03] rounded-md px-3 py-2 border border-white/5">
-                    {p.metrics}
-                  </div>
+                    <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">{p.name}</h3>
 
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {p.stack.map((tag) => (
-                      <span key={tag} className="text-xs bg-white/5 text-white/50 px-2.5 py-1 rounded-md">{tag}</span>
-                    ))}
-                  </div>
+                    <p className="text-white/60 text-[15px] leading-relaxed">{p.description}</p>
 
-                  <div className="flex flex-wrap items-center gap-3 pt-3">
-                    <a
-                      href={p.caseStudy}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-semibold bg-[#22c55e] hover:bg-[#16a34a] text-black px-5 py-3 rounded-lg transition-colors"
-                    >
-                      View Case Study
-                      <span aria-hidden="true">→</span>
-                    </a>
-                    <a
-                      href={p.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-semibold border border-white/15 hover:border-white/40 hover:bg-white/5 text-white px-5 py-3 rounded-lg transition-colors"
-                    >
-                      Live App
-                      <span aria-hidden="true">↗</span>
-                    </a>
+                    <div className="flex items-start gap-2.5 text-sm font-mono bg-gradient-to-r from-[#22c55e]/10 to-transparent rounded-lg px-4 py-3 border-l-2 border-[#22c55e]">
+                      <span className="text-[#22c55e] shrink-0 mt-0.5" aria-hidden="true">→</span>
+                      <span className="text-white/80">{p.metrics}</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {p.stack.map((tag) => (
+                        <span key={tag} className="text-xs bg-white/5 text-white/55 px-2.5 py-1 rounded-md border border-white/[0.06]">{tag}</span>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <a
+                        href={p.caseStudy}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-semibold bg-[#22c55e] hover:bg-[#16a34a] text-black px-5 py-3 rounded-lg transition-colors"
+                      >
+                        View Case Study
+                        <span aria-hidden="true">→</span>
+                      </a>
+                      <a
+                        href={p.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white px-2 py-3 transition-colors"
+                      >
+                        Live App
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </motion.article>
