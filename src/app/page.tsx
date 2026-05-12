@@ -4,6 +4,11 @@ import { motion, useInView, useMotionValue, useTransform, animate } from "framer
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import {
+  Layout, Server, Database, CreditCard,
+  Mail, Calendar, FileDown, Quote,
+  Hammer, Target, Zap, ArrowRight, ArrowUpRight,
+} from "lucide-react";
 
 const CALENDLY_URL = "https://calendly.com/uzairsaleemdev/30min";
 const EMAIL = "uzairsaleemdev@gmail.com";
@@ -142,47 +147,22 @@ const STACK_GROUPS = [
   {
     label: "Frontend",
     items: ["Next.js 15/16", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "Recharts"],
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <path d="M3 9h18" />
-        <path d="M9 21V9" />
-      </svg>
-    ),
+    icon: <Layout className="w-[18px] h-[18px]" strokeWidth={2} />,
   },
   {
     label: "Backend & APIs",
     items: ["Node.js", "Express", "Prisma", "Socket.IO", "REST APIs", "NextAuth"],
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="2" y="3" width="20" height="8" rx="2" />
-        <rect x="2" y="13" width="20" height="8" rx="2" />
-        <line x1="6" y1="7" x2="6.01" y2="7" />
-        <line x1="6" y1="17" x2="6.01" y2="17" />
-      </svg>
-    ),
+    icon: <Server className="w-[18px] h-[18px]" strokeWidth={2} />,
   },
   {
     label: "Data & Infra",
     items: ["PostgreSQL", "Supabase", "AWS (Amplify, RDS, SES, S3)", "Vercel"],
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <ellipse cx="12" cy="5" rx="9" ry="3" />
-        <path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
-        <path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6" />
-      </svg>
-    ),
+    icon: <Database className="w-[18px] h-[18px]" strokeWidth={2} />,
   },
   {
     label: "Payments & Integrations",
     items: ["Stripe Connect", "PayPal", "Samsara API", "DTN feed", "QuickBooks"],
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="2" y="5" width="20" height="14" rx="2" />
-        <line x1="2" y1="10" x2="22" y2="10" />
-        <line x1="6" y1="15" x2="10" y2="15" />
-      </svg>
-    ),
+    icon: <CreditCard className="w-[18px] h-[18px]" strokeWidth={2} />,
   },
 ];
 
@@ -418,19 +398,19 @@ export default function Home() {
                         href={p.caseStudy}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold bg-[#22c55e] hover:bg-[#16a34a] text-black px-5 py-3 rounded-lg transition-colors"
+                        className="group/btn inline-flex items-center gap-2 text-sm font-semibold bg-[#22c55e] hover:bg-[#16a34a] text-black px-5 py-3 rounded-lg transition-colors"
                       >
                         View Case Study
-                        <span aria-hidden="true">→</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" aria-hidden="true" />
                       </a>
                       <a
                         href={p.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white px-3 py-3 transition-colors"
+                        className="group/btn inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white px-3 py-3 transition-colors"
                       >
                         Live App
-                        <span aria-hidden="true">↗</span>
+                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
                       </a>
                     </div>
                   </div>
@@ -454,9 +434,7 @@ export default function Home() {
                   variants={fadeUp}
                   className="border border-white/10 rounded-2xl p-6 bg-[#0a0a0a]/40 flex flex-col"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-[#22c55e]/40 mb-4">
-                    <path d="M7 7h4v4H7c0 3 0 4 3 5v3c-5-1-7-3-7-8V7zm10 0h4v4h-4c0 3 0 4 3 5v3c-5-1-7-3-7-8V7z" fill="currentColor" />
-                  </svg>
+                  <Quote className="w-6 h-6 text-[#22c55e]/40 mb-4" strokeWidth={2} aria-hidden="true" />
                   <blockquote className="text-white/70 text-sm leading-relaxed flex-1 mb-6">
                     “{t.quote}”
                   </blockquote>
@@ -485,14 +463,16 @@ export default function Home() {
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">How I work</motion.h2>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { icon: "🏗️", title: "End-to-end ownership", desc: "Architecture, backend, frontend, infra, deploys. I think in products, not tickets." },
-                { icon: "🎯", title: "Correctness first", desc: "MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right." },
-                { icon: "⚡", title: "AI as leverage", desc: "AI in the loop daily — as leverage, not a crutch. I still own the architecture and the decisions." }
-              ].map((item) => (
-                <motion.div key={item.title} variants={fadeUp} className="space-y-3">
-                  <div className="text-3xl">{item.icon}</div>
-                  <h3 className="text-lg font-bold">{item.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                { Icon: Hammer, title: "End-to-end ownership", desc: "Architecture, backend, frontend, infra, deploys. I think in products, not tickets." },
+                { Icon: Target, title: "Correctness first", desc: "MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right." },
+                { Icon: Zap, title: "AI as leverage", desc: "AI in the loop daily — as leverage, not a crutch. I still own the architecture and the decisions." },
+              ].map(({ Icon, title, desc }) => (
+                <motion.div key={title} variants={fadeUp} className="space-y-3">
+                  <div className="w-11 h-11 rounded-lg bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center">
+                    <Icon className="w-5 h-5" strokeWidth={2} />
+                  </div>
+                  <h3 className="text-lg font-bold">{title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -630,45 +610,34 @@ export default function Home() {
               className="group flex items-center justify-between gap-4 w-full bg-[#22c55e] text-black font-semibold rounded-xl px-6 py-5 hover:bg-[#16a34a] transition-colors"
             >
               <span className="flex items-center gap-3">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" />
-                  <path d="m3 7 9 6 9-6" />
-                </svg>
+                <Mail className="w-[22px] h-[22px]" strokeWidth={2} aria-hidden="true" />
                 <span className="text-base md:text-lg">Email me</span>
               </span>
-              <span className="text-xl transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </a>
             <a
               href={RESUME}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 w-full border border-white/15 text-white font-semibold rounded-xl px-6 py-5 hover:bg-white/5 transition-colors"
+              className="group flex items-center justify-between gap-4 w-full border border-white/15 text-white font-semibold rounded-xl px-6 py-5 hover:bg-white/5 hover:border-[#22c55e]/40 transition-colors"
             >
               <span className="flex items-center gap-3">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="12" y1="18" x2="12" y2="12" />
-                  <polyline points="9 15 12 18 15 15" />
-                </svg>
+                <FileDown className="w-[22px] h-[22px] text-[#22c55e]" strokeWidth={2} aria-hidden="true" />
                 <span className="text-base md:text-lg">Download Resume</span>
               </span>
-              <span className="text-xl transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              <ArrowRight className="w-5 h-5 text-white/60 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </a>
             <a
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 w-full border border-white/15 text-white font-semibold rounded-xl px-6 py-5 hover:bg-white/5 transition-colors"
+              className="group flex items-center justify-between gap-4 w-full border border-white/15 text-white font-semibold rounded-xl px-6 py-5 hover:bg-white/5 hover:border-[#22c55e]/40 transition-colors"
             >
               <span className="flex items-center gap-3">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="3" y="4" width="18" height="18" rx="2" />
-                  <path d="M16 2v4M8 2v4M3 10h18" />
-                </svg>
+                <Calendar className="w-[22px] h-[22px] text-[#22c55e]" strokeWidth={2} aria-hidden="true" />
                 <span className="text-base md:text-lg">Book a 30-min call</span>
               </span>
-              <span className="text-xl transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              <ArrowUpRight className="w-5 h-5 text-white/60 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" aria-hidden="true" />
             </a>
           </motion.div>
 
