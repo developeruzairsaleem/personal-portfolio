@@ -232,7 +232,7 @@ export default function Home() {
               <div className="absolute -inset-3 bg-[#22c55e]/10 rounded-3xl blur-3xl" />
               <div className="relative w-full h-full rounded-2xl overflow-hidden ring-1 ring-[#22c55e]/30">
                 <Image
-                  src="/images/uzair-linkedin.jpeg"
+                  src="/images/uzair-profile.png"
                   alt="Uzair Saleem, Full-Stack Engineer"
                   fill
                   className="object-cover object-center"
@@ -248,7 +248,7 @@ export default function Home() {
       <section className="border-y border-white/5 py-12 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { value: 4, suffix: "+", label: "Years Experience" },
+            { value: 5, suffix: "", label: "Years Experience" },
             { value: 6, suffix: "", label: "Live SaaS Products Shipped" },
             { value: 10, suffix: "+", label: "Founders I've Worked With" },
             { value: 100, suffix: "%", label: "Remote, Async, Global" },
@@ -503,7 +503,7 @@ export default function Home() {
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// about</motion.p>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Four-plus years building B2B SaaS
+              I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS
               end-to-end. Currently at <strong className="text-white/80">Rocket Devs</strong> shipping
               for founder clients across the US, EU, and MENA. Previously
               <strong className="text-white/80"> Design&amp;Desktop</strong> and

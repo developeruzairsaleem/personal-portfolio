@@ -80,7 +80,7 @@ export default async function BlogPost({ params }: Props) {
           <div className="flex items-center gap-4 p-5 rounded-2xl border border-white/10 bg-white/[0.02]">
             <div className="w-14 h-14 rounded-full overflow-hidden ring-1 ring-[#22c55e]/30 shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/uzair-linkedin.jpeg" alt="Uzair Saleem" className="w-full h-full object-cover" />
+              <img src="/images/uzair-profile.png" alt="Uzair Saleem" className="w-full h-full object-cover" />
             </div>
             <div className="text-sm">
               <p className="text-white font-semibold mb-0.5">Written by Uzair Saleem</p>
