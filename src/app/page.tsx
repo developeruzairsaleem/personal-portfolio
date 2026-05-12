@@ -329,16 +329,16 @@ export default function Home() {
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-3">
             Selected work
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-16">
+          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-14">
             Three production SaaS products. Shipped solo, end-to-end, as senior contractor.
           </motion.p>
 
-          <div className="space-y-24">
+          <div className="space-y-20">
             {PROJECTS.map((p, i) => (
               <motion.article
                 key={p.name}
                 variants={fadeUp}
-                className="grid md:grid-cols-12 gap-10 md:gap-14 items-center"
+                className="grid md:grid-cols-12 gap-8 md:gap-10 items-center"
               >
                 {/* Image — browser-chrome framed preview */}
                 <a
@@ -380,15 +380,15 @@ export default function Home() {
 
                 {/* Content — with large decorative index */}
                 <div className={`md:col-span-5 relative ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                  {/* Large decorative index number */}
+                  {/* Large decorative index number (desktop only) */}
                   <div
-                    className="absolute -top-14 -left-3 text-[140px] md:text-[180px] font-bold text-[#22c55e]/[0.05] leading-none select-none pointer-events-none tracking-tighter"
+                    className="hidden md:block absolute -top-10 -left-2 text-[140px] xl:text-[160px] font-bold text-[#22c55e]/[0.06] leading-none select-none pointer-events-none tracking-tighter"
                     aria-hidden="true"
                   >
                     0{i + 1}
                   </div>
 
-                  <div className="relative space-y-5">
+                  <div className="relative space-y-4">
                     <div className="flex items-center gap-2.5 text-xs">
                       <span className="inline-flex items-center gap-1.5 font-semibold text-[#22c55e]">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" aria-hidden="true" />
@@ -398,7 +398,7 @@ export default function Home() {
                       <span className="text-white/40 font-mono">{p.tagline}</span>
                     </div>
 
-                    <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.1]">{p.name}</h3>
+                    <h3 className="text-3xl md:text-[2.5rem] font-bold tracking-tight leading-[1.05]">{p.name}</h3>
 
                     <p className="text-white/60 text-[15px] leading-relaxed">{p.description}</p>
 
@@ -413,7 +413,7 @@ export default function Home() {
                       ))}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                    <div className="flex flex-wrap items-center gap-2 pt-2">
                       <a
                         href={p.caseStudy}
                         target="_blank"
@@ -427,7 +427,7 @@ export default function Home() {
                         href={p.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white px-2 py-3 transition-colors"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white px-3 py-3 transition-colors"
                       >
                         Live App
                         <span aria-hidden="true">↗</span>
