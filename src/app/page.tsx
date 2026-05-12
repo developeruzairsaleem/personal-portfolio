@@ -43,7 +43,7 @@ const PROJECTS = [
     description:
       "Connect Stripe and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration. Event-sourced from day one.",
     role: "Solo engineer (contract)",
-    metrics: "15+ Prisma models · 3 reconciling sync paths",
+    metrics: "From kickoff to production in ~12 weeks, solo",
     live: "https://indiecator.com",
     liveLabel: "indiecator.com",
     caseStudy: "/case-studies/indiecator.pdf",
@@ -57,7 +57,7 @@ const PROJECTS = [
     description:
       "End-to-end marketplace for gaming services — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification, fee-split admin flows.",
     role: "Solo engineer (contract)",
-    metrics: "Customer + provider + admin in one product",
+    metrics: "Full marketplace shipped end-to-end in one quarter",
     live: "https://diffed.gg",
     liveLabel: "diffed.gg",
     caseStudy: "/case-studies/diffed.pdf",
@@ -71,7 +71,7 @@ const PROJECTS = [
     description:
       "Replaced 39 Google Sheets tabs with a multi-tenant pricing engine, BOL pipeline, and invoice generator. Pulls costs from DTN, ingests deliveries from Samsara, pushes invoices to QuickBooks.",
     role: "Solo engineer (contract)",
-    metrics: "Daily pricing run: 45–60 min → under 90 sec",
+    metrics: "Cut daily pricing run from 60 min → 90 sec · live to 24 customers",
     live: "https://satraj.inc",
     liveLabel: "satraj.inc",
     caseStudy: "/case-studies/satraj.pdf",
