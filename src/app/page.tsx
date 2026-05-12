@@ -523,33 +523,37 @@ export default function Home() {
             The stack I reach for by default — battle-tested across six production SaaS.
           </motion.p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <motion.div variants={fadeUp} className="border border-white/10 rounded-2xl bg-white/[0.02] divide-y divide-white/5 overflow-hidden">
             {STACK_GROUPS.map((group) => (
-              <motion.div
+              <div
                 key={group.label}
-                variants={fadeUp}
-                className="group relative border border-white/10 rounded-2xl p-6 bg-white/[0.02] hover:border-[#22c55e]/40 hover:bg-white/[0.04] transition-all"
+                className="group flex flex-col md:flex-row md:items-center gap-5 md:gap-8 px-6 py-6 hover:bg-white/[0.02] transition-colors"
               >
-                <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
+                {/* Category */}
+                <div className="flex items-center gap-3.5 md:w-56 shrink-0">
                   <div className="w-10 h-10 rounded-lg bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center group-hover:bg-[#22c55e]/15 transition-colors shrink-0">
                     {group.icon}
                   </div>
                   <div className="min-w-0">
-                    <div className="text-sm font-bold text-white tracking-tight truncate">{group.label}</div>
+                    <div className="text-sm font-bold text-white tracking-tight">{group.label}</div>
                     <div className="text-[11px] text-white/40 font-mono">{group.items.length} tools</div>
                   </div>
                 </div>
-                <ul className="space-y-2.5">
+
+                {/* Items */}
+                <div className="flex flex-wrap gap-2 flex-1">
                   {group.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-white/65">
-                      <span className="w-1 h-1 rounded-full bg-[#22c55e]/50 mt-2 shrink-0" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
+                    <span
+                      key={item}
+                      className="px-3 py-1.5 bg-white/[0.04] border border-white/10 rounded-md text-sm text-white/70 hover:border-[#22c55e]/30 hover:bg-white/[0.06] hover:text-white transition-colors cursor-default"
+                    >
+                      {item}
+                    </span>
                   ))}
-                </ul>
-              </motion.div>
+                </div>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 
