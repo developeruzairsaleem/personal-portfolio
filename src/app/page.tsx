@@ -353,11 +353,11 @@ export default function Home() {
 
                   <div className="relative rounded-2xl overflow-hidden border border-white/10 group-hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a] shadow-2xl shadow-black/40">
                     {/* Browser chrome */}
-                    <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#0f0f10] border-b border-white/[0.06]">
+                    <div className="relative flex items-center gap-1.5 px-3 py-2.5 bg-[#0f0f10] border-b border-white/[0.06]">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/70" aria-hidden="true" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]/70" aria-hidden="true" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]/70" aria-hidden="true" />
-                      <span className="mx-auto -ml-7 text-[10.5px] text-white/40 font-mono truncate max-w-[60%]">
+                      <span className="absolute left-1/2 -translate-x-1/2 text-[10.5px] text-white/40 font-mono truncate max-w-[55%]">
                         {p.liveLabel}
                       </span>
                     </div>
