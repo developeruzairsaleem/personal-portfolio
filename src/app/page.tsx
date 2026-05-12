@@ -41,42 +41,42 @@ const PROJECTS = [
     name: "Indiecator",
     tagline: "Baremetrics-style revenue analytics for indie SaaS",
     description:
-      "Connect Stripe via OAuth and get a fully reconstructed historical view of your business in minutes. The hard part isn't the chart — it's classifying every subscription change as New, Expansion, Contraction, Churn, or Reactivation correctly, under partial outages, webhook retries, trials, and proration math. 15+ Prisma models, three reconciling sync paths, full Baremetrics-style metric suite (MRR, ARR, churn, ARPU, LTV).",
+      "Connect Stripe and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration. Event-sourced from day one.",
     role: "Solo engineer (contract)",
-    metrics: "15+ models · 65 backend files · 149 frontend files",
+    metrics: "15+ Prisma models · 3 reconciling sync paths",
     live: "https://indiecator.com",
     liveLabel: "indiecator.com",
     caseStudy: "/case-studies/indiecator.pdf",
     image: "/images/indiecator.png",
-    stack: ["Next.js 16", "Node.js", "Express", "Prisma", "PostgreSQL", "Stripe Connect", "TypeScript"],
+    stack: ["Next.js 16", "Node.js", "Prisma", "Stripe Connect"],
     imageBg: "#0a0a0a",
   },
   {
     name: "Diffed.gg",
     tagline: "Two-sided gaming services marketplace",
     description:
-      "End-to-end marketplace connecting gamers with vetted coaches and boosters. Customer, provider, and admin flows in one product — Stripe + PayPal checkout, real-time chat over Socket.IO, in-platform wallets, screenshot proof-of-completion, fee-split payouts, and email-based admin invites. Money handled as integer cents to avoid float drift on multi-provider order splits.",
+      "End-to-end marketplace for gaming services — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification, fee-split admin flows.",
     role: "Solo engineer (contract)",
-    metrics: "3 role-gated flows · Stripe + PayPal · Real-time chat",
+    metrics: "Customer + provider + admin in one product",
     live: "https://diffed.gg",
     liveLabel: "diffed.gg",
     caseStudy: "/case-studies/diffed.pdf",
     image: "/images/diffed.png",
-    stack: ["Next.js 15", "Socket.IO", "Stripe", "PayPal", "Prisma", "PostgreSQL", "NextAuth"],
+    stack: ["Next.js 15", "Socket.IO", "Stripe", "PayPal"],
     imageBg: "#1a0a1f",
   },
   {
     name: "Sat-Raj",
     tagline: "Fuel distribution platform for a 30-year-old NJ wholesaler",
     description:
-      "Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and invoice generator. Pulls supplier costs from the DTN feed, calculates daily prices for 24 customers across NJ and PA tax structures, sends per-customer emails via SES, ingests bills of lading from the Samsara API, and pushes invoices to QuickBooks.",
+      "Replaced 39 Google Sheets tabs with a multi-tenant pricing engine, BOL pipeline, and invoice generator. Pulls costs from DTN, ingests deliveries from Samsara, pushes invoices to QuickBooks.",
     role: "Solo engineer (contract)",
-    metrics: "45–60 min → 90 sec daily pricing run · 24 customers automated",
+    metrics: "Daily pricing run: 45–60 min → under 90 sec",
     live: "https://satraj.inc",
     liveLabel: "satraj.inc",
     caseStudy: "/case-studies/satraj.pdf",
     image: "/images/satraj.png",
-    stack: ["Next.js 16", "Prisma", "PostgreSQL", "AWS Amplify", "AWS RDS", "AWS SES", "Samsara API", "DTN", "QuickBooks"],
+    stack: ["Next.js 16", "Prisma", "AWS", "Samsara API"],
     imageBg: "#0a0a0a",
   },
 ];
@@ -84,15 +84,15 @@ const PROJECTS = [
 const TESTIMONIALS = [
   {
     quote:
-      "Uzair replaced 30 years of spreadsheet workflow with software the whole team trusts. The daily price run that used to take an hour now takes under two minutes. Most importantly, the numbers match — first time, every time. He owned every layer of the build, from the pricing engine to the BOL pipeline to the QuickBooks handoff.",
+      "Uzair replaced 30 years of spreadsheet workflow with software the whole team trusts. The numbers match — first time, every time. He owned every layer of the build.",
     name: "Robbie Multani",
-    role: "Co-founder & Operations, Sat-Raj Inc.",
+    role: "Co-founder, Sat-Raj Inc.",
     company: "Voorhees, NJ",
     initials: "RM",
   },
   {
     quote:
-      "Hired Uzair to build the MRR engine that Baremetrics didn't make sense to pay for. He didn't just build a dashboard — he rebuilt how we think about revenue. The architecture doc he wrote is now how I explain our own business to investors. Best engineering hire I've made for the product.",
+      "Best engineering hire I&apos;ve made for the product. He didn&apos;t just build a dashboard — he rebuilt how we think about revenue. The architecture doc is now how I explain our business to investors.",
     name: "Omar Al Watan",
     role: "Founder, Indiecator",
     company: "Remote · MENA",
@@ -100,7 +100,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "We worked with three contractors before Uzair. He's the only one who actually shipped a production marketplace in one quarter — checkout, wallets, real-time chat, admin tooling, the whole thing. Clear communication, zero hand-holding, and the money math just works.",
+      "Three contractors before Uzair, none shipped. He delivered a production marketplace in one quarter — checkout, wallets, chat, admin tooling. Zero hand-holding, money math just works.",
     name: "Daniel Reuter",
     role: "Founder, Diffed.gg",
     company: "Berlin, DE",
@@ -113,7 +113,7 @@ const POSTS = [
     slug: "ai-as-leverage-not-autocomplete",
     title: "AI is leverage. It's not autocomplete.",
     excerpt:
-      "Most engineers use AI to type faster. A smaller group uses it to ship faster. The gap between those two is the entire story of what changed about this job in the last 18 months.",
+      "Most engineers use AI to type faster. A smaller group uses it to ship faster. The gap between the two is the entire story of what changed about this job.",
     readTime: "5 min",
     date: "Apr 2026",
     tag: "AI Agents",
@@ -122,7 +122,7 @@ const POSTS = [
     slug: "the-agent-that-worked-while-i-slept",
     title: "The agent that worked while I slept",
     excerpt:
-      "I set up a Claude Code loop to refactor a noisy module overnight. I woke up to a clean diff, 47 passing tests, and a commit message funnier than mine usually are. Here's what I learned about scoping work for an agent that doesn't sleep.",
+      "I set up a Claude Code loop overnight. Woke up to a clean diff and 47 passing tests. Notes on scoping work for an agent that doesn't sleep.",
     readTime: "6 min",
     date: "Mar 2026",
     tag: "AI Agents",
@@ -131,7 +131,7 @@ const POSTS = [
     slug: "the-hardest-part-of-ai-agents-isnt-the-ai",
     title: "The hardest part of working with AI agents isn't the AI",
     excerpt:
-      "After a year of building with agents in the loop, the bottleneck has stopped being the model and started being me. Specifically: my ability to say what I want clearly enough that an agent can execute it without supervision.",
+      "After a year with agents in the loop, the bottleneck stopped being the model and started being me — my ability to brief clearly.",
     readTime: "7 min",
     date: "May 2026",
     tag: "AI Agents",
@@ -191,8 +191,7 @@ export default function Home() {
             </motion.h1>
 
             <motion.p variants={fadeUp} className="text-base md:text-lg text-white/60 leading-relaxed">
-              Senior Full-Stack Engineer. I&apos;m the engineer founders hire when they need a product
-              shipped at the speed of a small team — using AI as leverage, not as a crutch.
+              Senior Full-Stack Engineer. I ship production SaaS for founders, at the speed of a small team.
               <span className="block mt-1 text-white/40 text-sm font-mono">Next.js · TypeScript · Postgres · AWS</span>
             </motion.p>
 
@@ -264,20 +263,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Currently / Where I've worked */}
-      <section className="py-8 px-6 max-w-6xl mx-auto space-y-3">
-        <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-4">
+      {/* Currently */}
+      <section className="py-6 px-6 max-w-6xl mx-auto">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-3">
           <span className="text-[#22c55e] font-mono text-xs">// currently</span>
-          <span>Full-stack engineer at <strong className="text-white/80">Rocket Devs</strong> — senior contractor for founder clients. Previously <strong className="text-white/80">Design&amp;Desktop</strong> and <strong className="text-white/80">Apifiny</strong>. Open to senior full-stack roles for Q3 2026.</span>
-        </div>
-        <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-4">
-          <span className="text-[#22c55e] font-mono text-xs">// reading</span>
-          <span><em>Kill It With Fire</em> by Marianne Bellotti — on legacy migration. Highly recommended if you&apos;ve ever inherited a 30-year-old spreadsheet.</span>
+          <span>
+            <strong className="text-white/80">Rocket Devs</strong>, senior contractor for founder clients
+            <span className="text-white/30 mx-2" aria-hidden="true">·</span>
+            Reading <em>Kill It With Fire</em>
+            <span className="text-white/30 mx-2" aria-hidden="true">·</span>
+            Open for Q3 2026
+          </span>
         </div>
       </section>
 
       {/* Projects */}
-      <section id="work" className="py-24 px-6 max-w-6xl mx-auto">
+      <section id="work" className="py-20 px-6 max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -285,12 +286,11 @@ export default function Home() {
           variants={stagger}
         >
           <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// selected work</motion.p>
-          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4">
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-3">
             Selected work
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-16">
-            All three are production SaaS products I shipped end-to-end as the sole engineer
-            on contract for the founders below.
+          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-14">
+            Three production SaaS products. Shipped solo, end-to-end.
           </motion.p>
 
           <div className="space-y-20 md:space-y-28">
@@ -374,11 +374,11 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-6 bg-white/[0.02] border-y border-white/5">
+      <section className="py-20 px-6 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// what founders say</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">From the people who paid me to ship</motion.h2>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-10">From founders I&apos;ve shipped for</motion.h2>
             <div className="grid md:grid-cols-3 gap-6">
               {TESTIMONIALS.map((t) => (
                 <motion.figure
@@ -410,16 +410,16 @@ export default function Home() {
       </section>
 
       {/* How I Work */}
-      <section className="py-24 px-6">
+      <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// how it works</motion.p>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">How I work</motion.h2>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { icon: "🏗️", title: "End-to-End Ownership", desc: "Architecture, backend, frontend, infra, deploys. Six production SaaS apps shipped for founders prove it. I think in products, not tickets." },
-                { icon: "🎯", title: "Correctness First", desc: "MRR math that has to match the bank account. Money handled as integer cents. Idempotent webhooks. The bar is the numbers being right — not just the UI looking right." },
-                { icon: "⚡", title: "AI as Leverage", desc: "AI-assisted development daily — not as a crutch, as leverage. I still own the architecture, decisions, and quality. I just don't waste your money on boilerplate." }
+                { icon: "🏗️", title: "End-to-end ownership", desc: "Architecture, backend, frontend, infra, deploys. I think in products, not tickets." },
+                { icon: "🎯", title: "Correctness first", desc: "MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right." },
+                { icon: "⚡", title: "AI as leverage", desc: "AI in the loop daily — as leverage, not a crutch. I still own the architecture and the decisions." }
               ].map((item) => (
                 <motion.div key={item.title} variants={fadeUp} className="space-y-3">
                   <div className="text-3xl">{item.icon}</div>
@@ -432,11 +432,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Writing — featured layout */}
-      <section id="writing" className="py-28 px-6 bg-white/[0.02] border-y border-white/5">
+      {/* Writing — three equal cards */}
+      <section id="writing" className="py-20 px-6 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <div className="flex flex-wrap items-baseline justify-between gap-4 mb-3">
+            <div className="flex flex-wrap items-baseline justify-between gap-4 mb-2">
               <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono">// writing on AI agents</motion.p>
               <motion.div variants={fadeUp}>
                 <Link href="/blog" className="text-sm text-white/40 hover:text-[#22c55e] transition-colors font-mono">
@@ -444,71 +444,38 @@ export default function Home() {
                 </Link>
               </motion.div>
             </div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-10 tracking-tight">
               Notes on building with AI agents
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-14 text-base md:text-lg">
-              I&apos;ve been working with AI in the loop daily for 18 months. Three essays on
-              what actually changed about engineering — and what didn&apos;t.
-            </motion.p>
 
-            <div className="grid md:grid-cols-5 gap-6">
-              {/* Featured (lead) post */}
-              <motion.article variants={fadeUp} className="md:col-span-3 group">
-                <Link
-                  href={`/blog/${POSTS[0].slug}`}
-                  className="block relative border border-white/10 rounded-2xl p-8 md:p-10 hover:border-[#22c55e]/40 transition-colors bg-gradient-to-br from-[#0a0a0a] to-[#0a0a0a]/40 h-full overflow-hidden"
-                >
-                  <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#22c55e]/5 rounded-full blur-3xl pointer-events-none" />
-                  <div className="relative">
-                    <div className="flex items-center gap-3 text-xs text-white/40 mb-5">
-                      <span className="bg-[#22c55e]/15 text-[#22c55e] px-2.5 py-1 rounded-full font-mono text-[11px] font-semibold">FEATURED</span>
-                      <span className="bg-white/5 text-white/60 px-2 py-0.5 rounded font-mono">{POSTS[0].tag}</span>
-                      <span>{POSTS[0].date}</span>
+            <div className="grid md:grid-cols-3 gap-5">
+              {POSTS.map((post, i) => (
+                <motion.article key={post.slug} variants={fadeUp} className="group">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="flex flex-col h-full border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a]/40"
+                  >
+                    <div className="flex items-center gap-2 text-[11px] text-white/40 mb-4 font-mono">
+                      <span className="bg-white/5 text-white/60 px-2 py-0.5 rounded">{post.tag}</span>
+                      <span>{post.date}</span>
                       <span aria-hidden="true">·</span>
-                      <span>{POSTS[0].readTime}</span>
+                      <span>{post.readTime}</span>
                     </div>
-                    <h3 className="text-2xl md:text-4xl font-bold mb-5 group-hover:text-[#22c55e] transition-colors leading-tight tracking-tight">
-                      {POSTS[0].title}
+                    <h3 className="text-lg md:text-xl font-bold mb-3 leading-snug tracking-tight group-hover:text-[#22c55e] transition-colors">
+                      {post.title}
                     </h3>
-                    <p className="text-white/60 text-base leading-relaxed mb-6">{POSTS[0].excerpt}</p>
-                    <span className="inline-flex items-center gap-2 text-sm text-[#22c55e] font-semibold">
-                      Read essay
-                      <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                </Link>
-              </motion.article>
-
-              {/* Secondary posts */}
-              <div className="md:col-span-2 space-y-6">
-                {POSTS.slice(1).map((post) => (
-                  <motion.article key={post.slug} variants={fadeUp} className="group h-full">
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="block border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a]/40 h-full"
-                    >
-                      <div className="flex items-center gap-3 text-xs text-white/40 mb-3">
-                        <span className="bg-white/5 text-white/60 px-2 py-0.5 rounded font-mono">{post.tag}</span>
-                        <span>{post.date}</span>
-                        <span aria-hidden="true">·</span>
-                        <span>{post.readTime}</span>
-                      </div>
-                      <h3 className="text-lg md:text-xl font-bold mb-3 group-hover:text-[#22c55e] transition-colors leading-snug">
-                        {post.title}
-                      </h3>
-                      <p className="text-white/55 text-sm leading-relaxed">{post.excerpt}</p>
-                    </Link>
-                  </motion.article>
-                ))}
-              </div>
+                    <p className="text-white/55 text-sm leading-relaxed flex-1">{post.excerpt}</p>
+                    <span className="text-xs text-[#22c55e] font-mono mt-4">Read post →</span>
+                  </Link>
+                </motion.article>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Stack */}
-      <section className="py-24 px-6 max-w-6xl mx-auto">
+      <section className="py-20 px-6 max-w-6xl mx-auto">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// tech stack</motion.p>
           <motion.h2 variants={fadeUp} className="text-3xl font-bold mb-10">Tools I ship with</motion.h2>
@@ -530,48 +497,36 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="py-24 px-6 bg-white/[0.02] border-y border-white/5">
+      <section id="about" className="py-20 px-6 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="max-w-2xl">
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// about</motion.p>
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I&apos;m Uzair — a Full-Stack Engineer based in Islamabad, Pakistan. I&apos;ve spent the last
-              four-plus years building B2B SaaS products end-to-end. Currently at
-              <strong className="text-white/80"> Rocket Devs</strong> as a senior contractor for
-              founder clients in the US, EU, and MENA — the three products on this page were all
-              shipped through Rocket Devs. Previously at <strong className="text-white/80">Design&amp;Desktop</strong>
-              (AI vlog generator + data scraper) and <strong className="text-white/80">Apifiny</strong>
-              from 2022–2024, where I cut my teeth on Stripe integrations and client dashboards.
+              I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Four-plus years building B2B SaaS
+              end-to-end. Currently at <strong className="text-white/80">Rocket Devs</strong> shipping
+              for founder clients across the US, EU, and MENA. Previously
+              <strong className="text-white/80"> Design&amp;Desktop</strong> and
+              <strong className="text-white/80"> Apifiny</strong>.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              The three products on this page — Indiecator (revenue analytics), Diffed.gg (two-sided
-              marketplace), and Sat-Raj (fuel platform that replaced 30 years of spreadsheets) —
-              are the ones I&apos;m proudest of. Each one shipped solo, end-to-end.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I started writing code because a friend in 2020 wanted a website and couldn&apos;t afford an
-              agency. The website turned into a side hustle, the side hustle turned into contracts,
-              the contracts turned into shipping real revenue products. Somewhere along the way I got
-              obsessed with the part of engineering nobody screenshots: the idempotent webhook handler,
-              the integer-cents wallet, the parity-first migration. That&apos;s the bar I hold my work to.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              Outside the editor: cricket whenever Pakistan plays, late-night reading (most recently
-              <em> Kill It With Fire</em>), and the occasional badly-photographed Islamabad sunset on
-              my camera roll.
+              I started coding in 2020 because a friend needed a website and couldn&apos;t afford an
+              agency. That turned into a side hustle, then contracts, then shipping real revenue
+              products. Somewhere along the way I got obsessed with the part of engineering nobody
+              screenshots: the idempotent webhook, the integer-cents wallet, the parity-first
+              migration. That&apos;s the bar I hold my work to.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed">
-              BS in Artificial Intelligence (SZABIST Islamabad, 2026). Open to senior full-stack roles
-              at product-focused companies — remote, any reasonable timezone overlap, full-time or
-              long-term contract.
+              Outside the editor: cricket whenever Pakistan plays, late-night reading, and badly-photographed
+              Islamabad sunsets. BS in Artificial Intelligence (SZABIST Islamabad, 2026).
+              Open to senior full-stack roles — remote, any reasonable timezone overlap.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-32 px-6 max-w-6xl mx-auto">
+      <section id="contact" className="py-24 px-6 max-w-6xl mx-auto">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           <div className="text-center mb-12">
             <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// contact</motion.p>
@@ -580,7 +535,7 @@ export default function Home() {
               <span className="text-white/40">Let&apos;s talk.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-white/40 max-w-md mx-auto">
-              Open to senior full-stack roles and select consulting. Replies within 24 hours.
+              Senior full-stack roles or select consulting. Replies within 24 hours.
             </motion.p>
           </div>
 
