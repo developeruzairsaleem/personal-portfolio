@@ -139,11 +139,51 @@ const POSTS = [
 ];
 
 const STACK_GROUPS = [
-  { label: "Frontend", items: ["Next.js", "React 19", "TypeScript", "Tailwind", "Framer Motion"] },
-  { label: "Backend", items: ["Node.js", "Express", "Prisma", "REST APIs", "Socket.IO"] },
-  { label: "Data", items: ["PostgreSQL", "Supabase", "AWS RDS"] },
-  { label: "Infra & Auth", items: ["AWS (Amplify, S3, SES)", "Vercel", "NextAuth"] },
-  { label: "Payments", items: ["Stripe Connect", "PayPal"] },
+  {
+    label: "Frontend",
+    items: ["Next.js 15/16", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "Recharts"],
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M3 9h18" />
+        <path d="M9 21V9" />
+      </svg>
+    ),
+  },
+  {
+    label: "Backend & APIs",
+    items: ["Node.js", "Express", "Prisma", "Socket.IO", "REST APIs", "NextAuth"],
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="8" rx="2" />
+        <rect x="2" y="13" width="20" height="8" rx="2" />
+        <line x1="6" y1="7" x2="6.01" y2="7" />
+        <line x1="6" y1="17" x2="6.01" y2="17" />
+      </svg>
+    ),
+  },
+  {
+    label: "Data & Infra",
+    items: ["PostgreSQL", "Supabase", "AWS (Amplify, RDS, SES, S3)", "Vercel"],
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <ellipse cx="12" cy="5" rx="9" ry="3" />
+        <path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+        <path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6" />
+      </svg>
+    ),
+  },
+  {
+    label: "Payments & Integrations",
+    items: ["Stripe Connect", "PayPal", "Samsara API", "DTN feed", "QuickBooks"],
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="5" width="20" height="14" rx="2" />
+        <line x1="2" y1="10" x2="22" y2="10" />
+        <line x1="6" y1="15" x2="10" y2="15" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Home() {
@@ -478,21 +518,38 @@ export default function Home() {
       <section className="py-20 px-6 max-w-6xl mx-auto">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// tech stack</motion.p>
-          <motion.h2 variants={fadeUp} className="text-3xl font-bold mb-10">Tools I ship with</motion.h2>
-          <motion.div variants={fadeUp} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-3">Tools I ship with</motion.h2>
+          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-10">
+            The stack I reach for by default — battle-tested across six production SaaS.
+          </motion.p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {STACK_GROUPS.map((group) => (
-              <div key={group.label} className="space-y-3">
-                <div className="text-xs font-mono text-[#22c55e]/80 uppercase tracking-wider">{group.label}</div>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((tech) => (
-                    <span key={tech} className="px-3 py-1.5 border border-white/10 rounded-md text-sm text-white/70 hover:border-[#22c55e]/30 hover:text-white transition-all cursor-default">
-                      {tech}
-                    </span>
-                  ))}
+              <motion.div
+                key={group.label}
+                variants={fadeUp}
+                className="group relative border border-white/10 rounded-2xl p-6 bg-white/[0.02] hover:border-[#22c55e]/40 hover:bg-white/[0.04] transition-all"
+              >
+                <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
+                  <div className="w-10 h-10 rounded-lg bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center group-hover:bg-[#22c55e]/15 transition-colors shrink-0">
+                    {group.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-bold text-white tracking-tight truncate">{group.label}</div>
+                    <div className="text-[11px] text-white/40 font-mono">{group.items.length} tools</div>
+                  </div>
                 </div>
-              </div>
+                <ul className="space-y-2.5">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-white/65">
+                      <span className="w-1 h-1 rounded-full bg-[#22c55e]/50 mt-2 shrink-0" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 
