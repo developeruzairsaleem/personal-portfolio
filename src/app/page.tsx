@@ -92,7 +92,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Best engineering hire I&apos;ve made for the product. He didn&apos;t just build a dashboard — he rebuilt how we think about revenue. The architecture doc is now how I explain our business to investors.",
+      "Best engineering hire I've made for the product. He didn't just build a dashboard — he rebuilt how we think about revenue. The architecture doc is now how I explain our business to investors.",
     name: "Omar Al Watan",
     role: "Founder, Indiecator",
     company: "Remote · MENA",
