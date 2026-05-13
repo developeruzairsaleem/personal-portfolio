@@ -47,8 +47,8 @@ const PROJECTS = [
     tagline: "Baremetrics-style revenue analytics for indie SaaS",
     description:
       "Connect Stripe and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration. Event-sourced from day one.",
-    role: "Solo engineer (contract)",
-    metrics: "From kickoff to production in ~12 weeks, solo",
+    role: "Lead engineer (contract)",
+    metrics: "From kickoff to production in ~12 weeks",
     live: "https://indiecator.com",
     liveLabel: "indiecator.com",
     caseStudy: "/case-studies/indiecator.pdf",
@@ -61,7 +61,7 @@ const PROJECTS = [
     tagline: "Two-sided gaming services marketplace",
     description:
       "End-to-end marketplace for gaming services — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification, fee-split admin flows.",
-    role: "Solo engineer (contract)",
+    role: "Lead engineer (contract)",
     metrics: "Full marketplace shipped end-to-end in one quarter",
     live: "https://diffed.gg",
     liveLabel: "diffed.gg",
@@ -75,7 +75,7 @@ const PROJECTS = [
     tagline: "Fuel distribution platform for a 30-year-old NJ wholesaler",
     description:
       "Replaced 39 Google Sheets tabs with a multi-tenant pricing engine, BOL pipeline, and invoice generator. Pulls costs from DTN, ingests deliveries from Samsara, pushes invoices to QuickBooks.",
-    role: "Solo engineer (contract)",
+    role: "Lead engineer (contract)",
     metrics: "Cut daily pricing run from 60 min → 90 sec · live to 24 customers",
     live: "https://satraj.inc",
     liveLabel: "satraj.inc",
@@ -310,7 +310,7 @@ export default function Home() {
             Selected work
           </motion.h2>
           <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-14">
-            Three production SaaS products. Shipped solo, end-to-end, as senior contractor.
+            Three production SaaS products. Owned end-to-end as lead engineer for founder clients.
           </motion.p>
 
           <div className="space-y-20">
@@ -569,17 +569,18 @@ export default function Home() {
             <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
               I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS
-              end-to-end. Currently at <strong className="text-white/80">Rocket Devs</strong> shipping
-              for founder clients across the US, EU, and MENA. Previously
+              end-to-end. Currently at <strong className="text-white/80">Rocket Devs</strong>,
+              leading client builds alongside a small product team. Previously
               <strong className="text-white/80"> Design&amp;Desktop</strong> and
-              <strong className="text-white/80"> Apifiny</strong>.
+              <strong className="text-white/80"> Apifiny</strong>, where I shipped weekly with
+              product teams across three years.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
               I started coding in 2020 because a friend needed a website and couldn&apos;t afford an
-              agency. That turned into a side hustle, then contracts, then shipping real revenue
-              products. Somewhere along the way I got obsessed with the part of engineering nobody
-              screenshots: the idempotent webhook, the integer-cents wallet, the parity-first
-              migration. That&apos;s the bar I hold my work to.
+              agency. That turned into a side hustle, then contracts, then shipping production SaaS
+              for founders — sometimes as the lead engineer on a build, sometimes alongside a small
+              product team. The work I care about most is the part that doesn&apos;t make demo reels
+              but does make customers stay.
             </motion.p>
             <motion.p variants={fadeUp} className="text-white/60 leading-relaxed">
               Outside the editor: cricket whenever Pakistan plays, late-night reading, and badly-photographed
