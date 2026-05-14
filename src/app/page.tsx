@@ -244,9 +244,9 @@ export default function Home() {
           <p className="lede">
             <b>Next.js · TypeScript · Postgres · AWS.</b> Senior Full-Stack
             Engineer running an AI-assisted workflow. Five years shipping
-            production SaaS for founders in the US, EU, and MENA — sometimes
-            solo, sometimes alongside a small product team. Six live products.
-            Open to senior roles for Q3 2026.
+            production SaaS for founders in the US, EU, and MENA — mostly
+            alongside small product teams. Six live products. Open to senior
+            roles for Q3 2026.
           </p>
           <div className="meta-row">
             <div><span>5 yrs</span><small>Years shipping</small></div>
@@ -274,8 +274,8 @@ export default function Home() {
 
         <div className="margin-note m1">
           senior contractor →<br />
-          (work solo or with<br />
-          your product team)
+          (works inside your<br />
+          product team)
         </div>
         <div className="margin-note m2">read this twice ✶</div>
       </section>
@@ -370,7 +370,7 @@ export default function Home() {
           <div className="no">i</div>
           <h3>End-to-end<br />ownership.</h3>
           <p>
-            Architecture, backend, frontend, infra, deploys. Six production SaaS shipped — sometimes solo, sometimes alongside a small product team. I think in products, not tickets.
+            Architecture, backend, frontend, infra, deploys. Six production SaaS shipped — mostly alongside small product teams, sometimes as the lead engineer. I think in products, not tickets.
           </p>
           <div className="ann">one head,<br />the whole product ✶</div>
         </div>
@@ -465,7 +465,7 @@ export default function Home() {
             I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS end-to-end. Currently at <em>Rocket Devs</em>, leading client builds alongside a small product team. Previously Design&amp;Desktop and Apifiny, where I shipped weekly with product teams across three years.
           </p>
           <p>
-            I started coding in 2020 because a friend needed a website and couldn&apos;t afford an agency. That turned into a side hustle, then contracts, then shipping production SaaS for founders — sometimes as the lead engineer on a build, sometimes alongside a small product team. The work I care about most is the part that doesn&apos;t make demo reels but does make customers stay.
+            I started coding in 2020 because a friend needed a website and couldn&apos;t afford an agency. That turned into a side hustle, then contracts, then shipping production SaaS for founders — mostly alongside small product teams, sometimes as the lead engineer on an end-to-end build. The work I care about most is the part that doesn&apos;t make demo reels but does make customers stay.
           </p>
           <p>
             BS in Artificial Intelligence (SZABIST Islamabad, 2018–2022). Open to senior full-stack roles — remote, any reasonable timezone overlap.
