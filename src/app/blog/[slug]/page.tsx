@@ -3,6 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPost, posts } from "../posts";
 
+const RESUME = "/uzair-saleem-resume.pdf";
+const MAILTO = "mailto:uzairsaleemdev@gmail.com";
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
@@ -40,8 +43,28 @@ export default async function BlogPost({ params }: Props) {
   const next = idx < posts.length - 1 ? posts[idx + 1] : null;
 
   return (
-    <main className="page">
-      <header className="masthead">
+    <>
+      <nav className="topnav" aria-label="Primary">
+        <div className="inner">
+          <div className="brand">
+            <Link href="/" className="brand-name">Uzair Saleem.</Link>
+            <span className="avail-pill"><span className="led" aria-hidden="true" /> Available — Q3 2026</span>
+          </div>
+          <div className="links">
+            <Link href="/#work">Work</Link>
+            <Link href="/blog">Writing</Link>
+            <Link href="/#about">About</Link>
+            <Link href="/#contact">Contact</Link>
+          </div>
+          <div className="actions">
+            <a className="btn outline" href={RESUME} target="_blank" rel="noopener noreferrer">Download CV</a>
+            <a className="btn filled" href={MAILTO}>Email me</a>
+          </div>
+        </div>
+      </nav>
+
+      <main className="page">
+        <header className="masthead">
         <div className="vol">
           <Link href="/blog" style={{ color: "var(--ink-soft)", textDecoration: "none" }}>← All entries</Link>
         </div>
@@ -150,6 +173,7 @@ export default async function BlogPost({ params }: Props) {
         <div className="pg-num">{idx + 1}</div>
         <div><Link href="/blog">← all entries</Link></div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }

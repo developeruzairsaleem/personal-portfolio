@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { posts } from "./posts";
 
+const RESUME = "/uzair-saleem-resume.pdf";
+const MAILTO = "mailto:uzairsaleemdev@gmail.com";
+
 export const metadata: Metadata = {
   title: "Field Notes",
   description:
@@ -17,8 +20,28 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <main className="page">
-      <header className="masthead">
+    <>
+      <nav className="topnav" aria-label="Primary">
+        <div className="inner">
+          <div className="brand">
+            <Link href="/" className="brand-name">Uzair Saleem.</Link>
+            <span className="avail-pill"><span className="led" aria-hidden="true" /> Available — Q3 2026</span>
+          </div>
+          <div className="links">
+            <Link href="/#work">Work</Link>
+            <Link href="/blog">Writing</Link>
+            <Link href="/#about">About</Link>
+            <Link href="/#contact">Contact</Link>
+          </div>
+          <div className="actions">
+            <a className="btn outline" href={RESUME} target="_blank" rel="noopener noreferrer">Download CV</a>
+            <a className="btn filled" href={MAILTO}>Email me</a>
+          </div>
+        </div>
+      </nav>
+
+      <main className="page">
+        <header className="masthead">
         <div className="vol">
           <Link href="/" style={{ color: "var(--ink-soft)", textDecoration: "none" }}>← Field Notes</Link>
         </div>
@@ -82,12 +105,13 @@ export default function BlogIndex() {
       </div>
 
       <footer className="foot">
-        <div>© {new Date().getFullYear()} &nbsp;·&nbsp; Set in Instrument Serif &amp; Special Elite</div>
+        <div>© {new Date().getFullYear()} &nbsp;·&nbsp; Set in Instrument Serif &amp; JetBrains Mono</div>
         <div className="pg-num">Notes</div>
         <div>
           <Link href="/">← back to Field Notes</Link>
         </div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }

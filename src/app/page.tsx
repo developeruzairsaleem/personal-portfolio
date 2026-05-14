@@ -179,9 +179,34 @@ function TodayDate() {
 
 export default function Home() {
   return (
-    <main className="page">
-      {/* Masthead */}
-      <header className="masthead">
+    <>
+      {/* Sticky top nav */}
+      <nav className="topnav" aria-label="Primary">
+        <div className="inner">
+          <div className="brand">
+            <Link href="/" className="brand-name">Uzair Saleem.</Link>
+            <span className="avail-pill"><span className="led" aria-hidden="true" /> Available — Q3 2026</span>
+          </div>
+          <div className="links">
+            <a href="#work">Work</a>
+            <a href="#writing">Writing</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div className="actions">
+            <a className="btn outline" href={RESUME} target="_blank" rel="noopener noreferrer">
+              Download CV
+            </a>
+            <a className="btn filled" href={MAILTO}>
+              Email me
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <main className="page">
+        {/* Masthead */}
+        <header className="masthead">
         <div className="vol">
           Vol. <em>05</em> &nbsp;·&nbsp; Field Notes from a working developer
         </div>
@@ -485,13 +510,14 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="foot">
-        <div>© {new Date().getFullYear()} &nbsp;·&nbsp; Set in Instrument Serif &amp; Special Elite</div>
+        <div>© {new Date().getFullYear()} &nbsp;·&nbsp; Set in Instrument Serif &amp; JetBrains Mono</div>
         <div className="pg-num">14</div>
         <div>
           <a href="https://github.com/developeruzairsaleem/personal-portfolio" target="_blank" rel="noopener noreferrer">Source</a>
           &nbsp;·&nbsp; End of issue.
         </div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }
