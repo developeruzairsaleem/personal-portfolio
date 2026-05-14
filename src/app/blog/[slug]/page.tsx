@@ -26,11 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: ["Uzair Saleem"],
       tags: [post.tag],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
-    },
+    twitter: { card: "summary_large_image", title: post.title, description: post.excerpt },
   };
 }
 
@@ -44,92 +40,116 @@ export default async function BlogPost({ params }: Props) {
   const next = idx < posts.length - 1 ? posts[idx + 1] : null;
 
   return (
-    <main>
-      {/* Top index */}
-      <div className="swiss-grid" style={{ padding: "24px 56px 18px", borderBottom: "1px solid var(--rule)" }}>
-        <div className="mono" style={{ gridColumn: "1 / -1", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link href="/blog" style={{ color: "var(--ink)", textDecoration: "none" }}>
-            <b style={{ color: "var(--ink)", fontWeight: 500 }}>← All writing</b>
-          </Link>
-          <span>{post.tag} · {post.date} · {post.readTime} read</span>
-          <Link href="/" style={{ color: "var(--ink)", textDecoration: "none" }}>Uzair Saleem</Link>
+    <main className="page">
+      <header className="masthead">
+        <div className="vol">
+          <Link href="/blog" style={{ color: "var(--ink-soft)", textDecoration: "none" }}>← All entries</Link>
         </div>
+        <div className="title">Field Note</div>
+        <div className="meta">
+          <Link href="/" style={{ color: "var(--ink-soft)", textDecoration: "none" }}>Uzair Saleem <span className="stamp">PK</span></Link>
+        </div>
+      </header>
+      <div className="subhead">
+        <div>{post.tag} &nbsp;·&nbsp; {post.date} &nbsp;·&nbsp; {post.readTime} read</div>
+        <div className="barcode" aria-hidden="true">
+          {Array.from({ length: 15 }).map((_, i) => <i key={i} />)}
+        </div>
+        <div>Entry 0{idx + 1} of 0{posts.length}</div>
       </div>
 
-      <article className="swiss-grid" style={{ padding: "80px 56px 40px" }}>
-        <header style={{ gridColumn: "2 / span 10", marginBottom: 56 }}>
-          <div className="mono" style={{ marginBottom: 20, color: "var(--accent)" }}>— {post.tag}</div>
-          <h1 style={{
-            fontFamily: "var(--font-bricolage), sans-serif",
-            fontWeight: 500,
-            fontSize: "clamp(40px, 6vw, 80px)",
-            lineHeight: 1.0,
-            letterSpacing: "-0.03em",
-            fontVariationSettings: "'opsz' 72, 'wght' 500",
-            color: "var(--ink)",
-          }}>
-            {post.title}
-          </h1>
-          <p style={{
-            marginTop: 28,
-            fontSize: 22,
-            lineHeight: 1.4,
-            color: "var(--ink)",
-            maxWidth: "44ch",
-            fontWeight: 400,
-          }}>
-            {post.excerpt}
-          </p>
-        </header>
+      <article style={{ padding: "72px 0 24px", maxWidth: 720, marginInline: "auto" }}>
+        <div style={{
+          fontFamily: "var(--font-typewriter), monospace",
+          fontSize: 11,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          color: "var(--ink-soft)",
+          marginBottom: 18,
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+        }}>
+          <span style={{ width: 42, height: 1, background: "var(--ink)", display: "inline-block" }} />
+          Field note — {post.tag}
+        </div>
+        <h1 style={{
+          fontFamily: "var(--font-serif), serif",
+          fontWeight: 400,
+          fontStyle: "italic",
+          fontSize: "clamp(40px, 5.5vw, 72px)",
+          lineHeight: 1.0,
+          letterSpacing: "-0.012em",
+          color: "var(--ink)",
+        }}>
+          {post.title}
+        </h1>
+        <p style={{
+          fontFamily: "var(--font-typewriter), monospace",
+          fontSize: 15,
+          lineHeight: 1.75,
+          letterSpacing: "0.01em",
+          color: "var(--ink-soft)",
+          marginTop: 28,
+          maxWidth: "56ch",
+          paddingBottom: 36,
+          borderBottom: "1.5px solid var(--ink)",
+        }}>
+          {post.excerpt}
+        </p>
 
         <div
           className="post-body"
-          style={{
-            gridColumn: "3 / span 8",
-            fontFamily: "var(--font-bricolage), sans-serif",
-            fontSize: 17.5,
-            lineHeight: 1.7,
-            color: "var(--ink)",
-          }}
+          style={{ marginTop: 40 }}
           dangerouslySetInnerHTML={{ __html: post.body }}
         />
 
-        <footer style={{ gridColumn: "3 / span 8", marginTop: 80, paddingTop: 40, borderTop: "1px solid var(--rule)" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 18, padding: "20px 0", marginBottom: 40 }}>
-            <div style={{ width: 56, height: 56, overflow: "hidden", border: "1px solid var(--rule)", flexShrink: 0 }}>
+        <footer style={{ marginTop: 80, paddingTop: 32, borderTop: "1.5px solid var(--ink)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "16px 0" }}>
+            <div style={{ width: 80, height: 100, transform: "rotate(-2deg)", background: "#f8f2df", padding: 4, boxShadow: "0 8px 18px -12px rgba(40,20,0,0.4)", flexShrink: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/main-profile-photo.png" alt="Uzair Saleem" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(1) contrast(1.04)" }} />
+              <img
+                src="/images/main-profile-photo.png"
+                alt="Uzair Saleem"
+                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "contrast(1.02) saturate(0.85) sepia(0.18)" }}
+              />
             </div>
             <div>
-              <div className="mono" style={{ color: "var(--accent)" }}>— Written by</div>
-              <div style={{ fontFamily: "var(--font-bricolage), sans-serif", fontSize: 20, fontWeight: 500, marginTop: 4 }}>Uzair Saleem</div>
-              <div style={{ fontSize: 14, color: "var(--soft)", marginTop: 2 }}>
+              <div style={{ fontFamily: "var(--font-typewriter), monospace", fontSize: 11, letterSpacing: "0.14em", color: "var(--red)", textTransform: "uppercase" }}>— Written by</div>
+              <div style={{ fontFamily: "var(--font-serif), serif", fontStyle: "italic", fontSize: 28, marginTop: 4, color: "var(--ink)" }}>Uzair Saleem.</div>
+              <div style={{ fontFamily: "var(--font-typewriter), monospace", fontSize: 12.5, color: "var(--ink-soft)", marginTop: 4 }}>
                 Senior Full-Stack Engineer · Islamabad ·{" "}
-                <Link href="/" style={{ color: "var(--ink)", borderBottom: "1.5px solid var(--accent)", textDecoration: "none" }}>
-                  See my work →
+                <Link href="/" style={{ color: "var(--ink)", borderBottom: "1.5px solid var(--red)", textDecoration: "none" }}>
+                  see my work ↗
                 </Link>
               </div>
             </div>
           </div>
 
           {(prev || next) && (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginTop: 40 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginTop: 48 }}>
               {prev ? (
-                <Link href={`/blog/${prev.slug}`} style={{ textDecoration: "none", color: "inherit", padding: "20px 0", borderTop: "1px solid var(--rule)" }}>
-                  <div className="mono" style={{ marginBottom: 8, color: "var(--accent)" }}>← Previous</div>
-                  <div style={{ fontFamily: "var(--font-bricolage), sans-serif", fontSize: 17, fontWeight: 500, lineHeight: 1.3 }}>{prev.title}</div>
+                <Link href={`/blog/${prev.slug}`} style={{ textDecoration: "none", color: "inherit", padding: "16px 0", borderTop: "1.5px solid var(--ink)" }}>
+                  <div style={{ fontFamily: "var(--font-typewriter), monospace", fontSize: 11, letterSpacing: "0.14em", color: "var(--red)", textTransform: "uppercase", marginBottom: 8 }}>← Previous entry</div>
+                  <div style={{ fontFamily: "var(--font-serif), serif", fontStyle: "italic", fontSize: 22, lineHeight: 1.15, color: "var(--ink)" }}>{prev.title}</div>
                 </Link>
               ) : <div />}
               {next ? (
-                <Link href={`/blog/${next.slug}`} style={{ textDecoration: "none", color: "inherit", textAlign: "right", padding: "20px 0", borderTop: "1px solid var(--rule)" }}>
-                  <div className="mono" style={{ marginBottom: 8, color: "var(--accent)" }}>Next →</div>
-                  <div style={{ fontFamily: "var(--font-bricolage), sans-serif", fontSize: 17, fontWeight: 500, lineHeight: 1.3 }}>{next.title}</div>
+                <Link href={`/blog/${next.slug}`} style={{ textDecoration: "none", color: "inherit", textAlign: "right", padding: "16px 0", borderTop: "1.5px solid var(--ink)" }}>
+                  <div style={{ fontFamily: "var(--font-typewriter), monospace", fontSize: 11, letterSpacing: "0.14em", color: "var(--red)", textTransform: "uppercase", marginBottom: 8 }}>Next entry →</div>
+                  <div style={{ fontFamily: "var(--font-serif), serif", fontStyle: "italic", fontSize: 22, lineHeight: 1.15, color: "var(--ink)" }}>{next.title}</div>
                 </Link>
               ) : <div />}
             </div>
           )}
         </footer>
       </article>
+
+      <footer className="foot">
+        <div>© {new Date().getFullYear()} &nbsp;·&nbsp; Field Notes</div>
+        <div className="pg-num">{idx + 1}</div>
+        <div><Link href="/blog">← all entries</Link></div>
+      </footer>
     </main>
   );
 }

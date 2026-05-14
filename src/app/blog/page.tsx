@@ -3,14 +3,13 @@ import Link from "next/link";
 import { posts } from "./posts";
 
 export const metadata: Metadata = {
-  title: "Writing",
+  title: "Field Notes",
   description:
-    "Notes on AI agents, payments engineering, and shipping production SaaS by Uzair Saleem.",
+    "Field notes on AI agents, payments engineering, and shipping production SaaS by Uzair Saleem.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Writing · Uzair Saleem",
-    description:
-      "Notes on AI agents, payments engineering, and shipping production SaaS.",
+    title: "Field Notes · Uzair Saleem",
+    description: "Field notes on AI agents, payments engineering, and shipping production SaaS.",
     url: "/blog",
     type: "website",
   },
@@ -18,51 +17,77 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <main>
-      {/* Top index */}
-      <div className="swiss-grid" style={{ padding: "24px 56px 18px", borderBottom: "1px solid var(--rule)" }}>
-        <div className="mono" style={{ gridColumn: "1 / -1", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Link href="/" style={{ color: "var(--ink)", textDecoration: "none" }}>
-            <b style={{ color: "var(--ink)", fontWeight: 500 }}>← Uzair Saleem</b> · Index · v.05
-          </Link>
-          <span>Writing — Notes</span>
-          <Link href="/#contact" style={{ color: "var(--ink)", textDecoration: "none", borderBottom: "1.5px solid var(--accent)" }}>
-            Get in touch
-          </Link>
+    <main className="page">
+      <header className="masthead">
+        <div className="vol">
+          <Link href="/" style={{ color: "var(--ink-soft)", textDecoration: "none" }}>← Field Notes</Link>
         </div>
+        <div className="title">Writing</div>
+        <div className="meta">
+          Islamabad <span className="stamp">PK</span>
+        </div>
+      </header>
+      <div className="subhead">
+        <div>Issue 14 &nbsp;·&nbsp; Q2 2026 &nbsp;·&nbsp; Field notes on AI agents</div>
+        <div className="barcode" aria-hidden="true">
+          {Array.from({ length: 15 }).map((_, i) => <i key={i} />)}
+        </div>
+        <div>{posts.length} entries</div>
       </div>
 
-      <article className="swiss-grid" style={{ padding: "80px 56px 120px" }}>
-        <div style={{ gridColumn: "1 / -1", marginBottom: 60 }}>
-          <div className="mono" style={{ marginBottom: 16, color: "var(--accent)" }}>— § Writing</div>
-          <h1 className="hero-h1" style={{ fontSize: "clamp(48px, 8vw, 120px)" }}>
-            Notes on <span className="acc">AI&nbsp;agents.</span>
-          </h1>
-          <p style={{ marginTop: 32, maxWidth: "48ch", fontSize: 19, lineHeight: 1.45, color: "var(--ink)" }}>
-            Engineering essays on the parts of building production SaaS that don&apos;t fit on a Trello card — AI agents in the loop, payments correctness, and what changed about this job in the last 18 months.
-          </p>
+      <section style={{ position: "relative", padding: "72px 0 24px" }}>
+        <div className="eyebrow" style={{ fontFamily: "var(--font-typewriter), monospace", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--ink-soft)", marginBottom: 18, display: "flex", alignItems: "center", gap: 14 }}>
+          <span style={{ width: 42, height: 1, background: "var(--ink)", display: "inline-block" }} />
+          Subject — Notes from the build
         </div>
+        <h1 style={{
+          fontFamily: "var(--font-serif), serif",
+          fontWeight: 400,
+          fontSize: "clamp(48px, 7vw, 96px)",
+          lineHeight: 0.96,
+          letterSpacing: "-0.012em",
+          color: "var(--ink)",
+        }}>
+          Field notes on<br />
+          <span style={{ fontStyle: "italic", color: "var(--red)" }}>AI agents</span>.
+        </h1>
+        <p style={{
+          fontFamily: "var(--font-typewriter), monospace",
+          fontSize: 14.5,
+          lineHeight: 1.7,
+          letterSpacing: "0.01em",
+          color: "var(--ink-soft)",
+          maxWidth: 560,
+          marginTop: 32,
+        }}>
+          Essays on the parts of building production SaaS that don&apos;t fit on a Trello card — AI agents in the loop, what changed about this job in the last 18 months, and the skills that survived.
+        </p>
+      </section>
 
-        <div style={{ gridColumn: "1 / -1", borderTop: "1px solid var(--rule)" }}>
-          {posts.map((post, i) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
-              <article style={{ display: "grid", gridTemplateColumns: "80px 1fr 1fr 120px", gap: 24, padding: "32px 0", borderBottom: "1px solid var(--hair)", alignItems: "baseline" }}>
-                <span className="mono" style={{ color: "var(--accent)" }}>0{i + 1}</span>
-                <span className="mono">{post.tag} · {post.date}</span>
-                <div>
-                  <h2 style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 500, fontSize: 28, lineHeight: 1.05, letterSpacing: "-0.022em", maxWidth: "32ch", fontVariationSettings: "'opsz' 32, 'wght' 500" }}>
-                    {post.title}
-                  </h2>
-                  <p style={{ marginTop: 10, fontSize: 15.5, lineHeight: 1.5, color: "var(--ink)", maxWidth: "44ch" }}>
-                    {post.excerpt}
-                  </p>
-                </div>
-                <span className="mono" style={{ textAlign: "right", color: "var(--accent)" }}>{post.readTime} →</span>
-              </article>
-            </Link>
-          ))}
+      <div className="rule">
+        <h2>§ &nbsp; All entries</h2>
+        <div className="right">{posts.length} filed</div>
+      </div>
+      <div className="posts">
+        {posts.map((p, i) => (
+          <Link key={p.slug} href={`/blog/${p.slug}`} className="post">
+            <span className="no">0{i + 1}</span>
+            <div>
+              <div className="post-title">{p.title}</div>
+              <p className="excerpt">{p.excerpt}</p>
+            </div>
+            <span className="pg">{p.tag} · {p.readTime} →</span>
+          </Link>
+        ))}
+      </div>
+
+      <footer className="foot">
+        <div>© {new Date().getFullYear()} &nbsp;·&nbsp; Set in Instrument Serif &amp; Special Elite</div>
+        <div className="pg-num">Notes</div>
+        <div>
+          <Link href="/">← back to Field Notes</Link>
         </div>
-      </article>
+      </footer>
     </main>
   );
 }

@@ -1,30 +1,46 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, IBM_Plex_Mono } from "next/font/google";
+import { Instrument_Serif, Special_Elite, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const serif = Instrument_Serif({
+  variable: "--font-serif",
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const typewriter = Special_Elite({
+  variable: "--font-typewriter",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "400",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const hand = Caveat({
+  variable: "--font-hand",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem — Senior Full-Stack Engineer";
+const TITLE = "Uzair Saleem — Field Notes";
 const DESCRIPTION =
-  "I ship B2B SaaS products end-to-end for founders. Next.js · TypeScript · Postgres · AWS. 5 years, six live products, remote globally.";
+  "Field notes from a working developer. I ship B2B SaaS products end-to-end for founders. Next.js · TypeScript · Postgres · AWS. 5 years, six live products, remote globally.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: TITLE, template: "%s · Uzair Saleem" },
   description: DESCRIPTION,
-  applicationName: "Uzair Saleem · Portfolio",
+  applicationName: "Uzair Saleem · Field Notes",
   authors: [{ name: "Uzair Saleem", url: SITE_URL }],
   creator: "Uzair Saleem",
   publisher: "Uzair Saleem",
@@ -38,7 +54,7 @@ export const metadata: Metadata = {
     type: "website", locale: "en_US", url: SITE_URL,
     siteName: "Uzair Saleem", title: TITLE, description: DESCRIPTION,
     images: [{ url: "/og.png", width: 1200, height: 630,
-      alt: "Uzair Saleem — Senior Full-Stack Engineer" }],
+      alt: "Uzair Saleem — Field Notes" }],
   },
   twitter: {
     card: "summary_large_image", title: TITLE, description: DESCRIPTION,
@@ -52,7 +68,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f3f1e8",
+  themeColor: "#efe6cf",
   width: "device-width",
   initialScale: 1,
 };
@@ -78,10 +94,10 @@ const personSchema = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${bricolage.variable} ${plexMono.variable} antialiased`}>
+      <body className={`${serif.variable} ${typewriter.variable} ${mono.variable} ${hand.variable} antialiased`}>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#ff4f00] text-[#0c0c0a] font-semibold px-4 py-2 rounded-md"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#a8362b] text-white font-semibold px-4 py-2 rounded-md"
         >
           Skip to main content
         </a>

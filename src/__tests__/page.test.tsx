@@ -67,15 +67,14 @@ describe('Portfolio Homepage', () => {
 
   it('has 3 case study links', () => {
     render(<Home />)
-    const caseStudyLinks = screen.getAllByText(/Read case study/i)
+    const caseStudyLinks = screen.getAllByText(/Open case study/i)
     expect(caseStudyLinks.length).toBe(3)
   })
 
-  it('has table of contents with all sections', () => {
+  it('has index of work + operating notes sections', () => {
     render(<Home />)
-    expect(screen.getByText(/Statement/)).toBeInTheDocument()
-    expect(screen.getAllByText(/Selected Work/).length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText(/How I Work/).length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText(/Stack/).length).toBeGreaterThanOrEqual(1)
+    expect(screen.getByText(/Index of work/i)).toBeInTheDocument()
+    expect(screen.getByText(/Operating notes/i)).toBeInTheDocument()
+    expect(screen.getByText(/Tools, with hands-on hours/i)).toBeInTheDocument()
   })
 })
