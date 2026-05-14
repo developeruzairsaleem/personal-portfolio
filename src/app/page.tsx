@@ -1,88 +1,62 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import {
-  Layout, Server, Database, CreditCard,
-  Mail, Calendar, FileDown, Quote,
-  Hammer, Target, Zap, ArrowRight, ArrowUpRight,
-} from "lucide-react";
+import { useEffect, useState } from "react";
 
 const CALENDLY_URL = "https://calendly.com/uzairsaleemdev/30min";
 const EMAIL = "uzairsaleemdev@gmail.com";
 const MAILTO = `mailto:${EMAIL}`;
 const RESUME = "/uzair-saleem-resume.pdf";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-/* Count-up animated number that triggers when scrolled into view */
-function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const value = useMotionValue(0);
-  const rounded = useTransform(value, (v) => Math.round(v).toString() + suffix);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-
-  useEffect(() => {
-    if (inView) {
-      const controls = animate(value, to, { duration: 1.4, ease: "easeOut" });
-      return controls.stop;
-    }
-  }, [inView, to, value]);
-
-  return <motion.span ref={ref}>{rounded}</motion.span>;
-}
-
 const PROJECTS = [
   {
-    name: "Indiecator",
-    tagline: "Baremetrics-style revenue analytics for indie SaaS",
-    description:
-      "Connect Stripe and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration. Event-sourced from day one.",
-    role: "Lead engineer (contract)",
-    metrics: "From kickoff to production in ~12 weeks",
+    no: "01",
+    type: "Client work",
+    status: "Live",
+    year: "2025–2026",
+    url: "indiecator.com",
     live: "https://indiecator.com",
-    liveLabel: "indiecator.com",
-    caseStudy: "/case-studies/indiecator.pdf",
-    image: "/images/indiecator.png",
+    name: "Indiecator.",
+    description:
+      "Baremetrics-style revenue analytics for indie SaaS founders. Connect Stripe and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration.",
+    highlight: "Event-sourced from day one",
     stack: ["Next.js 16", "Node.js", "Prisma", "Stripe Connect"],
-    imageBg: "#0a0a0a",
+    image: "/images/indiecator.png",
+    metric: "From kickoff to production in ~12 weeks",
+    caseStudy: "/case-studies/indiecator.pdf",
   },
   {
-    name: "Diffed.gg",
-    tagline: "Two-sided gaming services marketplace",
-    description:
-      "End-to-end marketplace for gaming services — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification, fee-split admin flows.",
-    role: "Lead engineer (contract)",
-    metrics: "Full marketplace shipped end-to-end in one quarter",
+    no: "02",
+    type: "Client work",
+    status: "Live",
+    year: "2025",
+    url: "diffed.gg",
     live: "https://diffed.gg",
-    liveLabel: "diffed.gg",
-    caseStudy: "/case-studies/diffed.pdf",
+    name: "Diffed.gg.",
+    description:
+      "Two-sided gaming services marketplace. End-to-end transaction lifecycle in one product — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification.",
+    highlight: "Full marketplace in one quarter",
+    stack: ["Next.js 15", "Socket.IO", "Stripe", "Prisma"],
     image: "/images/diffed.png",
-    stack: ["Next.js 15", "Socket.IO", "Stripe", "PayPal"],
-    imageBg: "#1a0a1f",
+    metric: "Full marketplace shipped end-to-end in one quarter",
+    caseStudy: "/case-studies/diffed.pdf",
   },
   {
-    name: "Sat-Raj",
-    tagline: "Fuel distribution platform for a 30-year-old NJ wholesaler",
-    description:
-      "Replaced 39 Google Sheets tabs with a multi-tenant pricing engine, BOL pipeline, and invoice generator. Pulls costs from DTN, ingests deliveries from Samsara, pushes invoices to QuickBooks.",
-    role: "Lead engineer (contract)",
-    metrics: "Cut daily pricing run from 60 min → 90 sec · live to 24 customers",
+    no: "03",
+    type: "Client work",
+    status: "Live · NJ",
+    year: "2026",
+    url: "satraj.inc",
     live: "https://satraj.inc",
-    liveLabel: "satraj.inc",
-    caseStudy: "/case-studies/satraj.pdf",
-    image: "/images/satraj.png",
+    name: "Sat-Raj.",
+    description:
+      "Fuel distribution platform for a 30-year-old NJ wholesaler. Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and invoice generator.",
+    highlight: "45–60 min → 90 sec",
     stack: ["Next.js 16", "Prisma", "AWS", "Samsara API"],
-    imageBg: "#0a0a0a",
+    image: "/images/satraj.png",
+    metric: "Cut daily pricing run from 60 min → 90 sec · live to 24 customers",
+    caseStudy: "/case-studies/satraj.pdf",
   },
 ];
 
@@ -93,7 +67,6 @@ const TESTIMONIALS = [
     name: "Robbie Multani",
     role: "Co-founder, Sat-Raj Inc.",
     company: "Voorhees, NJ",
-    initials: "RM",
   },
   {
     quote:
@@ -101,7 +74,6 @@ const TESTIMONIALS = [
     name: "Omar Al Watan",
     role: "Founder, Indiecator",
     company: "Remote · MENA",
-    initials: "OA",
   },
   {
     quote:
@@ -109,7 +81,6 @@ const TESTIMONIALS = [
     name: "Daniel Reuter",
     role: "Founder, Diffed.gg",
     company: "Berlin, DE",
-    initials: "DR",
   },
 ];
 
@@ -144,533 +115,348 @@ const POSTS = [
 ];
 
 const STACK_GROUPS = [
-  {
-    label: "Frontend",
-    items: ["Next.js 15/16", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "Recharts"],
-    icon: <Layout className="w-[18px] h-[18px]" strokeWidth={2} />,
-  },
-  {
-    label: "Backend & APIs",
-    items: ["Node.js", "Express", "Prisma", "Socket.IO", "REST APIs", "NextAuth"],
-    icon: <Server className="w-[18px] h-[18px]" strokeWidth={2} />,
-  },
-  {
-    label: "Data & Infra",
-    items: ["PostgreSQL", "Supabase", "AWS (Amplify, RDS, SES, S3)", "Vercel"],
-    icon: <Database className="w-[18px] h-[18px]" strokeWidth={2} />,
-  },
-  {
-    label: "Payments & Integrations",
-    items: ["Stripe Connect", "PayPal", "Samsara API", "DTN feed", "QuickBooks"],
-    icon: <CreditCard className="w-[18px] h-[18px]" strokeWidth={2} />,
-  },
+  { no: "01", cat: "Application", items: ["Next.js 15/16", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion"], notes: "Production" },
+  { no: "02", cat: "Services", items: ["Node.js", "Express", "Prisma", "PostgreSQL", "Supabase", "REST APIs"], notes: "Daily" },
+  { no: "03", cat: "Commerce", items: ["Stripe Connect", "PayPal", "Webhooks", "Integer-cent accounting"], notes: "Subs · payouts" },
+  { no: "04", cat: "Infra & Realtime", items: ["AWS (Amplify, RDS, SES, S3)", "Vercel", "Socket.IO", "NextAuth"], notes: "As needed" },
 ];
+
+function Clock() {
+  const [time, setTime] = useState<string>("—:—");
+  useEffect(() => {
+    const tick = () =>
+      setTime(
+        new Date().toLocaleTimeString("en-GB", {
+          timeZone: "Asia/Karachi",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+      );
+    tick();
+    const id = setInterval(tick, 30_000);
+    return () => clearInterval(id);
+  }, []);
+  return <span>{time}</span>;
+}
 
 export default function Home() {
   return (
-    <main className="bg-[#0a0a0a] text-white min-h-screen font-sans">
-      {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2.5">
-            <Image src="/logo.svg" alt="Uzair Saleem logo" width={34} height={34} />
-            <span className="text-xl font-bold text-white tracking-tight">Uzair Saleem</span>
-          </a>
-          <div className="hidden md:flex items-center gap-8 text-sm text-white/60">
-            <a href="#work" className="hover:text-white transition-colors">Work</a>
-            <a href="#writing" className="hover:text-white transition-colors">Writing</a>
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href={RESUME} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Resume</a>
+    <main>
+      {/* Top index */}
+      <div className="swiss-grid" style={{ padding: "24px 56px 18px", borderBottom: "1px solid var(--rule)" }}>
+        <div className="mono" style={{ gridColumn: "1 / -1", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span><b style={{ color: "var(--ink)", fontWeight: 500 }}>Uzair Saleem</b> · Index · v.05</span>
+          <span><span style={{ display: "inline-block", width: 8, height: 8, background: "var(--accent)", marginRight: 6, verticalAlign: 1 }} /> Available — Q3 2026 onward</span>
+          <span><Clock /> Islamabad UTC+5</span>
+        </div>
+      </div>
+
+      {/* Table of contents */}
+      <div className="swiss-grid" style={{ padding: "18px 56px 36px", borderBottom: "1px solid var(--rule)" }}>
+        <ol className="mono" style={{ gridColumn: "1 / -1", listStyle: "none", display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 24 }}>
+          <li><b style={{ color: "var(--accent)", fontWeight: 500, marginRight: 10 }}>01</b><a href="#hero" style={{ borderBottom: "1px solid transparent", paddingBottom: 1 }}>Statement</a></li>
+          <li><b style={{ color: "var(--accent)", fontWeight: 500, marginRight: 10 }}>02</b><a href="#work">Selected Work</a></li>
+          <li><b style={{ color: "var(--accent)", fontWeight: 500, marginRight: 10 }}>03</b><a href="#how">How I Work</a></li>
+          <li><b style={{ color: "var(--accent)", fontWeight: 500, marginRight: 10 }}>04</b><a href="#stack">Stack</a></li>
+          <li><b style={{ color: "var(--accent)", fontWeight: 500, marginRight: 10 }}>05</b><a href="#writing">Writing</a></li>
+          <li><b style={{ color: "var(--accent)", fontWeight: 500, marginRight: 10 }}>06</b><a href="#contact">Contact</a></li>
+        </ol>
+      </div>
+
+      {/* HERO */}
+      <section className="swiss-grid" id="hero" style={{ padding: "140px 56px 96px" }}>
+        <h1 className="hero-h1" style={{ gridColumn: "1 / span 12" }}>
+          <span className="light">I&nbsp;ship</span><br />
+          B2B SaaS<br />
+          <span className="light">end to</span> <span className="acc">end.</span>
+        </h1>
+
+        <dl className="mono" style={{ gridColumn: "1 / span 4", marginTop: 60, lineHeight: 1.7 }}>
+          <dt style={{ color: "var(--accent)", fontWeight: 500 }}>— Role</dt>
+          <dd style={{ color: "var(--ink)", marginBottom: 6 }}>Senior Full-Stack Engineer</dd>
+          <dt style={{ color: "var(--accent)", fontWeight: 500 }}>— Stack</dt>
+          <dd style={{ color: "var(--ink)", marginBottom: 6 }}>Next.js · TypeScript · Postgres · AWS</dd>
+          <dt style={{ color: "var(--accent)", fontWeight: 500 }}>— Based</dt>
+          <dd style={{ color: "var(--ink)", marginBottom: 6 }}>Islamabad, PK · UTC+5</dd>
+          <dt style={{ color: "var(--accent)", fontWeight: 500 }}>— Status</dt>
+          <dd style={{ color: "var(--ink)", marginBottom: 6 }}>Open to senior roles · Q3 2026</dd>
+        </dl>
+
+        <div style={{ gridColumn: "6 / span 5", marginTop: 60, display: "flex", flexDirection: "column", gap: 24 }}>
+          <p className="hero-lede" style={{ maxWidth: "36ch" }}>
+            <b>Senior Full-Stack Engineer.</b> I ship production SaaS for founders, <span className="h">at the speed of a small team</span>. Five years. Six live products.
+          </p>
+          <div style={{ position: "relative", width: 200, height: 240, marginTop: 12 }}>
+            <Image
+              src="/images/main-profile-photo.png"
+              alt="Uzair Saleem, Senior Full-Stack Engineer"
+              fill
+              priority
+              className="object-cover"
+              style={{ filter: "grayscale(1) contrast(1.04)", border: "1px solid var(--rule)" }}
+              sizes="200px"
+            />
           </div>
-          <a
-            href={MAILTO}
-            className="text-sm bg-[#22c55e] text-black font-semibold px-4 py-2 rounded-lg hover:bg-[#16a34a] transition-colors"
-          >
-            Email me
-          </a>
         </div>
-      </nav>
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[1fr_auto] gap-12 items-center">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-            className="space-y-6 max-w-2xl"
-          >
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 text-sm text-white/70">
-              <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-              Open to Senior Full-Stack Roles
-            </motion.div>
-
-            <motion.h1 variants={fadeUp} className="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight">
-              I ship <span className="text-[#22c55e]">B2B SaaS</span><br />
-              products end to end.
-            </motion.h1>
-
-            <motion.p variants={fadeUp} className="text-base md:text-lg text-white/60 leading-relaxed">
-              Senior Full-Stack Engineer. I ship production SaaS for founders, at the speed of a small team.
-              <span className="block mt-1 text-white/40 text-sm font-mono">Next.js · TypeScript · Postgres · AWS</span>
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3 pt-2">
-              <a
-                href="#work"
-                className="px-6 py-3 bg-[#22c55e] text-black font-semibold rounded-lg hover:bg-[#16a34a] transition-colors"
-              >
-                See My Work
-              </a>
-              <a
-                href={RESUME}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 border border-white/20 text-white rounded-lg hover:bg-white/5 transition-colors"
-              >
-                Download Resume
-              </a>
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 border border-white/20 text-white rounded-lg hover:bg-white/5 transition-colors"
-              >
-                Book a Call
-              </a>
-            </motion.div>
-          </motion.div>
-
-          {/* Hero Photo — cleaner treatment, no heavy duotone */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden md:block"
-          >
-            <div className="relative w-64 h-72">
-              <div className="absolute -inset-3 bg-[#22c55e]/10 rounded-3xl blur-3xl" />
-              <div className="relative w-full h-full rounded-2xl overflow-hidden ring-1 ring-[#22c55e]/30">
-                <Image
-                  src="/images/main-profile-photo.png"
-                  alt="Uzair Saleem, Full-Stack Engineer"
-                  fill
-                  className="object-cover object-center"
-                  priority
-                />
-              </div>
-            </div>
-          </motion.div>
+        <div style={{ gridColumn: "1 / -1", borderTop: "1px solid var(--rule)", marginTop: 60, paddingTop: 22, display: "flex", justifyContent: "space-between", alignItems: "baseline" }} className="mono">
+          <span>↓ Selected work — three records</span>
+          <span><b style={{ color: "var(--accent)", fontWeight: 500 }}>01</b> · 06</span>
         </div>
-      </section>
 
-      {/* Stats */}
-      <section className="border-y border-white/5 py-12 px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+        {/* Numbers row */}
+        <div style={{ gridColumn: "1 / -1", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, marginTop: 36, borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)" }}>
           {[
-            { value: 5, suffix: "", label: "Years Experience" },
-            { value: 6, suffix: "", label: "Live SaaS Products Shipped" },
-            { value: 10, suffix: "+", label: "Founders I've Worked With" },
-            { value: 100, suffix: "%", label: "Remote, Async, Global" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-[#22c55e]">
-                <CountUp to={stat.value} suffix={stat.suffix} />
-              </div>
-              <div className="text-sm text-white/40 mt-1">{stat.label}</div>
+            { v: "5", label: "Years shipping" },
+            { v: "6", label: "Products in production" },
+            { v: "10+", label: "Founder clients" },
+            { v: "100%", label: "Remote · async · global" },
+          ].map((s, i, arr) => (
+            <div key={s.label} style={{ padding: "28px 0", borderRight: i < arr.length - 1 ? "1px solid var(--rule)" : "none" }}>
+              <div className="stat-v"><em>{s.v}</em></div>
+              <div className="mono-sm" style={{ marginTop: 6 }}>{s.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Currently */}
-      <section className="py-6 px-6 max-w-6xl mx-auto">
-        <div className="flex flex-wrap items-center gap-3 text-sm text-white/50 border border-white/5 bg-white/[0.02] rounded-xl px-5 py-3">
-          <span className="text-[#22c55e] font-mono text-xs">// currently</span>
+      {/* WORK */}
+      <section className="swiss-grid">
+        <SectionHeader id="work" no="02" lbl="Selected work" title="Three things, " emphasis="shipped" page="02 / 06" />
+
+        {PROJECTS.map((p) => (
+          <article key={p.no} style={{ gridColumn: "1 / -1", display: "grid", gridTemplateColumns: "repeat(12, 1fr)", columnGap: 24, padding: "38px 0", borderBottom: "1px solid var(--rule)", alignItems: "start" }}>
+            <div className="proj-no" style={{ gridColumn: "1 / span 1" }}>{p.no}</div>
+
+            <dl className="mono" style={{ gridColumn: "2 / span 3", lineHeight: 1.7 }}>
+              <dt style={{ color: "var(--accent)" }}>Type</dt>
+              <dd>{p.type}</dd>
+              <dt style={{ color: "var(--accent)", marginTop: 8 }}>Status</dt>
+              <dd style={{ color: "var(--accent)" }}>● {p.status}</dd>
+              <dt style={{ color: "var(--accent)", marginTop: 8 }}>Year</dt>
+              <dd>{p.year}</dd>
+              <dt style={{ color: "var(--accent)", marginTop: 8 }}>URL</dt>
+              <dd>{p.url}</dd>
+            </dl>
+
+            <div style={{ gridColumn: "5 / span 5", display: "flex", flexDirection: "column", gap: 14 }}>
+              <h3 className="proj-h3">
+                <a href={p.live} target="_blank" rel="noopener noreferrer">{p.name}</a>
+              </h3>
+              <p className="proj-p" style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, fontSize: 17, lineHeight: 1.5, letterSpacing: "-0.005em", maxWidth: "48ch", color: "var(--ink)" }}>
+                {p.description.split(new RegExp(`(${p.highlight})`))[0]}
+                <mark>{p.highlight}</mark>
+                {p.description.split(new RegExp(`(${p.highlight})`))[2] || ""}
+              </p>
+              <div className="proj-stack">
+                {p.stack.map((s) => <span key={s}>{s}</span>)}
+              </div>
+              <div className="mono" style={{ color: "var(--ink)", marginTop: 4 }}>
+                <span style={{ color: "var(--accent)" }}>→</span> {p.metric}
+              </div>
+              <a href={p.caseStudy} target="_blank" rel="noopener noreferrer" className="mono-link" style={{ alignSelf: "flex-start", marginTop: 4 }}>
+                Read case study →
+              </a>
+            </div>
+
+            <figure style={{ gridColumn: "10 / span 3" }}>
+              <a href={p.live} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  width={400}
+                  height={250}
+                  style={{ width: "100%", display: "block", filter: "grayscale(1) contrast(1.02)", border: "1px solid var(--rule)" }}
+                />
+              </a>
+              <figcaption className="mono-sm" style={{ marginTop: 6, display: "flex", justifyContent: "space-between" }}>
+                <span>Fig. {p.no}</span>
+                <span>{p.url}</span>
+              </figcaption>
+            </figure>
+          </article>
+        ))}
+
+        {/* Quote band */}
+        <div className="quote-band" style={{ gridColumn: "1 / -1", padding: "96px 0 0" }}>
+          <blockquote>Not as a crutch — <em>as leverage.</em></blockquote>
+          <cite className="mono" style={{ display: "block", marginTop: 24, fontStyle: "normal" }}>— On AI-assisted development</cite>
+        </div>
+
+        {/* HOW I WORK */}
+        <SectionHeader id="how" no="03" lbl="How I work" title="Three " emphasis="principles" page="03 / 06" />
+
+        <section style={{ gridColumn: "1 / -1", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 60 }}>
+          {[
+            { no: "01", h: "End-to-end ownership.", p: "Architecture, backend, frontend, infra, deploys. I think in products, not tickets. Six production SaaS shipped — sometimes solo, sometimes alongside a small product team." },
+            { no: "02", h: "Correctness first.", p: "MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right." },
+            { no: "03", h: "AI as leverage.", p: "AI in the loop daily — overnight refactors, test backfill, brief-driven feature work. Not as a crutch, as leverage. I still own the architecture and the decisions." },
+          ].map((pp, i, arr) => (
+            <div key={pp.no} style={{ padding: "48px 28px 36px", borderRight: i < arr.length - 1 ? "1px solid var(--rule)" : "none" }}>
+              <div className="principle-no" style={{ marginBottom: 18 }}>{pp.no}</div>
+              <h3 className="principle-h3">{pp.h}</h3>
+              <p style={{ marginTop: 16, fontSize: 15.5, lineHeight: 1.55, maxWidth: "34ch", color: "var(--ink)" }}>{pp.p}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* STACK */}
+        <SectionHeader id="stack" no="04" lbl="Stack" title="Tools, " emphasis="hands-on hours" page="04 / 06" />
+
+        <div style={{ gridColumn: "1 / -1", borderTop: "1px solid var(--rule)", marginTop: 60 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "80px 1fr 1fr 120px", gap: 24, padding: "18px 0", borderBottom: "1px solid var(--rule)", alignItems: "baseline" }}>
+            <span className="mono" style={{ color: "var(--accent)" }}>№</span>
+            <span className="mono" style={{ letterSpacing: "0.18em" }}>Category</span>
+            <span className="stack-list">Tools</span>
+            <span className="mono" style={{ textAlign: "right" }}>Notes</span>
+          </div>
+          {STACK_GROUPS.map((g) => (
+            <div key={g.no} style={{ display: "grid", gridTemplateColumns: "80px 1fr 1fr 120px", gap: 24, padding: "18px 0", borderBottom: "1px solid var(--hair)", alignItems: "baseline" }}>
+              <span className="mono" style={{ color: "var(--accent)" }}>{g.no}</span>
+              <span className="mono" style={{ letterSpacing: "0.18em" }}>{g.cat}</span>
+              <span className="stack-list">
+                {g.items.map((t) => <span key={t}>{t}</span>)}
+              </span>
+              <span className="mono" style={{ textAlign: "right" }}>{g.notes}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* TESTIMONIALS */}
+        <SectionHeader id="voices" no="—" lbl="Voices" title="From founders " emphasis="I've shipped for" page="04 / 06" />
+
+        <div style={{ gridColumn: "1 / -1", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 60 }}>
+          {TESTIMONIALS.map((t, i, arr) => (
+            <figure key={t.name} style={{ padding: "48px 28px 36px", borderRight: i < arr.length - 1 ? "1px solid var(--rule)" : "none", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 280 }}>
+              <blockquote style={{ fontFamily: "var(--font-bricolage), sans-serif", fontSize: 19, lineHeight: 1.45, letterSpacing: "-0.012em", color: "var(--ink)" }}>
+                <span style={{ color: "var(--accent)", marginRight: 4 }}>&ldquo;</span>{t.quote}<span style={{ color: "var(--accent)", marginLeft: 2 }}>&rdquo;</span>
+              </blockquote>
+              <figcaption className="mono" style={{ marginTop: 24, lineHeight: 1.7 }}>
+                <div style={{ color: "var(--accent)" }}>— {t.name}</div>
+                <div style={{ color: "var(--ink)" }}>{t.role}</div>
+                <div>{t.company}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        {/* WRITING */}
+        <SectionHeader id="writing" no="05" lbl="Writing" title="Notes on " emphasis="AI agents" page="05 / 06" />
+
+        <div style={{ gridColumn: "1 / -1", borderTop: "1px solid var(--rule)", marginTop: 60 }}>
+          {POSTS.map((post, i, arr) => (
+            <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+              <article style={{ display: "grid", gridTemplateColumns: "80px 1fr 1fr 120px", gap: 24, padding: "28px 0", borderBottom: i < arr.length - 1 ? "1px solid var(--hair)" : "1px solid var(--rule)", alignItems: "baseline" }}>
+                <span className="mono" style={{ color: "var(--accent)" }}>0{i + 1}</span>
+                <span className="mono">{post.tag} · {post.date}</span>
+                <div>
+                  <h3 style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 500, fontSize: 24, lineHeight: 1.1, letterSpacing: "-0.018em", maxWidth: "30ch", fontVariationSettings: "'opsz' 32, 'wght' 500" }}>
+                    {post.title}
+                  </h3>
+                  <p style={{ marginTop: 8, fontSize: 14.5, lineHeight: 1.5, color: "var(--ink)", maxWidth: "40ch" }}>
+                    {post.excerpt}
+                  </p>
+                </div>
+                <span className="mono" style={{ textAlign: "right", color: "var(--accent)" }}>{post.readTime} →</span>
+              </article>
+            </Link>
+          ))}
+        </div>
+
+        {/* ABOUT */}
+        <SectionHeader id="about" no="06" lbl="About" title="The person " emphasis="behind the code" page="06 / 06" />
+
+        <div style={{ gridColumn: "1 / -1", display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 24, marginTop: 60, paddingTop: 60, borderTop: "1px solid var(--rule)" }}>
+          <div className="mono" style={{ gridColumn: "1 / span 4", lineHeight: 1.7 }}>
+            <b style={{ display: "block", color: "var(--accent)", fontWeight: 500 }}>— Name</b>
+            <span style={{ color: "var(--ink)" }}>Uzair Saleem</span>
+            <b style={{ display: "block", color: "var(--accent)", fontWeight: 500, marginTop: 8 }}>— From</b>
+            <span style={{ color: "var(--ink)" }}>Islamabad, Pakistan</span>
+            <b style={{ display: "block", color: "var(--accent)", fontWeight: 500, marginTop: 8 }}>— Currently</b>
+            <span style={{ color: "var(--ink)" }}>Rocket Devs · senior contractor</span>
+            <b style={{ display: "block", color: "var(--accent)", fontWeight: 500, marginTop: 8 }}>— Previously</b>
+            <span style={{ color: "var(--ink)" }}>Design&amp;Desktop · Apifiny</span>
+            <b style={{ display: "block", color: "var(--accent)", fontWeight: 500, marginTop: 8 }}>— Studied</b>
+            <span style={{ color: "var(--ink)" }}>BS · Artificial Intelligence</span>
+            <b style={{ display: "block", color: "var(--accent)", fontWeight: 500, marginTop: 8 }}>— Working</b>
+            <span style={{ color: "var(--ink)" }}>Remote · async · UTC+5</span>
+          </div>
+          <div className="about-body" style={{ gridColumn: "6 / span 7" }}>
+            <p>I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS end-to-end. Currently at <b style={{ fontWeight: 600 }}>Rocket Devs</b>, leading client builds alongside a small product team.</p>
+            <p style={{ marginTop: 18 }}>I started coding in 2020 because a friend needed a website and couldn&apos;t afford an agency. That turned into a side hustle, then contracts, then shipping production SaaS for founders — <em>sometimes as the lead engineer on a build, sometimes alongside a small product team</em>.</p>
+            <p style={{ marginTop: 18 }}>The work I care about most is the part that doesn&apos;t make demo reels but does make customers stay.</p>
+            <div className="mono" style={{ marginTop: 30, fontVariationSettings: "initial" }}>— U. Saleem, Islamabad, May 2026</div>
+          </div>
+        </div>
+
+        {/* CONTACT */}
+        <section className="contact" id="contact" style={{ gridColumn: "1 / -1", padding: "120px 0 24px", textAlign: "left", borderTop: "1px solid var(--rule)", marginTop: 60 }}>
+          <div className="mono" style={{ letterSpacing: "0.18em", marginBottom: 36 }}>— § 06 — Get in touch</div>
+          <h2 className="contact-h2">
+            Building <em>something?</em><br />
+            Let&apos;s <em>ship it.</em>
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 24, marginTop: 60, alignItems: "end" }}>
+            <div style={{ gridColumn: "1 / span 6" }}>
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  background: "var(--accent)",
+                  color: "var(--ink)",
+                  textDecoration: "none",
+                  padding: "22px 24px",
+                  fontFamily: "var(--font-plex-mono), monospace",
+                  fontSize: 13,
+                  letterSpacing: "0.24em",
+                  textTransform: "uppercase",
+                  fontWeight: 500,
+                  transition: "background .2s, color .2s",
+                }}
+              >
+                Book a 30-min intro call
+                <span style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", textTransform: "none" }}>↗</span>
+              </a>
+            </div>
+            <div style={{ gridColumn: "8 / span 5", fontFamily: "var(--font-plex-mono), monospace", fontSize: 12.5, letterSpacing: "0.06em", color: "var(--soft)", lineHeight: 2 }}>
+              Open to senior full-stack roles and select consulting. <br />
+              <a href={MAILTO} style={{ color: "var(--ink)", textDecoration: "none", borderBottom: "1.5px solid var(--accent)" }}>{EMAIL}</a><br />
+              <a href={RESUME} target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink)", textDecoration: "none", borderBottom: "1.5px solid var(--accent)" }}>Download résumé (PDF)</a><br />
+              <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink)", textDecoration: "none", borderBottom: "1.5px solid var(--accent)" }}>linkedin.com/in/uzair-saleem</a><br />
+              <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer" style={{ color: "var(--ink)", textDecoration: "none", borderBottom: "1.5px solid var(--accent)" }}>github.com/developeruzairsaleem</a><br />
+              Replies inside 24h · UTC+5
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer style={{ gridColumn: "1 / -1", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 0", marginTop: 14, borderTop: "1px solid var(--rule)", fontFamily: "var(--font-plex-mono), monospace", fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--soft)" }}>
+          <span><b style={{ color: "var(--ink)", fontWeight: 500 }}>© {new Date().getFullYear()}</b> · Uzair Saleem · Index v.05</span>
           <span>
-            <strong className="text-white/80">Rocket Devs</strong>, senior contractor for founder clients
-            <span className="text-white/30 mx-2" aria-hidden="true">·</span>
-            Reading <em>Kill It With Fire</em>
-            <span className="text-white/30 mx-2" aria-hidden="true">·</span>
-            Open for Q3 2026
+            <a href="https://github.com/developeruzairsaleem/personal-portfolio" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Source on GitHub</a>
+            <span style={{ margin: "0 8px" }}>·</span>
+            Set in Bricolage Grotesque &amp; IBM Plex Mono
           </span>
-        </div>
+          <span>End.</span>
+        </footer>
       </section>
-
-      {/* Projects */}
-      <section id="work" className="py-20 px-6 max-w-6xl mx-auto">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={stagger}
-        >
-          <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// selected work</motion.p>
-          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-3">
-            Selected work
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-14">
-            Three production SaaS products. Owned end-to-end as lead engineer for founder clients.
-          </motion.p>
-
-          <div className="space-y-20">
-            {PROJECTS.map((p, i) => (
-              <motion.article
-                key={p.name}
-                variants={fadeUp}
-                className="grid md:grid-cols-12 gap-8 md:gap-10 items-center"
-              >
-                {/* Image — browser-chrome framed preview */}
-                <a
-                  href={p.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group block relative md:col-span-7 ${i % 2 === 1 ? "md:order-2" : ""}`}
-                  aria-label={`Visit ${p.name} live`}
-                >
-                  {/* Green glow behind frame on hover */}
-                  <div className="absolute -inset-1 bg-gradient-to-br from-[#22c55e]/0 to-[#22c55e]/0 group-hover:from-[#22c55e]/20 group-hover:to-[#22c55e]/5 rounded-2xl blur-2xl transition-all duration-500 pointer-events-none" />
-
-                  <div className="relative rounded-2xl overflow-hidden border border-white/10 group-hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a] shadow-2xl shadow-black/40">
-                    {/* Browser chrome */}
-                    <div className="relative flex items-center gap-1.5 px-3 py-2.5 bg-[#0f0f10] border-b border-white/[0.06]">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/70" aria-hidden="true" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]/70" aria-hidden="true" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]/70" aria-hidden="true" />
-                      <span className="absolute left-1/2 -translate-x-1/2 text-[10.5px] text-white/40 font-mono truncate max-w-[55%]">
-                        {p.liveLabel}
-                      </span>
-                    </div>
-                    {/* Screenshot */}
-                    <div
-                      className="relative aspect-[16/9]"
-                      style={{ backgroundColor: p.imageBg }}
-                    >
-                      <Image
-                        src={p.image}
-                        alt={`${p.name} — ${p.tagline}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 56vw"
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/30 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  </div>
-                </a>
-
-                {/* Content — with large decorative index */}
-                <div className={`md:col-span-5 relative ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                  {/* Large decorative index number (desktop only) */}
-                  <div
-                    className="hidden md:block absolute -top-10 -left-2 text-[140px] xl:text-[160px] font-bold text-[#22c55e]/[0.06] leading-none select-none pointer-events-none tracking-tighter"
-                    aria-hidden="true"
-                  >
-                    0{i + 1}
-                  </div>
-
-                  <div className="relative space-y-4">
-                    <div className="flex items-center gap-2.5 text-xs">
-                      <span className="inline-flex items-center gap-1.5 font-semibold text-[#22c55e]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" aria-hidden="true" />
-                        LIVE
-                      </span>
-                      <span className="text-white/20" aria-hidden="true">·</span>
-                      <span className="text-white/40 font-mono">{p.tagline}</span>
-                    </div>
-
-                    <h3 className="text-3xl md:text-[2.5rem] font-bold tracking-tight leading-[1.05]">{p.name}</h3>
-
-                    <p className="text-white/60 text-[15px] leading-relaxed">{p.description}</p>
-
-                    <div className="flex items-start gap-2.5 text-sm font-mono bg-gradient-to-r from-[#22c55e]/10 to-transparent rounded-lg px-4 py-3 border-l-2 border-[#22c55e]">
-                      <span className="text-[#22c55e] shrink-0 mt-0.5" aria-hidden="true">→</span>
-                      <span className="text-white/80">{p.metrics}</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      {p.stack.map((tag) => (
-                        <span key={tag} className="text-xs bg-white/5 text-white/55 px-2.5 py-1 rounded-md border border-white/[0.06]">{tag}</span>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-2 pt-2">
-                      <a
-                        href={p.caseStudy}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/btn inline-flex items-center gap-2 text-sm font-semibold bg-[#22c55e] hover:bg-[#16a34a] text-black px-5 py-3 rounded-lg transition-colors"
-                      >
-                        View Case Study
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" aria-hidden="true" />
-                      </a>
-                      <a
-                        href={p.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/btn inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white px-3 py-3 transition-colors"
-                      >
-                        Live App
-                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 px-6 bg-white/[0.02] border-y border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// what founders say</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-10">From founders I&apos;ve shipped for</motion.h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {TESTIMONIALS.map((t) => (
-                <motion.figure
-                  key={t.name}
-                  variants={fadeUp}
-                  className="border border-white/10 rounded-2xl p-6 bg-[#0a0a0a]/40 flex flex-col"
-                >
-                  <Quote className="w-6 h-6 text-[#22c55e]/40 mb-4" strokeWidth={2} aria-hidden="true" />
-                  <blockquote className="text-white/70 text-sm leading-relaxed flex-1 mb-6">
-                    “{t.quote}”
-                  </blockquote>
-                  <figcaption className="flex items-center gap-3 pt-4 border-t border-white/5">
-                    <div className="w-10 h-10 rounded-full bg-[#22c55e]/15 text-[#22c55e] flex items-center justify-center font-bold text-sm border border-[#22c55e]/30">
-                      {t.initials}
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-white">{t.name}</div>
-                      <div className="text-xs text-white/50">{t.role}</div>
-                      <div className="text-[11px] text-white/30 mt-0.5">{t.company}</div>
-                    </div>
-                  </figcaption>
-                </motion.figure>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* How I Work */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// how it works</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-12">How I work</motion.h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { Icon: Hammer, title: "End-to-end ownership", desc: "Architecture, backend, frontend, infra, deploys. I think in products, not tickets." },
-                { Icon: Target, title: "Correctness first", desc: "MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right." },
-                { Icon: Zap, title: "AI as leverage", desc: "AI in the loop daily — as leverage, not a crutch. I still own the architecture and the decisions." },
-              ].map(({ Icon, title, desc }) => (
-                <motion.div key={title} variants={fadeUp} className="space-y-3">
-                  <div className="w-11 h-11 rounded-lg bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center">
-                    <Icon className="w-5 h-5" strokeWidth={2} />
-                  </div>
-                  <h3 className="text-lg font-bold">{title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Writing — three equal cards */}
-      <section id="writing" className="py-20 px-6 bg-white/[0.02] border-y border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <div className="flex flex-wrap items-baseline justify-between gap-4 mb-2">
-              <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono">// writing on AI agents</motion.p>
-              <motion.div variants={fadeUp}>
-                <Link href="/blog" className="text-sm text-white/40 hover:text-[#22c55e] transition-colors font-mono">
-                  All posts →
-                </Link>
-              </motion.div>
-            </div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-10 tracking-tight">
-              Notes on building with AI agents
-            </motion.h2>
-
-            <div className="grid md:grid-cols-3 gap-5">
-              {POSTS.map((post, i) => (
-                <motion.article key={post.slug} variants={fadeUp} className="group">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="flex flex-col h-full border border-white/10 rounded-2xl p-6 hover:border-[#22c55e]/40 transition-colors bg-[#0a0a0a]/40"
-                  >
-                    <div className="flex items-center gap-2 text-[11px] text-white/40 mb-4 font-mono">
-                      <span className="bg-white/5 text-white/60 px-2 py-0.5 rounded">{post.tag}</span>
-                      <span>{post.date}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{post.readTime}</span>
-                    </div>
-                    <h3 className="text-lg md:text-xl font-bold mb-3 leading-snug tracking-tight group-hover:text-[#22c55e] transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-white/55 text-sm leading-relaxed flex-1">{post.excerpt}</p>
-                    <span className="text-xs text-[#22c55e] font-mono mt-4">Read post →</span>
-                  </Link>
-                </motion.article>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Stack */}
-      <section className="py-20 px-6 max-w-6xl mx-auto">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// tech stack</motion.p>
-          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-3">Tools I ship with</motion.h2>
-          <motion.p variants={fadeUp} className="text-white/50 max-w-2xl mb-10">
-            The stack I reach for by default — battle-tested across six production SaaS.
-          </motion.p>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {STACK_GROUPS.map((group) => (
-              <motion.div
-                key={group.label}
-                variants={fadeUp}
-                className="group relative border border-white/10 rounded-2xl p-6 bg-white/[0.02] hover:border-[#22c55e]/40 hover:bg-white/[0.04] transition-all"
-              >
-                <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
-                  <div className="w-10 h-10 rounded-lg bg-[#22c55e]/10 text-[#22c55e] flex items-center justify-center group-hover:bg-[#22c55e]/15 transition-colors shrink-0">
-                    {group.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-sm font-bold text-white tracking-tight truncate">{group.label}</div>
-                    <div className="text-[11px] text-white/40 font-mono">{group.items.length} tools</div>
-                  </div>
-                </div>
-                <ul className="space-y-2.5">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-white/65">
-                      <span className="w-1 h-1 rounded-full bg-[#22c55e]/50 mt-2 shrink-0" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="py-20 px-6 bg-white/[0.02] border-y border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="max-w-2xl">
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// about</motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6">The person behind the code</motion.h2>
-            <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS
-              end-to-end. Currently at <strong className="text-white/80">Rocket Devs</strong>,
-              leading client builds alongside a small product team. Previously
-              <strong className="text-white/80"> Design&amp;Desktop</strong> and
-              <strong className="text-white/80"> Apifiny</strong>, where I shipped weekly with
-              product teams across three years.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-white/60 leading-relaxed mb-4">
-              I started coding in 2020 because a friend needed a website and couldn&apos;t afford an
-              agency. That turned into a side hustle, then contracts, then shipping production SaaS
-              for founders — sometimes as the lead engineer on a build, sometimes alongside a small
-              product team. The work I care about most is the part that doesn&apos;t make demo reels
-              but does make customers stay.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-white/60 leading-relaxed">
-              Outside the editor: cricket whenever Pakistan plays, late-night reading, and badly-photographed
-              Islamabad sunsets. BS in Artificial Intelligence, SZABIST Islamabad.
-              Open to senior full-stack roles — remote, any reasonable timezone overlap.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="py-24 px-6 max-w-6xl mx-auto">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          <div className="text-center mb-12">
-            <motion.p variants={fadeUp} className="text-sm text-[#22c55e] font-mono mb-3">// contact</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold mb-4">
-              Hiring or building?<br />
-              <span className="text-white/40">Let&apos;s talk.</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-white/40 max-w-md mx-auto">
-              Senior full-stack roles or select consulting. Replies within 24 hours.
-            </motion.p>
-          </div>
-
-          <motion.div variants={fadeUp} className="max-w-lg mx-auto space-y-3">
-            <a
-              href={MAILTO}
-              className="group flex items-center justify-between gap-4 w-full bg-[#22c55e] text-black font-semibold rounded-xl px-6 py-5 hover:bg-[#16a34a] transition-colors"
-            >
-              <span className="flex items-center gap-3">
-                <Mail className="w-[22px] h-[22px]" strokeWidth={2} aria-hidden="true" />
-                <span className="text-base md:text-lg">Email me</span>
-              </span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </a>
-            <a
-              href={RESUME}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 w-full border border-white/15 text-white font-semibold rounded-xl px-6 py-5 hover:bg-white/5 hover:border-[#22c55e]/40 transition-colors"
-            >
-              <span className="flex items-center gap-3">
-                <FileDown className="w-[22px] h-[22px] text-[#22c55e]" strokeWidth={2} aria-hidden="true" />
-                <span className="text-base md:text-lg">Download Resume</span>
-              </span>
-              <ArrowRight className="w-5 h-5 text-white/60 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </a>
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 w-full border border-white/15 text-white font-semibold rounded-xl px-6 py-5 hover:bg-white/5 hover:border-[#22c55e]/40 transition-colors"
-            >
-              <span className="flex items-center gap-3">
-                <Calendar className="w-[22px] h-[22px] text-[#22c55e]" strokeWidth={2} aria-hidden="true" />
-                <span className="text-base md:text-lg">Book a 30-min call</span>
-              </span>
-              <ArrowUpRight className="w-5 h-5 text-white/60 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" aria-hidden="true" />
-            </a>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-white/5">
-            <a href={MAILTO} className="text-sm text-white/40 hover:text-white transition-colors">
-              {EMAIL}
-            </a>
-            <span className="text-white/20" aria-hidden="true">·</span>
-            <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/40 hover:text-white transition-colors">
-              LinkedIn
-            </a>
-            <span className="text-white/20" aria-hidden="true">·</span>
-            <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer" className="text-sm text-white/40 hover:text-white transition-colors">
-              GitHub
-            </a>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/5 py-10 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/30">
-          <p>© {new Date().getFullYear()} Uzair Saleem · Built in Islamabad 🇵🇰</p>
-          <p>
-            <a href="https://github.com/developeruzairsaleem/personal-portfolio" target="_blank" rel="noopener noreferrer" className="hover:text-white/60 transition-colors">
-              Source on GitHub
-            </a>
-            <span className="text-white/20 mx-2" aria-hidden="true">·</span>
-            Next.js + Tailwind
-          </p>
-        </div>
-      </footer>
     </main>
+  );
+}
+
+function SectionHeader({ id, no, lbl, title, emphasis, page }: { id: string; no: string; lbl: string; title: string; emphasis: string; page: string }) {
+  return (
+    <div id={id} style={{ padding: "96px 0 18px", borderBottom: "1px solid var(--rule)", gridColumn: "1 / -1", display: "grid", gridTemplateColumns: "1fr auto 2fr 1fr", alignItems: "end", columnGap: 24 }}>
+      <div className="sec-no">{no}</div>
+      <div className="mono" style={{ letterSpacing: "0.18em" }}>{lbl}</div>
+      <h2 className="sec-h2">{title}<em>{emphasis}</em></h2>
+      <div className="mono" style={{ letterSpacing: "0.18em", textAlign: "right" }}>pp. {page}</div>
+    </div>
   );
 }

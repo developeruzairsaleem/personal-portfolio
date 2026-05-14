@@ -39,76 +39,91 @@ export default async function BlogPost({ params }: Props) {
   const post = getPost(slug);
   if (!post) notFound();
 
-  // Adjacent posts for navigation
   const idx = posts.findIndex((p) => p.slug === slug);
   const prev = idx > 0 ? posts[idx - 1] : null;
   const next = idx < posts.length - 1 ? posts[idx + 1] : null;
 
   return (
-    <main className="bg-[#0a0a0a] text-white min-h-screen font-sans">
-      <nav className="border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/blog" className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors">
-            <span aria-hidden="true">←</span> All writing
+    <main>
+      {/* Top index */}
+      <div className="swiss-grid" style={{ padding: "24px 56px 18px", borderBottom: "1px solid var(--rule)" }}>
+        <div className="mono" style={{ gridColumn: "1 / -1", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Link href="/blog" style={{ color: "var(--ink)", textDecoration: "none" }}>
+            <b style={{ color: "var(--ink)", fontWeight: 500 }}>← All writing</b>
           </Link>
-          <Link href="/" className="text-sm text-white/60 hover:text-white transition-colors">
-            Uzair Saleem
-          </Link>
+          <span>{post.tag} · {post.date} · {post.readTime} read</span>
+          <Link href="/" style={{ color: "var(--ink)", textDecoration: "none" }}>Uzair Saleem</Link>
         </div>
-      </nav>
+      </div>
 
-      <article className="max-w-3xl mx-auto px-6 pt-20 pb-24">
-        <header className="mb-12">
-          <div className="flex items-center gap-3 text-xs text-white/40 mb-5 font-mono">
-            <span className="bg-[#22c55e]/10 text-[#22c55e] px-2 py-0.5 rounded">{post.tag}</span>
-            <span>{post.date}</span>
-            <span aria-hidden="true">·</span>
-            <span>{post.readTime} read</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-6">
+      <article className="swiss-grid" style={{ padding: "80px 56px 40px" }}>
+        <header style={{ gridColumn: "2 / span 10", marginBottom: 56 }}>
+          <div className="mono" style={{ marginBottom: 20, color: "var(--accent)" }}>— {post.tag}</div>
+          <h1 style={{
+            fontFamily: "var(--font-bricolage), sans-serif",
+            fontWeight: 500,
+            fontSize: "clamp(40px, 6vw, 80px)",
+            lineHeight: 1.0,
+            letterSpacing: "-0.03em",
+            fontVariationSettings: "'opsz' 72, 'wght' 500",
+            color: "var(--ink)",
+          }}>
             {post.title}
           </h1>
-          <p className="text-xl text-white/60 leading-relaxed">{post.excerpt}</p>
+          <p style={{
+            marginTop: 28,
+            fontSize: 22,
+            lineHeight: 1.4,
+            color: "var(--ink)",
+            maxWidth: "44ch",
+            fontWeight: 400,
+          }}>
+            {post.excerpt}
+          </p>
         </header>
 
         <div
-          className="post-body text-white/75 leading-[1.8] text-[17px]"
+          className="post-body"
+          style={{
+            gridColumn: "3 / span 8",
+            fontFamily: "var(--font-bricolage), sans-serif",
+            fontSize: 17.5,
+            lineHeight: 1.7,
+            color: "var(--ink)",
+          }}
           dangerouslySetInnerHTML={{ __html: post.body }}
         />
 
-        <footer className="mt-20 pt-8 border-t border-white/10 space-y-8">
-          <div className="flex items-center gap-4 p-5 rounded-2xl border border-white/10 bg-white/[0.02]">
-            <div className="w-14 h-14 rounded-full overflow-hidden ring-1 ring-[#22c55e]/30 shrink-0">
+        <footer style={{ gridColumn: "3 / span 8", marginTop: 80, paddingTop: 40, borderTop: "1px solid var(--rule)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 18, padding: "20px 0", marginBottom: 40 }}>
+            <div style={{ width: 56, height: 56, overflow: "hidden", border: "1px solid var(--rule)", flexShrink: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/main-profile-photo.png" alt="Uzair Saleem" className="w-full h-full object-cover" />
+              <img src="/images/main-profile-photo.png" alt="Uzair Saleem" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(1) contrast(1.04)" }} />
             </div>
-            <div className="text-sm">
-              <p className="text-white font-semibold mb-0.5">Written by Uzair Saleem</p>
-              <p className="text-white/50">
-                Senior Full-Stack Engineer based in Islamabad. I ship B2B SaaS products end-to-end
-                for founders. <Link href="/" className="text-[#22c55e] hover:underline">See my work →</Link>
-              </p>
+            <div>
+              <div className="mono" style={{ color: "var(--accent)" }}>— Written by</div>
+              <div style={{ fontFamily: "var(--font-bricolage), sans-serif", fontSize: 20, fontWeight: 500, marginTop: 4 }}>Uzair Saleem</div>
+              <div style={{ fontSize: 14, color: "var(--soft)", marginTop: 2 }}>
+                Senior Full-Stack Engineer · Islamabad ·{" "}
+                <Link href="/" style={{ color: "var(--ink)", borderBottom: "1.5px solid var(--accent)", textDecoration: "none" }}>
+                  See my work →
+                </Link>
+              </div>
             </div>
           </div>
 
           {(prev || next) && (
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginTop: 40 }}>
               {prev ? (
-                <Link
-                  href={`/blog/${prev.slug}`}
-                  className="block border border-white/10 rounded-xl p-5 hover:border-[#22c55e]/40 transition-colors"
-                >
-                  <div className="text-xs text-white/40 mb-1">← Previous</div>
-                  <div className="text-sm text-white/80 font-semibold">{prev.title}</div>
+                <Link href={`/blog/${prev.slug}`} style={{ textDecoration: "none", color: "inherit", padding: "20px 0", borderTop: "1px solid var(--rule)" }}>
+                  <div className="mono" style={{ marginBottom: 8, color: "var(--accent)" }}>← Previous</div>
+                  <div style={{ fontFamily: "var(--font-bricolage), sans-serif", fontSize: 17, fontWeight: 500, lineHeight: 1.3 }}>{prev.title}</div>
                 </Link>
               ) : <div />}
               {next ? (
-                <Link
-                  href={`/blog/${next.slug}`}
-                  className="block border border-white/10 rounded-xl p-5 hover:border-[#22c55e]/40 transition-colors text-right"
-                >
-                  <div className="text-xs text-white/40 mb-1">Next →</div>
-                  <div className="text-sm text-white/80 font-semibold">{next.title}</div>
+                <Link href={`/blog/${next.slug}`} style={{ textDecoration: "none", color: "inherit", textAlign: "right", padding: "20px 0", borderTop: "1px solid var(--rule)" }}>
+                  <div className="mono" style={{ marginBottom: 8, color: "var(--accent)" }}>Next →</div>
+                  <div style={{ fontFamily: "var(--font-bricolage), sans-serif", fontSize: 17, fontWeight: 500, lineHeight: 1.3 }}>{next.title}</div>
                 </Link>
               ) : <div />}
             </div>
