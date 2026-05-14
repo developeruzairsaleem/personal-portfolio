@@ -252,7 +252,7 @@ export default function Home() {
               <div className="absolute -inset-3 bg-[#22c55e]/10 rounded-3xl blur-3xl" />
               <div className="relative w-full h-full rounded-2xl overflow-hidden ring-1 ring-[#22c55e]/30">
                 <Image
-                  src="/images/uzair-profile.png"
+                  src="/images/main-profile-photo.png"
                   alt="Uzair Saleem, Full-Stack Engineer"
                   fill
                   className="object-cover object-center"
