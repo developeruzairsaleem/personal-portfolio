@@ -515,7 +515,7 @@ export default function Home() {
           <div className="cta-lower fade-up">
             <p>Open to senior full-stack roles and select consulting. Replies within 24 hours.</p>
             <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">
-              📅 Book a 30-min intro call
+              Book a 30-min intro call
               <span>→</span>
             </a>
             <div className="cta-links">
