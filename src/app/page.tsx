@@ -301,7 +301,6 @@ export default function Home() {
             <div className="hero-ctas stagger fade-up">
               <a href={MAILTO} className="btn fill-ink">Email me <span className="arrow">→</span></a>
               <a href={RESUME} target="_blank" rel="noopener noreferrer" className="btn fill-paper">Download CV <span className="arrow">↓</span></a>
-              <a href="#work" className="btn fill-paper">See my work <span className="arrow">↓</span></a>
             </div>
           </aside>
 
