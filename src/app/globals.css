@@ -233,12 +233,6 @@ body::before {
   letter-spacing: 0.02em;
 }
 
-.ribbon::before {
-  content: ''; width: 7px; height: 7px; border-radius: 50%;
-  background: var(--lemon); box-shadow: 0 0 0 3px rgba(245, 224, 85, 0.35);
-  animation: blink 2s infinite;
-}
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
 
 .megatype {
   position: relative;
