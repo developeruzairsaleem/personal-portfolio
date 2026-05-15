@@ -128,8 +128,9 @@ body::before {
   color: var(--paper);
 }
 .nav-links .nav-cta-secondary {
-  background: rgba(245, 224, 85, 0.12);
-  border-left: 1px solid rgba(245, 224, 85, 0.35);
+  background: transparent;
+  color: var(--paper);
+  border-left: 1px solid rgba(251, 242, 217, 0.18);
 }
 .nav-links .nav-cta-secondary:hover {
   background: var(--lemon);
@@ -140,7 +141,7 @@ body::before {
   border-left: 1px solid var(--orange);
 }
 .nav-links .nav-cta-primary:hover {
-  background: var(--ink); color: var(--paper);
+  background: var(--ink); color: #fff;
 }
 .nav-links a:last-child:hover { background: var(--lemon); }
 
@@ -243,27 +244,6 @@ body::before {
 }
 .ribbon-row .ribbon-email .arrow { font-size: 14px; line-height: 1; }
 
-/* Eyebrow: very small label above the megatype headline.
-   Carries the role title so it can leave the ribbon row. */
-.eyebrow {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(14, 13, 11, 0.55);
-  margin: 28px 0 0;
-  padding: 0;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.eyebrow::before {
-  content: '';
-  width: 22px; height: 1px;
-  background: var(--ink);
-  display: inline-block;
-}
 .ribbon::before {
   content: ''; width: 7px; height: 7px; border-radius: 50%;
   background: var(--lemon); box-shadow: 0 0 0 3px rgba(245, 224, 85, 0.35);
@@ -271,7 +251,6 @@ body::before {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
 
-.eyebrow + .megatype { padding-top: 12px; }
 .megatype {
   position: relative;
   padding: 28px 0 24px;

@@ -288,14 +288,12 @@ export default function Home() {
         </div>
         <div className="hero-inner">
           <div className="ribbon-row fade-up">
-            <span className="ribbon">Available for Q3 2026</span>
+            <span className="ribbon">Full Stack Developer</span>
             <span>Vol. 5 · MMXXVI · ISB → US · EU · MENA</span>
             <a href={MAILTO} className="ribbon-email">
               Email me <span className="arrow">→</span>
             </a>
           </div>
-
-          <p className="eyebrow fade-up">Full Stack Developer</p>
 
           <h1 className="megatype">
             <span className="row l1"><span className="ln-inner">I ship <span className="blob lemon">B2B SaaS</span></span></span>
