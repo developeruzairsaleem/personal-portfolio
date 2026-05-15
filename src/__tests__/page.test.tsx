@@ -1,80 +1,74 @@
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import Home from '../app/page'
 
-describe('Portfolio Homepage', () => {
-  it('renders the hero headline', () => {
-    render(<Home />)
-    expect(screen.getAllByText(/B2B SaaS/i).length).toBeGreaterThanOrEqual(1)
-  })
+// Render the page as static HTML (SSR-style). This skips client-side
+// effects (IntersectionObserver, requestAnimationFrame, photo tilt) that
+// jsdom can't run reliably, while still verifying the rendered output.
+const html = renderToStaticMarkup(<Home />)
 
-  it('renders the role + status meta in hero', () => {
-    render(<Home />)
-    expect(screen.getAllByText(/Senior Full-Stack Engineer/i).length).toBeGreaterThanOrEqual(1)
+describe('Portfolio Homepage (Maximal)', () => {
+  it('renders the hero headline', () => {
+    expect(html).toMatch(/B2B SaaS/i)
+    expect(html).toMatch(/to end\./i)
   })
 
   it('renders all 3 projects', () => {
-    render(<Home />)
-    expect(screen.getAllByText(/Indiecator/).length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText(/Diffed\.gg/).length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText(/Sat-Raj/).length).toBeGreaterThanOrEqual(1)
+    expect(html).toContain('Indiecator')
+    expect(html).toContain('Diffed.gg')
+    expect(html).toContain('Sat-Raj')
   })
 
   it('renders all 3 testimonials with correct names', () => {
-    render(<Home />)
-    expect(screen.getByText(/Robbie Multani/)).toBeInTheDocument()
-    expect(screen.getByText(/Omar Al Watan/)).toBeInTheDocument()
-    expect(screen.getByText(/Daniel Reuter/)).toBeInTheDocument()
+    expect(html).toContain('Robbie Multani')
+    expect(html).toContain('Omar Al Watan')
+    expect(html).toContain('Daniel Reuter')
   })
 
   it('renders the writing section with 3 AI-agent posts', () => {
-    render(<Home />)
-    expect(screen.getByText(/AI is leverage/i)).toBeInTheDocument()
-    expect(screen.getByText(/agent that worked while I slept/i)).toBeInTheDocument()
-    expect(screen.getByText(/hardest part of working with AI agents/i)).toBeInTheDocument()
+    expect(html).toMatch(/AI is leverage/i)
+    expect(html).toMatch(/agent that worked while I slept/i)
+    expect(html).toMatch(/hardest part of working with AI agents/i)
   })
 
   it('renders the stats bar', () => {
-    render(<Home />)
-    expect(screen.getByText('Years shipping')).toBeInTheDocument()
-    expect(screen.getByText('Products in production')).toBeInTheDocument()
+    expect(html).toContain('Years shipping')
+    expect(html).toContain('Products in production')
+    expect(html).toContain('Founder clients')
   })
 
-  it('has resume download links', () => {
-    render(<Home />)
-    const allLinks = screen.getAllByRole('link')
-    const resumeLinks = allLinks.filter(el => el.getAttribute('href') === '/uzair-saleem-resume.pdf')
-    expect(resumeLinks.length).toBeGreaterThanOrEqual(1)
+  it('has resume download link', () => {
+    expect(html).toContain('/uzair-saleem-resume.pdf')
   })
 
   it('has indiecator.com, diffed.gg, satraj.inc live links', () => {
-    render(<Home />)
-    const allLinks = screen.getAllByRole('link')
-    const hrefs = allLinks.map(el => el.getAttribute('href'))
-    expect(hrefs).toContain('https://indiecator.com')
-    expect(hrefs).toContain('https://diffed.gg')
-    expect(hrefs).toContain('https://satraj.inc')
+    expect(html).toContain('https://indiecator.com')
+    expect(html).toContain('https://diffed.gg')
+    expect(html).toContain('https://satraj.inc')
   })
 
   it('has GitHub, LinkedIn, and email links', () => {
-    render(<Home />)
-    const allLinks = screen.getAllByRole('link')
-    const hrefs = allLinks.map(el => el.getAttribute('href'))
-    expect(hrefs).toContain('https://github.com/developeruzairsaleem')
-    expect(hrefs).toContain('https://www.linkedin.com/in/uzair-saleem-5a399825a/')
-    expect(hrefs).toContain('mailto:uzairsaleemdev@gmail.com')
+    expect(html).toContain('https://github.com/developeruzairsaleem')
+    expect(html).toContain('https://www.linkedin.com/in/uzair-saleem-5a399825a/')
+    expect(html).toContain('mailto:uzairsaleemdev@gmail.com')
   })
 
   it('has 3 case study links', () => {
-    render(<Home />)
-    const caseStudyLinks = screen.getAllByText(/Open case study/i)
-    expect(caseStudyLinks.length).toBe(3)
+    expect(html).toContain('/case-studies/indiecator.pdf')
+    expect(html).toContain('/case-studies/diffed.pdf')
+    expect(html).toContain('/case-studies/satraj.pdf')
   })
 
-  it('has index of work + operating notes sections', () => {
-    render(<Home />)
-    expect(screen.getByText(/Index of work/i)).toBeInTheDocument()
-    expect(screen.getByText(/Operating notes/i)).toBeInTheDocument()
-    expect(screen.getByText(/Tools, with hands-on hours/i)).toBeInTheDocument()
+  it('has Maximal sections: work, how, about, contact', () => {
+    expect(html).toContain('id="work"')
+    expect(html).toContain('id="how"')
+    expect(html).toContain('id="about"')
+    expect(html).toContain('id="contact"')
+  })
+
+  it('renders the Rocket Devs / Apifiny / Design&Desktop context', () => {
+    expect(html).toContain('Rocket Devs')
+    expect(html).toContain('Apifiny')
+    expect(html).toMatch(/Design&amp;Desktop|Design&Desktop/)
   })
 })

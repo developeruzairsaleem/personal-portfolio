@@ -1,46 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Special_Elite, JetBrains_Mono, Caveat } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const serif = Instrument_Serif({
-  variable: "--font-serif",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-const typewriter = Special_Elite({
-  variable: "--font-typewriter",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
+const jetMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-const hand = Caveat({
-  variable: "--font-hand",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem — Field Notes";
+const TITLE = "Uzair Saleem — Senior Full-Stack Engineer";
 const DESCRIPTION =
-  "Field notes from a working developer. I ship B2B SaaS products end-to-end for founders. Next.js · TypeScript · Postgres · AWS. 5 years, six live products, remote globally.";
+  "I ship B2B SaaS products end-to-end for founders. Next.js · TypeScript · Postgres · AWS. 5 years, six live products, remote globally.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: TITLE, template: "%s · Uzair Saleem" },
   description: DESCRIPTION,
-  applicationName: "Uzair Saleem · Field Notes",
+  applicationName: "Uzair Saleem · Portfolio",
   authors: [{ name: "Uzair Saleem", url: SITE_URL }],
   creator: "Uzair Saleem",
   publisher: "Uzair Saleem",
@@ -54,7 +39,7 @@ export const metadata: Metadata = {
     type: "website", locale: "en_US", url: SITE_URL,
     siteName: "Uzair Saleem", title: TITLE, description: DESCRIPTION,
     images: [{ url: "/og.png", width: 1200, height: 630,
-      alt: "Uzair Saleem — Field Notes" }],
+      alt: "Uzair Saleem — Senior Full-Stack Engineer" }],
   },
   twitter: {
     card: "summary_large_image", title: TITLE, description: DESCRIPTION,
@@ -68,7 +53,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#efe6cf",
+  themeColor: "#fbf2d9",
   width: "device-width",
   initialScale: 1,
 };
@@ -93,15 +78,19 @@ const personSchema = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${serif.variable} ${typewriter.variable} ${mono.variable} ${hand.variable} antialiased`}>
+    <html lang="en">
+      <head>
+        {/* Adds .js so CSS knows to hide elements pre-reveal */}
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add('js');` }} />
+      </head>
+      <body className={`${inter.variable} ${jetMono.variable} antialiased`}>
         <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#a8362b] text-white font-semibold px-4 py-2 rounded-md"
+          href="#work"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#ff5a1f] text-[#0e0d0b] font-semibold px-4 py-2 rounded-md"
         >
-          Skip to main content
+          Skip to work
         </a>
-        <div id="main">{children}</div>
+        {children}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

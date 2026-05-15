@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const CALENDLY_URL = "https://calendly.com/uzairsaleemdev/30min";
 const EMAIL = "uzairsaleemdev@gmail.com";
@@ -11,66 +11,42 @@ const RESUME = "/uzair-saleem-resume.pdf";
 
 const PROJECTS = [
   {
-    no: "001",
-    status: "Live",
-    statusType: "live", // red
-    handNote: "lead engineer\non this build —",
-    handNoteColor: "pen",
-    date: "Shipped Q1 2026",
+    no: "N° 01",
+    badge: "live" as const,
+    badgeText: "● LIVE",
     name: "Indiecator",
-    url: "indiecator.com",
     live: "https://indiecator.com",
+    liveLabel: "indiecator.com",
     description:
-      "Baremetrics-style revenue analytics for indie SaaS founders. Connect Stripe and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration.",
-    highlight: "every MRR movement",
-    stack: ["Next.js", "Node.js", "Prisma", "Stripe Connect", "TypeScript"],
+      "Baremetrics-style revenue analytics for indie SaaS founders. Connect Stripe via OAuth and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration. Event-sourced from day one.",
+    stack: ["Next.js 16", "Node.js", "Prisma", "Stripe Connect", "TypeScript"],
     image: "/images/indiecator.png",
-    figCaption: "indiecator.com",
-    figNumber: "fig. 1",
-    cornerNote: "live, growing —",
-    metric: "From kickoff to production in ~12 weeks",
     caseStudy: "/case-studies/indiecator.pdf",
   },
   {
-    no: "002",
-    status: "Shipped",
-    statusType: "shipped", // black
-    handNote: "favourite\nbuild to date",
-    handNoteColor: "red",
-    date: "2025",
+    no: "N° 02",
+    badge: "ship" as const,
+    badgeText: "SHIPPED",
     name: "Diffed.gg",
-    url: "diffed.gg",
     live: "https://diffed.gg",
+    liveLabel: "diffed.gg",
     description:
-      "Two-sided gaming services marketplace. End-to-end transaction lifecycle in one product — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification.",
-    highlight: "integer-cent wallet payouts",
+      "Two-sided gaming services marketplace. End-to-end transaction lifecycle in one product — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification, fee-split admin flows.",
     stack: ["Next.js 15", "React", "Socket.IO", "Stripe", "PayPal", "Prisma"],
     image: "/images/diffed.png",
-    figCaption: "diffed.gg",
-    figNumber: "fig. 2",
-    cornerNote: null,
-    metric: "Full marketplace shipped end-to-end in one quarter",
     caseStudy: "/case-studies/diffed.pdf",
   },
   {
-    no: "003",
-    status: "Client",
-    statusType: "client", // pen blue
-    handNote: "30-yr spreadsheet\n→ 90-sec run",
-    handNoteColor: "pen",
-    date: "2026 · NJ",
+    no: "N° 03",
+    badge: "client" as const,
+    badgeText: "CLIENT · NJ",
     name: "Sat-Raj",
-    url: "satraj.inc",
     live: "https://satraj.inc",
+    liveLabel: "satraj.inc",
     description:
-      "Fuel distribution platform for a 30-year-old NJ wholesaler. Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and invoice generator.",
-    highlight: "Replaced 39 hand-edited Google Sheets tabs",
+      "Fuel distribution platform for a 30-year-old NJ wholesaler. Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and invoice generator. Daily pricing run: 45–60 min → under 90 sec.",
     stack: ["Next.js 16", "Prisma", "AWS", "Samsara API", "PostgreSQL"],
     image: "/images/satraj.png",
-    figCaption: "satraj.inc",
-    figNumber: "fig. 3",
-    cornerNote: "60 min → 90 sec",
-    metric: "Cut daily pricing run from 60 min → 90 sec · live to 24 customers",
     caseStudy: "/case-studies/satraj.pdf",
   },
 ];
@@ -78,14 +54,14 @@ const PROJECTS = [
 const TESTIMONIALS = [
   {
     quote:
-      "Uzair replaced 30 years of spreadsheet workflow with software the whole team trusts. The numbers match — first time, every time.",
+      "Uzair replaced 30 years of spreadsheet workflow with software the whole team trusts. The numbers match — first time, every time. He owned every layer of the build.",
     name: "Robbie Multani",
     role: "Co-founder, Sat-Raj Inc.",
     company: "Voorhees, NJ",
   },
   {
     quote:
-      "Best engineering hire I've made for the product. He didn't just build a dashboard — he rebuilt how we think about revenue.",
+      "Best engineering hire I've made for the product. He didn't just build a dashboard — he rebuilt how we think about revenue. The architecture doc is now how I explain our business to investors.",
     name: "Omar Al Watan",
     role: "Founder, Indiecator",
     company: "Remote · MENA",
@@ -129,397 +105,425 @@ const POSTS = [
   },
 ];
 
-const STACK_ITEMS = [
-  { name: "Next.js", note: "App router · production" },
-  { name: "React 19", note: "Daily" },
-  { name: "TypeScript", note: "Strict, everywhere" },
-  { name: "Node.js", note: "Services · queues" },
-  { name: "Prisma", note: "Schema · migrations" },
-  { name: "PostgreSQL", note: "Indexes · RLS" },
-  { name: "Supabase", note: "Auth · realtime" },
-  { name: "Stripe Connect", note: "Subs · payouts" },
-  { name: "AWS", note: "Amplify · RDS · SES" },
-  { name: "Tailwind CSS", note: "Design tokens" },
-  { name: "Socket.IO", note: "Real-time" },
-  { name: "Vercel", note: "Preview · prod" },
+const STACK_PILLS = [
+  "Next.js", "React 19", "TypeScript", "Node.js",
+  "PostgreSQL", "Prisma", "Supabase", "Stripe",
+  "Tailwind CSS", "AWS", "Socket.IO", "Vercel",
 ];
 
-function Clock() {
-  const [time, setTime] = useState<string>("— : —");
-  useEffect(() => {
-    const tick = () =>
-      setTime(
-        new Date().toLocaleTimeString("en-GB", {
-          timeZone: "Asia/Karachi",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }) + " PKT",
-      );
-    tick();
-    const id = setInterval(tick, 30_000);
-    return () => clearInterval(id);
-  }, []);
-  return <span>{time}</span>;
-}
+const BrandMark = () => (
+  <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-label="Uzair Saleem logo">
+    <rect x="5" y="7" width="28" height="28" rx="4" fill="#ff5a1f" />
+    <rect x="1" y="3" width="28" height="28" rx="4" fill="#0e0d0b" />
+    <text x="15" y="23" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="16" fontStyle="italic" fill="#f5e055" textAnchor="middle" letterSpacing="-0.5">u/s</text>
+    <circle cx="30" cy="4" r="3.4" fill="#f5e055" stroke="#0e0d0b" strokeWidth="1.5" />
+    <line x1="5" y1="19" x2="24" y2="19" stroke="#ff5a1f" strokeWidth="1.5" opacity="0.5" />
+  </svg>
+);
 
-function TodayDate() {
-  const [today, setToday] = useState<string>("");
+const FooterMark = () => (
+  <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="7" width="28" height="28" rx="4" fill="#ff5a1f" />
+    <rect x="1" y="3" width="28" height="28" rx="4" fill="#fbf2d9" />
+    <text x="15" y="23" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="16" fontStyle="italic" fill="#0e0d0b" textAnchor="middle" letterSpacing="-0.5">u/s</text>
+    <circle cx="30" cy="4" r="3.4" fill="#f5e055" stroke="#0e0d0b" strokeWidth="1.5" />
+  </svg>
+);
+
+function StatCounter({ to, suffix = "" }: { to: number; suffix?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    setToday(
-      new Date().toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      }),
+    const el = ref.current;
+    if (!el) return;
+    const numEl = el.querySelector(".num") as HTMLElement;
+    const sufEl = el.querySelector(".suf") as HTMLElement;
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+    const run = () => {
+      const start = performance.now();
+      const dur = 1400;
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - start) / dur);
+        const v = Math.round(to * easeOut(t));
+        numEl.textContent = String(v);
+        sufEl.textContent = t > 0.6 ? suffix : "";
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            run();
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.5 },
     );
-  }, []);
-  return <span>{today}</span>;
+    io.observe(el);
+    return () => io.disconnect();
+  }, [to, suffix]);
+  return (
+    <div ref={ref} className="stat-val">
+      <span className="num">0</span>
+      <span className="suf"></span>
+    </div>
+  );
 }
 
 export default function Home() {
+  // Trigger .loaded + scroll reveal + photo tilt + parallax
+  useEffect(() => {
+    const trigger = () => document.documentElement.classList.add("loaded");
+    requestAnimationFrame(trigger);
+    const safety = window.setTimeout(trigger, 1200);
+
+    // Scroll reveal
+    const els = document.querySelectorAll(".fade-up, .slide-l, .slide-r, .pop, .cta h2");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+
+    // Photo tilt
+    const photo = document.querySelector("[data-tilt]") as HTMLElement | null;
+    let raf = 0;
+    const onMove = (e: PointerEvent) => {
+      if (!photo) return;
+      const img = photo.querySelector("img") as HTMLElement | null;
+      const r = photo.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        photo.style.transform = `translateY(-18px) perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+        if (img) img.style.transform = `scale(1.06) translate(${x * -8}px, ${y * -8}px)`;
+      });
+    };
+    const onLeave = () => {
+      if (!photo) return;
+      const img = photo.querySelector("img") as HTMLElement | null;
+      photo.style.transform = "translateY(-18px)";
+      if (img) img.style.transform = "";
+    };
+    photo?.addEventListener("pointermove", onMove);
+    photo?.addEventListener("pointerleave", onLeave);
+
+    // Parallax-light on blots
+    const shapes = document.querySelector(".hero-shapes");
+    const blots = shapes?.querySelectorAll(".blot");
+    let praf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(praf);
+      praf = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y > 900) return;
+        blots?.forEach((r, i) => {
+          (r as HTMLElement).style.transform = `translateY(${y * (0.12 + i * 0.04)}px)`;
+        });
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      clearTimeout(safety);
+      io.disconnect();
+      photo?.removeEventListener("pointermove", onMove);
+      photo?.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   return (
-    <main className="page">
-      {/* Masthead — sticky */}
-      <header className="masthead">
-        <div className="vol">
-          Vol. <em>05</em> &nbsp;·&nbsp; Field Notes from a working developer
-        </div>
-        <Link href="/" className="title">Uzair Saleem</Link>
-        <div className="meta">
-          <div className="row1">
-            Islamabad <span className="stamp">PK</span> &nbsp; <Clock />
+    <>
+      {/* ── NAV ── */}
+      <nav className="nav">
+        <div className="nav-inner">
+          <Link href="#" className="brand">
+            <span className="brand-mark"><BrandMark /></span>
+            <span>Uzair Saleem</span>
+          </Link>
+          <div className="nav-links">
+            <a href="#work">WORK</a>
+            <a href="#how">HOW</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">LET&apos;S TALK →</a>
           </div>
-          <div className="masthead-actions">
-            <a className="link" href={MAILTO}>{EMAIL}</a>
-            <a className="btn" href={RESUME} target="_blank" rel="noopener noreferrer">
-              Download CV ↓
-            </a>
-            <a
-              className="icon"
-              href="https://www.linkedin.com/in/uzair-saleem-5a399825a/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
-            </a>
-            <a
-              className="icon"
-              href="https://github.com/developeruzairsaleem"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-            </a>
+        </div>
+      </nav>
+
+      {/* ── HERO ── */}
+      <header className="hero">
+        <div className="hero-shapes" aria-hidden="true">
+          <div className="ring r1" />
+          <div className="ring r2" />
+          <div className="blot b1" />
+          <div className="blot b2" />
+          <div className="blot b3" />
+          <div className="stripes" />
+        </div>
+        <div className="hero-inner">
+          <div className="ribbon-row fade-up">
+            <span className="ribbon">Available for Q3 2026</span>
+            <span>Vol. 5 · MMXXVI · ISB → US · EU · MENA</span>
+            <span>Senior · AI-leveraged</span>
+          </div>
+
+          <h1 className="megatype">
+            <span className="row l1"><span className="ln-inner">I ship <span className="blob lemon">B2B SaaS</span></span></span>
+            <span className="row l2"><span className="ln-inner">products</span></span>
+            <span className="row l3"><span className="ln-inner"><span className="blob orange">end</span> <span className="blob outline">to end.</span></span></span>
+          </h1>
+
+          <div className="hero-lower">
+            <p className="lede fade-up">
+              Next.js · TypeScript · Postgres · AWS. Senior Full-Stack Engineer running an AI-assisted workflow.
+              Five years shipping production SaaS — <strong>mostly alongside small product teams</strong>. Six live products.
+            </p>
+            <div className="hero-photo" data-tilt>
+              <Image
+                src="/images/main-profile-photo.png"
+                alt="Uzair Saleem"
+                width={360}
+                height={450}
+                priority
+              />
+              <div className="tag">
+                <span>UZAIR SALEEM</span>
+                <span>ISB · PK</span>
+              </div>
+            </div>
+            <div className="hero-ctas stagger fade-up">
+              <a href={MAILTO} className="btn fill-ink">Email me <span className="arrow">→</span></a>
+              <a href={RESUME} target="_blank" rel="noopener noreferrer" className="btn fill-paper">Download CV <span className="arrow">↓</span></a>
+              <a href="#work" className="btn fill-paper">See my work <span className="arrow">↓</span></a>
+            </div>
           </div>
         </div>
       </header>
-      <div className="subhead">
-        <div>
-          Issue 14 &nbsp;·&nbsp; Q2 2026 &nbsp;·&nbsp; Shipping B2B SaaS for founders
-        </div>
-        <div className="barcode" aria-hidden="true">
-          {Array.from({ length: 15 }).map((_, i) => <i key={i} />)}
-        </div>
-        <div>
-          Filed <TodayDate />
-        </div>
-      </div>
 
-      {/* Hero */}
-      <section className="hero">
-        <div>
-          <div className="eyebrow">Subject &nbsp;—&nbsp; Statement of intent</div>
-          <h1>
-            I ship <span className="underline">B2B&nbsp;SaaS</span><br />
-            products<br />
-            <span className="it">end to end</span>.
-          </h1>
-          <p className="lede">
-            <b>Next.js · TypeScript · Postgres · AWS.</b> Senior Full-Stack
-            Engineer running an AI-assisted workflow. Five years shipping
-            production SaaS for founders in the US, EU, and MENA — mostly
-            alongside small product teams. Six live products. Open to senior
-            roles for Q3 2026.
-          </p>
-          <div className="meta-row">
-            <div><span>5 yrs</span><small>Years shipping</small></div>
-            <div><span>6</span><small>Products in production</small></div>
-            <div><span>10+</span><small>Founder clients</small></div>
-            <div><span>100%</span><small>Remote · async · global</small></div>
+      {/* ── STATS ── */}
+      <section className="stats">
+        <div className="stats-inner stagger">
+          <div className="stat-cell fade-up">
+            <StatCounter to={5} suffix="+" />
+            <div className="stat-lbl">Years shipping</div>
+          </div>
+          <div className="stat-cell alt fade-up">
+            <StatCounter to={6} />
+            <div className="stat-lbl">Products in production</div>
+          </div>
+          <div className="stat-cell fade-up">
+            <StatCounter to={10} suffix="+" />
+            <div className="stat-lbl">Founder clients</div>
+          </div>
+          <div className="stat-cell alt fade-up">
+            <StatCounter to={100} suffix="%" />
+            <div className="stat-lbl">Remote · async · global</div>
           </div>
         </div>
-
-        <div className="polaroid" aria-hidden="false">
-          <div className="tape" />
-          <Image
-            src="/images/main-profile-photo.png"
-            alt="Uzair Saleem"
-            width={280}
-            height={290}
-            priority
-            style={{ width: "100%", aspectRatio: "1 / 1.05", objectFit: "cover" }}
-          />
-          <div className="cap">
-            <span>Uzair, 2026</span>
-            <small>Islamabad</small>
-          </div>
-        </div>
-
-        <div className="margin-note m1">
-          senior contractor →<br />
-          (works inside your<br />
-          product team)
-        </div>
-        <div className="margin-note m2">read this twice ✶</div>
       </section>
 
-      {/* Index */}
-      <div className="rule" id="work">
-        <h2>§ I &nbsp; Index of work, by ship date</h2>
-        <div className="right">Pages 02 – 07</div>
-      </div>
-      <ol className="index">
-        {PROJECTS.map((p, i) => (
-          <li key={p.no} className="row">
-            <span className="no">{p.no}</span>
-            <span>
-              <span className="name">{p.name}</span>
-              <span className={`tag${p.statusType === "client" ? " client" : ""}`}>
-                // {p.status.toLowerCase()}
-              </span>
-            </span>
-            <span className="dot" />
-            <span className="pg">p. 0{i + 2}</span>
-          </li>
-        ))}
-      </ol>
-
-      {/* Project entries */}
-      {PROJECTS.map((p) => (
-        <article key={p.no} className="entry">
-          <div className="stamp">
-            <span className={`status ${p.statusType === "shipped" ? "shipped" : p.statusType === "client" ? "client" : ""}`}>
-              {p.no} / {p.status}
-            </span>
-            <span className="date">{p.date}</span>
-            <span className={`hand${p.handNoteColor === "red" ? " red" : ""}`}>
-              {p.handNote.split("\n").map((line, i) => (
-                <span key={i}>{line}<br /></span>
-              ))}
-            </span>
+      {/* ── WORK ── */}
+      <section className="work" id="work">
+        <div className="work-inner">
+          <div className="section-head fade-up">
+            <h2>Selected<br />work.</h2>
+            <div className="num">SHIPPED <b>03/06</b></div>
           </div>
 
-          <div className="body">
-            <h3>
-              <a href={p.live} target="_blank" rel="noopener noreferrer">
-                {p.name} <span className="url-bit">↗ {p.url}</span>
+          {PROJECTS.map((p, i) => (
+            <article key={p.name} className={`project ${i % 2 === 0 ? "slide-l" : "slide-r"}`}>
+              <a href={p.live} target="_blank" rel="noopener noreferrer" className="project-thumb">
+                <Image src={p.image} alt={`${p.name} screenshot`} fill sizes="(max-width: 900px) 100vw, 1240px" style={{ objectFit: "cover", objectPosition: "top left" }} />
+                <span className={`thumb-tag ${p.badge === "live" ? "live" : p.badge === "client" ? "client" : ""}`}>{p.badgeText}</span>
+                <span className="thumb-link">{p.liveLabel} ↗</span>
               </a>
-            </h3>
-            <p className="sub">
-              {p.description.split(new RegExp(`(${p.highlight})`)).map((part, i) =>
-                part === p.highlight ? (
-                  <span key={i} className="hl">{part}</span>
-                ) : (
-                  <span key={i}>{part}</span>
-                ),
-              )}
-            </p>
-            <div className="stack">
-              {p.stack.map((s) => <span key={s}>{s}</span>)}
-            </div>
-            <a href={p.caseStudy} target="_blank" rel="noopener noreferrer" className="more">
-              Open case study
-            </a>
-          </div>
-
-          <div className="preview">
-            <figure className="frame" style={{ transform: p.no === "002" ? "rotate(1.2deg)" : p.no === "003" ? "rotate(-2deg)" : "rotate(-1.4deg)" }}>
-              <a href={p.live} target="_blank" rel="noopener noreferrer">
-                <Image
-                  src={p.image}
-                  alt={`${p.name} screenshot`}
-                  width={400}
-                  height={250}
-                  style={{ width: "100%", height: "auto", display: "block" }}
-                />
-              </a>
-              <figcaption>
-                <span>{p.figCaption}</span>
-                <span>{p.figNumber}</span>
-              </figcaption>
-            </figure>
-            {p.cornerNote && <div className="note n1">{p.cornerNote}</div>}
-          </div>
-        </article>
-      ))}
-
-      {/* Operating notes */}
-      <div className="rule">
-        <h2>§ II &nbsp; Operating notes — what hiring me actually looks&nbsp;like</h2>
-        <div className="right">p. 08</div>
-      </div>
-      <section className="notes">
-        <div className="n">
-          <div className="no">i</div>
-          <h3>End-to-end<br />ownership.</h3>
-          <p>
-            Architecture, backend, frontend, infra, deploys. Six production SaaS shipped — mostly alongside small product teams, sometimes as the lead engineer. I think in products, not tickets.
-          </p>
-          <div className="ann">one head,<br />the whole product ✶</div>
-        </div>
-        <div className="n">
-          <div className="no">ii</div>
-          <h3>Correctness<br />first.</h3>
-          <p>
-            MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right, not just the UI looking right.
-          </p>
-          <div className="ann">numbers that<br />hold up under diligence</div>
-        </div>
-        <div className="n">
-          <div className="no">iii</div>
-          <h3>AI as<br />leverage.</h3>
-          <p>
-            AI in the loop daily — overnight refactors, test backfill, brief-driven feature work. Not as a crutch, as leverage. I still own the architecture and the decisions.
-          </p>
-          <div className="ann">leverage,<br />not a crutch —</div>
-        </div>
-      </section>
-
-      {/* Voices / Testimonials */}
-      <div className="rule">
-        <h2>§ III &nbsp; Voices — what founders say</h2>
-        <div className="right">p. 09</div>
-      </div>
-      <section className="voices">
-        {TESTIMONIALS.map((t) => (
-          <figure key={t.name}>
-            <blockquote>{t.quote}</blockquote>
-            <figcaption>
-              <b>{t.name}</b>
-              {t.role}<br />
-              {t.company}
-            </figcaption>
-          </figure>
-        ))}
-      </section>
-
-      {/* Stack ledger */}
-      <div className="rule">
-        <h2>§ IV &nbsp; Tools, with hands-on hours</h2>
-        <div className="right">p. 10</div>
-      </div>
-      <section className="ledger">
-        <ul className="list">
-          {STACK_ITEMS.map((s) => (
-            <li key={s.name}>
-              <b>{s.name}</b>
-              <i>{s.note}</i>
-            </li>
+              <div className="project-row">
+                <div className="pnum">{p.no}</div>
+                <div className="pmeta">
+                  <span className={`badge ${p.badge}`}>{p.badgeText}</span>
+                  <h3><a href={p.live} target="_blank" rel="noopener noreferrer">{p.name}</a></h3>
+                  <div className="stack-row">
+                    {p.stack.map((s) => <span key={s} className="stack-tag">{s}</span>)}
+                  </div>
+                  <a href={p.caseStudy} target="_blank" rel="noopener noreferrer" className="link">Case study (PDF) ↗</a>
+                </div>
+                <p>{p.description}</p>
+              </div>
+            </article>
           ))}
-        </ul>
-        <div className="aside">
-          Tools are interchangeable — the thinking isn&apos;t. I pick the boring option that holds up under load. If the right answer is <b>not</b> the trendy one, that&apos;s the answer.
-          <br /><br />
-          Available for <span className="red">B2B SaaS</span>, marketplaces, Stripe-heavy work, and legacy migrations.
         </div>
       </section>
 
-      {/* Writing */}
-      <div className="rule" id="writing">
-        <h2>§ V &nbsp; Field notes on AI agents</h2>
-        <div className="right">p. 11</div>
-      </div>
-      <div className="posts">
-        {POSTS.map((p, i) => (
-          <Link key={p.slug} href={`/blog/${p.slug}`} className="post">
-            <span className="no">0{i + 1}</span>
-            <div>
-              <div className="post-title">{p.title}</div>
-              <p className="excerpt">{p.excerpt}</p>
+      {/* ── HOW ── */}
+      <section className="how" id="how">
+        <div className="how-inner">
+          <div className="section-head fade-up">
+            <h2>Why founders<br />hire me.</h2>
+            <div className="num">MEASURABLE <b>03/03</b></div>
+          </div>
+          <div className="how-grid stagger">
+            <div className="how-card pop">
+              <span className="ref">01 / END-TO-END</span>
+              <h3>End-to-end ownership.</h3>
+              <p>Architecture, backend, frontend, infra, deploys. Six production SaaS shipped — mostly alongside small product teams, sometimes as the lead engineer. I think in products, not tickets.</p>
+              <div className="digit">6×</div>
             </div>
-            <span className="pg">{p.tag} · {p.readTime} →</span>
-          </Link>
-        ))}
-      </div>
-
-      {/* Memo / About */}
-      <div className="rule" id="about">
-        <h2>§ VI &nbsp; Memo, addressed to the reader</h2>
-        <div className="right">p. 12</div>
-      </div>
-      <section className="memo">
-        <dl className="head">
-          <dt>To:</dt><dd>Whoever opened this page</dd>
-          <dt>From:</dt><dd>Uzair Saleem, Islamabad PK</dd>
-          <dt>Re:</dt><dd>The person behind the code</dd>
-        </dl>
-        <div className="body">
-          <p>
-            I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS end-to-end. Currently at <em>Rocket Devs</em>, leading client builds alongside a small product team. Previously Design&amp;Desktop and Apifiny, where I shipped weekly with product teams across three years.
-          </p>
-          <p>
-            I started coding in 2020 because a friend needed a website and couldn&apos;t afford an agency. That turned into a side hustle, then contracts, then shipping production SaaS for founders — mostly alongside small product teams, sometimes as the lead engineer on an end-to-end build. The work I care about most is the part that doesn&apos;t make demo reels but does make customers stay.
-          </p>
-          <p>
-            BS in Artificial Intelligence (SZABIST Islamabad, 2018–2022). Open to senior full-stack roles — remote, any reasonable timezone overlap.
-          </p>
-        </div>
-        <div className="sig">
-          <div className="signature">Uzair.</div>
-          <div className="stamp-circle">
-            Logged<br />·<br />2026<br />·<br />field notes
+            <div className="how-card pop">
+              <span className="ref">02 / CORRECTNESS</span>
+              <h3>Correctness first.</h3>
+              <p>MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right, not just the UI looking right.</p>
+              <div className="digit">0¢</div>
+            </div>
+            <div className="how-card pop">
+              <span className="ref">03 / AI LEVERAGE</span>
+              <h3>AI as leverage.</h3>
+              <p>AI in the loop daily — overnight refactors, test backfill, brief-driven feature work. Not as a crutch, as leverage. I still own the architecture and the decisions.</p>
+              <div className="digit">3×</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Envelope / Contact */}
-      <div className="rule" id="contact">
-        <h2>§ VII &nbsp; If this is the right kind of work, write</h2>
-        <div className="right">p. 14</div>
-      </div>
-      <section className="envelope">
-        <div className="e1">
-          <div>
-            <h2>Building <em>something?</em><br />Let&apos;s ship it.</h2>
+      {/* ── TESTIMONIALS ── */}
+      <section className="voices-band" id="voices">
+        <div className="voices-inner">
+          <div className="section-head fade-up">
+            <h2>What founders<br />say.</h2>
+            <div className="num">CLIENTS <b>03/03</b></div>
+          </div>
+          <div className="voices-grid stagger">
+            {TESTIMONIALS.map((t) => (
+              <figure key={t.name} className="voice-card pop">
+                <div className="voice-mark">“</div>
+                <blockquote className="voice-quote">{t.quote}</blockquote>
+                <figcaption className="voice-attr">
+                  <b>{t.name}</b>
+                  {t.role}<br />
+                  {t.company}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── STACK ── */}
+      <section className="stack">
+        <div className="stack-inner">
+          <div className="stack-head fade-up">
+            <h2>Tools I<br />ship with.</h2>
+            <p>The stack I reach for by default. Battle-tested across six production SaaS — boring, predictable, fast to ship with.</p>
+          </div>
+          <div className="stack-cloud stagger">
+            {STACK_PILLS.map((p) => (
+              <span key={p} className="pill pop">{p}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WRITING ── */}
+      <section className="writing" id="writing">
+        <div className="writing-inner">
+          <div className="section-head fade-up">
+            <h2>Notes on<br />AI agents.</h2>
+            <div className="num">FILED <b>03/03</b></div>
+          </div>
+          <div className="writing-grid stagger">
+            {POSTS.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="post-card pop">
+                <div className="post-tag">
+                  <span>{post.tag}</span>
+                  <span className="dot">·</span>
+                  <span className="meta">{post.date}</span>
+                  <span className="dot">·</span>
+                  <span className="meta">{post.readTime}</span>
+                </div>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span className="arrow">READ →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ABOUT ── */}
+      <section className="about" id="about">
+        <div className="about-inner">
+          <div className="about-head fade-up">
+            <h2>The person<br />behind <span className="u">the code.</span></h2>
+          </div>
+          <div className="about-body fade-up">
             <p>
-              Open to senior full-stack roles and select consulting. Replies inside 24h.
+              I&apos;m Uzair — a Senior Full-Stack Engineer in Islamabad. Five years building B2B SaaS end-to-end.
+              Currently at <strong>Rocket Devs</strong>, leading client builds alongside a small product team.
+              Previously <strong>Design&amp;Desktop</strong> and <strong>Apifiny</strong>, where I shipped weekly
+              with product teams across three years.
             </p>
+            <p>
+              I started coding in 2020 because a friend needed a website and couldn&apos;t afford an agency. That
+              turned into a side hustle, then contracts, then shipping production SaaS for founders — mostly
+              alongside small product teams, sometimes as the lead engineer on an end-to-end build. The work I
+              care about most is the part that doesn&apos;t make demo reels but does make customers stay.
+            </p>
+            <p>BS in Artificial Intelligence (SZABIST Islamabad, 2018–2022).</p>
+            <div className="about-meta">
+              <div><span>BASED</span>Islamabad, PK · UTC+5</div>
+              <div><span>STUDIED</span>BS Artificial Intelligence</div>
+              <div><span>WORKING WITH</span>US · EU · MENA</div>
+              <div><span>STATUS</span>Available · Q3 2026</div>
+            </div>
           </div>
-          <a className="cta" href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-            Book a 30-min intro call <span className="arr">↗</span>
-          </a>
-        </div>
-        <div className="e2">
-          <div className="stamp-area">Postage<br />·<br />Paid<br />·<br />Reader</div>
-          <div className="addr">
-            <b>Uzair Saleem</b>
-            Islamabad, Pakistan<br />
-            UTC+5 — replies within 24h<br /><br />
-            <a href={MAILTO}>{EMAIL}</a><br />
-            <a href={RESUME} target="_blank" rel="noopener noreferrer">Download résumé (PDF)</a><br />
-            <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer">linkedin / uzair-saleem</a><br />
-            <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer">github / developeruzairsaleem</a>
-          </div>
-          <small>Filed under: ship</small>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="foot">
-        <div>© {new Date().getFullYear()} &nbsp;·&nbsp; Set in Instrument Serif &amp; JetBrains Mono</div>
-        <div className="pg-num">14</div>
-        <div>
-          <a href="https://github.com/developeruzairsaleem/personal-portfolio" target="_blank" rel="noopener noreferrer">Source</a>
-          &nbsp;·&nbsp; End of issue.
+      {/* ── CTA ── */}
+      <section className="cta" id="contact">
+        <div className="cta-inner">
+          <h2>
+            <span className="row"><span className="ln-inner">Building</span></span>
+            <span className="row"><span className="ln-inner">something? <span className="swap">Let&apos;s</span></span></span>
+            <span className="row"><span className="ln-inner"><span className="o">ship</span> <span className="y">it.</span></span></span>
+          </h2>
+          <div className="cta-lower fade-up">
+            <p>Open to senior full-stack roles and select consulting. Replies within 24 hours.</p>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">
+              📅 Book a 30-min intro call
+              <span>→</span>
+            </a>
+            <div className="cta-links">
+              <span>—</span>
+              <a href={MAILTO}>{EMAIL}</a>
+              <a href={RESUME} target="_blank" rel="noopener noreferrer">Download résumé ↗</a>
+              <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer className="footer">
+        <div className="footer-inner">
+          <span className="brand">
+            <span className="brand-mark"><FooterMark /></span>
+            <span>UZAIR SALEEM</span>
+          </span>
+          <span>© {new Date().getFullYear()} · Built with Next.js + Tailwind · Direction 04 / Maximal</span>
         </div>
       </footer>
-    </main>
+    </>
   );
 }
