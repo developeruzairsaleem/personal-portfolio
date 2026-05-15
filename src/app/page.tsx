@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CALENDLY_URL = "https://calendly.com/uzairsaleemdev/30min";
 const EMAIL = "uzairsaleemdev@gmail.com";
@@ -130,6 +130,29 @@ const FooterMark = () => (
   </svg>
 );
 
+function CopyButton({ value, srLabel }: { value: string; srLabel?: string }) {
+  const [copied, setCopied] = useState(false);
+  const onClick = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1400);
+    } catch {
+      /* clipboard blocked — user can still select the visible text */
+    }
+  };
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`copy-btn${copied ? " copied" : ""}`}
+      aria-label={srLabel ?? `Copy ${value}`}
+    >
+      {copied ? "Copied" : "Copy"}
+    </button>
+  );
+}
+
 function StatCounter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -256,7 +279,13 @@ export default function Home() {
             <a href="#work">WORK</a>
             <a href="#how">HOW</a>
             <a href="#about">ABOUT</a>
-            <a href="#contact">LET&apos;S TALK →</a>
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BOOK A CALL →
+            </a>
           </div>
         </div>
       </nav>
@@ -298,9 +327,36 @@ export default function Home() {
                 <span>ISB · PK</span>
               </div>
             </div>
-            <div className="hero-ctas stagger fade-up">
-              <a href={MAILTO} className="btn fill-ink">Email me <span className="arrow">→</span></a>
-              <a href={RESUME} target="_blank" rel="noopener noreferrer" className="btn fill-paper">Download CV <span className="arrow">↓</span></a>
+            <div className="calling-card stagger fade-up">
+              <div className="card-row email-row">
+                <span className="card-label">Email</span>
+                <a href={MAILTO} className="email-link">{EMAIL}</a>
+                <CopyButton value={EMAIL} srLabel="Copy email address" />
+              </div>
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-link primary"
+              >
+                <span>
+                  <span className="card-label">Schedule</span>
+                  Book a 20-min intro call
+                </span>
+                <span className="arrow">→</span>
+              </a>
+              <a
+                href={RESUME}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-link"
+              >
+                <span>
+                  <span className="card-label">Resume</span>
+                  Download CV <span className="hint">(PDF · 1pg)</span>
+                </span>
+                <span className="arrow">↓</span>
+              </a>
             </div>
           </aside>
 
@@ -501,16 +557,25 @@ export default function Home() {
           </h2>
           <div className="cta-lower fade-up">
             <p>Open to senior full-stack roles and select consulting. Replies within 24 hours.</p>
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">
-              📅 Book a 30-min intro call
-              <span>→</span>
-            </a>
-            <div className="cta-links">
-              <span>—</span>
-              <a href={MAILTO}>{EMAIL}</a>
-              <a href={RESUME} target="_blank" rel="noopener noreferrer">Download résumé ↗</a>
-              <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-              <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <div className="cta-actions">
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">
+                Book a 30-min intro call
+                <span>→</span>
+              </a>
+              <a href={RESUME} target="_blank" rel="noopener noreferrer" className="cta-secondary">
+                Download résumé <span>↓</span>
+              </a>
+            </div>
+            <div className="cta-contact">
+              <div className="cta-email-row">
+                <span className="cta-email-label">Email</span>
+                <a href={MAILTO} className="cta-email">{EMAIL}</a>
+                <CopyButton value={EMAIL} srLabel="Copy email address" />
+              </div>
+              <div className="cta-links">
+                <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+              </div>
             </div>
           </div>
         </div>
@@ -523,7 +588,12 @@ export default function Home() {
             <span className="brand-mark"><FooterMark /></span>
             <span>UZAIR SALEEM</span>
           </span>
-          <span>© {new Date().getFullYear()} · Built with Next.js + Tailwind · Direction 04 / Maximal</span>
+          <div className="footer-contact">
+            <a href={MAILTO} className="footer-email">{EMAIL}</a>
+            <span className="footer-sep">·</span>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book a call ↗</a>
+          </div>
+          <span className="footer-meta">© {new Date().getFullYear()} · Built with Next.js + Tailwind</span>
         </div>
       </footer>
     </>

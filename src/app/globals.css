@@ -182,19 +182,94 @@ body::before {
   flex-direction: column;
   gap: 40px;           /* breathing room between photo and buttons */
 }
-.hero-aside .hero-ctas {
+/* Calling card: editorial stack of contact options under the photo.
+   Replaces the older pill buttons so recruiters can see the email,
+   copy it, book a call, or grab the CV without leaving the fold. */
+.hero-aside .calling-card {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
-  padding-top: 0;
+  border: 1px solid var(--ink);
+  background: rgba(251, 242, 217, 0.6);
+  padding: 0;
 }
-.hero-aside .hero-ctas .btn {
+.hero-aside .card-row,
+.hero-aside .card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(14, 13, 11, 0.18);
+  font-size: 14px;
+  color: var(--ink);
+  min-height: 56px;
+}
+.hero-aside .card-link:last-child,
+.hero-aside .calling-card > *:last-child { border-bottom: 0; }
+.hero-aside .card-link {
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  transition: background .15s, color .15s;
+}
+.hero-aside .card-link:hover { background: var(--lemon); }
+.hero-aside .card-link.primary {
+  background: var(--orange);
+  color: var(--ink);
+}
+.hero-aside .card-link.primary:hover { background: var(--ink); color: var(--paper); }
+.hero-aside .card-label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(14, 13, 11, 0.55);
+  margin-bottom: 2px;
+}
+.hero-aside .card-link.primary .card-label { color: rgba(14, 13, 11, 0.62); }
+.hero-aside .email-row { flex-wrap: wrap; row-gap: 4px; }
+.hero-aside .email-row .email-link {
+  flex: 1 1 auto;
   min-width: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  order: 2;
   width: 100%;
-  padding: 18px 22px;
-  font-size: 15px;
 }
+.hero-aside .email-row .card-label { order: 1; width: 100%; }
+.hero-aside .email-row .copy-btn { order: 3; }
+.hero-aside .email-row .email-link:hover { color: var(--orange); }
+.hero-aside .card-link .arrow { font-size: 18px; line-height: 1; }
+.hero-aside .card-link .hint {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(14, 13, 11, 0.55);
+  margin-left: 4px;
+}
+
+.copy-btn {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  align-self: center;
+}
+.copy-btn:hover { background: var(--ink); color: var(--paper); }
+.copy-btn.copied { background: var(--green); border-color: var(--green); color: var(--paper); }
+
 /* Megatype reserves enough right-side space so its lines never run under
    the aside (photo 240 + buffer + offset shadow). */
 .hero-inner .megatype { padding-right: 320px; }
@@ -212,12 +287,10 @@ body::before {
     width: 100%;
     margin: 0 auto;
   }
-  .hero-aside .hero-ctas {
+  .hero-aside .calling-card {
     width: 100%;
-  }
-  .hero-aside .hero-ctas .btn {
-    width: 100%;
-    min-width: 0;
+    max-width: 480px;
+    margin: 0 auto;
   }
 }
 .ribbon-row {
@@ -732,16 +805,65 @@ body::before {
   display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; align-items: end;
 }
 .cta-lower p { margin: 0; font-size: 16px; line-height: 1.55; color: rgba(243, 236, 220, 0.72); max-width: 36ch; }
+.cta-actions {
+  display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
+}
 .cta-btn {
   display: inline-flex; align-items: center; justify-content: space-between; gap: 14px;
   padding: 20px 24px; background: var(--orange); color: var(--ink);
   font-weight: 800; font-size: 16px; border: 2px solid var(--paper);
   box-shadow: -6px 6px 0 var(--lemon);
   transition: transform .15s, box-shadow .15s;
+  min-width: 280px;
 }
 .cta-btn:hover { transform: translate(-2px, 2px); box-shadow: -3px 3px 0 var(--lemon); }
+.cta-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono), monospace; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--paper);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(243, 236, 220, 0.3);
+}
+.cta-secondary:hover { color: var(--lemon); border-bottom-color: var(--lemon); }
+.cta-contact { display: flex; flex-direction: column; gap: 16px; }
+.cta-email-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(243, 236, 220, 0.18);
+  border-bottom: 1px solid rgba(243, 236, 220, 0.18);
+}
+.cta-email-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(243, 236, 220, 0.5);
+  width: 100%;
+}
+.cta-email {
+  flex: 1 1 auto; min-width: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 15px; letter-spacing: -0.01em;
+  color: var(--paper);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cta-email:hover { color: var(--lemon); }
+.cta-email-row .copy-btn {
+  background: transparent;
+  border-color: rgba(243, 236, 220, 0.4);
+  color: var(--paper);
+}
+.cta-email-row .copy-btn:hover {
+  background: var(--lemon);
+  border-color: var(--lemon);
+  color: var(--ink);
+}
+.cta-email-row .copy-btn.copied {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--paper);
+}
 .cta-links {
-  display: flex; flex-direction: column; gap: 4px;
+  display: flex; gap: 16px; flex-wrap: wrap;
   font-family: var(--font-mono), monospace; font-size: 12.5px;
   letter-spacing: 0.04em;
   color: rgba(243, 236, 220, 0.55);
@@ -758,12 +880,25 @@ body::before {
 }
 .footer-inner {
   max-width: var(--container); margin: 0 auto;
-  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px 32px; flex-wrap: wrap;
 }
 .footer .brand { color: var(--paper); display: inline-flex; align-items: center; gap: 8px; }
 .footer .brand-mark { width: 28px; height: 28px; flex: 0 0 auto; display: inline-block; }
 .footer .brand-mark svg { width: 100%; height: 100%; display: block; }
 .footer a:hover { color: var(--orange); }
+.footer-contact {
+  display: inline-flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
+}
+.footer-email {
+  color: var(--paper);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.footer-email:hover { color: var(--lemon); }
+.footer-sep { color: rgba(243, 236, 220, 0.3); }
+.footer-meta { color: rgba(243, 236, 220, 0.45); }
 
 /* ── BLOG POST BODY ──────────────────── */
 .post-body {
