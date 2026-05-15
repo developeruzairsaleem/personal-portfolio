@@ -219,6 +219,10 @@ body::before {
   transform: rotate(-1.5deg);
   transform-origin: center;
   line-height: 0.9;
+  /* Hover-only transition. The :hover rule supplies a different transform
+     while the cursor is over the blob; on leave, the transform falls back
+     to the rule below — smoothly — without ever re-triggering blob-in. */
+  transition: transform 0.4s var(--ease-back);
 }
 .loaded .blob {
   animation: blob-in 0.9s var(--ease-back) both;
@@ -231,13 +235,10 @@ body::before {
   60%  { transform: rotate(4deg)    scale(1.08); }
   to   { transform: rotate(-1.5deg) scale(1); }
 }
+/* Hover = transform-only delta; no keyframe animation, so the entrance
+   animation never restarts when the cursor leaves. */
 .blob:hover {
-  animation: blob-jig 0.5s var(--ease-back);
-}
-@keyframes blob-jig {
-  0%   { transform: rotate(-1.5deg) scale(1); }
-  40%  { transform: rotate(2deg)    scale(1.06); }
-  100% { transform: rotate(-1.5deg) scale(1); }
+  transform: rotate(2deg) scale(1.06);
 }
 .blob.orange { background: var(--orange); color: var(--paper); }
 .blob.blue   { background: var(--blue);   color: var(--lemon); }
