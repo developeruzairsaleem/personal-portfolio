@@ -536,7 +536,7 @@ export default function Home() {
             <span className="brand-mark"><FooterMark /></span>
             <span>UZAIR SALEEM</span>
           </span>
-          <span>© {new Date().getFullYear()} · Built with Next.js + Tailwind · Direction 04 / Maximal</span>
+          <span>© {new Date().getFullYear()} · Built with Next.js + Tailwind</span>
         </div>
       </footer>
     </>
