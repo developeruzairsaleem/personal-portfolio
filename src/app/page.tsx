@@ -256,7 +256,22 @@ export default function Home() {
             <a href="#work">WORK</a>
             <a href="#how">HOW</a>
             <a href="#about">ABOUT</a>
-            <a href="#contact">LET&apos;S TALK →</a>
+            <a
+              href={RESUME}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-cta nav-cta-secondary"
+            >
+              DOWNLOAD CV ↓
+            </a>
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-cta nav-cta-primary"
+            >
+              BOOK A CALL →
+            </a>
           </div>
         </div>
       </nav>
@@ -275,8 +290,12 @@ export default function Home() {
           <div className="ribbon-row fade-up">
             <span className="ribbon">Available for Q3 2026</span>
             <span>Vol. 5 · MMXXVI · ISB → US · EU · MENA</span>
-            <span className="role-tag">Senior Full-Stack Developer</span>
+            <a href={MAILTO} className="ribbon-email">
+              Email me <span className="arrow">→</span>
+            </a>
           </div>
+
+          <p className="eyebrow fade-up">Full Stack Developer</p>
 
           <h1 className="megatype">
             <span className="row l1"><span className="ln-inner">I ship <span className="blob lemon">B2B SaaS</span></span></span>
@@ -297,10 +316,6 @@ export default function Home() {
                 <span>UZAIR SALEEM</span>
                 <span>ISB · PK</span>
               </div>
-            </div>
-            <div className="hero-ctas stagger fade-up">
-              <a href={MAILTO} className="btn fill-ink">Email me <span className="arrow">→</span></a>
-              <a href={RESUME} target="_blank" rel="noopener noreferrer" className="btn fill-paper">Download CV <span className="arrow">↓</span></a>
             </div>
           </aside>
 

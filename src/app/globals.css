@@ -123,9 +123,24 @@ body::before {
   transition: background .15s, color .15s;
 }
 .nav-links a:hover { color: var(--paper); background: rgba(255, 90, 31, 0.18); }
-.nav-links a:last-child {
-  background: var(--orange); color: var(--ink); font-weight: 700;
+.nav-links .nav-cta {
+  font-weight: 700;
+  color: var(--paper);
+}
+.nav-links .nav-cta-secondary {
+  background: rgba(245, 224, 85, 0.12);
+  border-left: 1px solid rgba(245, 224, 85, 0.35);
+}
+.nav-links .nav-cta-secondary:hover {
+  background: var(--lemon);
+  color: var(--ink);
+}
+.nav-links .nav-cta-primary {
+  background: var(--orange); color: var(--ink);
   border-left: 1px solid var(--orange);
+}
+.nav-links .nav-cta-primary:hover {
+  background: var(--ink); color: var(--paper);
 }
 .nav-links a:last-child:hover { background: var(--lemon); }
 
@@ -169,33 +184,17 @@ body::before {
   padding: 64px 0 0; position: relative;
 }
 
-/* Hero aside: photo + stacked CTAs pinned to the upper-right of the hero.
-   Selectors are scoped to .hero-aside so the generic .hero-photo rule
-   later in the file doesn't fight us. */
+/* Hero aside: only the photo now, pinned to the upper-right of the hero.
+   CTAs moved into the sticky nav (Book a call, Download CV) and the
+   ribbon row (Email me), so this is a pure visual element. */
 .hero-aside {
   position: absolute;
-  top: 270px;          /* pushed down from the ribbon row */
+  top: 270px;
   right: 0;
   width: 240px;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;           /* breathing room between photo and buttons */
 }
-.hero-aside .hero-ctas {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
-  padding-top: 0;
-}
-.hero-aside .hero-ctas .btn {
-  min-width: 0;
-  width: 100%;
-  padding: 18px 22px;
-  font-size: 15px;
-}
-/* Megatype reserves enough right-side space so its lines never run under
+/* Megatype reserves right-side space so its lines never run under
    the aside (photo 240 + buffer + offset shadow). */
 .hero-inner .megatype { padding-right: 320px; }
 @media (max-width: 900px) {
@@ -204,20 +203,11 @@ body::before {
     position: static;
     width: 100%;
     margin-top: 28px;
-    align-items: stretch;
-    gap: 24px;
   }
   .hero-aside .hero-photo {
     max-width: 320px;
     width: 100%;
     margin: 0 auto;
-  }
-  .hero-aside .hero-ctas {
-    width: 100%;
-  }
-  .hero-aside .hero-ctas .btn {
-    width: 100%;
-    min-width: 0;
   }
 }
 .ribbon-row {
@@ -232,15 +222,47 @@ body::before {
   padding: 6px 12px; font-weight: 600;
   display: inline-flex; align-items: center; gap: 8px;
 }
-.ribbon-row .role-tag {
-  font-family: var(--font-inter), 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 19px;
-  letter-spacing: -0.015em;
-  text-transform: none;
-  color: var(--ink);
-  background: var(--lemon);
-  padding: 4px 10px;
+/* Email pill that lives inline in the ribbon row, replacing the
+   former role-tag now that the role label is the eyebrow above
+   the megatype. Stays compact so the ribbon stays a single row. */
+.ribbon-row .ribbon-email {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  transition: background .15s, color .15s, transform .15s;
+}
+.ribbon-row .ribbon-email:hover {
+  background: var(--orange); color: var(--ink);
+  transform: translate(-1px, -1px);
+}
+.ribbon-row .ribbon-email .arrow { font-size: 14px; line-height: 1; }
+
+/* Eyebrow: very small label above the megatype headline.
+   Carries the role title so it can leave the ribbon row. */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(14, 13, 11, 0.55);
+  margin: 28px 0 0;
+  padding: 0;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 22px; height: 1px;
+  background: var(--ink);
+  display: inline-block;
 }
 .ribbon::before {
   content: ''; width: 7px; height: 7px; border-radius: 50%;
@@ -249,6 +271,7 @@ body::before {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
 
+.eyebrow + .megatype { padding-top: 12px; }
 .megatype {
   position: relative;
   padding: 28px 0 24px;
@@ -843,7 +866,8 @@ body::before {
   .project-row { grid-template-columns: 1fr; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .section-head .num { text-align: left; }
-  .nav-links a:not(:last-child) { display: none; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-links .nav-cta { padding: 0 12px; font-size: 11px; }
 }
 @media (max-width: 600px) {
   .stats-inner, .how-grid, .voices-grid, .writing-grid { grid-template-columns: 1fr; }
