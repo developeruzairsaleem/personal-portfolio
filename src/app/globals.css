@@ -141,7 +141,7 @@ body::before {
   border-left: 1px solid var(--orange);
 }
 .nav-links .nav-cta-primary:hover {
-  background: var(--ink); color: #fff;
+  background: var(--lemon); color: var(--ink);
 }
 .nav-links a:last-child:hover { background: var(--lemon); }
 
@@ -223,26 +223,15 @@ body::before {
   padding: 6px 12px; font-weight: 600;
   display: inline-flex; align-items: center; gap: 8px;
 }
-/* Email pill that lives inline in the ribbon row, replacing the
-   former role-tag now that the role label is the eyebrow above
-   the megatype. Stays compact so the ribbon stays a single row. */
-.ribbon-row .ribbon-email {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--paper);
-  background: var(--ink);
-  padding: 8px 14px;
-  border: 1px solid var(--ink);
-  transition: background .15s, color .15s, transform .15s;
+/* Email me CTA reuses the same .btn.fill-ink that used to sit under the
+   hero photo — same ink fill, orange offset shadow, lemon hover sweep —
+   sized down so it fits inline in the ribbon row. */
+.ribbon-row .ribbon-btn {
+  min-width: 0;
+  padding: 12px 18px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
 }
-.ribbon-row .ribbon-email:hover {
-  background: var(--orange); color: var(--ink);
-  transform: translate(-1px, -1px);
-}
-.ribbon-row .ribbon-email .arrow { font-size: 14px; line-height: 1; }
 
 .ribbon::before {
   content: ''; width: 7px; height: 7px; border-radius: 50%;

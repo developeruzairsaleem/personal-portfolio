@@ -290,7 +290,7 @@ export default function Home() {
           <div className="ribbon-row fade-up">
             <span className="ribbon">Full Stack Developer</span>
             <span>Vol. 5 · MMXXVI · ISB → US · EU · MENA</span>
-            <a href={MAILTO} className="ribbon-email">
+            <a href={MAILTO} className="btn fill-ink ribbon-btn">
               Email me <span className="arrow">→</span>
             </a>
           </div>
