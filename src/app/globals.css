@@ -182,7 +182,7 @@ body::before {
 .hero-inner, .ribbon-row, .megatype, .hero-lower { position: relative; z-index: 1; }
 .hero-inner {
   max-width: var(--container); margin: 0 auto;
-  padding: 64px 0 0; position: relative;
+  padding: 36px 0 0; position: relative;
 }
 
 /* Hero aside: only the photo now, pinned to the upper-right of the hero.
