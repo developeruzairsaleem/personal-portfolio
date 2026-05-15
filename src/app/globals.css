@@ -166,7 +166,6 @@ body::before {
   position: absolute; width: 360px; height: 360px; border-radius: 50%;
   filter: blur(80px); opacity: 0.5;
 }
-.hero-shapes .blot.b1 { background: var(--orange); left: -120px; top: -60px; }
 .hero-shapes .blot.b2 { background: var(--lemon); right: -80px; bottom: 80px; }
 .hero-shapes .blot.b3 { background: var(--blue); left: 40%; bottom: -120px; opacity: 0.18; }
 .hero-shapes .stripes {

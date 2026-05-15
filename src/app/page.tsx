@@ -281,7 +281,6 @@ export default function Home() {
         <div className="hero-shapes" aria-hidden="true">
           <div className="ring r1" />
           <div className="ring r2" />
-          <div className="blot b1" />
           <div className="blot b2" />
           <div className="blot b3" />
           <div className="stripes" />
