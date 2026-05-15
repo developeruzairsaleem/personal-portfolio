@@ -168,6 +168,58 @@ body::before {
   max-width: var(--container); margin: 0 auto;
   padding: 64px 0 0; position: relative;
 }
+
+/* Hero aside: photo + stacked CTAs pinned to the upper-right of the hero.
+   Selectors are scoped to .hero-aside so the generic .hero-photo rule
+   later in the file doesn't fight us. */
+.hero-aside {
+  position: absolute;
+  top: 270px;          /* pushed down from the ribbon row */
+  right: 0;
+  width: 240px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;           /* breathing room between photo and buttons */
+}
+.hero-aside .hero-ctas {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding-top: 0;
+}
+.hero-aside .hero-ctas .btn {
+  min-width: 0;
+  width: 100%;
+  padding: 18px 22px;
+  font-size: 15px;
+}
+/* Megatype reserves enough right-side space so its lines never run under
+   the aside (photo 240 + buffer + offset shadow). */
+.hero-inner .megatype { padding-right: 320px; }
+@media (max-width: 900px) {
+  .hero-inner .megatype { padding-right: 0; }
+  .hero-aside {
+    position: static;
+    width: 100%;
+    margin-top: 28px;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .hero-aside .hero-photo {
+    max-width: 320px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hero-aside .hero-ctas {
+    width: 100%;
+  }
+  .hero-aside .hero-ctas .btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
 .ribbon-row {
   display: flex; justify-content: space-between; align-items: center;
   border-bottom: 1px solid var(--ink); padding-bottom: 14px;
@@ -179,6 +231,16 @@ body::before {
   background: var(--green); color: var(--paper);
   padding: 6px 12px; font-weight: 600;
   display: inline-flex; align-items: center; gap: 8px;
+}
+.ribbon-row .role-tag {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: var(--ink);
+  background: var(--lemon);
+  padding: 4px 10px;
 }
 .ribbon::before {
   content: ''; width: 7px; height: 7px; border-radius: 50%;
@@ -209,7 +271,7 @@ body::before {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.l1, .l2, .l3 { font-size: clamp(80px, 14vw, 200px); }
+.l1, .l2, .l3 { font-size: clamp(72px, 11.5vw, 168px); }
 
 .blob {
   display: inline-block;
@@ -252,20 +314,20 @@ body::before {
 
 .hero-lower {
   margin-top: 8px; padding: 26px 0 88px;
-  display: grid; grid-template-columns: 1fr 360px 1fr;
-  gap: 36px; align-items: end;
   border-top: 1px solid var(--ink);
 }
 .lede {
-  font-size: 18px; line-height: 1.5; color: rgba(14, 13, 11, 0.78);
-  max-width: 420px; padding-top: 26px;
+  font-size: 19px; line-height: 1.55; color: rgba(14, 13, 11, 0.78);
+  max-width: 720px; padding-top: 26px;
 }
-.lede strong { background: var(--lemon); padding: 0 4px; }
+.lede strong {
+  background: var(--lemon); padding: 0 6px; color: var(--ink);
+  font-weight: 700;
+}
 .hero-photo {
   position: relative; aspect-ratio: 4/5;
   background: var(--ink);
   overflow: hidden;
-  transform: translateY(-18px);
   box-shadow: -10px 10px 0 var(--orange);
   transition: box-shadow .4s var(--ease-out);
   will-change: transform;
@@ -275,7 +337,7 @@ body::before {
 }
 @keyframes photo-in {
   from { opacity: 0; transform: translateY(40px) scale(0.96); }
-  to   { opacity: 1; transform: translateY(-18px) scale(1); }
+  to   { opacity: 1; transform: none; }
 }
 .hero-photo:hover {
   box-shadow: -16px 16px 0 var(--orange), -32px 32px 0 var(--lemon);
@@ -344,10 +406,13 @@ body::before {
 .stat-cell:hover::after { width: 6px; opacity: 1; }
 .stat-cell.alt:hover::after { background: var(--lemon); }
 .stat-val {
-  font-size: clamp(72px, 10vw, 132px);
-  font-weight: 900; letter-spacing: -0.05em; line-height: 0.9;
+  /* Cap reduced from 132 → 100 so "100%" (the widest value at 4 chars)
+     fits inside its 1/4-width grid cell without overflow. */
+  font-size: clamp(56px, 8vw, 100px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 0.9;
   font-variant-numeric: tabular-nums;
   display: inline-flex; align-items: baseline;
+  max-width: 100%;
 }
 .stat-lbl {
   font-family: var(--font-mono), monospace; font-size: 12px;
@@ -771,7 +836,8 @@ body::before {
 
 /* ── Mobile ──────────────────────────── */
 @media (max-width: 900px) {
-  .hero-lower, .stack-inner, .about-inner, .cta-lower { grid-template-columns: 1fr; }
+  .stack-inner, .about-inner, .cta-lower { grid-template-columns: 1fr; }
+  .hero-stage .hero-photo { justify-self: center; width: 100%; max-width: 320px; }
   .stats-inner, .how-grid, .voices-grid, .writing-grid { grid-template-columns: repeat(2, 1fr); }
   .project { grid-template-columns: 1fr; }
   .project-row { grid-template-columns: 1fr; }

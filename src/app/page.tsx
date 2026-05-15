@@ -205,14 +205,14 @@ export default function Home() {
       const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        photo.style.transform = `translateY(-18px) perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+        photo.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
         if (img) img.style.transform = `scale(1.06) translate(${x * -8}px, ${y * -8}px)`;
       });
     };
     const onLeave = () => {
       if (!photo) return;
       const img = photo.querySelector("img") as HTMLElement | null;
-      photo.style.transform = "translateY(-18px)";
+      photo.style.transform = "";
       if (img) img.style.transform = "";
     };
     photo?.addEventListener("pointermove", onMove);
@@ -275,7 +275,7 @@ export default function Home() {
           <div className="ribbon-row fade-up">
             <span className="ribbon">Available for Q3 2026</span>
             <span>Vol. 5 · MMXXVI · ISB → US · EU · MENA</span>
-            <span>Senior · AI-leveraged</span>
+            <span className="role-tag">Senior Full-Stack Developer</span>
           </div>
 
           <h1 className="megatype">
@@ -284,17 +284,13 @@ export default function Home() {
             <span className="row l3"><span className="ln-inner"><span className="blob orange">end</span> <span className="blob outline">to end.</span></span></span>
           </h1>
 
-          <div className="hero-lower">
-            <p className="lede fade-up">
-              Next.js · TypeScript · Postgres · AWS. Senior Full-Stack Engineer running an AI-assisted workflow.
-              Five years shipping production SaaS — <strong>mostly alongside small product teams</strong>. Six live products.
-            </p>
+          <aside className="hero-aside">
             <div className="hero-photo" data-tilt>
               <Image
                 src="/images/main-profile-photo.png"
                 alt="Uzair Saleem"
-                width={360}
-                height={450}
+                width={240}
+                height={300}
                 priority
               />
               <div className="tag">
@@ -307,6 +303,13 @@ export default function Home() {
               <a href={RESUME} target="_blank" rel="noopener noreferrer" className="btn fill-paper">Download CV <span className="arrow">↓</span></a>
               <a href="#work" className="btn fill-paper">See my work <span className="arrow">↓</span></a>
             </div>
+          </aside>
+
+          <div className="hero-lower">
+            <p className="lede fade-up">
+              <strong>Next.js · TypeScript · Postgres · AWS.</strong> Senior Full-Stack Engineer running an AI-assisted workflow.
+              Five years shipping production SaaS — mostly alongside small product teams. Six live products.
+            </p>
           </div>
         </div>
       </header>
