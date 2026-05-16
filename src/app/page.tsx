@@ -18,8 +18,8 @@ const PROJECTS = [
     live: "https://indiecator.com",
     liveLabel: "indiecator.com",
     description:
-      "Baremetrics-style revenue analytics for indie SaaS founders. Connect Stripe via OAuth and get every MRR movement — New, Expansion, Contraction, Churn — classified correctly under outages, retries, trials, and proration. Event-sourced from day one.",
-    stack: ["Next.js 16", "Node.js", "Prisma", "Stripe Connect", "TypeScript"],
+      "Baremetrics-style revenue analytics on Stripe Connect. Three ingestion flows — webhooks, daily catch-up cron, and a 2-year initial backfill — feed a multi-tenant Postgres ledger with row-level security. MRR engine merges invoice ledger (for history past Stripe's 3-month event window) with live events (for proration-accurate expansion / contraction). ECB per-day FX conversion. Redis-cached dashboards. Drill-down to source customer on every metric.",
+    stack: ["Next.js", "Node.js", "Prisma", "Supabase RLS", "Stripe Connect", "Redis"],
     image: "/images/indiecator.png",
     caseStudy: "/case-studies/indiecator.pdf",
   },
@@ -31,8 +31,8 @@ const PROJECTS = [
     live: "https://diffed.gg",
     liveLabel: "diffed.gg",
     description:
-      "Two-sided gaming services marketplace. End-to-end transaction lifecycle in one product — Stripe + PayPal checkout, Socket.IO chat, integer-cent wallet payouts, screenshot verification, fee-split admin flows.",
-    stack: ["Next.js 15", "React", "Socket.IO", "Stripe", "PayPal", "Prisma"],
+      "Three-sided gaming services marketplace — players, ranked service providers, admin. Built a game-creation engine so admins onboard any title and its ranking system (divisions, tiers, straight ranks) without code. Stripe-funded multi-currency platform wallet with day-of-transaction ECB conversion. Socket.IO chat with order context. Delivered end-to-end in 2 months as senior engineer on a 3-person team.",
+    stack: ["Next.js", "Node.js", "Socket.IO", "Stripe", "Prisma", "TypeScript"],
     image: "/images/diffed.png",
     caseStudy: "/case-studies/diffed.pdf",
   },
@@ -44,8 +44,8 @@ const PROJECTS = [
     live: "https://satraj.inc",
     liveLabel: "satraj.inc",
     description:
-      "Fuel distribution platform for a 30-year-old NJ wholesaler. Replaced 39 hand-edited Google Sheets tabs with a multi-tenant pricing engine, BOL ingestion pipeline, and invoice generator. Daily pricing run: 45–60 min → under 90 sec.",
-    stack: ["Next.js 16", "Prisma", "AWS", "Samsara API", "PostgreSQL"],
+      "End-to-end fuel distribution platform replacing 39 hand-edited Google Sheets at a 30-year-old NJ wholesaler. Pricing engine emails daily prices with per-customer margins. Invoice engine reconciles Samsara truck telematics against supplier FTP, with idempotent 3-hour background jobs. 3-gate address mapping (dispatch dropdowns → pre-filled driver forms → Samsara geofence fallback). Custom .NET bridge pushes invoices into the ops team's local QuickBooks. Daily pricing run: 45–60 min → under 90 sec.",
+    stack: ["Next.js", "Node.js", "Postgres", "Samsara API", ".NET", "AWS"],
     image: "/images/satraj.png",
     caseStudy: "/case-studies/satraj.pdf",
   },
