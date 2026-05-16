@@ -317,8 +317,8 @@ export default function Home() {
         </div>
         <div className="hero-inner">
           <div className="ribbon-row fade-up">
-            <span className="ribbon">Full Stack Developer</span>
-            <span>Vol. 5 · MMXXVI · ISB → US · EU · MENA</span>
+            <span className="ribbon">Senior Full-Stack Engineer</span>
+            <span>5 yrs · Open to senior remote roles · US · EU · MENA</span>
             <a href={MAILTO} className="btn fill-ink ribbon-btn">
               Email me <span className="arrow">→</span>
             </a>
