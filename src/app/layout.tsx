@@ -18,7 +18,7 @@ const jetMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem — Senior Full-Stack Engineer";
+const TITLE = "Uzair Saleem — Full-Stack Engineer";
 const DESCRIPTION =
   "I ship B2B SaaS products end-to-end for founders. Next.js · TypeScript · Postgres · AWS. 5 years, six live products, remote globally.";
 
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   publisher: "Uzair Saleem",
   keywords: [
     "Full-Stack Engineer", "Next.js Developer", "TypeScript", "SaaS Developer",
-    "Senior Full-Stack", "Remote Engineer", "Stripe Integration", "Prisma",
+    "Full-Stack", "Remote Engineer", "Stripe Integration", "Prisma",
     "PostgreSQL", "AWS", "Pakistan Developer", "Indiecator", "Diffed.gg", "Sat-Raj",
   ],
   alternates: { canonical: SITE_URL },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website", locale: "en_US", url: SITE_URL,
     siteName: "Uzair Saleem", title: TITLE, description: DESCRIPTION,
     images: [{ url: "/og.png", width: 1200, height: 630,
-      alt: "Uzair Saleem — Senior Full-Stack Engineer" }],
+      alt: "Uzair Saleem — Full-Stack Engineer" }],
   },
   twitter: {
     card: "summary_large_image", title: TITLE, description: DESCRIPTION,
@@ -63,7 +63,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Uzair Saleem",
-  jobTitle: "Senior Full-Stack Engineer",
+  jobTitle: "Full-Stack Engineer",
   url: SITE_URL,
   email: "uzairsaleemdev@gmail.com",
   address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },

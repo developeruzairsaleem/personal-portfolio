@@ -317,8 +317,8 @@ export default function Home() {
         </div>
         <div className="hero-inner">
           <div className="ribbon-row fade-up">
-            <span className="ribbon">Senior Full-Stack Engineer</span>
-            <span>5 yrs · Open to senior remote roles · US · EU · MENA</span>
+            <span className="ribbon">Full-Stack Engineer</span>
+            <span>5 yrs · Open to remote roles · US · EU · MENA</span>
             <a href={MAILTO} className="btn fill-ink ribbon-btn">
               Email me <span className="arrow">→</span>
             </a>
@@ -348,7 +348,7 @@ export default function Home() {
 
           <div className="hero-lower">
             <p className="lede fade-up">
-              <strong>Next.js · TypeScript · Postgres · AWS.</strong> Senior Full-Stack Engineer running an AI-assisted workflow.
+              <strong>Next.js · TypeScript · Postgres · AWS.</strong> Full-Stack Engineer running an AI-assisted workflow.
               Five years shipping production SaaS — mostly alongside small product teams. Six live products.
             </p>
           </div>
@@ -511,7 +511,7 @@ export default function Home() {
           </div>
           <div className="about-body fade-up">
             <p>
-              I&apos;m Uzair — a Senior Full-Stack Engineer in Islamabad. Five years building B2B SaaS end-to-end.
+              I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS end-to-end.
               Currently at <strong>Rocket Devs</strong>, leading client builds alongside a small product team.
               Previously <strong>Design&amp;Desktop</strong> and <strong>Apifiny</strong>, where I shipped weekly
               with product teams across three years.

@@ -107,7 +107,7 @@ export default async function BlogPost({ params }: Props) {
               <div style={{ fontFamily: "var(--font-mono), monospace", fontSize: 11, letterSpacing: "0.14em", color: "var(--orange)", textTransform: "uppercase", fontWeight: 700, marginBottom: 6 }}>— Written by</div>
               <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: "-0.02em", marginBottom: 4 }}>Uzair Saleem</div>
               <div style={{ fontSize: 14, color: "rgba(14,13,11,0.7)" }}>
-                Senior Full-Stack Engineer · Islamabad ·{" "}
+                Full-Stack Engineer · Islamabad ·{" "}
                 <Link href="/" style={{ borderBottom: "2px solid var(--orange)", color: "var(--ink)" }}>
                   see my work ↗
                 </Link>
