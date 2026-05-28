@@ -10,6 +10,66 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "stripe-3-month-events-mrr-ledger",
+    title: "Stripe keeps 3 months of events. We needed 2 years of MRR.",
+    excerpt:
+      "Indiecator's whole pitch is 2 years of accurate revenue history. Stripe only retains about 3 months of event data. Here's the ledger architecture that resolved the contradiction, and the one rule that kept it from becoming a mess.",
+    date: "May 2026",
+    readTime: "7 min",
+    tag: "Engineering",
+    body: `
+<p>Indiecator is a revenue analytics platform for indie SaaS founders. Connect your Stripe, see your MRR, ARR, churn, and 2 years of history. The hard part was never the dashboard. It was making the numbers true.</p>
+
+<p>Here is the constraint that shaped the whole architecture, and it&#x2019;s not in Stripe&#x2019;s docs where you&#x2019;d want it: Stripe only retains about 3 months of event history. Everything downstream flows from that one fact.</p>
+
+<h2>The first approach: events, because events are clean</h2>
+
+<p>MRR is a sum of changes. New subscription, plus. Upgrade, plus the delta. Downgrade, minus. Cancellation, minus. Refund, minus. Stripe emits an event for every one of these. So the obvious design is event-driven. Listen to the webhook stream, project each event into an MRR change, sum them up. Clean. Auditable. Every number traces back to a specific event with a timestamp.</p>
+
+<p>I built that first. It worked in the demo. New events came in, MRR moved, the chart updated. Ship it.</p>
+
+<h2>Week 4: the 404s</h2>
+
+<p>Then a real customer connected an account with 2 years of history. The backfill walked backward through their events. Around the 3-month mark, the Stripe API started returning 404s for events the invoices clearly referenced. The events were gone. Not archived. Gone.</p>
+
+<p>Stripe retains events for roughly 30 to 90 days. For a live product watching the stream, fine. For a product whose entire pitch is "see your last 2 years," fatal. An event-only engine can tell you what happened this quarter. It cannot reconstruct last year.</p>
+
+<h2>The fork: invoices or events</h2>
+
+<p>Invoices are the other source of truth, and they&#x2019;re kept forever. Every charge, every billing cycle, every proration shows up as an invoice line. So the second approach is invoice-only. Walk the invoices, derive MRR from billing amounts, done. Backfills cleanly to the beginning of time.</p>
+
+<p>But invoices have their own blind spot. They&#x2019;re generated on a billing cycle, usually monthly. If a customer upgrades on the 3rd and cancels on the 20th, the month-end invoice nets it out. You lose the two real-time changes in between. For a churn or expansion-MRR breakdown, that intra-cycle detail is exactly what you need. Invoice-only is accurate at the boundaries and blind in the middle.</p>
+
+<p>So neither source is complete. Events have the real-time detail but a 3-month memory. Invoices have forever but no intra-cycle resolution.</p>
+
+<h2>The hybrid, and the one rule that made it work</h2>
+
+<p>The answer was to use both, split by time. Invoices anchor the historical backbone, everything older than the live window. Events handle the live edge, the recent window where they still exist and where intra-cycle detail matters. The handoff sits inside Stripe&#x2019;s retention window, so the two sources overlap instead of leaving a gap.</p>
+
+<p>The rule that made it not a mess: both sources write to the same ledger, keyed the same way. One row per MRR change, with a deterministic key derived from the customer, the subscription, and the change type plus period. An invoice-derived row and an event-derived row for the same underlying change produce the <em>same</em> key. So when the two sources overlap, they collide on the key instead of double-counting. Reconciliation becomes a deduplication, not a guess.</p>
+
+<p>That one decision (same keys, deterministic) is what turned "two messy data sources" into "one ledger with two writers." Without it, every overlap is a judgment call and the numbers drift.</p>
+
+<h2>Three flows, one ledger</h2>
+
+<p>In production it runs as three ingestion paths, all writing to that same keyed ledger:</p>
+
+<p><strong>Live webhooks.</strong> Stripe events arrive, get projected, get written. The real-time edge.</p>
+
+<p><strong>A 24-hour catch-up cron.</strong> Webhooks get missed. Endpoints go down, deliveries fail, events arrive out of order. Once a day a job re-pulls the last window from the Stripe API and writes anything the live path missed. Idempotent by the shared key, so re-running it is safe.</p>
+
+<p><strong>The 2-year historical backfill.</strong> Runs once when an account connects. Walks invoices (not events) back as far as they go and builds the historical backbone. The part the event-only design could never have done.</p>
+
+<p>All three converge on the same rows. Run any of them twice and nothing double-counts. That is the whole point of the keyed ledger.</p>
+
+<h2>What I&#x2019;d do differently</h2>
+
+<p>I&#x2019;d find the 3-month retention limit before writing code, not in week 4 from production 404s. It&#x2019;s a one-line fact that invalidated the first architecture. The lesson isn&#x2019;t "events bad." Events were right for the live edge. The lesson is that the retention window of your source of truth is a load-bearing constraint, and you should know it before you design around that source.</p>
+
+<p>Still open: the handoff point between invoice-history and event-live is a tuned constant right now, parked safely inside the retention window. It would be better as a per-account value that adapts to how far back that specific account&#x2019;s events actually still exist. Haven&#x2019;t needed it yet. Will, the first time an account&#x2019;s event history is shorter than the default assumes.</p>
+    `,
+  },
+  {
     slug: "ai-as-leverage-not-autocomplete",
     title: "AI is leverage. It's not autocomplete.",
     excerpt:
