@@ -10,63 +10,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
-    slug: "stripe-3-month-events-mrr-ledger",
-    title: "Stripe keeps 3 months of events. We needed 2 years of MRR.",
+    slug: "show-2-years-revenue-stripe-keeps-3-months",
+    title: "How to show 2 years of revenue when Stripe only remembers 3 months",
     excerpt:
-      "Indiecator's whole pitch is 2 years of accurate revenue history. Stripe only retains about 3 months of event data. Here's the ledger architecture that resolved the contradiction, and the one rule that kept it from becoming a mess.",
+      "I built a dashboard that promised founders 2 years of revenue history. The data source it relied on only kept the last 3 months. This is the story of that contradiction, told so it makes sense whether or not you write code.",
     date: "May 2026",
-    readTime: "7 min",
+    readTime: "8 min",
     tag: "Engineering",
     body: `
-<p>Indiecator is a revenue analytics platform for indie SaaS founders. Connect your Stripe, see your MRR, ARR, churn, and 2 years of history. The hard part was never the dashboard. It was making the numbers true.</p>
+<h2>The problem, in plain terms</h2>
 
-<p>Here is the constraint that shaped the whole architecture, and it&#x2019;s not in Stripe&#x2019;s docs where you&#x2019;d want it: Stripe only retains about 3 months of event history. Everything downstream flows from that one fact.</p>
+<p>I built a product called Indiecator. You connect it to your Stripe account (Stripe is the service most online businesses use to charge customers), and it shows you your revenue over time. How much you make each month, how fast you&#x2019;re growing, how many customers are leaving. The kind of dashboard every subscription business wants but few have.</p>
 
-<h2>The first approach: events, because events are clean</h2>
+<p>The promise was simple: connect your account, see the last 2 years. That promise turned out to be hard to keep, for a reason almost nobody expects.</p>
 
-<p>MRR is a sum of changes. New subscription, plus. Upgrade, plus the delta. Downgrade, minus. Cancellation, minus. Refund, minus. Stripe emits an event for every one of these. So the obvious design is event-driven. Listen to the webhook stream, project each event into an MRR change, sum them up. Clean. Auditable. Every number traces back to a specific event with a timestamp.</p>
+<p><strong>The data source I was pulling from only remembers the last 3 months.</strong> I was promising 2 years of history while reading from something with a 3-month memory. Everything that follows is how I closed that gap.</p>
 
-<p>I built that first. It worked in the demo. New events came in, MRR moved, the chart updated. Ship it.</p>
+<h2>One word you need: MRR</h2>
 
-<h2>Week 4: the 404s</h2>
+<p>MRR means monthly recurring revenue. It&#x2019;s the predictable income a subscription business earns every month. If 100 people pay you $10 a month, your MRR is $1,000. Someone upgrades, it goes up. Someone cancels, it goes down. The entire job of the dashboard is to track that number accurately, month by month, going back 2 years. Hold onto that. The rest is about where the numbers to compute it come from.</p>
 
-<p>Then a real customer connected an account with 2 years of history. The backfill walked backward through their events. Around the 3-month mark, the Stripe API started returning 404s for events the invoices clearly referenced. The events were gone. Not archived. Gone.</p>
+<h2>First attempt: follow the play-by-play</h2>
 
-<p>Stripe retains events for roughly 30 to 90 days. For a live product watching the stream, fine. For a product whose entire pitch is "see your last 2 years," fatal. An event-only engine can tell you what happened this quarter. It cannot reconstruct last year.</p>
+<p>Stripe can notify you the instant anything happens. Customer subscribes, you get a ping. Upgrade, ping. Cancellation, ping. Each ping is called an "event." Think of it as a live play-by-play of every money change, delivered as it happens.</p>
 
-<h2>The fork: invoices or events</h2>
+<p>So the obvious design: listen to the play-by-play, and every time a change comes in, adjust the running total. Add for a new subscription, subtract for a cancellation. It&#x2019;s clean and it&#x2019;s honest. Every number on the dashboard traces back to a specific moment something happened.</p>
 
-<p>Invoices are the other source of truth, and they&#x2019;re kept forever. Every charge, every billing cycle, every proration shows up as an invoice line. So the second approach is invoice-only. Walk the invoices, derive MRR from billing amounts, done. Backfills cleanly to the beginning of time.</p>
+<p>I built that first. It worked in the demo. New changes came in, the chart moved. Ship it.</p>
 
-<p>But invoices have their own blind spot. They&#x2019;re generated on a billing cycle, usually monthly. If a customer upgrades on the 3rd and cancels on the 20th, the month-end invoice nets it out. You lose the two real-time changes in between. For a churn or expansion-MRR breakdown, that intra-cycle detail is exactly what you need. Invoice-only is accurate at the boundaries and blind in the middle.</p>
+<h2>Week 4: the history wasn&#x2019;t there</h2>
 
-<p>So neither source is complete. Events have the real-time detail but a 3-month memory. Invoices have forever but no intra-cycle resolution.</p>
+<p>Then a real customer connected an account with 2 years of activity. The system tried to walk backward through the play-by-play to reconstruct their history. Around the 3-month mark, it ran out. The older plays simply weren&#x2019;t there anymore. Stripe keeps the play-by-play for about 30 to 90 days, then drops it. Not hidden, not archived. Gone.</p>
 
-<h2>The hybrid, and the one rule that made it work</h2>
+<p>This is fine if you only care about right now. It is fatal if your whole product is "see your last 2 years." A play-by-play can tell you what happened this quarter. It can&#x2019;t tell you what happened last year, because last year&#x2019;s plays were thrown away.</p>
 
-<p>The answer was to use both, split by time. Invoices anchor the historical backbone, everything older than the live window. Events handle the live edge, the recent window where they still exist and where intra-cycle detail matters. The handoff sits inside Stripe&#x2019;s retention window, so the two sources overlap instead of leaving a gap.</p>
+<h2>The other source: the receipts</h2>
 
-<p>The rule that made it not a mess: both sources write to the same ledger, keyed the same way. One row per MRR change, with a deterministic key derived from the customer, the subscription, and the change type plus period. An invoice-derived row and an event-derived row for the same underlying change produce the <em>same</em> key. So when the two sources overlap, they collide on the key instead of double-counting. Reconciliation becomes a deduplication, not a guess.</p>
+<p>There&#x2019;s a second place the data lives. Every time Stripe charges a customer, it keeps a receipt (an "invoice"). Unlike the play-by-play, receipts are kept forever. So the second idea: ignore the play-by-play, just read every receipt from day one, and rebuild the revenue history from those. This solves the memory problem completely. The receipts go back as far as you need.</p>
 
-<p>That one decision (same keys, deterministic) is what turned "two messy data sources" into "one ledger with two writers." Without it, every overlap is a judgment call and the numbers drift.</p>
+<p>But receipts have their own blind spot. They&#x2019;re only created once a month, at billing time. Imagine a customer upgrades on the 3rd, then cancels on the 20th. The receipt at the end of the month shows the final state and quietly erases the two changes that happened in between. If you want to understand <em>why</em> revenue moved (how much came from upgrades, how much you lost to churn), that in-between detail is exactly what you need, and the receipts hide it.</p>
 
-<h2>Three flows, one ledger</h2>
+<p>So now I had two incomplete sources. The play-by-play has every detail but only remembers 3 months. The receipts remember forever but smooth over the details.</p>
 
-<p>In production it runs as three ingestion paths, all writing to that same keyed ledger:</p>
+<h2>The fix: use both, split by time</h2>
 
-<p><strong>Live webhooks.</strong> Stripe events arrive, get projected, get written. The real-time edge.</p>
+<p>Neither source is complete alone, but their weaknesses don&#x2019;t overlap. So I used both, divided by time. For everything older than the last few months, use the receipts (they&#x2019;re all that survive back there anyway). For the recent window, use the detailed play-by-play (it still exists, and that&#x2019;s where the rich detail matters most). The dividing line sits comfortably inside the 3-month window, so the two sources overlap a little rather than leaving a gap.</p>
 
-<p><strong>A 24-hour catch-up cron.</strong> Webhooks get missed. Endpoints go down, deliveries fail, events arrive out of order. Once a day a job re-pulls the last window from the Stripe API and writes anything the live path missed. Idempotent by the shared key, so re-running it is safe.</p>
+<p>That overlap creates an obvious risk: the same change counted twice, once from a receipt and once from a play. Double-counting would make every number wrong.</p>
 
-<p><strong>The 2-year historical backfill.</strong> Runs once when an account connects. Walks invoices (not events) back as far as they go and builds the historical backbone. The part the event-only design could never have done.</p>
+<p>Here&#x2019;s the rule that solved it, and it&#x2019;s the part I&#x2019;m actually proud of. Every change gets written into one shared list, and each entry is stamped with a fingerprint built from <em>who</em> it happened to, <em>what</em> changed, and <em>when</em>. The fingerprint is calculated the same way no matter which source it came from. So a change described by a receipt and the same change described by a play produce the <em>identical</em> fingerprint. When they overlap, they land on the same slot and merge automatically instead of counting twice.</p>
 
-<p>All three converge on the same rows. Run any of them twice and nothing double-counts. That is the whole point of the keyed ledger.</p>
+<p>That single decision (one shared list, identical fingerprints) is what turned "two messy data sources" into "one clean record with two contributors." Without it, every overlap is a judgment call and the totals slowly drift away from the truth.</p>
 
-<h2>What I&#x2019;d do differently</h2>
+<h2>How it runs day to day</h2>
 
-<p>I&#x2019;d find the 3-month retention limit before writing code, not in week 4 from production 404s. It&#x2019;s a one-line fact that invalidated the first architecture. The lesson isn&#x2019;t "events bad." Events were right for the live edge. The lesson is that the retention window of your source of truth is a load-bearing constraint, and you should know it before you design around that source.</p>
+<p>In production, three jobs all feed that one shared list:</p>
 
-<p>Still open: the handoff point between invoice-history and event-live is a tuned constant right now, parked safely inside the retention window. It would be better as a per-account value that adapts to how far back that specific account&#x2019;s events actually still exist. Haven&#x2019;t needed it yet. Will, the first time an account&#x2019;s event history is shorter than the default assumes.</p>
+<p><strong>The live feed.</strong> As changes happen, they get recorded immediately. This is the real-time edge.</p>
+
+<p><strong>A daily catch-up.</strong> Live feeds miss things. Connections drop, notifications fail, things arrive out of order. So once a day a job re-checks the recent window and fills in anything the live feed missed. Because of the fingerprints, running it again never creates duplicates. It only fills gaps.</p>
+
+<p><strong>The one-time history rebuild.</strong> When you first connect your account, a job reads your receipts all the way back and builds your 2-year history. This is the part the play-by-play could never have done.</p>
+
+<p>All three write to the same list, all three are safe to re-run, and none of them can double-count. That safety is the entire point.</p>
+
+<h2>What I&#x2019;d do differently, and what&#x2019;s still open</h2>
+
+<p>I&#x2019;d have found the 3-month limit before building, not in week 4 when real history started disappearing. It&#x2019;s a single fact that quietly invalidated my first design. The takeaway isn&#x2019;t "the play-by-play was a bad idea." It was right for the recent window. The takeaway is: <strong>before you build on top of any data source, find out how long it actually keeps its data.</strong> That one property decides your whole architecture.</p>
+
+<p>Still unsolved: the dividing line between "use receipts" and "use the play-by-play" is a fixed point right now, parked safely inside the 3-month window. It would be smarter to set it per account, based on how far back each account&#x2019;s play-by-play actually still reaches. I haven&#x2019;t needed that yet. I will, the first time an account&#x2019;s history is shorter than my fixed line assumes.</p>
     `,
   },
   {
