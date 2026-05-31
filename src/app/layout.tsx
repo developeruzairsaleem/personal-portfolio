@@ -18,9 +18,9 @@ const jetMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem — Full-Stack Engineer";
+const TITLE = "Uzair Saleem · Full-Stack Engineer";
 const DESCRIPTION =
-  "Full-stack engineer with five years building web apps — TypeScript, Node, Next.js, and Postgres. Based in Islamabad, open to remote work and relocation.";
+  "Full-stack engineer, five years building web apps in TypeScript, Node, Next.js, and Postgres. Based in Islamabad, open to remote work and relocation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website", locale: "en_US", url: SITE_URL,
     siteName: "Uzair Saleem", title: TITLE, description: DESCRIPTION,
     images: [{ url: "/og.png", width: 1200, height: 630,
-      alt: "Uzair Saleem — Full-Stack Engineer" }],
+      alt: "Uzair Saleem · Full-Stack Engineer" }],
   },
   twitter: {
     card: "summary_large_image", title: TITLE, description: DESCRIPTION,

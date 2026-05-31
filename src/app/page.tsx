@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { Nav, Footer, LINKS, EMAIL } from "./site-chrome";
 
 type Project = {
@@ -25,7 +26,7 @@ const PROJECTS: Project[] = [
     href: "https://satraj.inc",
     ext: "satraj.inc ↗",
     blurb:
-      "Operations software for a fuel wholesaler — replaced 39 spreadsheets and cut the daily pricing and invoicing run from 45–60 minutes to under 90 seconds.",
+      "Operations software for a fuel wholesaler that replaced 39 spreadsheets and cut the daily pricing and invoicing run from 45-60 minutes to under 90 seconds.",
     stack: ["next.js", "node", "postgres", "redis"],
     image: "/images/satraj.png",
   },
@@ -50,7 +51,13 @@ export default function Home() {
       <main className="wrap">
         {/* INTRO */}
         <section className="intro">
-          <p className="eyebrow fade"><span className="dot" />open to remote roles &amp; relocation</p>
+          <div className="me fade">
+            <Image className="me-photo" src="/images/main-profile-photo.png" alt="Uzair Saleem" width={56} height={56} priority />
+            <div className="me-id">
+              <span className="me-name">Uzair Saleem</span>
+              <span className="me-status">open to remote roles</span>
+            </div>
+          </div>
           <h1 className="fade d1">Full-stack engineer who ships products end to end.</h1>
           <p className="sub fade d1">
             Five years building web apps with <b>TypeScript, Node, Next.js, and Postgres</b>. Based in
@@ -100,7 +107,7 @@ export default function Home() {
           <p className="label"><span>about</span></p>
           <p>
             I&apos;m a full-stack engineer with five years of experience, based in Islamabad. I work
-            across the whole stack — frontend, APIs, database, payments, and the background jobs that
+            across the whole stack: frontend, APIs, database, payments, and the background jobs that
             keep it all in sync. Most of what I build handles money or data that has to stay correct,
             so I write for the cases that break, not just the ones that work.
           </p>
@@ -110,7 +117,7 @@ export default function Home() {
         {/* CONTACT */}
         <section className="block contact" id="contact">
           <p className="label"><span>contact</span></p>
-          <p>The fastest way to reach me is email — I usually reply within a day.</p>
+          <p>The fastest way to reach me is email. I usually reply within a day.</p>
           <p className="links">
             <a href={LINKS.email}>{EMAIL}</a>
             <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer">book a call <span className="x">↗</span></a>

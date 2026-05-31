@@ -68,7 +68,7 @@ export default async function BlogPost({ params }: Props) {
             <img src="/images/main-profile-photo.png" alt="Uzair Saleem" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </span>
           <span style={{ fontSize: 14, lineHeight: 1.5, color: "var(--muted)" }}>
-            <b style={{ color: "var(--ink)", fontWeight: 600 }}>Uzair Saleem</b> — full-stack engineer, Islamabad.{" "}
+            <b style={{ color: "var(--ink)", fontWeight: 600 }}>Uzair Saleem</b>, full-stack engineer, Islamabad.{" "}
             <Link href="/" style={{ color: "var(--accent)" }}>see my work →</Link>
           </span>
         </div>

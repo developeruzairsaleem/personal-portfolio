@@ -6,11 +6,11 @@ import { Nav, Footer } from "../site-chrome";
 export const metadata: Metadata = {
   title: "Writing",
   description:
-    "Essays on building production software — payments, data, and shipping with AI in the loop. By Uzair Saleem.",
+    "Essays on building production software: payments, data, and shipping with AI in the loop. By Uzair Saleem.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Writing · Uzair Saleem",
-    description: "Essays on building production software — payments, data, and shipping with AI in the loop.",
+    description: "Essays on building production software: payments, data, and shipping with AI in the loop.",
     url: "/blog",
     type: "website",
   },
@@ -26,7 +26,7 @@ export default function BlogIndex() {
           <p className="eyebrow fade">writing</p>
           <h1 className="fade d1">Notes on building software.</h1>
           <p className="sub fade d1">
-            Short essays on the parts of shipping production software that don&apos;t fit on a ticket —
+            Short essays on the parts of shipping production software that don&apos;t fit on a ticket:
             payments, data that has to stay correct, and working with AI in the loop.
           </p>
         </section>
