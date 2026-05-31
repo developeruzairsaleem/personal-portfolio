@@ -20,7 +20,7 @@ const jetMono = JetBrains_Mono({
 const SITE_URL = "https://uzairsaleem.dev";
 const TITLE = "Uzair Saleem — Full-Stack Engineer";
 const DESCRIPTION =
-  "Full-stack engineer. I build the correctness-critical end of the stack — payment ledgers, reconciliation pipelines, multi-tenant data. TypeScript, Node, PostgreSQL, Stripe. 5 years, remote.";
+  "Full-stack engineer with five years building web apps — TypeScript, Node, Next.js, and Postgres. Based in Islamabad, open to remote work and relocation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
