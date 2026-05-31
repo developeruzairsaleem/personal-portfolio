@@ -6,21 +6,21 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 const jetMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
 const TITLE = "Uzair Saleem — Full-Stack Engineer";
 const DESCRIPTION =
-  "I ship B2B SaaS products end-to-end for founders. Next.js · TypeScript · Postgres · AWS. 5 years, six live products, remote globally.";
+  "Full-stack engineer. I build the correctness-critical end of the stack — payment ledgers, reconciliation pipelines, multi-tenant data. TypeScript, Node, PostgreSQL, Stripe. 5 years, remote.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf2d9",
+  themeColor: "#f5f6f7",
   width: "device-width",
   initialScale: 1,
 };
@@ -79,7 +79,7 @@ const personSchema = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Adds .js so CSS knows to hide elements pre-reveal */}
         <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add('js');` }} />
@@ -87,7 +87,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${inter.variable} ${jetMono.variable} antialiased`}>
         <a
           href="#work"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#ff5a1f] text-[#0e0d0b] font-semibold px-4 py-2 rounded-md"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#1b1a17] text-[#f4f2ec] font-semibold px-4 py-2"
         >
           Skip to work
         </a>

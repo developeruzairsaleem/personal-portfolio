@@ -3,38 +3,28 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import Home from '../app/page'
 
 // Render the page as static HTML (SSR-style). This skips client-side
-// effects (IntersectionObserver, requestAnimationFrame, photo tilt) that
-// jsdom can't run reliably, while still verifying the rendered output.
+// effects (IntersectionObserver, clock) that jsdom can't run reliably,
+// while still verifying the rendered output.
 const html = renderToStaticMarkup(<Home />)
 
-describe('Portfolio Homepage (Maximal)', () => {
+describe('Portfolio Homepage (editorial rebuild)', () => {
   it('renders the hero headline', () => {
-    expect(html).toMatch(/B2B SaaS/i)
-    expect(html).toMatch(/to end\./i)
+    expect(html).toMatch(/parts of the stack/i)
+    expect(html).toMatch(/exact/i)
   })
 
-  it('renders all 3 projects', () => {
+  it('renders all 4 work entries', () => {
     expect(html).toContain('Indiecator')
-    expect(html).toContain('Diffed.gg')
     expect(html).toContain('Sat-Raj')
+    expect(html).toContain('Diffed.gg')
+    expect(html).toContain('Design&amp;Desktop')
   })
 
-  it('renders all 3 testimonials with correct names', () => {
-    expect(html).toContain('Robbie Multani')
-    expect(html).toContain('Omar Al Watan')
-    expect(html).toContain('Daniel Reuter')
-  })
-
-  it('renders the writing section with 3 AI-agent posts', () => {
-    expect(html).toMatch(/AI is leverage/i)
-    expect(html).toMatch(/agent that worked while I slept/i)
-    expect(html).toMatch(/hardest part of working with AI agents/i)
-  })
-
-  it('renders the stats bar', () => {
-    expect(html).toContain('Years shipping')
-    expect(html).toContain('Products in production')
-    expect(html).toContain('Founder clients')
+  it('surfaces the real technical trade-offs', () => {
+    expect(html).toMatch(/3 months of event history/i)        // Indiecator MRR
+    expect(html).toMatch(/geofence/i)                          // Sat-Raj 3-gate
+    expect(html).toMatch(/MediaBunny/i)                        // render pipeline
+    expect(html).toMatch(/divisions/i)                         // Diffed ranking engine
   })
 
   it('has resume download link', () => {
@@ -53,22 +43,19 @@ describe('Portfolio Homepage (Maximal)', () => {
     expect(html).toContain('mailto:uzairsaleemdev@gmail.com')
   })
 
-  it('has 3 case study links', () => {
-    expect(html).toContain('/case-studies/indiecator.pdf')
-    expect(html).toContain('/case-studies/diffed.pdf')
-    expect(html).toContain('/case-studies/satraj.pdf')
-  })
-
-  it('has Maximal sections: work, how, about, contact', () => {
+  it('has the sections: work, experience, approach, stack, about, contact', () => {
     expect(html).toContain('id="work"')
-    expect(html).toContain('id="how"')
+    expect(html).toContain('id="experience"')
+    expect(html).toContain('id="approach"')
+    expect(html).toContain('id="stack"')
     expect(html).toContain('id="about"')
     expect(html).toContain('id="contact"')
   })
 
-  it('renders the Rocket Devs / Apifiny / Design&Desktop context', () => {
+  it('renders the real career timeline', () => {
     expect(html).toContain('Rocket Devs')
     expect(html).toContain('Apifiny')
     expect(html).toMatch(/Design&amp;Desktop|Design&Desktop/)
+    expect(html).toContain('SZABIST')
   })
 })

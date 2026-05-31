@@ -1,198 +1,227 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
-const CALENDLY_URL = "https://calendly.com/uzairsaleemdev/30min";
 const EMAIL = "uzairsaleemdev@gmail.com";
 const MAILTO = `mailto:${EMAIL}`;
 const RESUME = "/uzair-saleem-resume.pdf";
+const CALENDLY = "https://calendly.com/uzairsaleemdev/30min";
+const GITHUB = "https://github.com/developeruzairsaleem";
+const LINKEDIN = "https://www.linkedin.com/in/uzair-saleem-5a399825a/";
 
-const PROJECTS = [
+type Project = {
+  idx: string;
+  status: "live" | "shipped" | "client";
+  statusText: string;
+  name: string;
+  href?: string;
+  ext?: string;
+  role: string;
+  lead: ReactNode;
+  callLabel: string;
+  call: ReactNode;
+  stack: string[];
+  image?: string;
+  cap?: [string, string];
+};
+
+const PROJECTS: Project[] = [
   {
-    no: "N° 01",
-    badge: "live" as const,
-    badgeText: "● LIVE",
+    idx: "001",
+    status: "live",
+    statusText: "Live",
     name: "Indiecator",
-    live: "https://indiecator.com",
-    liveLabel: "indiecator.com",
-    description:
-      "Baremetrics-style revenue analytics on Stripe Connect. Three ingestion flows — webhooks, daily catch-up cron, and a 2-year initial backfill — feed a multi-tenant Postgres ledger with row-level security. MRR engine merges invoice ledger (for history past Stripe's 3-month event window) with live events (for proration-accurate expansion / contraction). ECB per-day FX conversion. Redis-cached dashboards. Drill-down to source customer on every metric.",
-    stack: ["Next.js", "Node.js", "Prisma", "Supabase RLS", "Stripe Connect", "Redis"],
+    href: "https://indiecator.com",
+    ext: "indiecator.com",
+    role: "Lead · Rocket Devs · 2025",
+    lead: (
+      <>
+        Revenue analytics for subscription businesses on Stripe and Paddle — MRR, ARR, retention,
+        expansion / contraction / churn, with <b>every number drillable to the customer that moved
+        it</b>. Three idempotent ingestion flows (live webhooks, a 24-hour catch-up cron, a 2-year
+        backfill) feed a multi-tenant Postgres ledger behind row-level security, with per-day ECB
+        conversion across 30 currencies and Redis-cached reads.
+      </>
+    ),
+    callLabel: "The hard call",
+    call: (
+      <>
+        Started event-sourced. Stripe only retains 3 months of event history, so historical MRR
+        couldn&apos;t be rebuilt from events alone. Switched to an invoice ledger — invoices live
+        forever — then merged the two: <b>invoices carry the long tail, live events catch
+        proration-accurate plan changes</b> the moment they happen.
+      </>
+    ),
+    stack: ["Next.js", "Node.js", "Prisma", "Postgres / RLS", "Redis", "Stripe", "Paddle"],
     image: "/images/indiecator.png",
-    caseStudy: "/case-studies/indiecator.pdf",
+    cap: ["indiecator.com", "fig. 1"],
   },
   {
-    no: "N° 02",
-    badge: "ship" as const,
-    badgeText: "SHIPPED",
-    name: "Diffed.gg",
-    live: "https://diffed.gg",
-    liveLabel: "diffed.gg",
-    description:
-      "Three-sided gaming services marketplace — players, ranked service providers, admin. Built a game-creation engine so admins onboard any title and its ranking system (divisions, tiers, straight ranks) without code. Stripe-funded multi-currency platform wallet with day-of-transaction ECB conversion. Socket.IO chat with order context. Delivered end-to-end in 2 months as senior engineer on a 3-person team.",
-    stack: ["Next.js", "Node.js", "Socket.IO", "Stripe", "Prisma", "TypeScript"],
-    image: "/images/diffed.png",
-    caseStudy: "/case-studies/diffed.pdf",
-  },
-  {
-    no: "N° 03",
-    badge: "client" as const,
-    badgeText: "CLIENT · NJ",
+    idx: "002",
+    status: "client",
+    statusText: "Client · live",
     name: "Sat-Raj",
-    live: "https://satraj.inc",
-    liveLabel: "satraj.inc",
-    description:
-      "End-to-end fuel distribution platform replacing 39 hand-edited Google Sheets at a 30-year-old NJ wholesaler. Pricing engine emails daily prices with per-customer margins. Invoice engine reconciles Samsara truck telematics against supplier FTP, with idempotent 3-hour background jobs. 3-gate address mapping (dispatch dropdowns → pre-filled driver forms → Samsara geofence fallback). Custom .NET bridge pushes invoices into the ops team's local QuickBooks. Daily pricing run: 45–60 min → under 90 sec.",
+    href: "https://satraj.inc",
+    ext: "satraj.inc",
+    role: "Lead · Rocket Devs · 2025",
+    lead: (
+      <>
+        Operations platform for a 30-year-old fuel wholesaler. Replaced 39 hand-edited spreadsheets;
+        the daily pricing-and-invoicing run dropped from <b>45–60 minutes to under 90 seconds</b>.
+        Per-customer margins, generated price emails, idempotent 3-hour jobs.
+      </>
+    ),
+    callLabel: "The messy part",
+    call: (
+      <>
+        Three sources disagreed on how much fuel moved — Samsara truck telematics, the supplier&apos;s
+        BP FTP feed, and delivered gallons. Reconciled them, then fixed the address chaos (drivers
+        typed the same stop ten ways) with a <b>3-gate system</b>: dispatch dropdowns, pre-filled
+        driver forms, and a Samsara geofence fallback that maps GPS to the right customer. A custom
+        .NET app bridges invoices into the team&apos;s on-prem QuickBooks.
+      </>
+    ),
     stack: ["Next.js", "Node.js", "Postgres", "Samsara API", ".NET", "AWS"],
     image: "/images/satraj.png",
-    caseStudy: "/case-studies/satraj.pdf",
+    cap: ["satraj.inc", "fig. 2"],
+  },
+  {
+    idx: "003",
+    status: "shipped",
+    statusText: "Shipped",
+    name: "Diffed.gg",
+    href: "https://diffed-swart.vercel.app/",
+    ext: "diffed.gg",
+    role: "Senior eng · Apifiny · 2 mo, team of 3",
+    lead: (
+      <>
+        Three-sided marketplace where players buy rank-progression help from vetted experts. Stripe +
+        PayPal multi-currency wallet with day-of-transaction FX, Socket.IO order chat, fee-split
+        payouts, screenshot verification.
+      </>
+    ),
+    callLabel: "The core abstraction",
+    call: (
+      <>
+        Every game ranks players differently — some by tiered divisions (Diamond IV up to
+        Grandmaster), some by straight ranks. Built a config-driven engine so admins onboard any game
+        and its rank structure without code. The hard part: making a start and target rank comparable
+        <i> across</i> games, so pricing and matching worked at all.
+      </>
+    ),
+    stack: ["Next.js", "Node.js", "Socket.IO", "Stripe", "PayPal", "TypeScript"],
+    image: "/images/diffed.png",
+    cap: ["diffed.gg", "fig. 3"],
+  },
+  {
+    idx: "004",
+    status: "client",
+    statusText: "Client · DE",
+    name: "Design&Desktop",
+    role: "Full-stack · 2025 · Germany",
+    lead: (
+      <>
+        Two builds for a German product studio: a browser-based AI reel generator (voice-cloned
+        narration) and a parallel scraping platform for restaurant data.
+      </>
+    ),
+    callLabel: "The performance work",
+    call: (
+      <>
+        The reel renderer ran FFmpeg.wasm in the browser, so render times swung 2–10 min across
+        devices. Multithreading bought ~50%; moving to MediaBunny cut render time <b>~90%</b>. On the
+        scraper, target sites blocked direct HTTP, so I ran a pool of 5 parallel headless Chromium
+        workers — <b>~80% more throughput</b> than crawling one at a time.
+      </>
+    ),
+    stack: ["Next.js", "Node.js", "FFmpeg.wasm → MediaBunny", "Headless Chromium", "Supabase"],
   },
 ];
 
-const TESTIMONIALS = [
+type Role = {
+  when: string;
+  dur?: string;
+  role: string;
+  co: string;
+  where: string;
+  note: string;
+  tags: string[];
+};
+
+const EXPERIENCE: Role[] = [
   {
-    quote:
-      "Uzair replaced 30 years of spreadsheet workflow with software the whole team trusts. The numbers match — first time, every time. He owned every layer of the build.",
-    name: "Robbie Multani",
-    role: "Co-founder, Sat-Raj Inc.",
-    company: "Voorhees, NJ",
+    when: "Jul 2025 — present",
+    role: "Full-stack engineer",
+    co: "Rocket Devs",
+    where: "Remote · US / EU / MENA",
+    note: "Lead engineer on Indiecator and Sat-Raj. Owned schema, ingestion, backend, and deploy end to end. Set the architecture; mentor 2 engineers.",
+    tags: ["TypeScript", "Node", "Postgres", "Stripe", "Redis"],
   },
   {
-    quote:
-      "Best engineering hire I've made for the product. He didn't just build a dashboard — he rebuilt how we think about revenue. The architecture doc is now how I explain our business to investors.",
-    name: "Omar Al Watan",
-    role: "Founder, Indiecator",
-    company: "Remote · MENA",
+    when: "Jan — Jul 2025",
+    role: "Full-stack engineer",
+    co: "Design&Desktop",
+    where: "Remote · Germany",
+    note: "Rebuilt a browser render pipeline (FFmpeg.wasm → MediaBunny, ~90% faster) and a parallel headless-Chromium scraper (~80% more throughput).",
+    tags: ["Next.js", "FFmpeg.wasm", "MediaBunny", "Chromium"],
   },
   {
-    quote:
-      "Three contractors before Uzair, none shipped. He delivered a production marketplace in one quarter — zero hand-holding, money math just works.",
-    name: "Daniel Reuter",
-    role: "Founder, Diffed.gg",
-    company: "Berlin, DE",
+    when: "Jan 2022 — Dec 2024",
+    role: "Engineer → Senior Engineer",
+    co: "Apifiny",
+    where: "Islamabad, PK",
+    note: "Promoted to senior in 18 months. Shipped Diffed.gg end to end; built the config-driven ranking engine and the multi-currency wallet. Owned schema and admin tooling; mentored 2 juniors.",
+    tags: ["Next.js", "Node", "Postgres", "Socket.IO", "Stripe"],
   },
 ];
 
-const POSTS = [
+const PRINCIPLES = [
   {
-    slug: "ai-as-leverage-not-autocomplete",
-    title: "AI is leverage. It's not autocomplete.",
-    excerpt:
-      "Most engineers use AI to type faster. A smaller group uses it to ship faster. The gap between the two is the entire story of what changed about this job.",
-    readTime: "5 min",
-    date: "Apr 2026",
-    tag: "AI Agents",
+    n: "01",
+    h: "Correctness first",
+    p: "Money in integer cents. Idempotent jobs you can re-run without double-counting. Aggregates that reconcile to source. Shipped isn't the bar — correct is.",
   },
   {
-    slug: "the-agent-that-worked-while-i-slept",
-    title: "The agent that worked while I slept",
-    excerpt:
-      "I set up a Claude Code loop overnight. Woke up to a clean diff and 47 passing tests. Notes on scoping work for an agent that doesn't sleep.",
-    readTime: "6 min",
-    date: "Mar 2026",
-    tag: "AI Agents",
+    n: "02",
+    h: "End to end",
+    p: "Schema, backend, frontend, infra, and the integrations nobody wants — FTP feeds, on-prem QuickBooks, telematics APIs. I own the whole path, not a ticket.",
   },
   {
-    slug: "the-hardest-part-of-ai-agents-isnt-the-ai",
-    title: "The hardest part of working with AI agents isn't the AI",
-    excerpt:
-      "After a year with agents in the loop, the bottleneck stopped being the model and started being me — my ability to brief clearly.",
-    readTime: "7 min",
-    date: "May 2026",
-    tag: "AI Agents",
+    n: "03",
+    h: "Design for the failure modes",
+    p: "The interesting work is what happens when input arrives late, duplicated, or wrong. I build for that case first, not the happy path.",
+  },
+  {
+    n: "04",
+    h: "AI in the loop",
+    p: "Claude Code for the boilerplate and the refactors. The architecture and the trade-offs stay mine.",
   },
 ];
 
-const STACK_PILLS = [
-  "Next.js", "React 19", "TypeScript", "Node.js",
-  "PostgreSQL", "Prisma", "Supabase", "Stripe",
-  "Tailwind CSS", "AWS", "Socket.IO", "Vercel",
+const LEDGER = [
+  { h: "Languages", items: [["TypeScript", "strict"], ["JavaScript", ""], ["SQL", ""]] },
+  { h: "Frontend", items: [["Next.js", "App Router"], ["React", "19"], ["Tailwind", ""], ["Framer Motion", ""]] },
+  { h: "Backend", items: [["Node.js", ""], ["Express", ""], ["Prisma", ""], ["REST · webhooks", ""], ["Socket.IO", ""]] },
+  { h: "Data", items: [["PostgreSQL", "indexes"], ["Supabase", "RLS"], ["Redis", ""], ["MongoDB", ""]] },
+  { h: "Payments · external", items: [["Stripe", "Connect"], ["Paddle · PayPal", ""], ["Samsara", ""], ["QuickBooks", "bridge"], ["ECB FX", ""]] },
+  { h: "Infra", items: [["AWS", "EC2·RDS·S3"], ["Cloudflare · Vercel", ""], ["Docker", ""], ["GitHub Actions", ""]] },
 ];
-
-const BrandMark = () => (
-  <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-label="Uzair Saleem logo">
-    <rect x="5" y="7" width="28" height="28" rx="4" fill="#ff5a1f" />
-    <rect x="1" y="3" width="28" height="28" rx="4" fill="#0e0d0b" />
-    <text x="15" y="23" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="16" fontStyle="italic" fill="#f5e055" textAnchor="middle" letterSpacing="-0.5">u/s</text>
-    <circle cx="30" cy="4" r="3.4" fill="#f5e055" stroke="#0e0d0b" strokeWidth="1.5" />
-    <line x1="5" y1="19" x2="24" y2="19" stroke="#ff5a1f" strokeWidth="1.5" opacity="0.5" />
-  </svg>
-);
-
-const FooterMark = () => (
-  <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-    <rect x="5" y="7" width="28" height="28" rx="4" fill="#ff5a1f" />
-    <rect x="1" y="3" width="28" height="28" rx="4" fill="#fbf2d9" />
-    <text x="15" y="23" fontFamily="Inter, sans-serif" fontWeight="900" fontSize="16" fontStyle="italic" fill="#0e0d0b" textAnchor="middle" letterSpacing="-0.5">u/s</text>
-    <circle cx="30" cy="4" r="3.4" fill="#f5e055" stroke="#0e0d0b" strokeWidth="1.5" />
-  </svg>
-);
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.26 5.69.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z" />
   </svg>
 );
-
 const LinkedinIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
   </svg>
 );
 
-function StatCounter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+function useReveal() {
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const numEl = el.querySelector(".num") as HTMLElement;
-    const sufEl = el.querySelector(".suf") as HTMLElement;
-    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-    const run = () => {
-      const start = performance.now();
-      const dur = 1400;
-      const tick = (now: number) => {
-        const t = Math.min(1, (now - start) / dur);
-        const v = Math.round(to * easeOut(t));
-        numEl.textContent = String(v);
-        sufEl.textContent = t > 0.6 ? suffix : "";
-        if (t < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    };
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            run();
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [to, suffix]);
-  return (
-    <div ref={ref} className="stat-val">
-      <span className="num">0</span>
-      <span className="suf"></span>
-    </div>
-  );
-}
-
-export default function Home() {
-  // Trigger .loaded + scroll reveal + photo tilt + parallax
-  useEffect(() => {
-    const trigger = () => document.documentElement.classList.add("loaded");
-    requestAnimationFrame(trigger);
-    const safety = window.setTimeout(trigger, 1200);
-
-    // Scroll reveal
-    const els = document.querySelectorAll(".fade-up, .slide-l, .slide-r, .pop, .cta h2");
+    const els = document.querySelectorAll<HTMLElement>(".reveal");
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -202,370 +231,275 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     );
     els.forEach((el) => io.observe(el));
-
-    // Photo tilt
-    const photo = document.querySelector("[data-tilt]") as HTMLElement | null;
-    let raf = 0;
-    const onMove = (e: PointerEvent) => {
-      if (!photo) return;
-      const img = photo.querySelector("img") as HTMLElement | null;
-      const r = photo.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        photo.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
-        if (img) img.style.transform = `scale(1.06) translate(${x * -8}px, ${y * -8}px)`;
-      });
-    };
-    const onLeave = () => {
-      if (!photo) return;
-      const img = photo.querySelector("img") as HTMLElement | null;
-      photo.style.transform = "";
-      if (img) img.style.transform = "";
-    };
-    photo?.addEventListener("pointermove", onMove);
-    photo?.addEventListener("pointerleave", onLeave);
-
-    // Parallax-light on blots
-    const shapes = document.querySelector(".hero-shapes");
-    const blots = shapes?.querySelectorAll(".blot");
-    let praf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(praf);
-      praf = requestAnimationFrame(() => {
-        const y = window.scrollY;
-        if (y > 900) return;
-        blots?.forEach((r, i) => {
-          (r as HTMLElement).style.transform = `translateY(${y * (0.12 + i * 0.04)}px)`;
-        });
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      clearTimeout(safety);
-      io.disconnect();
-      photo?.removeEventListener("pointermove", onMove);
-      photo?.removeEventListener("pointerleave", onLeave);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => io.disconnect();
   }, []);
+}
+
+function usePktClock() {
+  const [t, setT] = useState("--:--");
+  useEffect(() => {
+    const tick = () =>
+      setT(
+        new Date().toLocaleTimeString("en-GB", {
+          timeZone: "Asia/Karachi",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+      );
+    tick();
+    const id = setInterval(tick, 30_000);
+    return () => clearInterval(id);
+  }, []);
+  return t;
+}
+
+export default function Home() {
+  useReveal();
+  const clock = usePktClock();
 
   return (
     <>
-      {/* ── NAV ── */}
+      {/* NAV */}
       <nav className="nav">
         <div className="nav-inner">
-          <Link href="#" className="brand">
-            <span className="brand-mark"><BrandMark /></span>
-            <span>Uzair Saleem</span>
-          </Link>
+          <Link href="/" className="brand">uzair-saleem</Link>
           <div className="nav-links">
-            <a href="#work">WORK</a>
-            <a href="#how">HOW</a>
-            <a href="#about">ABOUT</a>
-            <a
-              href="https://github.com/developeruzairsaleem"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-icon"
-              aria-label="GitHub"
-            >
-              <GithubIcon />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/uzair-saleem-5a399825a/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-icon"
-              aria-label="LinkedIn"
-            >
-              <LinkedinIcon />
-            </a>
-            <a
-              href={RESUME}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-cta nav-cta-secondary"
-            >
-              DOWNLOAD CV ↓
-            </a>
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-cta nav-cta-primary"
-            >
-              BOOK A CALL →
-            </a>
+            <a href="#work">work</a>
+            <a href="#experience">experience</a>
+            <a href="#about">about</a>
+            <Link href="/blog">writing</Link>
+            <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="nav-icon" aria-label="GitHub"><GithubIcon /></a>
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="nav-icon" aria-label="LinkedIn"><LinkedinIcon /></a>
+            <a href={RESUME} target="_blank" rel="noopener noreferrer" className="nav-cta">résumé</a>
           </div>
         </div>
       </nav>
 
-      {/* ── HERO ── */}
-      <header className="hero">
-        <div className="hero-shapes" aria-hidden="true">
-          <div className="ring r1" />
-          <div className="ring r2" />
-          <div className="blot b2" />
-          <div className="blot b3" />
-          <div className="stripes" />
-        </div>
-        <div className="hero-inner">
-          <div className="ribbon-row fade-up">
-            <span className="ribbon">Full-Stack Engineer</span>
-            <span>5 yrs · Open to remote roles · US · EU · MENA</span>
-            <a href={MAILTO} className="btn fill-ink ribbon-btn">
-              Email me <span className="arrow">→</span>
-            </a>
+      {/* MASTHEAD */}
+      <header className="masthead">
+        <div className="wrap">
+          <div className="masthead-top reveal">
+            <span className="kicker"><span className="live">● open</span> · remote / relocation</span>
+            <span className="kicker">ISB · UTC+5 · <span id="clock">{clock}</span> PKT</span>
           </div>
-
-          <h1 className="megatype">
-            <span className="row l1"><span className="ln-inner">I ship <span className="blob lemon">B2B SaaS</span></span></span>
-            <span className="row l2"><span className="ln-inner">products</span></span>
-            <span className="row l3"><span className="ln-inner"><span className="blob orange">end</span> <span className="blob outline">to end.</span></span></span>
-          </h1>
-
-          <aside className="hero-aside">
-            <div className="hero-photo" data-tilt>
-              <Image
-                src="/images/main-profile-photo.png"
-                alt="Uzair Saleem"
-                width={240}
-                height={300}
-                priority
-              />
-              <div className="tag">
-                <span>UZAIR SALEEM</span>
-                <span>ISB · PK</span>
-              </div>
+          <div className="masthead-grid">
+            <div className="reveal">
+              <h1>I build the parts of the stack that have to be <em>exact</em>.</h1>
+              <p className="lede">
+                Full-stack engineer, 5 years. Payment ledgers, reconciliation across systems that
+                disagree, multi-tenant data with row-level isolation. I work the failure modes:{" "}
+                <b>idempotency, integer money, numbers that reconcile to source</b> — not just the
+                happy path.
+              </p>
+              <dl className="spec">
+                <div><dt>exp</dt><dd>5 yrs · production systems</dd></div>
+                <div><dt>core</dt><dd>TypeScript · Node · Postgres · Stripe</dd></div>
+                <div><dt>depth</dt><dd>payments · reconciliation · multi-tenant</dd></div>
+                <div><dt>based</dt><dd>Islamabad · UTC+5</dd></div>
+              </dl>
             </div>
-          </aside>
-
-          <div className="hero-lower">
-            <p className="lede fade-up">
-              <strong>Next.js · TypeScript · Postgres · AWS.</strong> Full-Stack Engineer running an AI-assisted workflow.
-              Five years shipping production SaaS — mostly alongside small product teams. Six live products.
-            </p>
+            <aside className="reveal">
+              <div className="portrait">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/main-profile-photo.png" alt="Uzair Saleem" />
+                <div className="cap"><span>uzair saleem</span><span>ISB · PK</span></div>
+              </div>
+              <div className="now">
+                <span className="dot" />open to full-stack roles —<br />
+                remote or relocation. <b>replies in a day.</b>
+              </div>
+            </aside>
           </div>
         </div>
       </header>
 
-      {/* ── STATS ── */}
-      <section className="stats">
-        <div className="stats-inner stagger">
-          <div className="stat-cell fade-up">
-            <StatCounter to={5} suffix="+" />
-            <div className="stat-lbl">Years shipping</div>
+      {/* WORK */}
+      <section className="block" id="work">
+        <div className="wrap">
+          <div className="head reveal">
+            <h2><span className="m">// 01</span> Selected work</h2>
+            <span className="x">live + shipped · 04</span>
           </div>
-          <div className="stat-cell alt fade-up">
-            <StatCounter to={6} />
-            <div className="stat-lbl">Products in production</div>
-          </div>
-          <div className="stat-cell fade-up">
-            <StatCounter to={10} suffix="+" />
-            <div className="stat-lbl">Founder clients</div>
-          </div>
-          <div className="stat-cell alt fade-up">
-            <StatCounter to={100} suffix="%" />
-            <div className="stat-lbl">Remote · async · global</div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── WORK ── */}
-      <section className="work" id="work">
-        <div className="work-inner">
-          <div className="section-head fade-up">
-            <h2>Selected<br />work.</h2>
-            <div className="num">SHIPPED <b>03/06</b></div>
-          </div>
-
-          {PROJECTS.map((p, i) => (
-            <article key={p.name} className={`project ${i % 2 === 0 ? "slide-l" : "slide-r"}`}>
-              <a href={p.live} target="_blank" rel="noopener noreferrer" className="project-thumb">
-                <Image src={p.image} alt={`${p.name} screenshot`} fill sizes="(max-width: 900px) 100vw, 1240px" style={{ objectFit: "cover", objectPosition: "top left" }} />
-                <span className={`thumb-tag ${p.badge === "live" ? "live" : p.badge === "client" ? "client" : ""}`}>{p.badgeText}</span>
-                <span className="thumb-link">{p.liveLabel} ↗</span>
-              </a>
-              <div className="project-row">
-                <div className="pnum">{p.no}</div>
-                <div className="pmeta">
-                  <span className={`badge ${p.badge}`}>{p.badgeText}</span>
-                  <h3><a href={p.live} target="_blank" rel="noopener noreferrer">{p.name}</a></h3>
-                  <div className="stack-row">
-                    {p.stack.map((s) => <span key={s} className="stack-tag">{s}</span>)}
+          <div className="work">
+            {PROJECTS.map((p) => (
+              <article key={p.name} className="entry reveal">
+                <div className="side">
+                  <span className="idx">{p.idx}</span>
+                  <span className={`status ${p.status}`}><span className="d" />{p.statusText}</span>
+                  <span className="role">{p.role}</span>
+                </div>
+                <div className="main">
+                  <h3>
+                    {p.href ? (
+                      <a href={p.href} target="_blank" rel="noopener noreferrer">{p.name}</a>
+                    ) : (
+                      <span className="nolink">{p.name}</span>
+                    )}
+                    {p.ext && <span className="ext">↗ {p.ext}</span>}
+                  </h3>
+                  <p className="lead">{p.lead}</p>
+                  <p className="tradeoff">
+                    <span className="lbl">{p.callLabel}</span>
+                    {p.call}
+                  </p>
+                  <div className="stack">
+                    {p.stack.map((s) => <span key={s}>{s}</span>)}
                   </div>
-                  <a href={p.caseStudy} target="_blank" rel="noopener noreferrer" className="link">Case study (PDF) ↗</a>
                 </div>
-                <p>{p.description}</p>
+                {p.image ? (
+                  <figure className="thumb">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.image} alt={`${p.name} screenshot`} />
+                    {p.cap && <figcaption><span>{p.cap[0]}</span><span>{p.cap[1]}</span></figcaption>}
+                  </figure>
+                ) : <div />}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE */}
+      <section className="block alt" id="experience">
+        <div className="wrap">
+          <div className="head reveal">
+            <h2><span className="m">// 02</span> Experience</h2>
+            <span className="x">5 yrs · 3 companies</span>
+          </div>
+          <div className="exp">
+            {EXPERIENCE.map((r) => (
+              <div className="row reveal" key={r.co + r.when}>
+                <span className="when">{r.when}</span>
+                <div className="what">
+                  <div className="role">{r.role}</div>
+                  <div className="co">{r.co}</div>
+                  <p>{r.note}</p>
+                  <div className="tags">{r.tags.map((t) => <span key={t}>{t}</span>)}</div>
+                </div>
+                <span className="where">{r.where}</span>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ── HOW ── */}
-      <section className="how" id="how">
-        <div className="how-inner">
-          <div className="section-head fade-up">
-            <h2>Why founders<br />hire me.</h2>
-            <div className="num">MEASURABLE <b>03/03</b></div>
-          </div>
-          <div className="how-grid stagger">
-            <div className="how-card pop">
-              <span className="ref">01 / END-TO-END</span>
-              <h3>End-to-end ownership.</h3>
-              <p>Architecture, backend, frontend, infra, deploys. Six production SaaS shipped — mostly alongside small product teams, sometimes as the lead engineer. I think in products, not tickets.</p>
-              <div className="digit">6×</div>
-            </div>
-            <div className="how-card pop">
-              <span className="ref">02 / CORRECTNESS</span>
-              <h3>Correctness first.</h3>
-              <p>MRR math that matches the bank account. Integer cents. Idempotent webhooks. The bar is the numbers being right, not just the UI looking right.</p>
-              <div className="digit">0¢</div>
-            </div>
-            <div className="how-card pop">
-              <span className="ref">03 / AI LEVERAGE</span>
-              <h3>AI as leverage.</h3>
-              <p>AI in the loop daily — overnight refactors, test backfill, brief-driven feature work. Not as a crutch, as leverage. I still own the architecture and the decisions.</p>
-              <div className="digit">3×</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ── */}
-      <section className="voices-band" id="voices">
-        <div className="voices-inner">
-          <div className="section-head fade-up">
-            <h2>What founders<br />say.</h2>
-            <div className="num">CLIENTS <b>03/03</b></div>
-          </div>
-          <div className="voices-grid stagger">
-            {TESTIMONIALS.map((t) => (
-              <figure key={t.name} className="voice-card pop">
-                <div className="voice-mark">“</div>
-                <blockquote className="voice-quote">{t.quote}</blockquote>
-                <figcaption className="voice-attr">
-                  <b>{t.name}</b>
-                  {t.role}<br />
-                  {t.company}
-                </figcaption>
-              </figure>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── STACK ── */}
-      <section className="stack">
-        <div className="stack-inner">
-          <div className="stack-head fade-up">
-            <h2>Tools I<br />ship with.</h2>
-            <p>The stack I reach for by default. Battle-tested across six production SaaS — boring, predictable, fast to ship with.</p>
+      {/* HOW I BUILD */}
+      <section className="block" id="approach">
+        <div className="wrap">
+          <div className="head reveal">
+            <h2><span className="m">// 03</span> How I build</h2>
+            <span className="x">non-negotiables</span>
           </div>
-          <div className="stack-cloud stagger">
-            {STACK_PILLS.map((p) => (
-              <span key={p} className="pill pop">{p}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── WRITING ── */}
-      <section className="writing" id="writing">
-        <div className="writing-inner">
-          <div className="section-head fade-up">
-            <h2>Notes on<br />AI agents.</h2>
-            <div className="num">FILED <b>03/03</b></div>
-          </div>
-          <div className="writing-grid stagger">
-            {POSTS.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="post-card pop">
-                <div className="post-tag">
-                  <span>{post.tag}</span>
-                  <span className="dot">·</span>
-                  <span className="meta">{post.date}</span>
-                  <span className="dot">·</span>
-                  <span className="meta">{post.readTime}</span>
+          <div className="approach-grid">
+            <p className="approach-lead reveal">
+              The work I&apos;m useful for is the part that <em>breaks quietly</em> when you get it
+              wrong — money, reconciliation, data that has to stay consistent across tenants.
+            </p>
+            <div className="principles reveal stagger">
+              {PRINCIPLES.map((pr) => (
+                <div className="p" key={pr.n}>
+                  <span className="num">{pr.n}</span>
+                  <div>
+                    <h4>{pr.h}</h4>
+                    <p>{pr.p}</p>
+                  </div>
                 </div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <span className="arrow">READ →</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── ABOUT ── */}
-      <section className="about" id="about">
-        <div className="about-inner">
-          <div className="about-head fade-up">
-            <h2>The person<br />behind <span className="u">the code.</span></h2>
-          </div>
-          <div className="about-body fade-up">
-            <p>
-              I&apos;m Uzair — a Full-Stack Engineer in Islamabad. Five years building B2B SaaS end-to-end.
-              Currently at <strong>Rocket Devs</strong>, leading client builds alongside a small product team.
-              Previously <strong>Design&amp;Desktop</strong> and <strong>Apifiny</strong>, where I shipped weekly
-              with product teams across three years.
-            </p>
-            <p>
-              I started coding in 2020 because a friend needed a website and couldn&apos;t afford an agency. That
-              turned into a side hustle, then contracts, then shipping production SaaS for founders — mostly
-              alongside small product teams, sometimes as the lead engineer on an end-to-end build. The work I
-              care about most is the part that doesn&apos;t make demo reels but does make customers stay.
-            </p>
-            <p>BS in Artificial Intelligence (SZABIST Islamabad, 2018–2022).</p>
-            <div className="about-meta">
-              <div><span>BASED</span>Islamabad, PK · UTC+5</div>
-              <div><span>STUDIED</span>BS Artificial Intelligence</div>
-              <div><span>WORKING WITH</span>US · EU · MENA</div>
-              <div><span>STATUS</span>Available · Q3 2026</div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="cta" id="contact">
-        <div className="cta-inner">
-          <h2>
-            <span className="row"><span className="ln-inner">Building</span></span>
-            <span className="row"><span className="ln-inner">something? <span className="swap">Let&apos;s</span></span></span>
-            <span className="row"><span className="ln-inner"><span className="o">ship</span> <span className="y">it.</span></span></span>
-          </h2>
-          <div className="cta-lower fade-up">
-            <p>Open to senior full-stack roles and select consulting. Replies within 24 hours.</p>
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">
-              Book a 30-min intro call
-              <span>→</span>
-            </a>
-            <div className="cta-links">
-              <span>—</span>
-              <a href={MAILTO}>{EMAIL}</a>
-              <a href={RESUME} target="_blank" rel="noopener noreferrer">Download résumé ↗</a>
-              <a href="https://www.linkedin.com/in/uzair-saleem-5a399825a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-              <a href="https://github.com/developeruzairsaleem" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      {/* STACK */}
+      <section className="block" id="stack">
+        <div className="wrap">
+          <div className="head reveal">
+            <h2><span className="m">// 04</span> Stack</h2>
+            <span className="x">what I reach for</span>
+          </div>
+          <div className="ledger">
+            <div className="ledger-groups reveal">
+              {LEDGER.map((g) => (
+                <div className="g" key={g.h}>
+                  <h4>{g.h}</h4>
+                  <ul>
+                    {g.items.map(([name, note]) => (
+                      <li key={name}><span>{name}</span>{note && <i>{note}</i>}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <p className="aside reveal">
+              Tools are interchangeable. <b>The thinking isn&apos;t.</b> I reach for the boring option
+              that holds up under load — and when the right answer isn&apos;t the trendy one,
+              that&apos;s still the answer.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="block alt" id="about">
+        <div className="wrap">
+          <div className="head reveal">
+            <h2><span className="m">// 05</span> About</h2>
+            <span className="x">Islamabad · UTC+5</span>
+          </div>
+          <div className="about-grid">
+            <div className="about-lead reveal">
+              <p>
+                Full-stack engineer in Islamabad. Five years on production systems — revenue
+                analytics, marketplaces, operations software. Most useful on the correctness-heavy
+                parts: payments, reconciliation, multi-tenant data, the jobs that have to be
+                idempotent.
+              </p>
+              <p>
+                AI is in my loop daily for the boilerplate and the refactors, <em>not the
+                architecture</em>. I read source before I trust a library, and I&apos;d rather ship
+                the boring thing that holds than the clever thing that surprises.
+              </p>
+            </div>
+            <div className="about-side reveal">
+              <div><span className="k">based</span> · <b>Islamabad, PK</b> (UTC+5)</div>
+              <div><span className="k">study</span> · <b>BS Artificial Intelligence</b></div>
+              <div><span className="k">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp; SZABIST · 2018–2022</div>
+              <div><span className="k">open</span> · remote, or relocation (sponsored)</div>
+              <div><span className="k">reply</span> · within a day</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
+      {/* CONTACT */}
+      <section className="contact" id="contact">
+        <div className="wrap">
+          <div className="reveal">
+            <h2>Open to <em>full-stack roles</em>.</h2>
+            <p className="sub">Remote, or relocation with sponsorship. The fastest way to reach me is email — I reply within a day.</p>
+          </div>
+          <div className="contact-actions reveal">
+            <a href={MAILTO} className="primary">{EMAIL} <span>→</span></a>
+            <div className="contact-links">
+              <a href={CALENDLY} target="_blank" rel="noopener noreferrer">book a 30-min call <span className="a">↗</span></a>
+              <a href={RESUME} target="_blank" rel="noopener noreferrer">résumé <span className="a">pdf</span></a>
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer">linkedin <span className="a">↗</span></a>
+              <a href={GITHUB} target="_blank" rel="noopener noreferrer">github <span className="a">↗</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
       <footer className="footer">
         <div className="footer-inner">
-          <span className="brand">
-            <span className="brand-mark"><FooterMark /></span>
-            <span>UZAIR SALEEM</span>
-          </span>
-          <span>© {new Date().getFullYear()} · Built with Next.js + Tailwind</span>
+          <span className="brand">uzair-saleem</span>
+          <span>© {new Date().getFullYear()} · Islamabad · Next.js</span>
+          <Link href="/blog">writing →</Link>
         </div>
       </footer>
     </>
