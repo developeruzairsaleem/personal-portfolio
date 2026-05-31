@@ -38,12 +38,6 @@ const PROJECTS: Project[] = [
     stack: ["next.js", "typescript", "postgres", "stripe"],
     image: "/images/diffed.png",
   },
-  {
-    name: "Design&Desktop",
-    blurb: "For a German studio — a browser-based AI reel generator and a restaurant-data scraper.",
-    stack: ["next.js", "node", "typescript"],
-    note: "demo on request",
-  },
 ];
 
 const STACK = ["TypeScript", "Node", "Next.js", "React", "PostgreSQL", "Prisma", "Redis", "Stripe", "AWS"];
