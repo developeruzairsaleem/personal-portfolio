@@ -48,7 +48,7 @@ export const EXPERIENCE: Experience[] = [
     location: "Remote (US / EU / MENA)",
     dates: "Jul 2025 – Present",
     bullets: [
-      "Built Indiecator, a revenue-analytics platform in the style of Baremetrics that connects a founder's Stripe or Paddle account and reports MRR, ARR, retention, and net expansion across one or more businesses, with drill-down from any metric to the customer behind it.",
+      "Built Indiecator, a revenue-analytics platform that connects a founder's Stripe or Paddle account and reports MRR, ARR, retention, and net expansion across one or more businesses, with drill-down from any metric to the customer behind it.",
       "Engineered the recurring-revenue ledger behind every metric on the platform, reconstructing complete billing history from invoices and applying live events for proration-accurate expansion and contraction.",
       "Built 3 idempotent ingestion paths into a multi-tenant Postgres ledger, covering live webhooks, a daily catch-up job, and a 2-year historical backfill, so a newly connected account sees its full revenue history within minutes.",
       "Rebuilt Satraj, the daily pricing and invoicing system for a fuel wholesaler, replacing 39 hand-edited spreadsheets and cutting the daily run from 45–60 minutes to under 90 seconds.",
