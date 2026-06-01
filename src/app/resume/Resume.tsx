@@ -17,6 +17,13 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+// Bullets carry **marked** outcome metrics; render odd segments bold.
+function renderBold(text: string) {
+  return text.split("**").map((seg, i) =>
+    i % 2 === 1 ? <strong key={i}>{seg}</strong> : seg
+  );
+}
+
 export default function Resume() {
   return (
     <article className="resume">
@@ -53,15 +60,9 @@ export default function Resume() {
             </div>
             <ul className="r-bullets">
               {job.bullets.map((b, i) => (
-                <li key={i}>{b}</li>
+                <li key={i}>{renderBold(b)}</li>
               ))}
             </ul>
-            {job.tech.length > 0 && (
-              <p className="r-tech">
-                <span className="r-tech-label">Technologies: </span>
-                {job.tech.join(", ")}
-              </p>
-            )}
           </div>
         ))}
       </Section>
