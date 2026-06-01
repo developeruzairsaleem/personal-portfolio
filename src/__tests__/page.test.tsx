@@ -1,40 +1,30 @@
 import '@testing-library/jest-dom'
 import { renderToStaticMarkup } from 'react-dom/server'
 import Home from '../app/page'
+import Resume from '../app/resume/Resume'
 
-// Render the page as static HTML (SSR-style). This skips client-side
-// effects (IntersectionObserver, clock) that jsdom can't run reliably,
-// while still verifying the rendered output.
+// Render as static HTML (SSR-style). This skips client-side effects
+// (IntersectionObserver, clock) that jsdom can't run reliably, while
+// still verifying the rendered output.
 const html = renderToStaticMarkup(<Home />)
+const resume = renderToStaticMarkup(<Resume />)
 
-describe('Portfolio Homepage (editorial rebuild)', () => {
-  it('renders the hero headline', () => {
-    expect(html).toMatch(/parts of the stack/i)
-    expect(html).toMatch(/exact/i)
+describe('Portfolio homepage (minimal rebuild)', () => {
+  it('renders the hero headline and four-years sub', () => {
+    expect(html).toMatch(/ships products end to end/i)
+    expect(html).toMatch(/four years/i)
   })
 
-  it('renders all 4 work entries', () => {
+  it('renders the 3 work entries', () => {
     expect(html).toContain('Indiecator')
     expect(html).toContain('Sat-Raj')
     expect(html).toContain('Diffed.gg')
-    expect(html).toContain('Design&amp;Desktop')
   })
 
-  it('surfaces the real technical trade-offs', () => {
-    expect(html).toMatch(/3 months of event history/i)        // Indiecator MRR
-    expect(html).toMatch(/geofence/i)                          // Sat-Raj 3-gate
-    expect(html).toMatch(/MediaBunny/i)                        // render pipeline
-    expect(html).toMatch(/divisions/i)                         // Diffed ranking engine
-  })
-
-  it('has resume download link', () => {
-    expect(html).toContain('/uzair-saleem-resume.pdf')
-  })
-
-  it('has indiecator.com, diffed.gg, satraj.inc live links', () => {
+  it('links to the live projects', () => {
     expect(html).toContain('https://indiecator.com')
-    expect(html).toContain('https://diffed.gg')
     expect(html).toContain('https://satraj.inc')
+    expect(html).toContain('https://diffed-swart.vercel.app/')
   })
 
   it('has GitHub, LinkedIn, and email links', () => {
@@ -43,19 +33,45 @@ describe('Portfolio Homepage (editorial rebuild)', () => {
     expect(html).toContain('mailto:uzairsaleemdev@gmail.com')
   })
 
-  it('has the sections: work, experience, approach, stack, about, contact', () => {
+  it('links the résumé to the /resume page', () => {
+    expect(html).toContain('href="/resume"')
+  })
+
+  it('has the sections: work, about, contact', () => {
     expect(html).toContain('id="work"')
-    expect(html).toContain('id="experience"')
-    expect(html).toContain('id="approach"')
-    expect(html).toContain('id="stack"')
     expect(html).toContain('id="about"')
     expect(html).toContain('id="contact"')
   })
+})
+
+describe('Résumé document', () => {
+  it('renders the name and four-years summary', () => {
+    expect(resume).toContain('Uzair Saleem')
+    expect(resume).toMatch(/four years/i)
+  })
+
+  it('titles every role "Full-Stack Engineer" and never "senior"', () => {
+    expect(resume).toContain('Full-Stack Engineer')
+    expect(resume).not.toMatch(/senior/i)
+  })
 
   it('renders the real career timeline', () => {
-    expect(html).toContain('Rocket Devs')
-    expect(html).toContain('Apifiny')
-    expect(html).toMatch(/Design&amp;Desktop|Design&Desktop/)
-    expect(html).toContain('SZABIST')
+    expect(resume).toContain('Rocket Devs')
+    expect(resume).toMatch(/Design&amp;Desktop|Design&Desktop/)
+    expect(resume).toContain('Apifiny')
+    expect(resume).toContain('SZABIST')
+  })
+
+  it('surfaces the real technical trade-offs', () => {
+    expect(resume).toMatch(/event retention/i)   // Indiecator MRR ledger
+    expect(resume).toMatch(/MediaBunny/i)          // render pipeline
+    expect(resume).toMatch(/divisions/i)           // Diffed ranking engine
+    expect(resume).toMatch(/Samsara/i)             // Sat-Raj reconciliation
+  })
+
+  it('links to the live projects', () => {
+    expect(resume).toContain('https://indiecator.com')
+    expect(resume).toContain('https://satraj.inc')
+    expect(resume).toContain('https://diffed-swart.vercel.app/')
   })
 })

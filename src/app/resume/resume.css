@@ -1,0 +1,242 @@
+/* Classic single-column serif resume (Computer Modern / LaTeX feel).
+   Sized so the on-screen sheet matches the generated PDF 1:1 (US Letter,
+   0.5in margins → 720px content column at 96dpi). */
+
+@font-face {
+  font-family: "Latin Modern Roman";
+  src: url("/fonts/latinmodern-roman-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Latin Modern Roman";
+  src: url("/fonts/latinmodern-roman-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Latin Modern Roman";
+  src: url("/fonts/latinmodern-roman-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Latin Modern Roman";
+  src: url("/fonts/latinmodern-roman-bolditalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --resume-serif: "Latin Modern Roman", "CMU Serif", Georgia, "Times New Roman", Times, serif;
+  --resume-ink: #111111;
+  --resume-rule: #111111;
+  --resume-accent: #2f5fa6;
+}
+
+/* ---- screen frame ---- */
+.resume-page {
+  background: #ededed;
+  min-height: 100vh;
+  padding: 28px 16px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume-toolbar {
+  width: 816px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12.5px;
+}
+.resume-toolbar a {
+  color: var(--resume-accent);
+  text-decoration: none;
+}
+.resume-toolbar a:hover {
+  text-decoration: underline;
+}
+.resume-toolbar .download {
+  border: 1px solid var(--resume-accent);
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+.resume-toolbar .download:hover {
+  background: var(--resume-accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ---- the page sheet ---- */
+.sheet {
+  width: 816px;
+  max-width: 100%;
+  min-height: 1056px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 8px 28px rgba(0, 0, 0, 0.14);
+  padding: 48px 50px;
+}
+
+/* ---- resume document ---- */
+.resume {
+  font-family: var(--resume-serif);
+  color: var(--resume-ink);
+  font-size: 12px;
+  line-height: 1.21;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.resume a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 1.5px;
+}
+
+.r-head {
+  text-align: center;
+  margin-bottom: 4px;
+}
+.r-name {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  margin: 0 0 3px;
+}
+.r-contact {
+  font-size: 12.2px;
+  margin: 0;
+  line-height: 1.5;
+}
+.r-sep {
+  color: #555;
+}
+
+.r-summary {
+  margin: 5px 0 2px;
+  text-align: justify;
+}
+
+.r-section {
+  margin-top: 6px;
+}
+.r-section-title {
+  font-variant: small-caps;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  margin: 0 0 3px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--resume-rule);
+}
+
+.r-entry {
+  margin-bottom: 4px;
+}
+.r-entry:last-child {
+  margin-bottom: 0;
+}
+.r-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.r-entry-title {
+  font-weight: 700;
+}
+.r-entry-date {
+  font-size: 12.6px;
+  white-space: nowrap;
+}
+.r-entry-sub {
+  font-style: italic;
+  font-size: 12.8px;
+  margin-top: 1px;
+}
+
+.r-bullets {
+  margin: 2px 0 0;
+  padding-left: 17px;
+  list-style: disc;
+}
+.r-bullets li {
+  margin: 0.5px 0;
+  line-height: 1.21;
+  padding-left: 2px;
+}
+.r-bullets li::marker {
+  font-size: 0.85em;
+}
+
+.r-tech {
+  margin: 2px 0 0;
+  padding-left: 17px;
+  font-style: italic;
+}
+.r-tech-label {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.r-project .r-entry-title {
+  font-weight: 700;
+}
+.r-link {
+  font-weight: 400;
+}
+.r-proj-blurb {
+  margin: 1px 0 0;
+}
+
+.r-skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.r-skills li {
+  margin: 2px 0;
+}
+.r-skills-label {
+  font-weight: 700;
+}
+
+/* ---- print / PDF ---- */
+@page {
+  size: Letter;
+  margin: 0.5in;
+}
+@media print {
+  .resume-page {
+    background: #fff;
+    min-height: 0;
+    padding: 0;
+    display: block;
+  }
+  .resume-toolbar {
+    display: none;
+  }
+  .sheet {
+    width: auto;
+    max-width: none;
+    min-height: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .resume a {
+    color: var(--resume-ink);
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

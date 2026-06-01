@@ -29,7 +29,7 @@ export default function OpengraphImage() {
             Full-stack engineer who ships products end to end.
           </div>
           <div style={{ display: "flex", fontSize: 30, color: "#565b64", marginTop: 26 }}>
-            Five years of TypeScript, Node, Next.js, and Postgres.
+            Four years of TypeScript, Node, Next.js, and Postgres.
           </div>
         </div>
 

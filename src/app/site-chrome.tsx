@@ -3,7 +3,7 @@ import Link from "next/link";
 export const EMAIL = "uzairsaleemdev@gmail.com";
 export const LINKS = {
   email: `mailto:${EMAIL}`,
-  resume: "/uzair-saleem-resume.pdf",
+  resume: "/resume",
   calendly: "https://calendly.com/uzairsaleemdev/30min",
   github: "https://github.com/developeruzairsaleem",
   linkedin: "https://www.linkedin.com/in/uzair-saleem-5a399825a/",
