@@ -38,7 +38,7 @@ export const CONTACT: ContactItem[] = [
 ];
 
 export const SUMMARY =
-  "Full-stack engineer with four years building production SaaS end to end, across revenue analytics, online marketplaces, and operations software. I own each product from the database schema through the backend, frontend, and deployment, and most of my work is correctness-critical, where the data a user sees has to reconcile back to its source. I work primarily in Next.js, Node.js, and Postgres.";
+  "Full-stack engineer with five years building production SaaS end to end, across revenue analytics, online marketplaces, and operations software. I own each product from the database schema through the backend, frontend, and deployment, and most of my work is correctness-critical, where the data a user sees has to reconcile back to its source. I work primarily in Next.js, Node.js, and Postgres.";
 
 export const EXPERIENCE: Experience[] = [
   {
@@ -80,7 +80,7 @@ export const EXPERIENCE: Experience[] = [
     company: "Apifiny",
     role: "Full-Stack Engineer Intern",
     location: "Islamabad",
-    dates: "Jun 2022 – Aug 2022",
+    dates: "Dec 2021 – Feb 2022",
     bullets: [
       "Built frontend and backend features for client B2B SaaS products, shipping production code across multiple projects.",
     ],
