@@ -91,7 +91,7 @@
   font-family: var(--resume-serif);
   color: var(--resume-ink);
   font-size: 12px;
-  line-height: 1.21;
+  line-height: 1.18;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -127,7 +127,7 @@
 }
 
 .r-section {
-  margin-top: 6px;
+  margin-top: 4px;
 }
 .r-section-title {
   font-variant: small-caps;
@@ -171,7 +171,7 @@
 }
 .r-bullets li {
   margin: 0.5px 0;
-  line-height: 1.21;
+  line-height: 1.18;
   padding-left: 2px;
 }
 .r-bullets li::marker {
