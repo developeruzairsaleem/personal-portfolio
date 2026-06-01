@@ -34,7 +34,7 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 23, color: "#868c96" }}>
-          <div style={{ display: "flex" }}>Indiecator · Sat-Raj · Diffed.gg</div>
+          <div style={{ display: "flex" }}>Indiecator · Satraj · Diffed.gg</div>
           <div style={{ display: "flex" }}>Islamabad · UTC+5</div>
         </div>
       </div>

@@ -17,7 +17,7 @@ describe('Portfolio homepage (minimal rebuild)', () => {
 
   it('renders the 3 work entries', () => {
     expect(html).toContain('Indiecator')
-    expect(html).toContain('Sat-Raj')
+    expect(html).toContain('Satraj')
     expect(html).toContain('Diffed.gg')
   })
 
@@ -63,10 +63,10 @@ describe('Résumé document', () => {
   })
 
   it('surfaces the real technical trade-offs', () => {
-    expect(resume).toMatch(/event retention/i)   // Indiecator MRR ledger
+    expect(resume).toMatch(/proration/i)         // Indiecator MRR ledger
     expect(resume).toMatch(/MediaBunny/i)          // render pipeline
     expect(resume).toMatch(/divisions/i)           // Diffed ranking engine
-    expect(resume).toMatch(/Samsara/i)             // Sat-Raj reconciliation
+    expect(resume).toMatch(/Samsara/i)             // Satraj reconciliation
   })
 
   it('links to the live projects', () => {

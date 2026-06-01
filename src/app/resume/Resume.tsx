@@ -42,7 +42,7 @@ export default function Resume() {
 
       <Section title="Experience">
         {EXPERIENCE.map((job) => (
-          <div className="r-entry" key={job.company}>
+          <div className="r-entry" key={`${job.company} ${job.dates}`}>
             <div className="r-entry-row">
               <span className="r-entry-title">{job.company}</span>
               <span className="r-entry-date">{job.dates}</span>
@@ -56,10 +56,12 @@ export default function Resume() {
                 <li key={i}>{b}</li>
               ))}
             </ul>
-            <p className="r-tech">
-              <span className="r-tech-label">Technologies: </span>
-              {job.tech.join(", ")}
-            </p>
+            {job.tech.length > 0 && (
+              <p className="r-tech">
+                <span className="r-tech-label">Technologies: </span>
+                {job.tech.join(", ")}
+              </p>
+            )}
           </div>
         ))}
       </Section>

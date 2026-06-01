@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   keywords: [
     "Full-Stack Engineer", "Next.js Developer", "TypeScript", "SaaS Developer",
     "Full-Stack", "Remote Engineer", "Stripe Integration", "Prisma",
-    "PostgreSQL", "AWS", "Pakistan Developer", "Indiecator", "Diffed.gg", "Sat-Raj",
+    "PostgreSQL", "AWS", "Pakistan Developer", "Indiecator", "Diffed.gg", "Satraj",
   ],
   alternates: { canonical: SITE_URL },
   openGraph: {

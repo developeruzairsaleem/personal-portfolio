@@ -9,8 +9,9 @@ const browser = await puppeteer.launch();
 const page = await browser.newPage();
 await page.setViewport({ width: 720, height: 1056, deviceScaleFactor: 1 });
 await page.emulateMediaType("print");
-await page.goto(URL, { waitUntil: "networkidle0" });
+await page.goto(URL, { waitUntil: "domcontentloaded", timeout: 60000 });
 await page.evaluateHandle("document.fonts.ready");
+await new Promise((r) => setTimeout(r, 400));
 
 const h = await page.evaluate(() => {
   const el = document.querySelector(".resume");

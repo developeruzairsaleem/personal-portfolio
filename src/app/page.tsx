@@ -22,7 +22,7 @@ const PROJECTS: Project[] = [
     image: "/images/indiecator.png",
   },
   {
-    name: "Sat-Raj",
+    name: "Satraj",
     href: "https://satraj.inc",
     ext: "satraj.inc ↗",
     blurb:

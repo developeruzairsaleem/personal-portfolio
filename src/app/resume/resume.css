@@ -91,7 +91,7 @@
   font-family: var(--resume-serif);
   color: var(--resume-ink);
   font-size: 12px;
-  line-height: 1.18;
+  line-height: 1.15;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -127,7 +127,7 @@
 }
 
 .r-section {
-  margin-top: 4px;
+  margin-top: 3px;
 }
 .r-section-title {
   font-variant: small-caps;
@@ -140,7 +140,7 @@
 }
 
 .r-entry {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 .r-entry:last-child {
   margin-bottom: 0;
@@ -171,7 +171,7 @@
 }
 .r-bullets li {
   margin: 0.5px 0;
-  line-height: 1.18;
+  line-height: 1.15;
   padding-left: 2px;
 }
 .r-bullets li::marker {
