@@ -60,7 +60,7 @@ export default function Home() {
           </div>
           <h1 className="fade d1">Full-stack engineer who ships products end to end.</h1>
           <p className="sub fade d1">
-            Five years building correctness-critical web apps — payments, analytics, ops tooling — in{" "}
+            Four years building correctness-critical web apps — payments, analytics, ops tooling — in{" "}
             <b>TypeScript, Node, Next.js, and Postgres</b>. Based in Islamabad, working with teams worldwide.
           </p>
           <p className="links fade d2">
@@ -106,7 +106,7 @@ export default function Home() {
         <section className="block about" id="about">
           <p className="label"><span>about</span></p>
           <p>
-            I&apos;m a full-stack engineer with five years of experience, based in Islamabad. I own the
+            I&apos;m a full-stack engineer with four years of experience, based in Islamabad. I own the
             whole stack: schema, backend, frontend, payments, and the background jobs that keep it all in
             sync. Most of what I build handles money or data that has to reconcile to source, so I write
             for the cases that break, not just the ones that work.

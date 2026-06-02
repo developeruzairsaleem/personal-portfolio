@@ -10,9 +10,9 @@ const html = renderToStaticMarkup(<Home />)
 const resume = renderToStaticMarkup(<Resume />)
 
 describe('Portfolio homepage (minimal rebuild)', () => {
-  it('renders the hero headline and five-years sub', () => {
+  it('renders the hero headline and four-years sub', () => {
     expect(html).toMatch(/ships products end to end/i)
-    expect(html).toMatch(/five years/i)
+    expect(html).toMatch(/four years/i)
   })
 
   it('renders the 3 work entries', () => {
@@ -45,9 +45,9 @@ describe('Portfolio homepage (minimal rebuild)', () => {
 })
 
 describe('Résumé document', () => {
-  it('renders the name and five-years summary', () => {
+  it('renders the name and four-years summary', () => {
     expect(resume).toContain('Uzair Saleem')
-    expect(resume).toMatch(/five years/i)
+    expect(resume).toMatch(/four years/i)
   })
 
   it('titles every role "Full-Stack Engineer" and never "senior"', () => {
