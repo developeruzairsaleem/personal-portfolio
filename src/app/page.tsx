@@ -57,7 +57,7 @@ export default function Home() {
               <span className="me-status">open to remote roles</span>
             </div>
           </div>
-          <h1 className="fade d1">Full-stack engineer. I build web apps, front to back.</h1>
+          <h1 className="fade d1">Full-stack engineer.</h1>
           <p className="sub fade d1">
             Four years building production web apps in <b>TypeScript, Node, Next.js, and Postgres</b>.
           </p>

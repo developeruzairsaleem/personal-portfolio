@@ -12,7 +12,6 @@ const resume = renderToStaticMarkup(<Resume />)
 describe('Portfolio homepage (minimal rebuild)', () => {
   it('renders the hero headline and four-years sub', () => {
     expect(html).toMatch(/full-stack engineer/i)
-    expect(html).toMatch(/front to back/i)
     expect(html).toMatch(/four years/i)
   })
 
