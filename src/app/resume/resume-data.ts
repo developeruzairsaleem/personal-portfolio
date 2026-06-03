@@ -1,5 +1,5 @@
 // Single source of truth for the resume. Rendered to /resume (HTML) and to
-// public/uzair-saleem-resume.pdf via scripts/generate-resume.mjs — edit here only.
+// public/uzair-saleem-resume.pdf via scripts/generate-resume.mjs. Edit here only.
 
 export type ContactItem = { label: string; href?: string };
 
@@ -98,18 +98,18 @@ export const PROJECTS: Project[] = [
     name: "Satraj",
     link: { label: "satraj.inc", href: "https://satraj.inc" },
     blurb:
-      "Operations software for a fuel distributor. Reconciles delivered gallons across Samsara telematics and supplier records, resolves delivery site locations through a 3-stage system backed by geofences, and pushes invoices into QuickBooks over a .NET bridge.",
+      "Operations software for a fuel distributor. Reconciles delivered gallons across Samsara telematics and supplier records, resolves delivery site locations through a 3-stage system backed by geofences, and pushes invoices into QuickBooks.",
   },
   {
     name: "Diffed.gg",
     link: { label: "diffed-swart.vercel.app", href: "https://diffed-swart.vercel.app/" },
     blurb:
-      "Three-sided marketplace for competitive gaming services, with a cross-game ranking engine, a multi-currency wallet over Stripe and PayPal, live order chat, and admin tooling.",
+      "Matchmaking and coaching marketplace for gamers, with a cross-game ranking engine, a multi-currency wallet over Stripe and PayPal, live order chat, and admin tooling.",
   },
 ];
 
 export const SKILLS: SkillGroup[] = [
-  { label: "Languages", items: ["TypeScript", "JavaScript", "SQL", "C# (.NET)"] },
+  { label: "Languages", items: ["TypeScript", "JavaScript", "SQL"] },
   { label: "Frameworks and Runtime", items: ["Next.js", "React", "Node.js", "Express", "Socket.IO"] },
   { label: "Data", items: ["PostgreSQL", "Supabase", "Redis", "Prisma"] },
   { label: "Payments and Infrastructure", items: ["Stripe", "Paddle", "PayPal", "AWS", "Cloudflare", "Docker", "GitHub Actions"] },

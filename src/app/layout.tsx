@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   publisher: "Uzair Saleem",
   keywords: [
     "Full-Stack Engineer", "Next.js Developer", "TypeScript", "SaaS Developer",
-    "Full-Stack", "Remote Engineer", "Stripe Integration", "Prisma",
+    "Full-Stack", "Remote Engineer", "Node.js", "Prisma",
     "PostgreSQL", "AWS", "Pakistan Developer", "Indiecator", "Diffed.gg", "Satraj",
   ],
   alternates: { canonical: SITE_URL },
@@ -70,7 +70,7 @@ const personSchema = {
   ],
   knowsAbout: [
     "Next.js", "TypeScript", "React", "Node.js", "PostgreSQL", "Prisma",
-    "Stripe", "AWS", "SaaS Development",
+    "AWS", "SaaS Development",
   ],
 };
 

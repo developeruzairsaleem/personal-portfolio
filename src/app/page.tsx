@@ -8,8 +8,7 @@ type Project = {
   ext?: string;
   blurb: ReactNode;
   stack: string[];
-  image?: string;
-  note?: string;
+  image: string;
 };
 
 const PROJECTS: Project[] = [
@@ -18,7 +17,7 @@ const PROJECTS: Project[] = [
     href: "https://indiecator.com",
     ext: "indiecator.com ↗",
     blurb: "Revenue analytics for subscription businesses on Stripe and Paddle.",
-    stack: ["next.js", "typescript", "postgres", "stripe"],
+    stack: ["next.js", "typescript", "postgres", "supabase", "stripe"],
     image: "/images/indiecator.png",
   },
   {
@@ -35,13 +34,13 @@ const PROJECTS: Project[] = [
     href: "https://diffed-swart.vercel.app/",
     ext: "live ↗",
     blurb:
-      "A marketplace where gamers buy rank-progression coaching from vetted experts, with payments and live order chat.",
-    stack: ["next.js", "typescript", "postgres", "stripe"],
+      "A matchmaking and coaching marketplace for gamers. Players hire ranked experts to climb competitive games, with live order chat and in-app payments.",
+    stack: ["next.js", "typescript", "postgres", "prisma", "socket.io"],
     image: "/images/diffed.png",
   },
 ];
 
-const STACK = ["TypeScript", "Node", "Next.js", "React", "PostgreSQL", "Prisma", "Redis", "Stripe", "AWS"];
+const STACK = ["TypeScript", "Node", "Next.js", "React", "PostgreSQL", "Prisma", "Redis", "Supabase", "Docker", "AWS"];
 
 export default function Home() {
   return (
@@ -58,10 +57,9 @@ export default function Home() {
               <span className="me-status">open to remote roles</span>
             </div>
           </div>
-          <h1 className="fade d1">Full-stack engineer who ships products end to end.</h1>
+          <h1 className="fade d1">Full-stack engineer. I build web apps, front to back.</h1>
           <p className="sub fade d1">
-            Four years building correctness-critical web apps — payments, analytics, ops tooling — in{" "}
-            <b>TypeScript, Node, Next.js, and Postgres</b>. Based in Islamabad, working with teams worldwide.
+            Four years building production web apps in <b>TypeScript, Node, Next.js, and Postgres</b>.
           </p>
           <p className="links fade d2">
             <a href={LINKS.email}>email</a>
@@ -78,14 +76,9 @@ export default function Home() {
             {PROJECTS.map((p) => {
               const inner = (
                 <>
-                  {p.image ? (
-                    <span className="proj-thumb">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={p.image} alt={`${p.name} screenshot`} />
-                    </span>
-                  ) : (
-                    <span className="proj-thumb empty">{p.note}</span>
-                  )}
+                  <span className="proj-thumb">
+                    <Image src={p.image} alt={`${p.name} screenshot`} fill sizes="(max-width: 700px) 320px, 128px" />
+                  </span>
                   <span className="proj-body">
                     <span className="proj-name">{p.name}{p.ext && <span className="ext">{p.ext}</span>}</span>
                     <span className="proj-blurb">{p.blurb}</span>
@@ -106,10 +99,11 @@ export default function Home() {
         <section className="block about" id="about">
           <p className="label"><span>about</span></p>
           <p>
-            I&apos;m a full-stack engineer with four years of experience, based in Islamabad. I own the
-            whole stack: schema, backend, frontend, payments, and the background jobs that keep it all in
-            sync. Most of what I build handles money or data that has to reconcile to source, so I write
-            for the cases that break, not just the ones that work.
+            I&apos;m a full-stack engineer with four years of experience. I build the kind of software
+            that has to be right: revenue analytics, operations tools, and online marketplaces. I own the
+            whole thing, from the schema and backend to the frontend and the background jobs that keep the
+            data in sync. Most of what I build handles money or data that has to reconcile back to its
+            source, so I write for the cases that break, not just the ones that work.
           </p>
           <p className="stack-line"><b>stack</b> &nbsp; {STACK.join("  ·  ")}</p>
         </section>

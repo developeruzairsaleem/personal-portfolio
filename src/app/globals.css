@@ -145,16 +145,11 @@ main { display: block; }
 a.proj { transition: opacity 0.18s; }
 .proj-thumb {
   flex: 0 0 128px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
-  aspect-ratio: 16 / 10; background: var(--bg-2);
+  aspect-ratio: 16 / 10; background: var(--bg-2); position: relative;
 }
 .proj-thumb img { width: 100%; height: 100%; object-fit: cover; display: block;
   filter: grayscale(0.35) contrast(0.98); transition: filter 0.4s var(--ease); }
 a.proj:hover .proj-thumb img { filter: grayscale(0) contrast(1); }
-.proj-thumb.empty {
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono), monospace; font-size: 10.5px; color: var(--faint);
-  letter-spacing: 0.04em; text-align: center; line-height: 1.4; padding: 8px;
-}
 .proj-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
 .proj-name {
   display: inline-flex; align-items: baseline; gap: 10px; flex-wrap: wrap;

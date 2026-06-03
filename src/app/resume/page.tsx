@@ -5,7 +5,7 @@ import "./resume.css";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: "Résumé of Uzair Saleem — full-stack engineer.",
+  description: "Résumé of Uzair Saleem, full-stack engineer.",
   robots: { index: false, follow: true },
 };
 
