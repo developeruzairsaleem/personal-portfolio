@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Nav, Footer, LINKS, EMAIL } from "./site-chrome";
 
 type Project = {
@@ -19,15 +20,6 @@ const PROJECTS: Project[] = [
     blurb: "Revenue analytics for subscription businesses on Stripe and Paddle.",
     stack: ["next.js", "typescript", "postgres", "supabase", "stripe"],
     image: "/images/indiecator.png",
-  },
-  {
-    name: "Satraj",
-    href: "https://satraj.inc",
-    ext: "satraj.inc ↗",
-    blurb:
-      "Operations software for a fuel wholesaler that replaced 39 spreadsheets and cut the daily pricing and invoicing run from 45-60 minutes to under 90 seconds.",
-    stack: ["next.js", "node", "postgres", "redis"],
-    image: "/images/satraj.png",
   },
   {
     name: "Diffed.gg",
@@ -60,6 +52,7 @@ export default function Home() {
           <h1 className="fade d1">Full-stack engineer.</h1>
           <p className="sub fade d1">
             Four years building production web apps in <b>TypeScript, Node, Next.js, and Postgres</b>.
+            These days I build <Link href="/fuel" className="sub-link">back offices for US fuel distributors</Link>.
           </p>
           <p className="links fade d2">
             <a href={LINKS.email}>email</a>
@@ -71,7 +64,33 @@ export default function Home() {
 
         {/* WORK */}
         <section className="block" id="work">
-          <p className="label"><span>selected work</span><span className="x">{PROJECTS.length} projects</span></p>
+          <p className="label"><span>selected work</span><span className="x">featured + {PROJECTS.length} more</span></p>
+
+          <div className="feat">
+            <Link href="/fuel/demo" className="feat-media" aria-label="Fuel platform walkthrough">
+              <Image src="/images/satraj.png" alt="Fuel distribution back office screenshot" fill sizes="(max-width: 700px) 100vw, 672px" />
+            </Link>
+            <div className="feat-body">
+              <span className="feat-kicker">live production system · in daily use</span>
+              <span className="proj-name">Fuel distribution back office</span>
+              <span className="proj-blurb">
+                Replaced 39 spreadsheets for a New Jersey fuel wholesaler. Daily price
+                emails send themselves, every delivery reconciles against its BOL, and
+                invoices land in QuickBooks the same day the truck delivers, with the
+                full federal and state fuel tax stack itemized. Hundreds of live
+                invoices pushed. The daily pricing and invoicing run went from an hour
+                to under 90 seconds.
+              </span>
+              <span className="proj-tags">
+                <span>next.js</span><span>postgres</span><span>quickbooks desktop</span><span>samsara telematics</span><span>aws</span>
+              </span>
+              <span className="feat-links">
+                <Link href="/fuel/demo">60 second walkthrough <span className="x">→</span></Link>
+                <Link href="/fuel">offered as a service <span className="x">→</span></Link>
+              </span>
+            </div>
+          </div>
+
           <div className="work-list">
             {PROJECTS.map((p) => {
               const inner = (
