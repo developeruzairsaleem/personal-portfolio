@@ -44,7 +44,7 @@ export default async function BlogPost({ params }: Props) {
     <>
       <Nav />
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         <header className="post-head">
           <p className="post-meta">
             <span>{post.tag}</span>

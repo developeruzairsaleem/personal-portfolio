@@ -14,7 +14,7 @@ export function Walkthrough() {
   const [step, setStep] = useState(0);
 
   return (
-    <main className="fd-wrap">
+    <main id="main" className="fd-wrap">
       <section className="fd-head">
         <p className="fd-kick">
           <span>Walkthrough with sample data</span>
@@ -22,8 +22,9 @@ export function Walkthrough() {
         </p>
         <h1>From truck ticket to QuickBooks invoice, same day</h1>
         <p className="fd-sub">
-          This is the system I built for a New Jersey fuel distributor, shown
-          here with sample numbers. Click through the three steps.
+          This is the system I built for Sat-Raj, a New Jersey fuel
+          distributor, shown here with sample numbers. Click through the three
+          steps.
         </p>
       </section>
 
@@ -50,7 +51,7 @@ export function Walkthrough() {
               like your drivers already do today. <b>Nobody retypes it.</b>
             </p>
             <div className="fd-ticket mono">
-              <h3>MOTOR CARRIER DELIVERY TICKET</h3>
+              <div className="fd-doc-title">MOTOR CARRIER DELIVERY TICKET</div>
               <table>
                 <tbody>
                   <tr><td>BOL #</td><td>771204</td><td>DATE</td><td>08/18</td></tr>
@@ -85,7 +86,7 @@ export function Walkthrough() {
               <span className="fd-badge">READY TO INVOICE</span>
             </div>
             <div className="fd-panel">
-              <h4>Lines · priced from the morning send</h4>
+              <div className="fd-panel-cap">Lines · priced from the morning send</div>
               <table>
                 <tbody>
                   <tr><th>Product</th><th>Gallons</th><th>Rate</th><th>Amount</th></tr>
@@ -128,8 +129,8 @@ export function Walkthrough() {
                 <table>
                   <tbody>
                     <tr><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th></tr>
-                    <tr><td>FUEL:REGULAR</td><td>6,005</td><td>$2.4595</td><td>$14,769.30</td></tr>
-                    <tr><td>FUEL:DIESEL</td><td>2,805</td><td>$3.5919</td><td>$10,075.28</td></tr>
+                    <tr><td>FUEL:REGULAR</td><td>6,005</td><td>$2.7475</td><td>$16,498.74</td></tr>
+                    <tr><td>FUEL:DIESEL</td><td>2,805</td><td>$3.9699</td><td>$11,135.57</td></tr>
                     <tr className="tax"><td>FUEL TAXES:FGT</td><td>6,005</td><td>$0.1830</td><td>$1,098.92</td></tr>
                     <tr className="tax"><td>FUEL TAXES:SMFT</td><td>6,005</td><td>$0.1050</td><td>$630.53</td></tr>
                     <tr className="tax"><td>FUEL TAXES:FDT</td><td>2,805</td><td>$0.2430</td><td>$681.62</td></tr>
@@ -177,35 +178,35 @@ export function Walkthrough() {
         .fd-head h1 { font-size: clamp(24px, 4vw, 32px); letter-spacing: -0.02em; color: var(--fz-ink); margin: 0 0 12px; line-height: 1.2; }
         .fd-sub { color: var(--fz-mut); font-size: 16px; margin: 0 0 26px; max-width: 58ch; }
         .fd-steps { display: flex; gap: 8px; margin: 6px 0 16px; }
-        .fd-pill { flex: 1; font: inherit; font-size: 13px; font-weight: 600; padding: 9px 6px; border-radius: 7px; border: 1px solid var(--fz-line); background: #efede6; color: var(--fz-mut); cursor: pointer; text-align: center; }
+        .fd-pill { flex: 1; font: inherit; font-size: 13px; font-weight: 600; padding: 9px 6px; border-radius: 4px; border: 1px solid var(--fz-line); background: #f4f3ee; color: var(--fz-mut); cursor: pointer; text-align: center; }
         .fd-pill.on { background: var(--fz-card); color: var(--fz-deep); border-color: var(--fz-deep); font-weight: 700; }
         .fd-pill.done { color: var(--fz-green); }
         .fd-card { border: 1px solid var(--fz-line); border-radius: 10px; padding: 22px; background: var(--fz-card); margin-bottom: 60px; }
         .fd-cap { margin: 0 0 16px; font-size: 15.5px; color: var(--fz-mut); }
         .fd-cap b { color: var(--fz-ink); font-weight: 600; }
         .fd-ticket { border: 1.5px solid var(--fz-ink); padding: 18px; max-width: 460px; margin: 0 auto; background: #fffdf6; }
-        .fd-ticket h3 { font-size: 12.5px; text-align: center; margin: 0 0 10px; letter-spacing: 0.05em; }
+        .fd-ticket .fd-doc-title { font-size: 12.5px; font-weight: 700; text-align: center; margin: 0 0 10px; letter-spacing: 0.05em; }
         .fd-ticket table { width: 100%; font-size: 12.5px; border-collapse: collapse; }
         .fd-ticket td { padding: 3px 4px; }
         .fd-ticket .rule td { border-top: 1px dashed var(--fz-ink); }
         .fd-ticket .stamp { text-align: center; margin-top: 12px; font-size: 11.5px; color: #8a6d1a; font-weight: 700; }
-        .fd-row { display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--fz-line); border-radius: 8px; padding: 11px 15px; margin-bottom: 13px; background: #efede6; }
+        .fd-row { display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--fz-line); border-radius: 8px; padding: 11px 15px; margin-bottom: 13px; background: #f4f3ee; }
         .fd-row b { display: block; font-size: 15px; }
-        .fd-row small { color: #8b948f; font-size: 12.5px; }
+        .fd-row small { color: #5d6a63; font-size: 12.5px; }
         .fd-badge { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #e7f2ec; color: var(--fz-green); white-space: nowrap; }
         .fd-panel { border: 1px solid var(--fz-line); border-radius: 8px; overflow-x: auto; }
-        .fd-panel h4 { font-family: var(--font-mono), monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: #8b948f; padding: 9px 14px; margin: 0; background: #efede6; font-weight: 500; }
+        .fd-panel .fd-panel-cap { font-family: var(--font-mono), monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: #5d6a63; padding: 9px 14px; margin: 0; background: #f4f3ee; font-weight: 500; }
         .fd-panel table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 420px; }
         .fd-panel td, .fd-panel th { padding: 8px 14px; text-align: right; border-top: 1px solid var(--fz-line); }
         .fd-panel td:first-child, .fd-panel th:first-child { text-align: left; }
-        .fd-panel th { font-family: var(--font-mono), monospace; font-size: 10.5px; text-transform: uppercase; color: #8b948f; letter-spacing: 0.06em; border-top: 0; font-weight: 500; }
-        .fd-panel .tax td { color: #8b948f; font-size: 12.5px; }
+        .fd-panel th { font-family: var(--font-mono), monospace; font-size: 10.5px; text-transform: uppercase; color: #5d6a63; letter-spacing: 0.06em; border-top: 0; font-weight: 500; }
+        .fd-panel .tax td { color: #5d6a63; font-size: 12.5px; }
         .fd-panel .total td { font-weight: 700; border-top: 2px solid var(--fz-ink); }
         .fd-check { margin-top: 13px; padding: 10px 14px; border-radius: 8px; background: #e7f2ec; color: var(--fz-green); font-size: 13px; font-weight: 500; }
         .fd-qb { border: 1px solid var(--fz-line); border-radius: 8px; padding: 18px; background: var(--fz-card); max-width: 540px; margin: 0 auto; }
         .fd-qb .head { display: flex; justify-content: space-between; margin-bottom: 13px; }
         .fd-qb .head b { font-size: 16px; }
-        .fd-qb .head small { color: #8b948f; display: block; font-size: 12.5px; }
+        .fd-qb .head small { color: #5d6a63; display: block; font-size: 12.5px; }
         .fd-synced { display: inline-block; margin-top: 14px; background: #e7f2ec; color: var(--fz-green); font-weight: 600; font-size: 12.5px; padding: 6px 13px; border-radius: 999px; }
         .fd-synced::before { content: "✓ "; }
         .fd-cta { text-align: center; margin: 22px 0 0; font-size: 15px; color: var(--fz-mut); }

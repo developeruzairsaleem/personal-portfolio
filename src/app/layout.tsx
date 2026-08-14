@@ -18,9 +18,9 @@ const jetMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem · Ops Automation for Fuel Distributors";
+const TITLE = "Uzair Saleem · Software Engineer for Fuel Distributors";
 const DESCRIPTION =
-  "Truck ticket to QuickBooks invoice, same day. I build back offices for family-run fuel distributors, proven live on a New Jersey jobber.";
+  "Truck ticket to QuickBooks invoice, same day. I design, build, and run back offices for family-run fuel distributors, proven live at Sat-Raj, a New Jersey jobber.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "Full-Stack", "Remote Engineer", "Node.js", "Prisma",
     "PostgreSQL", "AWS", "Pakistan Developer", "Indiecator", "Diffed.gg", "Satraj",
   ],
-  alternates: { canonical: SITE_URL },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website", locale: "en_US", url: SITE_URL,
     siteName: "Uzair Saleem", title: TITLE, description: DESCRIPTION,
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f6f7",
+  themeColor: "#0d231e",
   width: "device-width",
   initialScale: 1,
 };
@@ -60,7 +60,7 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Uzair Saleem",
-  jobTitle: "Full-Stack Engineer",
+  jobTitle: "Software Engineer",
   url: SITE_URL,
   email: "uzairsaleemdev@gmail.com",
   address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
@@ -77,16 +77,12 @@ const personSchema = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Adds .js so CSS knows to hide elements pre-reveal */}
-        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add('js');` }} />
-      </head>
       <body className={`${inter.variable} ${jetMono.variable} antialiased`}>
         <a
-          href="#work"
+          href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#1b1a17] text-[#f4f2ec] font-semibold px-4 py-2"
         >
-          Skip to work
+          Skip to content
         </a>
         {children}
         <Analytics />

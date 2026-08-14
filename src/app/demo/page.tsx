@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Walkthrough: truck ticket to QuickBooks invoice, same day",
   description:
     "A 60 second walkthrough with sample data: driver's ticket in, checked delivery, one click to a fully itemized QuickBooks invoice.",
+  alternates: { canonical: "/demo" },
 };
 
 export default function DemoPage() {

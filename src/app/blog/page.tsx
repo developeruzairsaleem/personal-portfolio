@@ -21,7 +21,7 @@ export default function BlogIndex() {
     <>
       <Nav />
 
-      <main className="wrap">
+      <main id="main" className="wrap">
         <section className="intro">
           <p className="eyebrow fade">writing</p>
           <h1 className="fade d1">Notes on building software.</h1>
