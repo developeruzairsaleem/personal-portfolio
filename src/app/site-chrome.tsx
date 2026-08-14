@@ -26,11 +26,9 @@ export function Nav() {
       <div className="nav-inner">
         <Link href="/" className="brand">uzair-saleem</Link>
         <div className="nav-links">
-          <Link href="/#work" className="hide-sm">work</Link>
-          <Link href="/blog">writing</Link>
-          <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="nav-icon" aria-label="GitHub"><GithubIcon /></a>
+          <Link href="/demo">walkthrough</Link>
           <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="nav-icon" aria-label="LinkedIn"><LinkedinIcon /></a>
-          <a href={LINKS.resume} target="_blank" rel="noopener noreferrer" className="cta">résumé</a>
+          <a href={LINKS.email} className="cta">email me</a>
         </div>
       </div>
     </nav>
@@ -42,8 +40,7 @@ export function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <span>© {new Date().getFullYear()} Uzair Saleem</span>
-        <span>Islamabad · UTC+5</span>
-        <Link href="/blog">writing</Link>
+        <span>back offices for family-run fuel businesses that run on QuickBooks</span>
       </div>
     </footer>
   );

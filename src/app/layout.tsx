@@ -18,9 +18,9 @@ const jetMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem · Full-Stack Engineer";
+const TITLE = "Uzair Saleem · Ops Automation for Fuel Distributors";
 const DESCRIPTION =
-  "Full-stack engineer, four years building web apps in TypeScript, Node, Next.js, and Postgres. Based in Islamabad, open to remote work and relocation.";
+  "Truck ticket to QuickBooks invoice, same day. I build back offices for family-run fuel distributors, proven live on a New Jersey jobber.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

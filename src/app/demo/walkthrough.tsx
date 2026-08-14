@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { EMAIL } from "../../site-chrome";
+import { EMAIL } from "../site-chrome";
 
 const STEPS = [
   "Driver submits the ticket",
@@ -18,7 +18,7 @@ export function Walkthrough() {
       <section className="intro" style={{ paddingBottom: 28 }}>
         <p className="label fade">
           <span>walkthrough with sample data</span>
-          <span className="x"><Link href="/fuel">← back</Link></span>
+          <span className="x"><Link href="/">← back</Link></span>
         </p>
         <h1 className="fade d1" style={{ maxWidth: "18ch" }}>
           From truck ticket to QuickBooks invoice, same day
