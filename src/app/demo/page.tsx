@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nav, Footer } from "../site-chrome";
+import { ServiceNav, ServiceFooter, ServiceStyles } from "../service-chrome";
 import { Walkthrough } from "./walkthrough";
 
 export const metadata: Metadata = {
@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 export default function DemoPage() {
   return (
     <>
-      <Nav />
+      <ServiceStyles />
+      <ServiceNav />
       <Walkthrough />
-      <Footer />
+      <ServiceFooter />
     </>
   );
 }
