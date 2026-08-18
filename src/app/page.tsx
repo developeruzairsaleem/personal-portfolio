@@ -166,10 +166,10 @@ export default function Home() {
 
       <style>{`
         .fz-hero { background: var(--fz-deeper); color: #fff; }
-        .fz-hero-in { max-width: 1120px; margin: 0 auto; padding: 64px 24px 48px; }
-        .fz-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+        .fz-hero-in { max-width: 1240px; margin: 0 auto; padding: 64px 24px 48px; }
+        .fz-hero-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 52px; align-items: center; }
         .fz-kicker { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fz-amber); margin: 0 0 16px; font-weight: 600; }
-        .fz-hero h1 { font-size: clamp(26px, 3.4vw, 38px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 18px; font-weight: 750; }
+        .fz-hero h1 { font-size: clamp(24px, 3vw, 34px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 18px; font-weight: 750; }
         .fz-sub { font-size: 16px; line-height: 1.65; color: #b9bdb4; max-width: 54ch; margin: 0 0 26px; }
         .fz-hero-cta { display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: center; }
         .fz-stats { display: flex; flex-wrap: wrap; gap: 14px 44px; border-top: 1px solid #2b2e2a; margin-top: 48px; padding-top: 24px; }
