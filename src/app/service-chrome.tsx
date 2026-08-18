@@ -92,6 +92,9 @@ export function ServiceStyles() {
       .fz-link { color: var(--fz-ink); font-weight: 650; border-bottom: 2px solid var(--fz-amber); padding-bottom: 2px; transition: background 0.15s; }
       .fz-link:hover { background: #fbf0dc; }
 
+      .fz-video { max-width: 880px; }
+      .fz-video video { width: 100%; display: block; border: 1px solid var(--fz-line); border-radius: 8px; box-shadow: 0 14px 44px rgba(13,35,30,0.14); background: #000; }
+
       .fz-end { background: var(--fz-deep); color: #fff; padding: 64px 0; }
       .fz-end-in { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
       .fz-end h2 { font-size: 26px; margin: 0 0 12px; letter-spacing: -0.015em; }

@@ -34,6 +34,15 @@ export default function SatrajCaseStudy() {
         </header>
 
         <section className="cs-sec">
+          <h2 className="fz-kick">Watch it run</h2>
+          <div className="fz-video">
+            <video controls preload="metadata" poster="/satraj-demo-poster.jpg" playsInline>
+              <source src="/satraj-demo.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </section>
+
+        <section className="cs-sec">
           <h2 className="fz-kick">The situation</h2>
           <p className="cs-body">
             Sat-Raj delivers gasoline and diesel to gas stations across New

@@ -25,7 +25,7 @@ export default function Home() {
             it today. They still use the same QuickBooks they always did.
           </p>
           <div className="fz-hero-cta">
-            <Link href="/demo" className="fz-btn">See the 60 second walkthrough</Link>
+            <a href="#demo-video" className="fz-btn">Watch the 90 second demo</a>
             <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer" className="fz-btn ghost">Book 30 minutes</a>
             <Link href="/work/satraj" className="fz-hero-case">Read the Sat-Raj case study</Link>
           </div>
@@ -33,6 +33,19 @@ export default function Home() {
             <div><b>Hundreds</b><span>of live invoices pushed</span></div>
             <div><b>Same day</b><span>ticket to QuickBooks invoice</span></div>
             <div><b>60 min &rarr; 90 sec</b><span>the morning pricing run</span></div>
+          </div>
+        </div>
+      </section>
+
+      {/* DEMO VIDEO */}
+      <section className="fz-sec" id="demo-video">
+        <div className="fz-sec-in">
+          <p className="fz-kick">The 90 second demo</p>
+          <h2>Truck ticket to QuickBooks invoice, same day</h2>
+          <div className="fz-video">
+            <video controls preload="metadata" poster="/satraj-demo-poster.jpg" playsInline>
+              <source src="/satraj-demo.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>
