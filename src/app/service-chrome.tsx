@@ -38,36 +38,36 @@ export function ServiceStyles() {
   return (
     <style>{`
       :root {
-        --fz-deep: #14312a;
-        --fz-deeper: #0d231e;
-        --fz-amber: #e79a1b;
+        --fz-deep: #1c1f1c;
+        --fz-deeper: #121412;
+        --fz-amber: #e8720c;
         --fz-bg: #ffffff;
         --fz-card: #ffffff;
-        --fz-ink: #17201b;
-        --fz-mut: #4e5a54;
-        --fz-line: #e3e1da;
-        --fz-rule: #17201b;
-        --fz-green: #2f7d57;
+        --fz-ink: #191b18;
+        --fz-mut: #5a5e54;
+        --fz-line: #e7e5de;
+        --fz-rule: #191b18;
+        --fz-green: #6d7266;
       }
       body { background: var(--fz-bg); color: var(--fz-ink); }
 
-      .fz-nav { background: var(--fz-deeper); }
+      .fz-nav { background: var(--fz-deeper); border-top: 3px solid var(--fz-amber); }
       .fz-nav-in { max-width: 1020px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
       .fz-brand { font-weight: 700; font-size: 16px; color: #fff; letter-spacing: -0.01em; white-space: nowrap; }
-      .fz-brand span { color: #9db8ae; font-weight: 500; }
+      .fz-brand span { color: #9aa094; font-weight: 500; }
       .fz-nav-links { display: flex; align-items: center; gap: 22px; }
-      .fz-nav-links a { font-size: 14px; color: #c8d6cf; font-weight: 500; transition: color 0.15s; white-space: nowrap; }
+      .fz-nav-links a { font-size: 14px; color: #b9bdb4; font-weight: 500; transition: color 0.15s; white-space: nowrap; }
       .fz-nav-links a:hover { color: #fff; }
       .fz-nav-links .fz-cta { background: var(--fz-amber); color: var(--fz-deeper); font-weight: 700; padding: 8px 18px; border-radius: 4px; }
-      .fz-nav-links .fz-cta:hover { background: #f2ab33; color: var(--fz-deeper); }
+      .fz-nav-links .fz-cta:hover { background: #fb8319; color: var(--fz-deeper); }
 
       .fz-foot { background: var(--fz-deeper); }
-      .fz-foot-in { max-width: 1020px; margin: 0 auto; padding: 26px 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; color: #9db8ae; font-size: 13.5px; }
+      .fz-foot-in { max-width: 1020px; margin: 0 auto; padding: 26px 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; color: #9aa094; font-size: 13.5px; }
 
       .fz-btn { display: inline-block; background: var(--fz-amber); color: var(--fz-deeper); font-weight: 700; font-size: 15.5px; padding: 13px 26px; border-radius: 4px; transition: background 0.15s; }
-      .fz-btn:hover { background: #f2ab33; }
-      .fz-btn.ghost { background: transparent; color: #e9f0ec; border: 1.5px solid #3f5d52; }
-      .fz-btn.ghost:hover { background: rgba(255,255,255,0.06); border-color: #6b8a7d; }
+      .fz-btn:hover { background: #fb8319; }
+      .fz-btn.ghost { background: transparent; color: #eef0ec; border: 1.5px solid #3a3e3a; }
+      .fz-btn.ghost:hover { background: rgba(255,255,255,0.06); border-color: #5c615c; }
 
       .fz-sec { padding: 68px 0; border-top: 1px solid var(--fz-line); }
       .fz-sec-in { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
@@ -90,15 +90,12 @@ export function ServiceStyles() {
       .fz-row p b { color: var(--fz-ink); font-weight: 650; }
 
       .fz-link { color: var(--fz-ink); font-weight: 650; border-bottom: 2px solid var(--fz-amber); padding-bottom: 2px; transition: background 0.15s; }
-      .fz-link:hover { background: #fbf0dc; }
-
-      .fz-video { max-width: 880px; }
-      .fz-video video { width: 100%; display: block; border: 1px solid var(--fz-line); border-radius: 8px; box-shadow: 0 14px 44px rgba(13,35,30,0.14); background: #000; }
+      .fz-link:hover { background: #fdeadb; }
 
       .fz-end { background: var(--fz-deep); color: #fff; padding: 64px 0; }
       .fz-end-in { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
       .fz-end h2 { font-size: 26px; margin: 0 0 12px; letter-spacing: -0.015em; }
-      .fz-end p { color: #c8d6cf; font-size: 16.5px; margin: 0 0 24px; max-width: 56ch; }
+      .fz-end p { color: #b9bdb4; font-size: 16.5px; margin: 0 0 24px; max-width: 56ch; }
       .fz-end .fz-btn + .fz-btn { margin-left: 12px; }
 
       @media (max-width: 640px) {

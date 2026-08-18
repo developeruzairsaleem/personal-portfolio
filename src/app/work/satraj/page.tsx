@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EMAIL } from "../../site-chrome";
 import { ServiceNav, ServiceFooter, ServiceStyles } from "../../service-chrome";
+import { DemoPlayer } from "../../demo-player";
 
 export const metadata: Metadata = {
   title: "Case study: Sat-Raj, Inc.",
@@ -35,11 +36,7 @@ export default function SatrajCaseStudy() {
 
         <section className="cs-sec">
           <h2 className="fz-kick">Watch it run</h2>
-          <div className="fz-video">
-            <video controls preload="metadata" poster="/satraj-demo-poster.jpg" playsInline>
-              <source src="/satraj-demo.mp4" type="video/mp4" />
-            </video>
-          </div>
+          <DemoPlayer />
         </section>
 
         <section className="cs-sec">

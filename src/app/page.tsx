@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { EMAIL, LINKS } from "./site-chrome";
 import { ServiceNav, ServiceFooter, ServiceStyles } from "./service-chrome";
+import { DemoPlayer } from "./demo-player";
 
 export default function Home() {
   return (
@@ -12,40 +13,30 @@ export default function Home() {
       {/* HERO */}
       <section className="fz-hero">
         <div className="fz-hero-in">
-          <p className="fz-kicker">Software engineer · ops automation for fuel distributors</p>
-          <h1>
-            How many hours a week does your office spend typing truck tickets
-            into QuickBooks?
-          </h1>
-          <p className="fz-sub">
-            I am the engineer who automated exactly that for Sat-Raj, a
-            family-run fuel distributor in New Jersey. Their office used to
-            retype every delivery ticket, email price lists by hand, and build
-            fuel tax lines one by one. I designed the system, built it, and run
-            it today. They still use the same QuickBooks they always did.
-          </p>
-          <div className="fz-hero-cta">
-            <a href="#demo-video" className="fz-btn">Watch the 90 second demo</a>
-            <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer" className="fz-btn ghost">Book 30 minutes</a>
-            <Link href="/work/satraj" className="fz-hero-case">Read the Sat-Raj case study</Link>
+          <div className="fz-hero-grid">
+            <div>
+              <p className="fz-kicker">Software engineer · ops automation for fuel distributors</p>
+              <h1>
+                How many hours a week does your office spend typing truck
+                tickets into QuickBooks?
+              </h1>
+              <p className="fz-sub">
+                I am the engineer who automated exactly that for Sat-Raj, a
+                family-run fuel distributor in New Jersey. I designed the
+                system, built it, and run it today. They still use the same
+                QuickBooks they always did.
+              </p>
+              <div className="fz-hero-cta">
+                <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer" className="fz-btn">Book 30 minutes</a>
+                <Link href="/work/satraj" className="fz-btn ghost">Read the case study</Link>
+              </div>
+            </div>
+            <DemoPlayer />
           </div>
           <div className="fz-stats">
             <div><b>Hundreds</b><span>of live invoices pushed</span></div>
             <div><b>Same day</b><span>ticket to QuickBooks invoice</span></div>
             <div><b>60 min &rarr; 90 sec</b><span>the morning pricing run</span></div>
-          </div>
-        </div>
-      </section>
-
-      {/* DEMO VIDEO */}
-      <section className="fz-sec" id="demo-video">
-        <div className="fz-sec-in">
-          <p className="fz-kick">The 90 second demo</p>
-          <h2>Truck ticket to QuickBooks invoice, same day</h2>
-          <div className="fz-video">
-            <video controls preload="metadata" poster="/satraj-demo-poster.jpg" playsInline>
-              <source src="/satraj-demo.mp4" type="video/mp4" />
-            </video>
           </div>
         </div>
       </section>
@@ -174,17 +165,17 @@ export default function Home() {
       <ServiceFooter />
 
       <style>{`
-        .fz-hero { background: linear-gradient(180deg, var(--fz-deeper) 0%, var(--fz-deep) 100%); color: #fff; }
-        .fz-hero-in { max-width: 1020px; margin: 0 auto; padding: 84px 24px 64px; }
-        .fz-kicker { font-family: var(--font-mono), monospace; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fz-amber); margin: 0 0 18px; font-weight: 600; }
-        .fz-hero h1 { font-size: clamp(30px, 4.6vw, 46px); line-height: 1.16; letter-spacing: -0.02em; margin: 0 0 20px; max-width: 21ch; font-weight: 750; }
-        .fz-sub { font-size: 17.5px; line-height: 1.65; color: #c8d6cf; max-width: 62ch; margin: 0 0 30px; }
-        .fz-hero-cta { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-bottom: 46px; }
-        .fz-hero-case { color: #c8d6cf; font-size: 14.5px; font-weight: 500; border-bottom: 1px solid #3f5d52; padding-bottom: 2px; }
-        .fz-hero-case:hover { color: #fff; border-color: #9db8ae; }
-        .fz-stats { display: flex; flex-wrap: wrap; gap: 14px 44px; border-top: 1px solid #2b473e; padding-top: 26px; }
-        .fz-stats b { display: block; font-size: 21px; letter-spacing: -0.01em; color: #fff; }
-        .fz-stats span { font-size: 13.5px; color: #9db8ae; }
+        .fz-hero { background: var(--fz-deeper); color: #fff; }
+        .fz-hero-in { max-width: 1120px; margin: 0 auto; padding: 64px 24px 48px; }
+        .fz-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+        .fz-kicker { font-family: var(--font-mono), monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fz-amber); margin: 0 0 16px; font-weight: 600; }
+        .fz-hero h1 { font-size: clamp(26px, 3.4vw, 38px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 18px; font-weight: 750; }
+        .fz-sub { font-size: 16px; line-height: 1.65; color: #b9bdb4; max-width: 54ch; margin: 0 0 26px; }
+        .fz-hero-cta { display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: center; }
+        .fz-stats { display: flex; flex-wrap: wrap; gap: 14px 44px; border-top: 1px solid #2b2e2a; margin-top: 48px; padding-top: 24px; }
+        .fz-stats b { display: block; font-size: 20px; letter-spacing: -0.01em; color: #fff; }
+        .fz-stats span { font-size: 13px; color: #9aa094; }
+        @media (max-width: 900px) { .fz-hero-grid { grid-template-columns: 1fr; gap: 34px; } }
 
         .fz-case { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px 56px; }
         .fz-case > div > p { font-size: 16px; line-height: 1.7; color: var(--fz-mut); margin: 0 0 22px; }
