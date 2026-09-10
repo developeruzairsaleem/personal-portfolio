@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Uzair Saleem · Full-Stack Engineer";
+export const alt = "Uzair Saleem · Software Engineer for Fuel Distributors";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,15 +26,15 @@ export default function OpengraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 67, fontWeight: 700, lineHeight: 1.12, letterSpacing: "-0.02em" }}>
-            Full-stack engineer who ships products end to end.
+            Software engineer for fuel distributors.
           </div>
           <div style={{ display: "flex", fontSize: 30, color: "#565b64", marginTop: 26 }}>
-            Four years of TypeScript, Node, Next.js, and Postgres.
+            Truck ticket to QuickBooks invoice, same day.
           </div>
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 23, color: "#868c96" }}>
-          <div style={{ display: "flex" }}>Indiecator · Satraj · Diffed.gg</div>
+          <div style={{ display: "flex" }}>Proven live at Sat-Raj, New Jersey</div>
           <div style={{ display: "flex" }}>Islamabad · UTC+5</div>
         </div>
       </div>
