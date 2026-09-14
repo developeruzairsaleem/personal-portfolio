@@ -247,8 +247,8 @@ export default function Home() {
         .fz-quote figcaption b { color: var(--fz-ink); }
 
         .fz-qa { list-style: none; margin: 0; padding: 0; max-width: 680px; }
-        .fz-qa li { padding: 32px 0; border-top: 1px solid var(--fz-line); }
-        .fz-qa li:first-child { border-top: 0; padding-top: 0; }
+        .fz-qa > li { padding: 32px 0; border-top: 1px solid var(--fz-line); }
+        .fz-qa > li:first-child { border-top: 0; padding-top: 0; }
         .fz-qa > li > b { display: block; font-size: 22px; line-height: 1.3; color: var(--fz-ink); margin-bottom: 14px; }
 
         .fz-end p + p { margin-top: -14px; }
