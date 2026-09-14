@@ -78,25 +78,25 @@ export function ServiceStyles() {
       .fz-btn.ghost { background: var(--fz-card); color: var(--fz-ink); border-color: var(--fz-ink); }
       .fz-btn.ghost:hover { background: var(--fz-sand); }
 
-      .fz-sec { padding: 88px 0; }
+      .fz-sec { padding: 104px 0; }
       .fz-sec.sand { background: var(--fz-sand); }
       .fz-sec.white { background: var(--fz-card); }
       .fz-sec-in { max-width: var(--fz-max); margin: 0 auto; padding: 0 24px; }
       .fz-kick { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fz-amber-ink); margin: 0 0 14px; }
-      .fz-sec h2 { font-size: clamp(28px, 3.4vw, 36px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 750; color: var(--fz-ink); margin: 0 0 32px; }
+      .fz-sec h2 { font-size: clamp(28px, 3.4vw, 36px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 750; color: var(--fz-ink); margin: 0 0 40px; }
 
-      .fz-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; }
+      .fz-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 48px; }
       .fz-col::before { content: ""; display: block; width: 44px; height: 4px; border-radius: 2px; background: var(--fz-amber); margin-bottom: 18px; }
       .fz-tag { display: none; }
-      .fz-col h3 { font-size: 22px; font-weight: 700; line-height: 1.25; margin: 0 0 10px; color: var(--fz-ink); letter-spacing: -0.01em; }
+      .fz-col h3 { font-size: 22px; font-weight: 700; line-height: 1.25; margin: 0 0 16px; color: var(--fz-ink); letter-spacing: -0.01em; }
       .fz-col p { font-size: 17.5px; line-height: 1.65; color: var(--fz-body); margin: 0; }
 
       .fz-rows { max-width: 720px; list-style: none; margin: 0; padding: 0; }
       .fz-sec .fz-kick-h { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fz-amber-ink); line-height: 1.4; margin: 0 0 14px; }
-      .fz-row { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 30px 0; border-top: 1px solid var(--fz-line); }
+      .fz-row { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 36px 0; border-top: 1px solid var(--fz-line); }
       .fz-rows .fz-row:first-of-type { border-top: 0; padding-top: 0; }
       .fz-num { font-size: 40px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--fz-amber-ink); }
-      .fz-row h3 { font-size: 22px; font-weight: 700; line-height: 1.25; margin: 4px 0 8px; color: var(--fz-ink); letter-spacing: -0.01em; }
+      .fz-row h3 { font-size: 22px; font-weight: 700; line-height: 1.25; margin: 4px 0 14px; color: var(--fz-ink); letter-spacing: -0.01em; }
       .fz-row p { font-size: 17.5px; line-height: 1.65; color: var(--fz-body); margin: 0 0 8px; }
       .fz-row p:last-child { margin-bottom: 0; }
       .fz-row p b { color: var(--fz-ink); font-weight: 650; }
@@ -104,9 +104,9 @@ export function ServiceStyles() {
       .fz-link { display: inline-block; padding: 8px 0; color: var(--fz-ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--fz-amber); text-decoration-thickness: 3px; text-underline-offset: 5px; transition: text-decoration-color 0.15s; }
       .fz-link:hover { text-decoration-color: var(--fz-ink); }
 
-      .fz-end { background: var(--fz-deep); color: #fff; padding: 88px 0; }
+      .fz-end { background: var(--fz-deep); color: #fff; padding: 104px 0; }
       .fz-end-in { max-width: var(--fz-max); margin: 0 auto; padding: 0 24px; }
-      .fz-end h2 { font-size: clamp(28px, 3.4vw, 36px); font-weight: 750; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 14px; }
+      .fz-end h2 { font-size: clamp(28px, 3.4vw, 36px); font-weight: 750; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px; }
       .fz-end p { color: #d6ddd9; font-size: 19px; line-height: 1.6; margin: 0 0 28px; max-width: 58ch; }
       .fz-end .fz-btn + .fz-btn { margin-left: 12px; }
       .fz-end .fz-btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.55); }
@@ -120,8 +120,8 @@ export function ServiceStyles() {
         .fz-nav-links { order: 3; width: 100%; margin-left: 0; gap: 22px; }
         .fz-nav-links a { padding: 6px 0 10px; }
         .fz-nav-ext { display: none; }
-        .fz-sec { padding: 56px 0; }
-        .fz-sec h2 { font-size: 26px; }
+        .fz-sec { padding: 64px 0; }
+        .fz-sec h2 { font-size: 26px; margin-bottom: 28px; }
         .fz-sec-in, .fz-end-in { padding: 0 20px; }
         .fz-end { padding: 64px 0; }
         .fz-row { grid-template-columns: 48px 1fr; gap: 16px; padding: 24px 0; }
