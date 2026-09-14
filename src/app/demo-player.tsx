@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { track } from "@vercel/analytics";
 
 function fmt(s: number) {
   const m = Math.floor(s / 60);
@@ -45,9 +46,11 @@ export function DemoPlayer() {
         playsInline
         muted={muted}
         onPlay={() => {
+          if (!started) track("video_play");
           setPlaying(true);
           setStarted(true);
         }}
+        onEnded={() => track("video_complete")}
         onPause={() => setPlaying(false)}
         onTimeUpdate={() => {
           const v = ref.current;
@@ -120,7 +123,12 @@ export function DemoPlayer() {
           </button>
           <button
             type="button"
-            onClick={() => ref.current?.requestFullscreen?.()}
+            onClick={() => {
+              const v = ref.current as (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
+              if (!v) return;
+              if (v.requestFullscreen) void v.requestFullscreen();
+              else v.webkitEnterFullscreen?.();
+            }}
             aria-label="Fullscreen"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true">

@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { EMAIL, LINKS } from "./site-chrome";
+import { EMAIL } from "./site-chrome";
 import { ServiceNav, ServiceFooter, ServiceStyles } from "./service-chrome";
 import { DemoPlayer } from "./demo-player";
+import { HeroCtas } from "./hero-ctas";
 
 export default function Home() {
   return (
@@ -26,10 +27,7 @@ export default function Home() {
                 system, built it, and run it today. They still use the same
                 QuickBooks they always did.
               </p>
-              <div className="fz-hero-cta">
-                <a href={LINKS.calendly} target="_blank" rel="noopener noreferrer" className="fz-btn">Book 30 minutes</a>
-                <Link href="/work/satraj" className="fz-btn ghost">Read the case study</Link>
-              </div>
+              <HeroCtas />
             </div>
             <DemoPlayer />
           </div>
@@ -175,7 +173,7 @@ export default function Home() {
         .fz-stats { display: flex; flex-wrap: wrap; gap: 14px 44px; border-top: 1px solid #2b2e2a; margin-top: 48px; padding-top: 24px; }
         .fz-stats b { display: block; font-size: 20px; letter-spacing: -0.01em; color: #fff; }
         .fz-stats span { font-size: 13px; color: #9aa094; }
-        @media (max-width: 900px) { .fz-hero-grid { grid-template-columns: 1fr; gap: 34px; } }
+        @media (max-width: 900px) { .fz-hero-grid { grid-template-columns: 1fr; gap: 28px; } #demo-video { order: -1; } }
 
         .fz-case { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px 56px; }
         .fz-case > div > p { font-size: 16px; line-height: 1.7; color: var(--fz-mut); margin: 0 0 22px; }
