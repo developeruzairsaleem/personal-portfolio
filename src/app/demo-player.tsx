@@ -141,21 +141,23 @@ export function DemoPlayer() {
         </div>
       )}
       <style>{`
-        .vp { position: relative; border-radius: 10px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+        .vp { position: relative; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 30px 70px rgba(20,25,22,0.22); }
         .vp video { width: 100%; display: block; cursor: pointer; }
-        .vp-cover { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; width: 100%; background: linear-gradient(180deg, rgba(12,13,12,0.08) 40%, rgba(12,13,12,0.58)); border: 0; cursor: pointer; }
-        .vp-play { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; background: var(--fz-amber); color: #121412; transition: transform 0.15s; }
-        .vp-play svg { width: 26px; height: 26px; margin-left: 2px; }
-        .vp-cover:hover .vp-play { transform: scale(1.07); }
-        .vp-caption { color: #fff; font-size: 13.5px; font-weight: 700; letter-spacing: 0.01em; }
-        .vp-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px 8px; background: linear-gradient(0deg, rgba(10,11,10,0.85), rgba(10,11,10,0)); }
-        .vp-bar button { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; padding: 0; border: 0; background: transparent; color: #fff; cursor: pointer; opacity: 0.9; }
-        .vp-bar button:hover { opacity: 1; }
-        .vp-bar svg { width: 18px; height: 18px; }
-        .vp-track { position: relative; flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.28); cursor: pointer; }
-        .vp-track:hover { height: 6px; }
-        .vp-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--fz-amber); }
-        .vp-time { font-family: var(--font-mono), monospace; font-size: 11px; color: #fff; opacity: 0.9; min-width: 34px; text-align: right; }
+        .vp-cover { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; width: 100%; background: rgba(13,26,23,0.55); border: 0; cursor: pointer; color: #fff; transition: background 0.15s; }
+        .vp-cover:hover { background: rgba(13,26,23,0.66); }
+        .vp-play { display: flex; align-items: center; justify-content: center; width: 88px; height: 88px; border-radius: 50%; background: var(--fz-amber); color: #1a1f1d; box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: transform 0.15s; }
+        .vp-play svg { width: 36px; height: 36px; margin-left: 4px; }
+        .vp-cover:hover .vp-play { transform: scale(1.06); }
+        .vp-caption { font-size: 18px; font-weight: 700; letter-spacing: 0.01em; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+        .vp-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: linear-gradient(0deg, rgba(10,14,12,0.88), rgba(10,14,12,0)); }
+        .vp-bar button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: #fff; cursor: pointer; opacity: 0.92; }
+        .vp-bar button:hover { opacity: 1; background: rgba(255,255,255,0.12); }
+        .vp-bar svg { width: 22px; height: 22px; }
+        .vp-track { position: relative; flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.3); cursor: pointer; }
+        .vp-track:hover { height: 8px; }
+        .vp-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--fz-amber); }
+        .vp-time { font-variant-numeric: tabular-nums; font-size: 14px; font-weight: 600; color: #fff; min-width: 40px; text-align: right; }
+        @media (max-width: 640px) { .vp { border-radius: 10px; } .vp-play { width: 72px; height: 72px; } .vp-play svg { width: 30px; height: 30px; } .vp-caption { font-size: 16px; } }
       `}</style>
     </div>
   );
