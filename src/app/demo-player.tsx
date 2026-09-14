@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { track } from "@vercel/analytics";
+import { mark } from "./mark";
 
 function fmt(s: number) {
   const m = Math.floor(s / 60);
@@ -46,11 +46,11 @@ export function DemoPlayer() {
         playsInline
         muted={muted}
         onPlay={() => {
-          if (!started) track("video_play");
+          if (!started) mark("video_play");
           setPlaying(true);
           setStarted(true);
         }}
-        onEnded={() => track("video_complete")}
+        onEnded={() => mark("video_complete")}
         onPause={() => setPlaying(false)}
         onTimeUpdate={() => {
           const v = ref.current;
