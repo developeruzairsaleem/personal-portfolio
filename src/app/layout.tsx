@@ -103,7 +103,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${inter.variable} ${jetMono.variable} antialiased`}>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#1b1a17] text-[#f4f2ec] font-semibold px-4 py-2"
+          className="sr-only focus:not-sr-only focus:px-4 focus:py-2 focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#1b1a17] text-[#f4f2ec] font-semibold px-4 py-2"
         >
           Skip to content
         </a>

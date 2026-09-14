@@ -15,9 +15,9 @@ export function ServiceNav() {
         <nav className="fz-nav-links" aria-label="Site">
           <Link href="/work/satraj">case study</Link>
           <Link href="/demo">walkthrough</Link>
-          <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a className="fz-cta" href={`mailto:${EMAIL}?subject=My fleet and accounting software&body=Fleet size: %0D%0AAccounting software: %0D%0A`}>Email me</a>
+          <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="fz-nav-ext">LinkedIn<span className="fz-sr"> (opens in new tab)</span></a>
         </nav>
+        <a className="fz-cta" href={`mailto:${EMAIL}?subject=My fleet and accounting software&body=Fleet size: %0D%0AAccounting software: %0D%0A`}>Email me</a>
       </div>
     </header>
   );
@@ -47,7 +47,7 @@ export function ServiceStyles() {
         --fz-line: #e2dbcf;
         --fz-rule: #1a1f1d;
         --fz-amber: #e8720c;
-        --fz-amber-d: #d2650a;
+        --fz-amber-d: #dc6e0b;
         --fz-amber-ink: #ad470c;
         --fz-deep: #12211d;
         --fz-deeper: #0d1a17;
@@ -56,16 +56,18 @@ export function ServiceStyles() {
         --fz-max: 1120px;
       }
       body { background: var(--fz-paper); color: var(--fz-ink); font-size: 18px; line-height: 1.65; }
-      a:focus-visible, button:focus-visible { outline: 3px solid var(--fz-amber); outline-offset: 3px; border-radius: 6px; }
+      a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--fz-amber-ink); outline-offset: 3px; border-radius: 6px; }
+      .fz-end :focus-visible, .fz-foot :focus-visible { outline-color: var(--fz-amber); }
+      .fz-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
       .fz-nav { background: var(--fz-card); border-bottom: 1px solid var(--fz-line); }
-      .fz-nav-in { max-width: var(--fz-max); margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-      .fz-brand { font-weight: 750; font-size: 19px; color: var(--fz-ink); letter-spacing: -0.01em; white-space: nowrap; }
-      .fz-nav-links { display: flex; align-items: center; gap: 28px; }
-      .fz-nav-links a { font-size: 16px; color: var(--fz-body); font-weight: 600; transition: color 0.15s; white-space: nowrap; }
+      .fz-nav-in { max-width: var(--fz-max); margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 28px; }
+      .fz-brand { font-weight: 750; font-size: 19px; color: var(--fz-ink); letter-spacing: -0.01em; white-space: nowrap; padding: 8px 0; }
+      .fz-nav-links { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+      .fz-nav-links a { display: inline-block; padding: 10px 0; font-size: 16px; color: var(--fz-body); font-weight: 600; transition: color 0.15s; white-space: nowrap; }
       .fz-nav-links a:hover { color: var(--fz-ink); }
-      .fz-nav-links .fz-cta { background: var(--fz-amber); color: var(--fz-ink); font-weight: 700; padding: 10px 18px; border-radius: 8px; }
-      .fz-nav-links .fz-cta:hover { background: var(--fz-amber-d); color: var(--fz-ink); }
+      .fz-cta { display: inline-block; background: var(--fz-amber); color: var(--fz-ink); font-weight: 700; font-size: 16px; padding: 11px 18px; border-radius: 8px; white-space: nowrap; }
+      .fz-cta:hover { background: var(--fz-amber-d); color: var(--fz-ink); }
 
       .fz-foot { background: var(--fz-deeper); color: #b6c0ba; }
       .fz-foot-in { max-width: var(--fz-max); margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 15px; border-top: 1px solid rgba(255,255,255,0.08); }
@@ -80,7 +82,7 @@ export function ServiceStyles() {
       .fz-sec.sand { background: var(--fz-sand); }
       .fz-sec.white { background: var(--fz-card); }
       .fz-sec-in { max-width: var(--fz-max); margin: 0 auto; padding: 0 24px; }
-      .fz-kick { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fz-amber-ink); margin: 0 0 14px; }
+      .fz-kick { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fz-amber-ink); margin: 0 0 14px; }
       .fz-sec h2 { font-size: clamp(28px, 3.4vw, 36px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 750; color: var(--fz-ink); margin: 0 0 32px; }
 
       .fz-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; }
@@ -89,16 +91,17 @@ export function ServiceStyles() {
       .fz-col h3 { font-size: 22px; line-height: 1.25; margin: 0 0 10px; color: var(--fz-ink); letter-spacing: -0.01em; }
       .fz-col p { font-size: 17.5px; line-height: 1.65; color: var(--fz-body); margin: 0; }
 
-      .fz-rows { max-width: 760px; }
+      .fz-rows { max-width: 760px; list-style: none; margin: 0; padding: 0; }
+      .fz-sec .fz-kick-h { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fz-amber-ink); line-height: 1.4; margin: 0 0 14px; }
       .fz-row { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 30px 0; border-top: 1px solid var(--fz-line); }
       .fz-rows .fz-row:first-of-type { border-top: 0; padding-top: 0; }
-      .fz-num { font-size: 40px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--fz-amber); }
+      .fz-num { font-size: 40px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--fz-amber-ink); }
       .fz-row h3 { font-size: 22px; line-height: 1.25; margin: 4px 0 8px; color: var(--fz-ink); letter-spacing: -0.01em; }
       .fz-row p { font-size: 17.5px; line-height: 1.65; color: var(--fz-body); margin: 0 0 8px; }
       .fz-row p:last-child { margin-bottom: 0; }
       .fz-row p b { color: var(--fz-ink); font-weight: 650; }
 
-      .fz-link { color: var(--fz-ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--fz-amber); text-decoration-thickness: 3px; text-underline-offset: 5px; transition: text-decoration-color 0.15s; }
+      .fz-link { display: inline-block; padding: 8px 0; color: var(--fz-ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--fz-amber); text-decoration-thickness: 3px; text-underline-offset: 5px; transition: text-decoration-color 0.15s; }
       .fz-link:hover { text-decoration-color: var(--fz-ink); }
 
       .fz-end { background: var(--fz-deep); color: #fff; padding: 88px 0; }
@@ -111,9 +114,12 @@ export function ServiceStyles() {
 
       @media (max-width: 640px) {
         body { font-size: 17px; }
-        .fz-nav-in { padding: 14px 20px; }
-        .fz-nav-links { gap: 14px; }
-        .fz-nav-links a:not(.fz-cta) { display: none; }
+        .fz-nav-in { padding: 8px 20px 10px; flex-wrap: wrap; gap: 0 16px; }
+        .fz-brand { order: 1; }
+        .fz-cta { order: 2; margin-left: auto; }
+        .fz-nav-links { order: 3; width: 100%; margin-left: 0; gap: 22px; }
+        .fz-nav-links a { padding: 6px 0 10px; }
+        .fz-nav-ext { display: none; }
         .fz-sec { padding: 56px 0; }
         .fz-sec-in, .fz-end-in { padding: 0 20px; }
         .fz-end { padding: 64px 0; }

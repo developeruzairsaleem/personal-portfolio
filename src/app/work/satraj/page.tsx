@@ -30,7 +30,7 @@ export default function SatrajCaseStudy() {
             <div><dt>Role</dt><dd>Software engineer, sole developer, ongoing</dd></div>
             <div><dt>Stack</dt><dd>Next.js, TypeScript, PostgreSQL, Prisma, AWS</dd></div>
             <div><dt>Integrations</dt><dd>Samsara telematics, DTN terminal feeds, QuickBooks Desktop</dd></div>
-            <div><dt>Live</dt><dd><a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="fz-link">satraj.inc</a></dd></div>
+            <div><dt>Live</dt><dd><a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="fz-link">satraj.inc<span className="fz-sr"> (opens in new tab)</span></a></dd></div>
           </dl>
         </header>
 
@@ -200,8 +200,6 @@ export default function SatrajCaseStudy() {
             </div>
           </div>
         </section>
-      </main>
-
       <section className="fz-end">
         <div className="fz-end-in">
           <h2>If your office looks like the before picture</h2>
@@ -213,6 +211,7 @@ export default function SatrajCaseStudy() {
           <Link href="/demo" className="fz-btn ghost">See the walkthrough</Link>
         </div>
       </section>
+      </main>
 
       <ServiceFooter />
 

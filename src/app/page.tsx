@@ -25,10 +25,12 @@ export default function Home() {
       {/* HERO */}
       <section className="fz-hero">
         <div className="fz-hero-in">
+          <div className="fz-hero-top">
+            <p className="fz-kick">Operations automation for fuel distributors</p>
+            <h1>How many hours a week does your office spend retyping truck tickets into QuickBooks?</h1>
+          </div>
           <div className="fz-hero-grid">
             <div>
-              <p className="fz-kick">Operations automation for fuel distributors</p>
-              <h1>How many hours a week does your office spend retyping truck tickets into QuickBooks?</h1>
               <p className="fz-sub">
                 I&apos;m Uzair, the engineer who automated exactly that for
                 Sat-Raj, a family-run fuel distributor in New Jersey. Their
@@ -55,8 +57,8 @@ export default function Home() {
       {/* WHO THIS IS FOR */}
       <section className="fz-sec sand" id="who">
         <div className="fz-sec-in">
-          <p className="fz-kick">Who this is for</p>
-          <ul className="fz-who-list">
+          <h2 className="fz-kick-h">Who this is for</h2>
+          <ul className="fz-who-list" role="list">
             <li><Check />You run a fleet of fuel trucks.</li>
             <li><Check />Your office lives in QuickBooks Desktop.</li>
             <li><Check />Driver tickets come through Samsara (or another ELD), and every morning someone prices the stations while someone else retypes deliveries.</li>
@@ -106,10 +108,10 @@ export default function Home() {
               </p>
               <div className="fz-case-links">
                 <Link href="/work/satraj" className="fz-link">Read the full case study</Link>
-                <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="fz-link">satraj.inc</a>
+                <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="fz-link">satraj.inc<span className="fz-sr"> (opens in new tab)</span></a>
               </div>
             </div>
-            <ul className="fz-case-list">
+            <ul className="fz-case-list" role="list">
               <li><b>Pricing engine</b>Rack costs in once, every customer&apos;s price email out automatically, taxes by state.</li>
               <li><b>Delivery tracking</b>Driver tickets pulled from Samsara, matched to the right customer by where the truck actually stopped.</li>
               <li><b>QuickBooks invoicing</b>One click to a fully itemized Desktop invoice, every fuel tax as its own named line.</li>
@@ -129,29 +131,29 @@ export default function Home() {
       <section className="fz-sec sand">
         <div className="fz-sec-in">
           <h2>How it goes</h2>
-          <div className="fz-rows">
-            <div className="fz-row">
-              <span className="fz-num">01</span>
+          <ol className="fz-rows">
+            <li className="fz-row">
+              <span className="fz-num" aria-hidden="true">01</span>
               <div>
                 <h3>A 20-minute walkthrough on your numbers</h3>
                 <p>Your products, your stations, your state&apos;s taxes. If it wouldn&apos;t save your office hours every week, you&apos;ll know in the first five minutes, and I&apos;ll tell you so myself.</p>
               </div>
-            </div>
-            <div className="fz-row">
-              <span className="fz-num">02</span>
+            </li>
+            <li className="fz-row">
+              <span className="fz-num" aria-hidden="true">02</span>
               <div>
                 <h3>A one-time setup gets you live</h3>
                 <p>I build it around your operation and your QuickBooks. Nothing off a shelf, nothing your team has to bend around.</p>
               </div>
-            </div>
-            <div className="fz-row">
-              <span className="fz-num">03</span>
+            </li>
+            <li className="fz-row">
+              <span className="fz-num" aria-hidden="true">03</span>
               <div>
                 <h3>A monthly arrangement that costs less than the admin hours it replaces</h3>
                 <p>Maintained and improving as your business changes. You talk to me, the engineer who built it, not a sales team.</p>
               </div>
-            </div>
-          </div>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -159,7 +161,7 @@ export default function Home() {
       <section className="fz-sec white" id="questions">
         <div className="fz-sec-in">
           <h2>The obvious questions</h2>
-          <ul className="fz-qa">
+          <ul className="fz-qa" role="list">
             <li><b>&ldquo;I don&apos;t use Samsara.&rdquo;</b><p>I build around whatever you run. Samsara, another ELD, even paper tickets.</p></li>
             <li><b>&ldquo;My bookkeeper is set in QuickBooks.&rdquo;</b><p>They keep it. The system feeds QuickBooks; it doesn&apos;t replace it. Their workflow gets shorter, not different.</p></li>
             <li><b>&ldquo;What happens if it breaks?&rdquo;</b><p>You call me. It runs a real business every day, so it can&apos;t break for long. Over 300 automated tests keep it honest.</p></li>
@@ -182,8 +184,9 @@ export default function Home() {
       <style>{`
         .fz-hero { padding: 72px 0 0; }
         .fz-hero-in { max-width: var(--fz-max); margin: 0 auto; padding: 0 24px; }
-        .fz-hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; }
-        .fz-hero h1 { font-size: clamp(32px, 4.4vw, 50px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800; color: var(--fz-ink); margin: 0 0 22px; max-width: 17ch; }
+        .fz-hero-top { max-width: 900px; margin: 0 0 36px; }
+        .fz-hero-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
+        .fz-hero h1 { font-size: clamp(32px, 4.2vw, 48px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 800; color: var(--fz-ink); margin: 0; max-width: 24ch; }
         .fz-sub { font-size: 19px; line-height: 1.6; color: var(--fz-body); max-width: 52ch; margin: 0 0 30px; }
         .fz-hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
         .fz-stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 24px 72px; margin-top: 64px; padding: 32px 0; border-top: 1px solid var(--fz-line); border-bottom: 1px solid var(--fz-line); }
@@ -219,8 +222,8 @@ export default function Home() {
         .fz-qa p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--fz-body); }
 
         @media (max-width: 960px) {
-          .fz-hero-grid { grid-template-columns: 1fr; gap: 36px; }
-          #demo-video { order: -1; }
+          .fz-hero-top { margin-bottom: 28px; }
+          .fz-hero-grid { grid-template-columns: 1fr; gap: 28px; }
           .fz-hero h1 { max-width: none; }
           .fz-case { grid-template-columns: 1fr; }
           .fz-stats { grid-template-columns: 1fr 1fr; gap: 20px 32px; }

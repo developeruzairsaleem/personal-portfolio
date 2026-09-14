@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { mark } from "./mark";
 
 function fmt(s: number) {
@@ -21,6 +21,19 @@ export function DemoPlayer() {
   const [muted, setMuted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [time, setTime] = useState("0:00");
+  const [duration, setDuration] = useState(0);
+  const barPlayRef = useRef<HTMLButtonElement>(null);
+
+  // The cover button unmounts on first play; keep keyboard focus in the player.
+  useEffect(() => {
+    if (started) barPlayRef.current?.focus({ preventScroll: true });
+  }, [started]);
+
+  function nudge(seconds: number) {
+    const v = ref.current;
+    if (!v || !v.duration) return;
+    v.currentTime = Math.min(v.duration, Math.max(0, v.currentTime + seconds));
+  }
 
   function toggle() {
     const v = ref.current;
@@ -52,6 +65,7 @@ export function DemoPlayer() {
         }}
         onEnded={() => mark("video_complete")}
         onPause={() => setPlaying(false)}
+        onLoadedMetadata={() => setDuration(ref.current?.duration ?? 0)}
         onTimeUpdate={() => {
           const v = ref.current;
           if (!v) return;
@@ -65,7 +79,6 @@ export function DemoPlayer() {
           type="button"
           className="vp-cover"
           onClick={toggle}
-          aria-label="Play the 90 second demo"
         >
           <span className="vp-play">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -77,7 +90,7 @@ export function DemoPlayer() {
       )}
       {started && (
         <div className="vp-bar">
-          <button type="button" onClick={toggle} aria-label={playing ? "Pause" : "Play"}>
+          <button type="button" ref={barPlayRef} onClick={toggle} aria-label={playing ? "Pause" : "Play"}>
             {playing ? (
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor" />
@@ -92,12 +105,20 @@ export function DemoPlayer() {
             className="vp-track"
             onClick={seek}
             role="slider"
+            tabIndex={0}
             aria-label="Seek"
             aria-valuenow={Math.round(progress * 100)}
             aria-valuemin={0}
             aria-valuemax={100}
+            aria-valuetext={`${time} of ${fmt(duration)}`}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowRight" || e.key === "ArrowUp") { e.preventDefault(); nudge(5); }
+              else if (e.key === "ArrowLeft" || e.key === "ArrowDown") { e.preventDefault(); nudge(-5); }
+              else if (e.key === "Home") { e.preventDefault(); nudge(-Infinity); }
+              else if (e.key === "End") { e.preventDefault(); nudge(Infinity); }
+            }}
           >
-            <div className="vp-fill" style={{ width: `${progress * 100}%` }} />
+            <div className="vp-rail"><div className="vp-fill" style={{ width: `${progress * 100}%` }} /></div>
           </div>
           <span className="vp-time">{time}</span>
           <button
@@ -143,8 +164,10 @@ export function DemoPlayer() {
       <style>{`
         .vp { position: relative; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 30px 70px rgba(20,25,22,0.22); }
         .vp video { width: 100%; display: block; cursor: pointer; }
-        .vp-cover { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; width: 100%; background: rgba(13,26,23,0.55); border: 0; cursor: pointer; color: #fff; transition: background 0.15s; }
-        .vp-cover:hover { background: rgba(13,26,23,0.66); }
+        .vp-cover { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; width: 100%; background: rgba(13,26,23,0.65); border: 0; cursor: pointer; color: #fff; transition: background 0.15s; }
+        .vp-cover:focus-visible { outline-offset: -6px; }
+        .vp :focus-visible { outline-color: var(--fz-amber); }
+        .vp-cover:hover { background: rgba(13,26,23,0.74); }
         .vp-play { display: flex; align-items: center; justify-content: center; width: 88px; height: 88px; border-radius: 50%; background: var(--fz-amber); color: #1a1f1d; box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: transform 0.15s; }
         .vp-play svg { width: 36px; height: 36px; margin-left: 4px; }
         .vp-cover:hover .vp-play { transform: scale(1.06); }
@@ -153,8 +176,9 @@ export function DemoPlayer() {
         .vp-bar button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: #fff; cursor: pointer; opacity: 0.92; }
         .vp-bar button:hover { opacity: 1; background: rgba(255,255,255,0.12); }
         .vp-bar svg { width: 22px; height: 22px; }
-        .vp-track { position: relative; flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.3); cursor: pointer; }
-        .vp-track:hover { height: 8px; }
+        .vp-track { flex: 1; height: 44px; display: flex; align-items: center; cursor: pointer; border-radius: 8px; }
+        .vp-rail { position: relative; width: 100%; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.5); }
+        .vp-track:hover .vp-rail, .vp-track:focus-visible .vp-rail { height: 8px; }
         .vp-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--fz-amber); }
         .vp-time { font-variant-numeric: tabular-nums; font-size: 14px; font-weight: 600; color: #fff; min-width: 40px; text-align: right; }
         @media (max-width: 640px) { .vp { border-radius: 10px; } .vp-play { width: 72px; height: 72px; } .vp-play svg { width: 30px; height: 30px; } .vp-caption { font-size: 16px; } }

@@ -18,7 +18,7 @@ export function Walkthrough() {
       <section className="fd-head">
         <p className="fd-kick">
           <span>Walkthrough with sample data</span>
-          <Link href="/">← back</Link>
+          <Link href="/" className="fd-back" aria-label="Back to home">← back</Link>
         </p>
         <h1>From truck ticket to QuickBooks invoice, same day</h1>
         <p className="fd-sub">
@@ -34,6 +34,7 @@ export function Walkthrough() {
             key={label}
             type="button"
             onClick={() => setStep(i)}
+            aria-current={i === step ? "step" : undefined}
             className={
               "fd-pill" + (i === step ? " on" : "") + (i < step ? " done" : "")
             }
@@ -178,7 +179,9 @@ export function Walkthrough() {
         .fd-head h1 { font-size: clamp(24px, 4vw, 32px); letter-spacing: -0.02em; color: var(--fz-ink); margin: 0 0 12px; line-height: 1.2; }
         .fd-sub { color: var(--fz-mut); font-size: 16px; margin: 0 0 26px; max-width: 58ch; }
         .fd-steps { display: flex; gap: 8px; margin: 6px 0 16px; }
-        .fd-pill { flex: 1; font: inherit; font-size: 13px; font-weight: 600; padding: 9px 6px; border-radius: 4px; border: 1px solid var(--fz-line); background: #f4f3ee; color: var(--fz-mut); cursor: pointer; text-align: center; }
+        .fd-back { display: inline-block; padding: 12px 0; }
+        .fd-card a[href^="mailto"] { color: var(--fz-ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--fz-amber); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+        .fd-pill { flex: 1; font: inherit; font-size: 14px; font-weight: 600; padding: 12px 6px; border-radius: 4px; border: 1px solid var(--fz-line); background: #f4f3ee; color: var(--fz-mut); cursor: pointer; text-align: center; }
         .fd-pill.on { background: var(--fz-card); color: var(--fz-deep); border-color: var(--fz-deep); font-weight: 700; }
         .fd-pill.done { color: var(--fz-green); }
         .fd-card { border: 1px solid var(--fz-line); border-radius: 10px; padding: 22px; background: var(--fz-card); margin-bottom: 60px; }
