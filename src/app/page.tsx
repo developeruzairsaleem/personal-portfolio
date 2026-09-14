@@ -57,7 +57,7 @@ export default function Home() {
       {/* WHO THIS IS FOR */}
       <section className="fz-sec sand" id="who">
         <div className="fz-sec-in">
-          <h2 className="fz-kick-h">Who this is for</h2>
+          <h2>Who this is for</h2>
           <ul className="fz-who-list" role="list">
             <li><Check />You run a fleet of fuel trucks.</li>
             <li><Check />Your office lives in QuickBooks Desktop.</li>
@@ -84,9 +84,6 @@ export default function Home() {
               <h3>Invoices reach QuickBooks same day</h3>
               <p>One click. Fuel at the right rate, every per-gallon tax as its own named line, due dates from each customer&apos;s own terms. Zero retyping.</p>
             </div>
-          </div>
-          <div className="fz-mid">
-            <TrackedLink event="cta_see_numbers" href="#contact" className="fz-btn">See it on your numbers <span aria-hidden="true">&rarr;</span></TrackedLink>
           </div>
         </div>
       </section>
@@ -154,6 +151,9 @@ export default function Home() {
               </div>
             </li>
           </ol>
+          <div className="fz-mid">
+            <TrackedLink event="cta_see_numbers" href="#contact" className="fz-btn">See it on your numbers <span aria-hidden="true">&rarr;</span></TrackedLink>
+          </div>
         </div>
       </section>
 
@@ -182,11 +182,11 @@ export default function Home() {
       <ServiceFooter />
 
       <style>{`
-        .fz-hero { padding: 72px 0 0; }
+        .fz-hero { padding: 48px 0 0; }
         .fz-hero-in { max-width: var(--fz-max); margin: 0 auto; padding: 0 24px; }
-        .fz-hero-top { max-width: 900px; margin: 0 0 36px; }
+        .fz-hero-top { max-width: 900px; margin: 0 0 28px; }
         .fz-hero-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
-        .fz-hero h1 { font-size: clamp(32px, 4.2vw, 48px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 800; color: var(--fz-ink); margin: 0; max-width: 24ch; }
+        .fz-hero h1 { font-size: clamp(32px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 800; color: var(--fz-ink); margin: 0; max-width: 24ch; }
         .fz-sub { font-size: 19px; line-height: 1.6; color: var(--fz-body); max-width: 52ch; margin: 0 0 30px; }
         .fz-hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
         .fz-stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 24px 72px; margin-top: 64px; padding: 32px 0; border-top: 1px solid var(--fz-line); border-bottom: 1px solid var(--fz-line); }
@@ -215,15 +215,16 @@ export default function Home() {
         .fz-quote figcaption { font-size: 16px; color: var(--fz-mut); }
         .fz-quote figcaption b { color: var(--fz-ink); }
 
-        .fz-qa { list-style: none; margin: 0; padding: 0; max-width: 760px; }
+        .fz-qa { list-style: none; margin: 0; padding: 0; max-width: 660px; }
         .fz-qa li { padding: 26px 0; border-top: 1px solid var(--fz-line); }
         .fz-qa li:first-child { border-top: 0; padding-top: 0; }
         .fz-qa b { display: block; font-size: 21px; line-height: 1.3; color: var(--fz-ink); margin-bottom: 8px; }
         .fz-qa p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--fz-body); }
 
         @media (max-width: 960px) {
-          .fz-hero-top { margin-bottom: 28px; }
+          .fz-hero-top { margin-bottom: 24px; }
           .fz-hero-grid { grid-template-columns: 1fr; gap: 28px; }
+          #demo-video { order: -1; }
           .fz-hero h1 { max-width: none; }
           .fz-case { grid-template-columns: 1fr; }
           .fz-stats { grid-template-columns: 1fr 1fr; gap: 20px 32px; }

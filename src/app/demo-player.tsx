@@ -164,15 +164,15 @@ export function DemoPlayer() {
       <style>{`
         .vp { position: relative; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 30px 70px rgba(20,25,22,0.22); }
         .vp video { width: 100%; display: block; cursor: pointer; }
-        .vp-cover { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; width: 100%; background: rgba(13,26,23,0.65); border: 0; cursor: pointer; color: #fff; transition: background 0.15s; }
+        .vp-cover { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; width: 100%; background: linear-gradient(180deg, rgba(13,26,23,0.3), rgba(13,26,23,0.72)); border: 0; cursor: pointer; color: #fff; transition: background 0.15s; }
         .vp-cover:focus-visible { outline-offset: -6px; }
         .vp :focus-visible { outline-color: var(--fz-amber); }
-        .vp-cover:hover { background: rgba(13,26,23,0.74); }
+        .vp-cover:hover { background: linear-gradient(180deg, rgba(13,26,23,0.4), rgba(13,26,23,0.8)); }
         .vp-play { display: flex; align-items: center; justify-content: center; width: 88px; height: 88px; border-radius: 50%; background: var(--fz-amber); color: #1a1f1d; box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: transform 0.15s; }
         .vp-play svg { width: 36px; height: 36px; margin-left: 4px; }
         .vp-cover:hover .vp-play { transform: scale(1.06); }
         .vp-caption { font-size: 18px; font-weight: 700; letter-spacing: 0.01em; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
-        .vp-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: linear-gradient(0deg, rgba(10,14,12,0.88), rgba(10,14,12,0)); }
+        .vp-bar { display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--fz-deeper); }
         .vp-bar button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: #fff; cursor: pointer; opacity: 0.92; }
         .vp-bar button:hover { opacity: 1; background: rgba(255,255,255,0.12); }
         .vp-bar svg { width: 22px; height: 22px; }

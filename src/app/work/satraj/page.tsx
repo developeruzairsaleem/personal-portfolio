@@ -217,15 +217,14 @@ export default function SatrajCaseStudy() {
 
       <style>{`
         .cs-wrap { max-width: 860px; margin: 0 auto; padding: 56px 24px 72px; }
-        .cs-head h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 14px; color: var(--fz-ink); }
-        .cs-sub { font-size: 17px; line-height: 1.65; color: var(--fz-mut); max-width: 62ch; margin: 0 0 34px; }
+        .cs-head h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 14px; color: var(--fz-ink); }
+        .cs-sub { font-size: 19px; line-height: 1.6; color: var(--fz-body); max-width: 62ch; margin: 0 0 34px; }
         .cs-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 28px; border-top: 2px solid var(--fz-rule); border-bottom: 1px solid var(--fz-line); margin: 0; }
         .cs-meta div { padding: 14px 0; }
-        .cs-meta dt { font-family: var(--font-mono), monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fz-green); font-weight: 600; margin-bottom: 4px; }
-        .cs-meta dd { margin: 0; font-size: 14.5px; color: var(--fz-ink); line-height: 1.5; }
+        .cs-meta dt { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fz-amber-ink); font-weight: 700; margin-bottom: 4px; }
+        .cs-meta dd { margin: 0; font-size: 17px; color: var(--fz-ink); line-height: 1.5; }
         .cs-sec { margin-top: 52px; }
-        .cs-body { font-size: 16.5px; line-height: 1.75; color: var(--fz-mut); max-width: 68ch; margin: 0 0 18px; }
-        .cs-rows { max-width: none; }
+        .cs-body { font-size: 18px; line-height: 1.7; color: var(--fz-body); max-width: 64ch; margin: 0 0 18px; }
         @media (max-width: 640px) { .cs-meta { grid-template-columns: 1fr; } .cs-meta div { padding: 10px 0; border-top: 1px solid var(--fz-line); } .cs-meta div:first-child { border-top: 0; } }
       `}</style>
     </>
