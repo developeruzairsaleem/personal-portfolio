@@ -21,7 +21,7 @@ export default function OpengraphImage() {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 27 }}>
           <div style={{ display: "flex", fontWeight: 600 }}>uzair-saleem</div>
-          <div style={{ display: "flex", color: "#565b64" }}>open to remote roles</div>
+          <div style={{ display: "flex", color: "#565b64" }}>Custom workflow development</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -29,12 +29,12 @@ export default function OpengraphImage() {
             Software engineer for fuel distributors.
           </div>
           <div style={{ display: "flex", fontSize: 30, color: "#565b64", marginTop: 26 }}>
-            Truck ticket to QuickBooks invoice, same day.
+            Delivery review, pricing and QuickBooks Desktop.
           </div>
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 23, color: "#868c96" }}>
-          <div style={{ display: "flex" }}>Proven live at Sat-Raj, New Jersey</div>
+          <div style={{ display: "flex" }}>See the Sat-Raj implementation</div>
           <div style={{ display: "flex" }}>Islamabad · UTC+5</div>
         </div>
       </div>

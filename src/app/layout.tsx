@@ -19,7 +19,7 @@ const jetMono = JetBrains_Mono({
 const SITE_URL = "https://uzairsaleem.dev";
 const TITLE = "Uzair Saleem · Software Engineer for Fuel Distributors";
 const DESCRIPTION =
-  "Truck ticket to QuickBooks invoice, same day. I design, build, and run back offices for family-run fuel distributors, proven live at Sat-Raj, a New Jersey jobber.";
+  "Custom delivery review, pricing and QuickBooks Desktop invoicing tools for fuel distributors. See the Sat-Raj implementation and check whether one workflow fits your office.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   publisher: "Uzair Saleem",
   keywords: [
     "fuel distributor software", "fuel jobber back office", "QuickBooks Desktop invoicing automation",
-    "delivery ticket to QuickBooks", "Samsara BOL automation", "heating oil dealer software",
-    "propane dealer invoicing", "petroleum marketer operations", "fuel price sheet automation",
+    "delivery ticket to QuickBooks", "Samsara BOL automation",
+    "petroleum marketer operations", "fuel price sheet automation",
     "fuel tax itemization QuickBooks", "Uzair Saleem", "software engineer for fuel distributors",
   ],
   alternates: { canonical: "/" },
@@ -71,7 +71,7 @@ const personSchema = {
     "https://www.linkedin.com/in/uzair-saleem-5a399825a/",
   ],
   knowsAbout: [
-    "Fuel distribution operations", "Petroleum marketers and jobbers", "Heating oil and propane dealers",
+    "Fuel distribution operations", "Petroleum marketers and jobbers",
     "QuickBooks Desktop invoicing", "Fuel excise tax itemization", "Samsara delivery documents",
     "Bill of lading processing", "Daily fuel pricing", "Next.js", "TypeScript", "PostgreSQL", "AWS",
   ],
@@ -89,7 +89,7 @@ const serviceSchema = {
   areaServed: { "@type": "Country", name: "United States" },
   audience: {
     "@type": "BusinessAudience",
-    audienceType: "Fuel distributors, petroleum marketers, heating oil and propane dealers",
+    audienceType: "Gasoline and diesel distributors, petroleum marketers and jobbers",
   },
   founder: { "@type": "Person", name: "Uzair Saleem", url: SITE_URL },
   knowsAbout: ["Fuel distribution", "QuickBooks Desktop", "Samsara", "Fuel excise taxes", "Daily fuel pricing"],

@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { EMAIL, LINKS } from "./site-chrome";
+import { LINKS } from "./site-chrome";
+import { FIT_CHECK_HREF } from "./service-contact";
+import { TrackedLink } from "./tracked-link";
 
 /**
  * Chrome for the fuel-ops service pages (root, /work/satraj, /demo).
@@ -17,7 +19,7 @@ export function ServiceNav() {
           <Link href="/demo">walkthrough</Link>
           <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="fz-nav-ext">LinkedIn<span className="fz-sr"> (opens in new tab)</span></a>
         </nav>
-        <a className="fz-cta" href={`mailto:${EMAIL}?subject=My fleet and accounting software&body=Fleet size: %0D%0AAccounting software: %0D%0A`}>Email me</a>
+        <TrackedLink className="fz-cta" event="cta_fit_check_nav" href={FIT_CHECK_HREF}>Check my setup</TrackedLink>
       </div>
     </header>
   );

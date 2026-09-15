@@ -3,9 +3,9 @@ import { ServiceNav, ServiceFooter, ServiceStyles } from "../service-chrome";
 import { Walkthrough } from "./walkthrough";
 
 export const metadata: Metadata = {
-  title: "Walkthrough: truck ticket to QuickBooks invoice, same day",
+  title: "Walkthrough: delivery review to QuickBooks invoice",
   description:
-    "A 60 second walkthrough with sample data: driver's ticket in, checked delivery, one click to a fully itemized QuickBooks invoice.",
+    "An interactive illustration with sample data: delivery ticket, office review and itemized invoice. Based on the workflow built for Sat-Raj.",
   alternates: { canonical: "/demo" },
 };
 

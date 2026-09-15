@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { EMAIL } from "./site-chrome";
 import { ServiceNav, ServiceFooter, ServiceStyles } from "./service-chrome";
 import { DemoPlayer } from "./demo-player";
 import { TrackedLink } from "./tracked-link";
 import { OWNER_QUOTE } from "./owner-quote";
-
-const EMAIL_HREF = `mailto:${EMAIL}?subject=My fleet and accounting software&body=Fleet size: %0D%0AAccounting software: %0D%0A`;
+import { FIT_CHECK_HREF } from "./service-contact";
+import { CopyEmail } from "./copy-email";
 
 function Check() {
   return (
@@ -27,26 +26,27 @@ export default function Home() {
         <div className="fz-hero-in">
           <div className="fz-hero-top">
             <p className="fz-kick">Operations automation for fuel distributors</p>
-            <h1>How many hours a week does your office spend retyping truck tickets into QuickBooks?</h1>
+            <h1>From delivery tickets to QuickBooks. With your office in control.</h1>
           </div>
           <div className="fz-hero-grid">
             <div>
-              <p className="fz-lead">I&apos;m Uzair, the engineer who automated exactly that for Sat-Raj, a family-run fuel distributor in New Jersey.</p>
+              <p className="fz-lead">I build invoicing and pricing tools for fuel distributors who still move delivery data by hand.</p>
               <ul className="fz-lines" role="list">
-                <li>Their Samsara tickets now land in QuickBooks Desktop as reconciled, itemized invoices the same day.</li>
-                <li>No retyping, no new software for their team to learn.</li>
-                <li>I designed it, I built it, and I run it today.</li>
+                <li>At Sat-Raj in New Jersey, I connected Samsara delivery review, pricing, and QuickBooks Desktop invoicing.</li>
+                <li>For your operation, we start with one workflow and compare the results with your existing invoices.</li>
+                <li>Your office reviews the output before it goes into the books.</li>
               </ul>
               <div className="fz-hero-cta">
-                <TrackedLink event="cta_see_numbers_hero" href="#contact" className="fz-btn">See it on your numbers <span aria-hidden="true">&rarr;</span></TrackedLink>
+                <TrackedLink event="cta_fit_check_hero" href={FIT_CHECK_HREF} className="fz-btn">Check one workflow <span aria-hidden="true">&rarr;</span></TrackedLink>
+                <TrackedLink event="cta_watch_demo_hero" href="#demo-video" className="fz-link">Watch the 90-second demo</TrackedLink>
               </div>
             </div>
             <DemoPlayer />
           </div>
           <div className="fz-stats">
-            <div><b>60 min &rarr; 90 sec</b><span>the morning pricing run</span></div>
-            <div><b>Same day</b><span>ticket to QuickBooks invoice</span></div>
-            <div><b>Hundreds</b><span>live invoices pushed</span></div>
+            <div><b>One workflow</b><span>a defined starting scope</span></div>
+            <div><b>Your review</b><span>before production posting</span></div>
+            <div><b>Desktop</b><span>keep your accounting system</span></div>
           </div>
           <p className="fz-built"><span>Built around</span> <span className="fz-chip">QuickBooks Desktop</span> <span className="fz-chip">Samsara</span> <span className="fz-chip">your state&apos;s fuel taxes</span></p>
         </div>
@@ -57,40 +57,40 @@ export default function Home() {
         <div className="fz-sec-in">
           <h2>Who this is for</h2>
           <ul className="fz-who-list" role="list">
-            <li><Check />You run a fleet of fuel trucks.</li>
+            <li><Check />You distribute gasoline or diesel to stations or commercial customers.</li>
             <li><Check />Your office lives in QuickBooks Desktop.</li>
-            <li><Check />Driver tickets come through Samsara (or another ELD).</li>
-            <li><Check />Every morning someone prices the stations while someone else retypes deliveries.</li>
+            <li><Check />Your delivery records are available from Samsara or an export we can assess.</li>
+            <li><Check />Someone still retypes delivery data or builds customer price emails by hand.</li>
           </ul>
-          <p className="fz-who-close">If that&apos;s your operation, this was built for exactly you.</p>
+          <p className="fz-who-close">Tell me which step takes the work. We&apos;ll check the fit before discussing a build.</p>
         </div>
       </section>
 
       {/* AFTER */}
       <section className="fz-sec white">
         <div className="fz-sec-in">
-          <h2>What your operation looks like after</h2>
+          <h2>Choose the workflow that needs attention</h2>
           <div className="fz-cols">
             <div className="fz-col">
-              <h3>Daily prices send themselves</h3>
+              <h3>Prepare customer prices</h3>
               <ul className="fz-lines" role="list">
                 <li>Rack numbers go in once each morning.</li>
-                <li>Every station gets its price email automatically, markups, freight, and taxes already applied by state.</li>
+                <li>Calculate customer prices using your approved markups, freight, and tax rules, then send the price emails.</li>
               </ul>
             </div>
             <div className="fz-col">
-              <h3>Deliveries check themselves</h3>
+              <h3>Review delivery records</h3>
               <ul className="fz-lines" role="list">
-                <li>The driver&apos;s ticket matches to the right customer and that morning&apos;s price.</li>
-                <li>Gallons reconcile against the BOL before anyone approves anything.</li>
+                <li>Bring tickets, customer matches, prices, and BOL information into one review.</li>
+                <li>Flag missing information and differences for the office to resolve.</li>
               </ul>
             </div>
             <div className="fz-col">
-              <h3>Invoices reach QuickBooks same day</h3>
+              <h3>Create QuickBooks invoices</h3>
               <ul className="fz-lines" role="list">
-                <li>One click.</li>
-                <li>Fuel at the right rate, every per-gallon tax as its own named line, due dates from each customer&apos;s own terms.</li>
-                <li>Zero retyping.</li>
+                <li>Send approved delivery details to QuickBooks Desktop through its Web Connector.</li>
+                <li>Use mapped customers and invoice items, including the applicable fuel tax lines.</li>
+                <li>Keep exceptions and sync status visible.</li>
               </ul>
             </div>
           </div>
@@ -106,9 +106,9 @@ export default function Home() {
             <div>
               <p className="fz-lead">Sat-Raj delivers gasoline and diesel to stations across New Jersey and Pennsylvania.</p>
               <ul className="fz-lines" role="list">
-                <li>Their office ran on spreadsheets, retyping, and memory.</li>
-                <li>I replaced that with one platform that prices, tracks deliveries by GPS, and invoices into QuickBooks Desktop.</li>
-                <li>I&apos;m the sole engineer on it, and it runs their business every day.</li>
+                <li>I built their system for customer pricing, delivery review, and invoicing.</li>
+                <li>It connects Samsara delivery records and DTN terminal information with QuickBooks Desktop.</li>
+                <li>The case study shows the implementation and the review steps it supports.</li>
               </ul>
               <div className="fz-case-links">
                 <Link href="/work/satraj" className="fz-link">Read the full case study</Link>
@@ -116,10 +116,10 @@ export default function Home() {
               </div>
             </div>
             <ul className="fz-facts" role="list">
-              <li><b>Pricing engine</b>Rack costs in once, every customer&apos;s price email out automatically, taxes by state.</li>
-              <li><b>Delivery tracking</b>Driver tickets pulled from Samsara, matched to the right customer by where the truck actually stopped.</li>
-              <li><b>QuickBooks invoicing</b>One click to a fully itemized Desktop invoice, every fuel tax as its own named line.</li>
-              <li><b>Proof</b>Hundreds of live invoices, over 300 automated tests, in production daily.</li>
+              <li><b>Pricing</b>Customer prices calculated from rack costs, freight, margins, and configured taxes.</li>
+              <li><b>Delivery review</b>Samsara tickets and location evidence help match deliveries to customers.</li>
+              <li><b>QuickBooks invoicing</b>Reviewed deliveries become invoice jobs with mapped fuel and tax items.</li>
+              <li><b>See the work</b>A 90-second recording and an interactive example show the flow.</li>
             </ul>
           </div>
           {OWNER_QUOTE && (
@@ -139,36 +139,36 @@ export default function Home() {
             <li className="fz-row">
               <span className="fz-num" aria-hidden="true">01</span>
               <div>
-                <h3>A 20-minute walkthrough on your numbers</h3>
+                <h3>Check the fit</h3>
                 <ul className="fz-lines" role="list">
-                  <li>Your products, your stations, your state&apos;s taxes.</li>
-                  <li>If it wouldn&apos;t save your office hours every week, you&apos;ll know in the first five minutes, and I&apos;ll tell you so myself.</li>
+                  <li>Tell me your accounting software, how tickets arrive, and what still happens by hand.</li>
+                  <li>We identify one useful improvement and check whether your existing software can already handle it.</li>
                 </ul>
               </div>
             </li>
             <li className="fz-row">
               <span className="fz-num" aria-hidden="true">02</span>
               <div>
-                <h3>A one-time setup gets you live</h3>
+                <h3>Test a defined pilot</h3>
                 <ul className="fz-lines" role="list">
-                  <li>I build it around your operation and your QuickBooks.</li>
-                  <li>Nothing off a shelf, nothing your team has to bend around.</li>
+                  <li>We agree the records, outputs, price, and acceptance criteria before work begins.</li>
+                  <li>Your office compares the sample output with its current invoices before any live posting.</li>
                 </ul>
               </div>
             </li>
             <li className="fz-row">
               <span className="fz-num" aria-hidden="true">03</span>
               <div>
-                <h3>A monthly arrangement that costs less than the admin hours it replaces</h3>
+                <h3>Roll out with a support plan</h3>
                 <ul className="fz-lines" role="list">
-                  <li>Maintained and improving as your business changes.</li>
-                  <li>You talk to me, the engineer who built it, not a sales team.</li>
+                  <li>After approval, we plan setup, training, and the ongoing support your workflow needs.</li>
+                  <li>You work directly with me. Delivery dates and support coverage are agreed in the scope.</li>
                 </ul>
               </div>
             </li>
           </ol>
           <div className="fz-mid">
-            <TrackedLink event="cta_see_numbers" href="#contact" className="fz-btn">See it on your numbers <span aria-hidden="true">&rarr;</span></TrackedLink>
+            <TrackedLink event="cta_fit_check" href={FIT_CHECK_HREF} className="fz-btn">Check one workflow <span aria-hidden="true">&rarr;</span></TrackedLink>
           </div>
         </div>
       </section>
@@ -180,15 +180,15 @@ export default function Home() {
           <ul className="fz-qa" role="list">
             <li>
               <b>&ldquo;I don&apos;t use Samsara.&rdquo;</b>
-              <ul className="fz-lines" role="list"><li>I build around whatever you run.</li><li>Samsara, another ELD, even paper tickets.</li></ul>
+              <ul className="fz-lines" role="list"><li>The existing implementation uses Samsara.</li><li>For another system or paper tickets, I first check the available data and how it could be captured.</li><li>Compatibility is part of the fit check.</li></ul>
             </li>
             <li>
               <b>&ldquo;My bookkeeper is set in QuickBooks.&rdquo;</b>
-              <ul className="fz-lines" role="list"><li>They keep it.</li><li>The system feeds QuickBooks; it doesn&apos;t replace it.</li><li>Their workflow gets shorter, not different.</li></ul>
+              <ul className="fz-lines" role="list"><li>The existing integration works with QuickBooks Desktop.</li><li>We check your edition and setup, then agree how the office reviews and approves invoices.</li></ul>
             </li>
             <li>
               <b>&ldquo;What happens if it breaks?&rdquo;</b>
-              <ul className="fz-lines" role="list"><li>You call me.</li><li>It runs a real business every day, so it can&apos;t break for long.</li><li>Over 300 automated tests keep it honest.</li></ul>
+              <ul className="fz-lines" role="list"><li>We define who monitors it, how to report a problem, and how to continue the work manually.</li><li>Support hours, backups, and recovery arrangements belong in the agreement before rollout.</li></ul>
             </li>
           </ul>
         </div>
@@ -197,10 +197,11 @@ export default function Home() {
       {/* FINAL ASK */}
       <section className="fz-end" id="contact">
         <div className="fz-end-in">
-          <h2>See it on your own numbers</h2>
-          <p>Send me one line: your fleet size and your accounting software.</p>
-          <p>I&apos;ll reply within a day, and I&apos;ll tell you straight whether the math works for your operation.</p>
-          <TrackedLink event="cta_email" href={EMAIL_HREF} className="fz-btn">Email me</TrackedLink>
+          <h2>Which step still needs retyping?</h2>
+          <p>Tell me your accounting software and the step your office does by hand.</p>
+          <p>A short description is enough to start. There&apos;s no need to send customer records or price sheets.</p>
+          <TrackedLink event="cta_email" href={FIT_CHECK_HREF} className="fz-btn">Email me about your workflow</TrackedLink>
+          <CopyEmail />
         </div>
       </section>
       </main>
@@ -256,7 +257,6 @@ export default function Home() {
         @media (max-width: 960px) {
           .fz-hero-top { margin-bottom: 28px; }
           .fz-hero-grid { grid-template-columns: 1fr; gap: 32px; }
-          #demo-video { order: -1; }
           .fz-hero h1 { max-width: none; }
           .fz-case { grid-template-columns: 1fr; }
           .fz-stats { grid-template-columns: 1fr 1fr; gap: 20px 32px; }

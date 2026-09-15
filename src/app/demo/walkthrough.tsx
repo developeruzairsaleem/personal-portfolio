@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { EMAIL } from "../site-chrome";
+import { FIT_CHECK_HREF } from "../service-contact";
 
 const STEPS = [
   "Driver submits the ticket",
-  "Delivery checks itself",
-  "One click to QuickBooks",
+  "Office reviews the delivery",
+  "Approved invoice",
 ];
 
 export function Walkthrough() {
@@ -20,11 +20,11 @@ export function Walkthrough() {
           <span>Walkthrough with sample data</span>
           <Link href="/" className="fd-back" aria-label="Back to home">← back</Link>
         </p>
-        <h1>From truck ticket to QuickBooks invoice, same day</h1>
+        <h1>From delivery ticket to reviewed invoice</h1>
         <p className="fd-sub">
-          This is the system I built for Sat-Raj, a New Jersey fuel
-          distributor, shown here with sample numbers. Click through the three
-          steps.
+          An interactive illustration of the workflow I built for Sat-Raj.
+          These are sample records, not a connection to live books. Rates are
+          illustrative and are not current tax guidance. Click through the three steps.
         </p>
       </section>
 
@@ -48,8 +48,8 @@ export function Walkthrough() {
         {step === 0 && (
           <div>
             <p className="fd-cap">
-              The driver drops the load and submits the ticket from the truck,
-              like your drivers already do today. <b>Nobody retypes it.</b>
+              In this example, the driver submits delivery information through
+              Samsara. The integration brings those fields into an office review queue.
             </p>
             <div className="fd-ticket mono">
               <div className="fd-doc-title">MOTOR CARRIER DELIVERY TICKET</div>
@@ -73,7 +73,7 @@ export function Walkthrough() {
         {step === 1 && (
           <div>
             <p className="fd-cap">
-              Minutes later the delivery is on the office screen:{" "}
+              The office reviews the imported delivery:{" "}
               <b>
                 matched to the customer, priced from that morning&apos;s send,
                 gallons checked against the BOL.
@@ -111,9 +111,9 @@ export function Walkthrough() {
         {step === 2 && (
           <div>
             <p className="fd-cap">
-              The office reviews, clicks <b>Approve and invoice</b>, and it
-              lands in QuickBooks with every tax as its own line.{" "}
-              <b>Same day. No typing.</b>
+              After review, the office selects <b>Approve and invoice</b>.
+              The invoice job waits for QuickBooks Desktop Web Connector to
+              process it. This sample shows the resulting itemized invoice.
             </p>
             <div className="fd-qb">
               <div className="head">
@@ -140,15 +140,15 @@ export function Walkthrough() {
                   </tbody>
                 </table>
               </div>
-              <span className="fd-synced">Synced to QuickBooks Desktop</span>
+              <span className="fd-synced">Illustrative invoice</span>
             </div>
             <p className="fd-cta">
-              Want this for your company?{" "}
-              <a href={`mailto:${EMAIL}?subject=Walkthrough for my company`}>
-                Email me
+              Still moving delivery data by hand?{" "}
+              <a href={FIT_CHECK_HREF}>
+                Check one workflow
               </a>{" "}
-              and I will walk you through it on your own numbers. I build it
-              around your operation and keep it running.
+              with your accounting version, ticket source and the step you want
+              to change. We will check compatibility before scoping a pilot.
             </p>
           </div>
         )}
