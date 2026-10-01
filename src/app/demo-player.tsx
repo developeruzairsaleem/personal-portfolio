@@ -53,8 +53,8 @@ export function DemoPlayer() {
     <div className="vp" id="demo-video">
       <video
         ref={ref}
-        src="/satraj-demo-2.mp4"
-        poster="/satraj-demo-poster.jpg"
+        src="/fuel-demo-v3.mp4"
+        poster="/fuel-demo-v3-poster.jpg"
         preload="metadata"
         playsInline
         muted={muted}
