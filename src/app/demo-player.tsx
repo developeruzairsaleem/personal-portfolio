@@ -85,7 +85,7 @@ export function DemoPlayer() {
               <path d="M8 5.5v13l11-6.5z" fill="currentColor" />
             </svg>
           </span>
-          <span className="vp-caption">Watch the 90 second demo</span>
+          <span className="vp-caption">Watch the demo</span>
         </button>
       )}
       {started && (

@@ -1,10 +1,11 @@
 import Link from "next/link";
 
-export const EMAIL = "uzairsaleemdev@gmail.com";
+export const EMAIL = "uzair@uzairsaleem.dev";
 export const LINKS = {
   email: `mailto:${EMAIL}`,
   resume: "/resume",
   calendly: "https://calendly.com/uzairsaleemdev/30min",
+  book: "https://calendly.com/uzairsaleemdev/fuel-office-walkthrough",
   github: "https://github.com/developeruzairsaleem",
   linkedin: "https://www.linkedin.com/in/uzair-saleem-5a399825a/",
 };

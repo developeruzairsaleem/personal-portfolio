@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LINKS } from "./site-chrome";
-import { FIT_CHECK_HREF } from "./service-contact";
+import { BOOK_HREF } from "./service-contact";
 import { TrackedLink } from "./tracked-link";
 
 /**
@@ -19,7 +19,7 @@ export function ServiceNav() {
           <Link href="/demo">walkthrough</Link>
           <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="fz-nav-ext">LinkedIn<span className="fz-sr"> (opens in new tab)</span></a>
         </nav>
-        <TrackedLink className="fz-cta" event="cta_fit_check_nav" href={FIT_CHECK_HREF}>Check my setup</TrackedLink>
+        <TrackedLink className="fz-cta" event="cta_book_nav" href={BOOK_HREF} target="_blank" rel="noopener noreferrer">Book a 20-min call</TrackedLink>
       </div>
     </header>
   );

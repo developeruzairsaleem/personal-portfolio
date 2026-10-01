@@ -61,7 +61,7 @@ export default function SatrajCaseStudy() {
           </dl>
         </header>
         <section className="cs-sec">
-          <h2 className="fz-kick">See the implementation · 90-second video</h2>
+          <h2 className="fz-kick">See the implementation</h2>
           <DemoPlayer />
         </section>
         <section className="cs-sec">

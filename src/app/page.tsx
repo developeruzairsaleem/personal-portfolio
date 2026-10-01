@@ -3,7 +3,7 @@ import { ServiceNav, ServiceFooter, ServiceStyles } from "./service-chrome";
 import { DemoPlayer } from "./demo-player";
 import { TrackedLink } from "./tracked-link";
 import { OWNER_QUOTE } from "./owner-quote";
-import { FIT_CHECK_HREF } from "./service-contact";
+import { BOOK_HREF, FIT_CHECK_HREF } from "./service-contact";
 import { CopyEmail } from "./copy-email";
 
 function Check() {
@@ -25,72 +25,76 @@ export default function Home() {
       <section className="fz-hero">
         <div className="fz-hero-in">
           <div className="fz-hero-top">
-            <p className="fz-kick">Operations automation for fuel distributors</p>
-            <h1>From delivery tickets to QuickBooks. With your office in control.</h1>
+            <p className="fz-kick">For gasoline &amp; diesel distributors on QuickBooks</p>
+            <h1>Stop retyping delivery tickets into QuickBooks.</h1>
           </div>
           <div className="fz-hero-grid">
             <div>
-              <p className="fz-lead">I build invoicing and pricing tools for fuel distributors who still move delivery data by hand.</p>
+              <p className="fz-lead">I build and run the back office for Sat-Raj, a New Jersey fuel distributor. Loads come in from terminal tickets and truck GPS, get priced, get approved, and land in QuickBooks as invoices.</p>
               <ul className="fz-lines" role="list">
-                <li>At Sat-Raj in New Jersey, I connected Samsara delivery review, pricing, and QuickBooks Desktop invoicing.</li>
-                <li>For your operation, we start with one workflow and compare the results with your existing invoices.</li>
-                <li>Your office reviews the output before it goes into the books.</li>
+                <li>Every load priced with rack cost, freight, margin and every federal and state fuel tax line.</li>
+                <li>Your office approves each invoice before it posts. Nothing goes into the books on its own.</li>
+                <li>You keep QuickBooks. Your data stays in your account.</li>
               </ul>
               <div className="fz-hero-cta">
-                <TrackedLink event="cta_fit_check_hero" href={FIT_CHECK_HREF} className="fz-btn">Check one workflow <span aria-hidden="true">&rarr;</span></TrackedLink>
-                <TrackedLink event="cta_watch_demo_hero" href="#demo-video" className="fz-link">Watch the 90-second demo</TrackedLink>
+                <TrackedLink event="cta_book_hero" href={BOOK_HREF} target="_blank" rel="noopener noreferrer" className="fz-btn">Book a 20-min walkthrough <span aria-hidden="true">&rarr;</span></TrackedLink>
+                <TrackedLink event="cta_watch_demo_hero" href="#demo-video" className="fz-link">Watch the demo</TrackedLink>
               </div>
             </div>
             <DemoPlayer />
           </div>
           <div className="fz-stats">
-            <div><b>One workflow</b><span>a defined starting scope</span></div>
-            <div><b>Your review</b><span>before production posting</span></div>
-            <div><b>Desktop</b><span>keep your accounting system</span></div>
+            <div><b>~1 hour &rarr; 1 click</b><span>Sat-Raj&apos;s daily customer price run</span></div>
+            <div><b>Typed twice &rarr; zero</b><span>delivery tickets re-entered by hand</span></div>
+            <div><b>Every tax line</b><span>federal, state and local, on each invoice</span></div>
           </div>
-          <p className="fz-built"><span>Built around</span> <span className="fz-chip">QuickBooks Desktop</span> <span className="fz-chip">Samsara</span> <span className="fz-chip">your state&apos;s fuel taxes</span></p>
+          <p className="fz-built"><span>Works with</span> <span className="fz-chip">QuickBooks Desktop &amp; Online</span> <span className="fz-chip">DTN</span> <span className="fz-chip">Samsara</span> <span className="fz-chip">your state&apos;s fuel taxes</span></p>
         </div>
       </section>
 
-      {/* WHO THIS IS FOR */}
+      {/* SOUND FAMILIAR */}
       <section className="fz-sec sand" id="who">
         <div className="fz-sec-in">
-          <h2>Who this is for</h2>
+          <h2>Sound familiar?</h2>
           <ul className="fz-who-list" role="list">
-            <li><Check />You distribute gasoline or diesel to stations or commercial customers.</li>
-            <li><Check />Your office lives in QuickBooks Desktop.</li>
-            <li><Check />Your delivery records are available from Samsara or an export we can assess.</li>
-            <li><Check />Someone still retypes delivery data or builds customer price emails by hand.</li>
+            <li><Check />Someone types BOLs into QuickBooks every afternoon, from DTN, the ELD, or paper.</li>
+            <li><Check />Gross, net and billed gallons don&apos;t always agree, and it&apos;s not obvious which one hit the invoice.</li>
+            <li><Check />Fuel tax lines get added by hand, and one wrong rate means a corrected invoice.</li>
+            <li><Check />Tomorrow&apos;s prices go out from a spreadsheet, one customer email at a time.</li>
+            <li><Check />Small charges like additive, freight and delivery fees sometimes never make it onto the bill.</li>
+            <li><Check />One person really knows how it all fits together, and they can&apos;t take a week off.</li>
           </ul>
-          <p className="fz-who-close">Tell me which step takes the work. We&apos;ll check the fit before discussing a build.</p>
+          <p className="fz-who-close">That was Sat-Raj&apos;s office. Here&apos;s what it runs on now.</p>
         </div>
       </section>
 
-      {/* AFTER */}
+      {/* WHAT I BUILD */}
       <section className="fz-sec white">
         <div className="fz-sec-in">
-          <h2>Choose the workflow that needs attention</h2>
+          <h2>What I build for you</h2>
           <div className="fz-cols">
             <div className="fz-col">
-              <h3>Prepare customer prices</h3>
+              <h3>Daily customer prices</h3>
               <ul className="fz-lines" role="list">
-                <li>Rack numbers go in once each morning.</li>
-                <li>Calculate customer prices using your approved markups, freight, and tax rules, then send the price emails.</li>
+                <li>Rack costs come in from DTN or get entered once.</li>
+                <li>Your markups, freight zones and taxes are applied per customer and location.</li>
+                <li>Price emails go out to every customer in one click, with full history.</li>
               </ul>
             </div>
             <div className="fz-col">
-              <h3>Review delivery records</h3>
+              <h3>Delivery review</h3>
               <ul className="fz-lines" role="list">
-                <li>Bring tickets, customer matches, prices, and BOL information into one review.</li>
-                <li>Flag missing information and differences for the office to resolve.</li>
+                <li>Terminal tickets and driver BOLs pulled in automatically.</li>
+                <li>Each drop matched to the right customer site by truck GPS.</li>
+                <li>Gallon mismatches, missing prices and unknown sites flagged for the office.</li>
               </ul>
             </div>
             <div className="fz-col">
-              <h3>Create QuickBooks invoices</h3>
+              <h3>QuickBooks invoices</h3>
               <ul className="fz-lines" role="list">
-                <li>Send approved delivery details to QuickBooks Desktop through its Web Connector.</li>
-                <li>Use mapped customers and invoice items, including the applicable fuel tax lines.</li>
-                <li>Keep exceptions and sync status visible.</li>
+                <li>Approved deliveries become invoices with your items and every fuel tax line.</li>
+                <li>Duplicate protection and a visible sync status for each invoice.</li>
+                <li>Works with QuickBooks Desktop or Online.</li>
               </ul>
             </div>
           </div>
@@ -100,15 +104,14 @@ export default function Home() {
       {/* CASE STUDY */}
       <section className="fz-sec" id="work">
         <div className="fz-sec-in">
-          <p className="fz-kick">Case study</p>
-          <h2>Sat-Raj, Inc., New Jersey</h2>
+          <p className="fz-kick">Live in production</p>
+          <h2>Sat-Raj, Inc. &middot; Voorhees, New Jersey</h2>
           <div className="fz-case">
             <div>
-              <p className="fz-lead">Sat-Raj delivers gasoline and diesel to stations across New Jersey and Pennsylvania.</p>
+              <p className="fz-lead">Sat-Raj has supplied gasoline and diesel to stations in New Jersey and Pennsylvania since 1992. Their back office ran on Google Sheets and retyping.</p>
               <ul className="fz-lines" role="list">
-                <li>I built their system for customer pricing, delivery review, and invoicing.</li>
-                <li>It connects Samsara delivery records and DTN terminal information with QuickBooks Desktop.</li>
-                <li>The case study shows the implementation and the review steps it supports.</li>
+                <li>I replaced it with one system: DTN terminal prices and tickets, Samsara deliveries, customer pricing, delivery review and QuickBooks invoicing.</li>
+                <li>I still run and extend it every week. Recent additions: the Top Tier additive charge and a payables view. Supplier invoice checks are next.</li>
               </ul>
               <div className="fz-case-links">
                 <Link href="/work/satraj" className="fz-link">Read the full case study</Link>
@@ -116,10 +119,10 @@ export default function Home() {
               </div>
             </div>
             <ul className="fz-facts" role="list">
-              <li><b>Pricing</b>Customer prices calculated from rack costs, freight, margins, and configured taxes.</li>
-              <li><b>Delivery review</b>Samsara tickets and location evidence help match deliveries to customers.</li>
-              <li><b>QuickBooks invoicing</b>Reviewed deliveries become invoice jobs with mapped fuel and tax items.</li>
-              <li><b>See the work</b>A 90-second recording and an interactive example show the flow.</li>
+              <li><b>Pricing</b>The daily price run went from 45&ndash;60 minutes of spreadsheet and email work to one reviewed click.</li>
+              <li><b>Deliveries</b>BOLs used to be typed into Sheets, then again into QuickBooks. Now they&apos;re pulled once and matched.</li>
+              <li><b>Invoices</b>Each load is invoiced with its fuel and tax lines and synced to QuickBooks with its invoice number.</li>
+              <li><b>Audit trail</b>Every price sent and every invoice synced can be looked up by date and customer.</li>
             </ul>
           </div>
           {OWNER_QUOTE && (
@@ -134,41 +137,41 @@ export default function Home() {
       {/* HOW IT GOES */}
       <section className="fz-sec sand">
         <div className="fz-sec-in">
-          <h2>How it goes</h2>
+          <h2>How it works</h2>
           <ol className="fz-rows">
             <li className="fz-row">
               <span className="fz-num" aria-hidden="true">01</span>
               <div>
-                <h3>Check the fit</h3>
+                <h3>A 20-minute walkthrough</h3>
                 <ul className="fz-lines" role="list">
-                  <li>Tell me your accounting software, how tickets arrive, and what still happens by hand.</li>
-                  <li>We identify one useful improvement and check whether your existing software can already handle it.</li>
+                  <li>You show me how one load goes from ticket to invoice today. I show you the system running at Sat-Raj.</li>
+                  <li>You leave with a clear picture of what would change, and a fixed price in writing. No data to send beforehand.</li>
                 </ul>
               </div>
             </li>
             <li className="fz-row">
               <span className="fz-num" aria-hidden="true">02</span>
               <div>
-                <h3>Test a defined pilot</h3>
+                <h3>Run it side by side</h3>
                 <ul className="fz-lines" role="list">
-                  <li>We agree the records, outputs, price, and acceptance criteria before work begins.</li>
-                  <li>Your office compares the sample output with its current invoices before any live posting.</li>
+                  <li>I set it up on your real tickets while your office keeps working the old way.</li>
+                  <li>You compare its invoices with yours. It goes live only when they match.</li>
                 </ul>
               </div>
             </li>
             <li className="fz-row">
               <span className="fz-num" aria-hidden="true">03</span>
               <div>
-                <h3>Roll out with a support plan</h3>
+                <h3>Go live, then I keep it running</h3>
                 <ul className="fz-lines" role="list">
-                  <li>After approval, we plan setup, training, and the ongoing support your workflow needs.</li>
-                  <li>You work directly with me. Delivery dates and support coverage are agreed in the scope.</li>
+                  <li>Monthly support covers fixes, tax rate changes and new charges. You deal with me directly.</li>
+                  <li>It runs in your own cloud account, so you own the system and the data.</li>
                 </ul>
               </div>
             </li>
           </ol>
           <div className="fz-mid">
-            <TrackedLink event="cta_fit_check" href={FIT_CHECK_HREF} className="fz-btn">Check one workflow <span aria-hidden="true">&rarr;</span></TrackedLink>
+            <TrackedLink event="cta_book_mid" href={BOOK_HREF} target="_blank" rel="noopener noreferrer" className="fz-btn">Book a 20-min walkthrough <span aria-hidden="true">&rarr;</span></TrackedLink>
           </div>
         </div>
       </section>
@@ -179,16 +182,20 @@ export default function Home() {
           <h2>The obvious questions</h2>
           <ul className="fz-qa" role="list">
             <li>
-              <b>&ldquo;I don&apos;t use Samsara.&rdquo;</b>
-              <ul className="fz-lines" role="list"><li>The existing implementation uses Samsara.</li><li>For another system or paper tickets, I first check the available data and how it could be captured.</li><li>Compatibility is part of the fit check.</li></ul>
+              <b>&ldquo;We don&apos;t use Samsara.&rdquo;</b>
+              <ul className="fz-lines" role="list"><li>That&apos;s fine. DTN tickets, another ELD, dispatch software exports, emailed PDFs: if the data exists, it can usually be pulled in.</li><li>We&apos;ll look at exactly what you have on the call.</li></ul>
             </li>
             <li>
-              <b>&ldquo;My bookkeeper is set in QuickBooks.&rdquo;</b>
-              <ul className="fz-lines" role="list"><li>The existing integration works with QuickBooks Desktop.</li><li>We check your edition and setup, then agree how the office reviews and approves invoices.</li></ul>
+              <b>&ldquo;We already have fuel software.&rdquo;</b>
+              <ul className="fz-lines" role="list"><li>Then the question is which step still gets retyped. Often it&apos;s the hop between the dispatch system and QuickBooks.</li><li>If your current software already covers it, I&apos;ll tell you that.</li></ul>
             </li>
             <li>
-              <b>&ldquo;What happens if it breaks?&rdquo;</b>
-              <ul className="fz-lines" role="list"><li>We define who monitors it, how to report a problem, and how to continue the work manually.</li><li>Support hours, backups, and recovery arrangements belong in the agreement before rollout.</li></ul>
+              <b>&ldquo;You&apos;re not local. What if something breaks?&rdquo;</b>
+              <ul className="fz-lines" role="list"><li>I work US Eastern business hours and answer the same day. Sat-Raj emails me and it gets fixed.</li><li>The system lives in your own cloud account and your books stay in QuickBooks, so you&apos;re never locked in.</li></ul>
+            </li>
+            <li>
+              <b>&ldquo;What does it cost?&rdquo;</b>
+              <ul className="fz-lines" role="list"><li>A fixed price for the setup and a flat monthly fee for support. No hourly billing.</li><li>You get the number in writing after the walkthrough, before you commit to anything.</li></ul>
             </li>
           </ul>
         </div>
@@ -197,10 +204,11 @@ export default function Home() {
       {/* FINAL ASK */}
       <section className="fz-end" id="contact">
         <div className="fz-end-in">
-          <h2>Which step still needs retyping?</h2>
-          <p>Tell me your accounting software and the step your office does by hand.</p>
-          <p>A short description is enough to start. There&apos;s no need to send customer records or price sheets.</p>
-          <TrackedLink event="cta_email" href={FIT_CHECK_HREF} className="fz-btn">Email me about your workflow</TrackedLink>
+          <h2>See it on your own tickets</h2>
+          <p>20 minutes, on Zoom or Google Meet. Bring one load you invoiced last week.</p>
+          <p>Prefer email? Tell me your accounting software and the step your office still does by hand.</p>
+          <TrackedLink event="cta_book_end" href={BOOK_HREF} target="_blank" rel="noopener noreferrer" className="fz-btn">Book a 20-min walkthrough</TrackedLink>
+          <p className="fz-alt"><TrackedLink event="cta_email" href={FIT_CHECK_HREF} className="fz-link">Or email me</TrackedLink></p>
           <CopyEmail />
         </div>
       </section>
@@ -253,6 +261,8 @@ export default function Home() {
         .fz-qa > li > b { display: block; font-size: 22px; line-height: 1.3; color: var(--fz-ink); margin-bottom: 14px; }
 
         .fz-end p + p { margin-top: -14px; }
+        .fz-alt { margin: 18px 0 0; }
+        .fz-stats b { white-space: nowrap; }
 
         @media (max-width: 960px) {
           .fz-hero-top { margin-bottom: 28px; }
@@ -260,6 +270,7 @@ export default function Home() {
           .fz-hero h1 { max-width: none; }
           .fz-case { grid-template-columns: 1fr; }
           .fz-stats { grid-template-columns: 1fr 1fr; gap: 20px 32px; }
+          .fz-stats b { font-size: 26px; }
         }
         @media (max-width: 640px) {
           .fz-hero { padding-top: 28px; }

@@ -19,7 +19,7 @@ const jetMono = JetBrains_Mono({
 const SITE_URL = "https://uzairsaleem.dev";
 const TITLE = "Uzair Saleem · Software Engineer for Fuel Distributors";
 const DESCRIPTION =
-  "Custom delivery review, pricing and QuickBooks Desktop invoicing tools for fuel distributors. See the Sat-Raj implementation and check whether one workflow fits your office.";
+  "Stop retyping delivery tickets into QuickBooks. Pricing, delivery review and invoicing with every fuel tax line, built and run for Sat-Raj, a New Jersey fuel distributor. Book a 20-minute walkthrough.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -64,7 +64,7 @@ const personSchema = {
   description:
     "Designs, builds and runs back-office automation for family-run fuel distributors: delivery tickets matched to customers and prices, invoices created in QuickBooks Desktop with fuel taxes itemized.",
   url: SITE_URL,
-  email: "uzairsaleemdev@gmail.com",
+  email: "uzair@uzairsaleem.dev",
   address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
   sameAs: [
     "https://github.com/developeruzairsaleem",
