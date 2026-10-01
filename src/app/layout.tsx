@@ -1,10 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Display + body. The blog and résumé still reference --font-inter, which
+// globals.css points at this face so the whole site loads one sans family.
+const interTight = Inter_Tight({
+  variable: "--font-tight",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Accent face: one or two italic words per headline, never body copy.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
+  weight: "400",
+  style: "italic",
   subsets: ["latin"],
   display: "swap",
 });
@@ -51,7 +62,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f8f5ef",
+  themeColor: "#07090C",
   width: "device-width",
   initialScale: 1,
 };
@@ -99,11 +110,12 @@ const serviceSchema = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetMono.variable} antialiased`}>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:px-4 focus:py-2 focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-[#1b1a17] text-[#f4f2ec] font-semibold px-4 py-2"
-        >
+      <head>
+        {/* Lets CSS hide scroll-reveal content only when JS can reveal it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
+      <body className={`${interTight.variable} ${instrumentSerif.variable} ${jetMono.variable} antialiased`}>
+        <a href="#main" className="skip-link">
           Skip to content
         </a>
         {children}

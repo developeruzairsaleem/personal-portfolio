@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
 import { FIT_CHECK_HREF } from "../service-contact";
+import { SplitWords, delay } from "@/components/site/split";
+import { UiRoot } from "@/components/mock/ui";
 
 const STEPS = [
   "Driver submits the ticket",
@@ -14,212 +17,197 @@ export function Walkthrough() {
   const [step, setStep] = useState(0);
 
   return (
-    <main id="main" className="fd-wrap">
-      <section className="fd-head">
-        <p className="fd-kick">
-          <span>Walkthrough with sample data</span>
-          <Link href="/" className="fd-back" aria-label="Back to home">← back</Link>
-        </p>
-        <h1>From delivery ticket to reviewed invoice</h1>
-        <p className="fd-sub">
-          An interactive illustration of the workflow I built for Sat-Raj.
-          These are sample records, not a connection to live books. Rates are
-          illustrative and are not current tax guidance. Click through the three steps.
-        </p>
-      </section>
-
-      <div className="fd-steps">
-        {STEPS.map((label, i) => (
-          <button
-            key={label}
-            type="button"
-            onClick={() => setStep(i)}
-            aria-current={i === step ? "step" : undefined}
-            className={
-              "fd-pill" + (i === step ? " on" : "") + (i < step ? " done" : "")
-            }
-          >
-            {i + 1} · {label}
-          </button>
-        ))}
+    <main id="main" className="wt">
+      <div className="fx-hero-bg" aria-hidden="true">
+        <div className="fx-hero-grid-lines" />
+        <div className="fx-glow fx-glow-a" />
       </div>
+      <div className="fx-wrap wt-in">
+        <section className="wt-head">
+          <p className="wt-kick">
+            <span className="fx-kicker">Walkthrough with sample data</span>
+            <Link href="/" className="wt-back" aria-label="Back to home">
+              <ArrowLeft aria-hidden="true" /> back
+            </Link>
+          </p>
+          <h1 className="fx-h1 wt-title fx-split-load">
+            <SplitWords parts={["From delivery ticket to", { em: "reviewed invoice." }]} />
+          </h1>
+          <p className="fx-lead fx-load" style={delay(400)}>
+            An interactive illustration of the workflow I built for Sat-Raj.
+            These are sample records, not a connection to live books. Rates are
+            illustrative and are not current tax guidance. Click through the three steps.
+          </p>
+        </section>
 
-      <div className="fd-card">
-        {step === 0 && (
-          <div>
-            <p className="fd-cap">
-              In this example, the driver submits delivery information through
-              Samsara. The integration brings those fields into an office review queue.
-            </p>
-            <div className="fd-ticket mono">
-              <div className="fd-doc-title">MOTOR CARRIER DELIVERY TICKET</div>
-              <table>
-                <tbody>
-                  <tr><td>BOL #</td><td>771204</td><td>DATE</td><td>08/18</td></tr>
-                  <tr className="rule"><td colSpan={4}></td></tr>
-                  <tr><td>SOLD TO</td><td colSpan={3}>SUNRISE FUEL MART, SPRINGFIELD</td></tr>
-                  <tr className="rule"><td colSpan={4}></td></tr>
-                  <tr><td>REG 87 UNL</td><td colSpan={2}></td><td>6,005 GAL</td></tr>
-                  <tr><td>#2 ULSD DIESEL</td><td colSpan={2}></td><td>2,805 GAL</td></tr>
-                  <tr className="rule"><td colSpan={4}></td></tr>
-                  <tr><td>TOTAL</td><td colSpan={2}></td><td>8,810 GAL</td></tr>
-                </tbody>
-              </table>
-              <div className="stamp">submitted from the truck · 2:14 PM</div>
-            </div>
-          </div>
-        )}
+        <div className="wt-steps" data-step={step}>
+          <span className="wt-track" aria-hidden="true">
+            <span className="wt-track-fill" style={{ transform: `scaleX(${step / (STEPS.length - 1)})` }} />
+          </span>
+          {STEPS.map((label, i) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => setStep(i)}
+              aria-current={i === step ? "step" : undefined}
+              className={"wt-pill" + (i === step ? " on" : "") + (i < step ? " done" : "")}
+            >
+              <span className="wt-pill-n" aria-hidden="true">
+                {i < step ? <Check strokeWidth={3} /> : i + 1}
+              </span>
+              <span>
+                <span className="fx-sr">Step {i + 1}: </span>
+                {label}
+              </span>
+            </button>
+          ))}
+        </div>
 
-        {step === 1 && (
-          <div>
-            <p className="fd-cap">
-              The office reviews the imported delivery:{" "}
-              <b>
-                matched to the customer, priced from that morning&apos;s send,
-                gallons checked against the BOL.
-              </b>
-            </p>
-            <div className="fd-row">
+        <div className="wt-card">
+          <div className="wt-stage" key={step}>
+            {step === 0 && (
               <div>
-                <b>Sunrise Fuel Mart</b>
-                <small>Springfield · BOL 771204 · today 2:14 PM</small>
-              </div>
-              <span className="fd-badge">READY TO INVOICE</span>
-            </div>
-            <div className="fd-panel">
-              <div className="fd-panel-cap">Lines · priced from the morning send</div>
-              <table>
-                <tbody>
-                  <tr><th>Product</th><th>Gallons</th><th>Rate</th><th>Amount</th></tr>
-                  <tr><td>Regular 87</td><td>6,005</td><td>$2.7475</td><td>$16,498.74</td></tr>
-                  <tr><td>Diesel</td><td>2,805</td><td>$3.9699</td><td>$11,135.57</td></tr>
-                  <tr className="tax"><td>Federal Excise Tax, Gasoline</td><td>6,005</td><td>$0.1830</td><td>$1,098.92</td></tr>
-                  <tr className="tax"><td>State Motor Fuel Tax</td><td>6,005</td><td>$0.1050</td><td>$630.53</td></tr>
-                  <tr className="tax"><td>Federal Diesel Tax</td><td>2,805</td><td>$0.2430</td><td>$681.62</td></tr>
-                  <tr className="tax"><td>State Diesel Tax</td><td>2,805</td><td>$0.1350</td><td>$378.68</td></tr>
-                  <tr className="total"><td>Total</td><td>8,810</td><td></td><td>$30,424.06</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="fd-check">
-              Gallons check: ticket 8,810 = terminal 8,810. Prices matched from
-              the morning send. Taxes computed per gallon, per state.
-            </div>
-          </div>
-        )}
-
-        {step === 2 && (
-          <div>
-            <p className="fd-cap">
-              After review, the office selects <b>Approve and invoice</b>.
-              The invoice job waits for QuickBooks Desktop Web Connector to
-              process it. This sample shows the resulting itemized invoice.
-            </p>
-            <div className="fd-qb">
-              <div className="head">
-                <div>
-                  <b>INVOICE</b>
-                  <small>Sunrise Fuel Mart</small>
-                </div>
-                <div style={{ textAlign: "right" }}>
-                  <b>#20481</b>
-                  <small>Aug 18 · terms from customer</small>
+                <p className="wt-cap">
+                  In this example, the driver submits delivery information through
+                  Samsara. The integration brings those fields into an office review queue.
+                </p>
+                <div className="wt-ticket">
+                  <div className="wt-doc-title">MOTOR CARRIER DELIVERY TICKET</div>
+                  <table>
+                    <tbody>
+                      <tr><td>BOL #</td><td>771204</td><td>DATE</td><td>08/18</td></tr>
+                      <tr className="rule"><td colSpan={4}></td></tr>
+                      <tr><td>SOLD TO</td><td colSpan={3}>SUNRISE FUEL MART, SPRINGFIELD</td></tr>
+                      <tr className="rule"><td colSpan={4}></td></tr>
+                      <tr><td>REG 87 UNL</td><td colSpan={2}></td><td>6,005 GAL</td></tr>
+                      <tr><td>#2 ULSD DIESEL</td><td colSpan={2}></td><td>2,805 GAL</td></tr>
+                      <tr className="rule"><td colSpan={4}></td></tr>
+                      <tr><td>TOTAL</td><td colSpan={2}></td><td>8,810 GAL</td></tr>
+                    </tbody>
+                  </table>
+                  <div className="stamp">submitted from the truck · 2:14 PM</div>
                 </div>
               </div>
-              <div className="fd-panel">
-                <table>
-                  <tbody>
-                    <tr><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th></tr>
-                    <tr><td>FUEL:REGULAR</td><td>6,005</td><td>$2.7475</td><td>$16,498.74</td></tr>
-                    <tr><td>FUEL:DIESEL</td><td>2,805</td><td>$3.9699</td><td>$11,135.57</td></tr>
-                    <tr className="tax"><td>FUEL TAXES:FGT</td><td>6,005</td><td>$0.1830</td><td>$1,098.92</td></tr>
-                    <tr className="tax"><td>FUEL TAXES:SMFT</td><td>6,005</td><td>$0.1050</td><td>$630.53</td></tr>
-                    <tr className="tax"><td>FUEL TAXES:FDT</td><td>2,805</td><td>$0.2430</td><td>$681.62</td></tr>
-                    <tr className="tax"><td>FUEL TAXES:SDT</td><td>2,805</td><td>$0.1350</td><td>$378.68</td></tr>
-                    <tr className="total"><td>Balance due</td><td></td><td></td><td>$30,424.06</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <span className="fd-synced">Illustrative invoice</span>
-            </div>
-            <p className="fd-cta">
-              Still moving delivery data by hand?{" "}
-              <a href={FIT_CHECK_HREF}>
-                Check one workflow
-              </a>{" "}
-              with your accounting version, ticket source and the step you want
-              to change. We will check compatibility before scoping a pilot.
-            </p>
-          </div>
-        )}
+            )}
 
-        <div className="fd-nav">
-          <button
-            type="button"
-            className="fd-btn ghost"
-            disabled={step === 0}
-            onClick={() => setStep((s) => Math.max(0, s - 1))}
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            className="fd-btn"
-            onClick={() => setStep((s) => (s === 2 ? 0 : s + 1))}
-          >
-            {step === 2 ? "Start over" : "Next step"}
-          </button>
+            {step === 1 && (
+              <div>
+                <p className="wt-cap">
+                  The office reviews the imported delivery:{" "}
+                  <b>
+                    matched to the customer, priced from that morning&apos;s send,
+                    gallons checked against the BOL.
+                  </b>
+                </p>
+                <UiRoot className="wt-ui">
+                  <div className="wt-row">
+                    <div>
+                      <b>Sunrise Fuel Mart</b>
+                      <small>Springfield · BOL 771204 · today 2:14 PM</small>
+                    </div>
+                    <span className="ui-badge" data-tone="success">READY TO INVOICE</span>
+                  </div>
+                  <div className="wt-panel">
+                    <div className="wt-panel-cap">Lines · priced from the morning send</div>
+                    <table>
+                      <tbody>
+                        <tr><th>Product</th><th>Gallons</th><th>Rate</th><th>Amount</th></tr>
+                        <tr><td>Regular 87</td><td>6,005</td><td>$2.7475</td><td>$16,498.74</td></tr>
+                        <tr><td>Diesel</td><td>2,805</td><td>$3.9699</td><td>$11,135.57</td></tr>
+                        <tr className="tax"><td>Federal Excise Tax, Gasoline</td><td>6,005</td><td>$0.1830</td><td>$1,098.92</td></tr>
+                        <tr className="tax"><td>State Motor Fuel Tax</td><td>6,005</td><td>$0.1050</td><td>$630.53</td></tr>
+                        <tr className="tax"><td>Federal Diesel Tax</td><td>2,805</td><td>$0.2430</td><td>$681.62</td></tr>
+                        <tr className="tax"><td>State Diesel Tax</td><td>2,805</td><td>$0.1350</td><td>$378.68</td></tr>
+                        <tr className="total"><td>Total</td><td>8,810</td><td></td><td>$30,424.06</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="wt-check">
+                    <Check aria-hidden="true" strokeWidth={3} />
+                    <span>
+                      Gallons check: ticket 8,810 = terminal 8,810. Prices matched from
+                      the morning send. Taxes computed per gallon, per state.
+                    </span>
+                  </div>
+                </UiRoot>
+              </div>
+            )}
+
+            {step === 2 && (
+              <div>
+                <p className="wt-cap">
+                  After review, the office selects <b>Approve and invoice</b>.
+                  The invoice job waits for QuickBooks Desktop Web Connector to
+                  process it. This sample shows the resulting itemized invoice.
+                </p>
+                <UiRoot className="wt-ui wt-qb">
+                  <div className="head">
+                    <div>
+                      <b>INVOICE</b>
+                      <small>Sunrise Fuel Mart</small>
+                    </div>
+                    <div className="right">
+                      <b>#20481</b>
+                      <small>Aug 18 · terms from customer</small>
+                    </div>
+                  </div>
+                  <div className="wt-panel">
+                    <table>
+                      <tbody>
+                        <tr><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th></tr>
+                        <tr><td>FUEL:REGULAR</td><td>6,005</td><td>$2.7475</td><td>$16,498.74</td></tr>
+                        <tr><td>FUEL:DIESEL</td><td>2,805</td><td>$3.9699</td><td>$11,135.57</td></tr>
+                        <tr className="tax"><td>FUEL TAXES:FGT</td><td>6,005</td><td>$0.1830</td><td>$1,098.92</td></tr>
+                        <tr className="tax"><td>FUEL TAXES:SMFT</td><td>6,005</td><td>$0.1050</td><td>$630.53</td></tr>
+                        <tr className="tax"><td>FUEL TAXES:FDT</td><td>2,805</td><td>$0.2430</td><td>$681.62</td></tr>
+                        <tr className="tax"><td>FUEL TAXES:SDT</td><td>2,805</td><td>$0.1350</td><td>$378.68</td></tr>
+                        <tr className="total"><td>Balance due</td><td></td><td></td><td>$30,424.06</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <span className="ui-badge" data-tone="success">
+                    <Check aria-hidden="true" strokeWidth={3} /> Illustrative invoice
+                  </span>
+                </UiRoot>
+                <p className="wt-cta">
+                  Still moving delivery data by hand?{" "}
+                  <a href={FIT_CHECK_HREF} className="fx-inline-link">
+                    Check one workflow
+                  </a>{" "}
+                  with your accounting version, ticket source and the step you want
+                  to change. We will check compatibility before scoping a pilot.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="wt-nav">
+            <button
+              type="button"
+              className="fx-btn fx-btn-ghost"
+              disabled={step === 0}
+              onClick={() => setStep((s) => Math.max(0, s - 1))}
+            >
+              <ArrowLeft aria-hidden="true" /> Back
+            </button>
+            <button
+              type="button"
+              className="fx-btn"
+              onClick={() => setStep((s) => (s === 2 ? 0 : s + 1))}
+            >
+              {step === 2 ? (
+                <>
+                  <RotateCcw aria-hidden="true" /> Start over
+                </>
+              ) : (
+                <>
+                  Next step <ArrowRight className="fx-arrow" aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
-
-      <style>{`
-        .fd-wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 70px; }
-        .fd-head .fd-kick { display: flex; justify-content: space-between; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fz-amber-ink); font-weight: 700; margin: 0 0 14px; }
-        .fd-head .fd-kick a { color: var(--fz-mut); text-transform: none; letter-spacing: 0; font-family: inherit; }
-        .fd-head h1 { font-size: clamp(28px, 4vw, 36px); font-weight: 800; letter-spacing: -0.02em; color: var(--fz-ink); margin: 0 0 12px; line-height: 1.2; }
-        .fd-sub { color: var(--fz-body); font-size: 18px; margin: 0 0 26px; max-width: 58ch; }
-        .fd-steps { display: flex; gap: 8px; margin: 6px 0 16px; }
-        .fd-back { display: inline-block; padding: 12px 0; }
-        .fd-card a[href^="mailto"] { color: var(--fz-ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--fz-amber); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-        .fd-pill { flex: 1; font: inherit; font-size: 16px; font-weight: 600; padding: 12px 8px; border-radius: 4px; border: 1px solid var(--fz-line); background: #f4f3ee; color: var(--fz-mut); cursor: pointer; text-align: center; }
-        .fd-pill.on { background: var(--fz-card); color: var(--fz-deep); border-color: var(--fz-deep); font-weight: 700; }
-        .fd-pill.done { color: var(--fz-green); }
-        .fd-card { border: 1px solid var(--fz-line); border-radius: 10px; padding: 22px; background: var(--fz-card); margin-bottom: 60px; }
-        .fd-cap { margin: 0 0 16px; font-size: 18px; color: var(--fz-body); }
-        .fd-cap b { color: var(--fz-ink); font-weight: 600; }
-        .fd-ticket { border: 1.5px solid var(--fz-ink); padding: 18px; max-width: 460px; margin: 0 auto; background: #fffdf6; }
-        .fd-ticket .fd-doc-title { font-size: 12.5px; font-weight: 700; text-align: center; margin: 0 0 10px; letter-spacing: 0.05em; }
-        .fd-ticket table { width: 100%; font-size: 12.5px; border-collapse: collapse; }
-        .fd-ticket td { padding: 3px 4px; }
-        .fd-ticket .rule td { border-top: 1px dashed var(--fz-ink); }
-        .fd-ticket .stamp { text-align: center; margin-top: 12px; font-size: 11.5px; color: #8a6d1a; font-weight: 700; }
-        .fd-row { display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--fz-line); border-radius: 8px; padding: 11px 15px; margin-bottom: 13px; background: #f4f3ee; }
-        .fd-row b { display: block; font-size: 17px; }
-        .fd-row small { color: var(--fz-mut); font-size: 15px; }
-        .fd-badge { font-size: 13px; font-weight: 700; padding: 5px 11px; border-radius: 999px; background: var(--fz-sand); color: var(--fz-ink); white-space: nowrap; }
-        .fd-panel { border: 1px solid var(--fz-line); border-radius: 8px; overflow-x: auto; }
-        .fd-panel .fd-panel-cap { font-family: var(--font-mono), monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: #5d6a63; padding: 9px 14px; margin: 0; background: #f4f3ee; font-weight: 500; }
-        .fd-panel table { width: 100%; border-collapse: collapse; font-size: 16px; min-width: 420px; }
-        .fd-panel td, .fd-panel th { padding: 8px 14px; text-align: right; border-top: 1px solid var(--fz-line); }
-        .fd-panel td:first-child, .fd-panel th:first-child { text-align: left; }
-        .fd-panel th { font-size: 14px; text-transform: uppercase; color: var(--fz-mut); letter-spacing: 0.04em; border-top: 0; font-weight: 700; }
-        .fd-panel .tax td { color: var(--fz-mut); font-size: 15px; }
-        .fd-panel .total td { font-weight: 700; border-top: 2px solid var(--fz-ink); }
-        .fd-check { margin-top: 13px; padding: 12px 14px; border-radius: 8px; background: var(--fz-sand); color: var(--fz-ink); font-size: 16px; font-weight: 600; }
-        .fd-qb { border: 1px solid var(--fz-line); border-radius: 8px; padding: 18px; background: var(--fz-card); max-width: 540px; margin: 0 auto; }
-        .fd-qb .head { display: flex; justify-content: space-between; margin-bottom: 13px; }
-        .fd-qb .head b { font-size: 16px; }
-        .fd-qb .head small { color: var(--fz-mut); display: block; font-size: 15px; }
-        .fd-synced { display: inline-block; margin-top: 14px; background: var(--fz-sand); color: var(--fz-ink); font-weight: 700; font-size: 15px; padding: 7px 14px; border-radius: 999px; }
-        .fd-synced::before { content: "✓ "; }
-        .fd-cta { text-align: center; margin: 24px 0 0; font-size: 17px; color: var(--fz-body); }
-        .fd-cta a { color: var(--fz-ink); font-weight: 700; }
-        .fd-nav { display: flex; justify-content: space-between; margin-top: 20px; }
-        .fd-btn { font: inherit; font-size: 16px; font-weight: 700; padding: 12px 24px; border-radius: 8px; border: 1.5px solid var(--fz-amber); background: var(--fz-amber); color: var(--fz-deeper); cursor: pointer; }
-        .fd-btn.ghost { background: var(--fz-card); color: var(--fz-deep); border-color: var(--fz-line); }
-        .fd-btn[disabled] { opacity: 0.35; cursor: default; }
-        @media (max-width: 560px) { .fd-steps { flex-direction: column; } }
-      `}</style>
     </main>
   );
 }

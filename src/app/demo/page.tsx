@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ServiceNav, ServiceFooter, ServiceStyles } from "../service-chrome";
+import { SiteShell } from "@/components/site/shell";
 import { Walkthrough } from "./walkthrough";
 
 export const metadata: Metadata = {
@@ -11,11 +11,8 @@ export const metadata: Metadata = {
 
 export default function DemoPage() {
   return (
-    <>
-      <ServiceStyles />
-      <ServiceNav />
+    <SiteShell>
       <Walkthrough />
-      <ServiceFooter />
-    </>
+    </SiteShell>
   );
 }

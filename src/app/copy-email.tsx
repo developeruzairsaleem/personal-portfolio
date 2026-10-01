@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { Check, Copy } from "lucide-react";
 import { EMAIL } from "./site-chrome";
 import { mark } from "./mark";
 
 export function CopyEmail() {
   const [status, setStatus] = useState("");
+  const copied = status === "Email address copied.";
 
   async function copy() {
     try {
@@ -13,21 +15,22 @@ export function CopyEmail() {
       setStatus("Email address copied.");
       mark("cta_copy_email");
     } catch {
-      setStatus("Select and copy the email address below.");
+      setStatus("Select and copy the email address above.");
     }
   }
 
   return (
-    <div className="fz-email-fallback">
-      <button type="button" onClick={copy}>Copy email address</button>
-      <span className="fz-email-address">{EMAIL}</span>
-      <span role="status">{status}</span>
-      <style>{`
-        .fz-email-fallback { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-top: 20px; }
-        .fz-email-fallback button { padding: 10px 0; min-height: 44px; background: none; border: 0; color: inherit; font: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
-        .fz-email-address { overflow-wrap: anywhere; }
-        .fz-email-fallback [role="status"] { width: 100%; font-size: 15px; }
-      `}</style>
+    <div className="fx-copy">
+      <div className="fx-copy-pill">
+        <span className="fx-copy-address">{EMAIL}</span>
+        <button type="button" onClick={copy} className="fx-copy-btn" data-copied={copied || undefined}>
+          {copied ? <Check aria-hidden="true" strokeWidth={2.6} /> : <Copy aria-hidden="true" strokeWidth={2} />}
+          {copied ? "Copied" : "Copy email address"}
+        </button>
+      </div>
+      <span role="status" className="fx-copy-status">
+        {status}
+      </span>
     </div>
   );
 }
