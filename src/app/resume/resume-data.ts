@@ -38,7 +38,7 @@ export const CONTACT: ContactItem[] = [
 ];
 
 export const SUMMARY =
-  "Full-stack engineer, four years building production software end to end: revenue analytics, online marketplaces, and operations software. Most of my work is correctness-critical, where data has to reconcile back to its source. Primarily Next.js, Node.js, and Postgres.";
+  "Full-stack engineer, five years building production software end to end: revenue analytics, online marketplaces, and operations software. Most of my work is correctness-critical, where data has to reconcile back to its source. Primarily Next.js, Node.js, and Postgres.";
 
 export const EXPERIENCE: Experience[] = [
   {
