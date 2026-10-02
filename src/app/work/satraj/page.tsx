@@ -38,8 +38,27 @@ const WORKFLOWS = [
   },
   {
     title: "Support the system as the operation changes",
-    text: "Uzair built the application and provides ongoing development and support. The work includes changes to pricing rules, customer mappings, delivery handling and accounting integration, alongside the screens the office uses to review them.",
-    detail: "For a new project, we agree who handles exceptions, what is monitored, how to fall back to the existing process and what ongoing support covers.",
+    text: "Uzair built the application and provides ongoing development and support. The work includes changes to pricing rules, customer mappings, delivery handling and accounting integration, alongside the screens the office uses to review them. Recent additions: the Top Tier additive charge and a payables view. Supplier invoice checks are next.",
+    detail: "For a new project, Uzair and your office agree who handles exceptions, what is monitored, how to fall back to the existing process and what ongoing support covers.",
+  },
+];
+
+const RESULTS = [
+  {
+    k: "Pricing",
+    v: "The daily price run went from 45–60 minutes of spreadsheet and email work to one reviewed click.",
+  },
+  {
+    k: "Deliveries",
+    v: "BOLs used to be typed into Sheets, then again into QuickBooks. Now they're pulled once and matched.",
+  },
+  {
+    k: "Invoices",
+    v: "Each load is invoiced with its fuel and tax lines and synced to QuickBooks with its invoice number.",
+  },
+  {
+    k: "Audit trail",
+    v: "Every price sent and every invoice synced can be looked up by date and customer.",
   },
 ];
 
@@ -67,7 +86,8 @@ export default function SatrajCaseStudy() {
               <SplitWords parts={["Sat-Raj: pricing, delivery review and", { em: "QuickBooks Desktop." }]} />
             </h1>
             <p className="fx-lead fx-load" style={delay(480)}>
-              Custom software for a gasoline and diesel distributor in New Jersey. It connects customer pricing and
+              Custom software for a gasoline and diesel distributor in New Jersey, supplying stations in New Jersey and
+              Pennsylvania since 1992. It connects customer pricing and
               delivery records with the office&apos;s invoicing process in QuickBooks Desktop.
             </p>
             <dl className="cs-meta fx-load" style={delay(600)}>
@@ -106,6 +126,22 @@ export default function SatrajCaseStudy() {
               <DemoPlayer />
             </div>
             <p className="fx-proof-note fx-reveal">Real screens from the Sat-Raj back office, running on fictional demo data.</p>
+          </div>
+        </section>
+
+        <section className="cs-results" aria-labelledby="cs-results-title">
+          <div className="fx-wrap">
+            <h2 id="cs-results-title" className="fx-kicker fx-reveal">
+              What changed
+            </h2>
+            <ul className="fx-facts">
+              {RESULTS.map((r, i) => (
+                <li key={r.k} className="fx-fact fx-spot fx-reveal" style={delay(i * 90)}>
+                  <p className="fx-fact-k">{r.k}</p>
+                  <p className="fx-fact-v">{r.v}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

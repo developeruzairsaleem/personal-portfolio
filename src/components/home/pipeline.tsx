@@ -9,50 +9,41 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { BookCheck, FileText, Receipt, ReceiptText, ShieldCheck } from "lucide-react";
+import { BookCheck, FileText, Receipt, ShieldCheck } from "lucide-react";
 import { SplitWords, delay } from "@/components/site/split";
+import { Screens } from "./screens";
 import { useMediaQuery, useReducedMotionPref } from "@/components/site/hooks";
 
 const STEPS = [
   {
-    label: "Ticket",
     icon: FileText,
-    title: "Tickets arrive on their own",
-    text: "DTN terminal tickets and driver BOLs come in automatically, matched to the right customer site by truck GPS.",
+    title: "Tickets come in",
+    text: "DTN tickets, matched by truck GPS.",
     data: "DTN #7713402 · 8,500 gal",
   },
   {
-    label: "Price",
     icon: Receipt,
-    title: "Priced, line by line",
-    text: "Rack cost, freight, margin and every federal and state fuel tax line, per customer and location.",
+    title: "Priced line by line",
+    text: "Rack, freight, margin, every tax.",
     data: "$2.17864/gal + 5 taxes",
   },
   {
-    label: "Review",
     icon: ShieldCheck,
     title: "Flagged, then approved",
-    text: "Gallon mismatches, missing prices and unknown sites get flagged. Your office approves each invoice.",
+    text: "Nothing posts without your OK.",
     data: "Approved by the office",
+    office: true,
   },
   {
-    label: "Invoice",
-    icon: ReceiptText,
-    title: "Every tax line on the bill",
-    text: "Approved deliveries become invoices with your items and every fuel tax line.",
-    data: "$26,398.50 invoice",
-  },
-  {
-    label: "Accounting",
     icon: BookCheck,
-    title: "Lands in your books",
-    text: "QuickBooks Desktop or Online, or your accounting system, with duplicate protection and a visible sync status for each invoice.",
+    title: "Posted to QuickBooks",
+    text: "Once per load. Desktop or Online.",
     data: "QuickBooks #10485",
   },
 ];
 
-// Five nodes at 10/30/50/70/90% of a 1000-wide track, joined by gentle arcs.
-const PATH = "M100 40 Q200 4 300 40 Q400 76 500 40 Q600 4 700 40 Q800 76 900 40";
+// Four nodes at 12.5/37.5/62.5/87.5% of a 1000-wide track, joined by gentle arcs.
+const PATH = "M125 40 Q250 4 375 40 Q500 76 625 40 Q750 4 875 40";
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
 export function Pipeline() {
@@ -64,7 +55,7 @@ export function Pipeline() {
   const listRef = useRef<HTMLOListElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const [rail, setRail] = useState({ top: 28, height: 0, fracs: [0, 0.25, 0.5, 0.75, 1] });
+  const [rail, setRail] = useState({ top: 28, height: 0, fracs: [0, 1 / 3, 2 / 3, 1] });
   const [active, setActive] = useState(0);
 
   const { scrollYProgress: pinP } = useScroll({ target: pinRef, offset: ["start start", "end end"] });
@@ -104,7 +95,7 @@ export function Pipeline() {
   });
 
   // Pulse that rides the head of the horizontal line.
-  const px = useMotionValue("10%");
+  const px = useMotionValue("12.5%");
   const py = useMotionValue("50%");
   useMotionValueEvent(lineD, "change", (v) => {
     const p = pathRef.current;
@@ -124,14 +115,12 @@ export function Pipeline() {
           <div className="fx-pipe-glow" aria-hidden="true" />
           <div className="fx-wrap">
             <header className="fx-sec-head fx-sec-head-center">
-              <p className="fx-kicker fx-reveal">
-                <b>03</b> How it works
-              </p>
+              <p className="fx-kicker fx-reveal">How it works</p>
               <h2 id="how-title" className="fx-h2 fx-split fx-reveal">
                 <SplitWords parts={["Ticket in.", { em: "Invoice out." }]} />
               </h2>
               <p className="fx-lead fx-reveal" style={delay(120)}>
-                Every load takes the same path. Nothing goes into the books until your office approves it.
+                Your office stops typing tickets and starts approving them.
               </p>
             </header>
 
@@ -185,13 +174,19 @@ export function Pipeline() {
                 {STEPS.map((s, i) => {
                   const Icon = s.icon;
                   return (
-                    <li key={s.label} className="fx-pipe-step" data-on={i < shown || undefined}>
+                    <li
+                      key={s.title}
+                      className="fx-pipe-step"
+                      data-on={i < shown || undefined}
+                      data-office={s.office || undefined}
+                    >
                       <span className="fx-pipe-node" aria-hidden="true">
                         <Icon strokeWidth={1.9} />
                       </span>
                       <div className="fx-pipe-copy">
                         <p className="fx-pipe-label">
-                          <span>{String(i + 1).padStart(2, "0")}</span> {s.label}
+                          <span>{String(i + 1).padStart(2, "0")}</span>
+                          {s.office && <span className="fx-pipe-badge">Your office</span>}
                         </p>
                         <h3 className="fx-h3">{s.title}</h3>
                         <p className="fx-pipe-text">{s.text}</p>
@@ -207,6 +202,8 @@ export function Pipeline() {
           </div>
         </div>
       </div>
+
+      <Screens />
     </section>
   );
 }

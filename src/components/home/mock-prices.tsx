@@ -6,7 +6,9 @@ import { UiBadge, UiRoot } from "@/components/mock/ui";
 import { Counter } from "@/components/site/counter";
 
 /* "Today's pricing" from the real Prices screen (demo data). Cost + tax +
-   freight + margin = sell price, then one click sends every customer. */
+   freight + margin = sell price, then one click sends every customer. On
+   phones the first line reads as a receipt (labels from data-k), the rest
+   show only fuel and sell price. */
 const LINES = [
   { fuel: "Unleaded 87", cost: "$2.0418", tax: "$0.6794", freight: "$0.0650", margin: "$0.0650", sell: 2.8512 },
   { fuel: "Unleaded 93", cost: "$2.5326", tax: "$0.6794", freight: "$0.0650", margin: "$0.0850", sell: 3.362 },
@@ -75,12 +77,14 @@ export function PricesMock({ active, reduced }: { active: boolean; reduced: bool
               return (
                 <div className="mk-pr" key={l.fuel} data-on={on || undefined}>
                   <span className="mk-fuel">{l.fuel}</span>
-                  <span>{l.cost}</span>
-                  <span>{l.tax}</span>
-                  <span>{l.freight}</span>
-                  <span>{l.margin}</span>
-                  <span className="mk-sell">
-                    $<Counter to={l.sell} decimals={4} duration={0.8} delay={0.35} play={on} />
+                  <span data-k="Cost">{l.cost}</span>
+                  <span data-k="+ Tax">{l.tax}</span>
+                  <span data-k="+ Freight">{l.freight}</span>
+                  <span data-k="+ Margin">{l.margin}</span>
+                  <span className="mk-sell" data-k="= Sell price">
+                    <span>
+                      $<Counter to={l.sell} decimals={4} duration={0.8} delay={0.35} play={on} />
+                    </span>
                   </span>
                 </div>
               );

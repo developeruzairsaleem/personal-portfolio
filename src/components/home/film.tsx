@@ -1,4 +1,7 @@
-import { SplitWords, delay } from "@/components/site/split";
+import { ArrowRight } from "lucide-react";
+import { TrackedLink } from "@/app/tracked-link";
+import { BOOK_HREF } from "@/app/service-contact";
+import { SplitWords } from "@/components/site/split";
 import { VideoPlayer } from "@/components/site/video-player";
 import { ScrollScale } from "./scroll-scale";
 
@@ -8,15 +11,10 @@ export function Film() {
       <div className="fx-film-bg" aria-hidden="true" />
       <div className="fx-wrap">
         <header className="fx-sec-head fx-sec-head-center">
-          <p className="fx-kicker fx-reveal">
-            <b>01</b> The film
-          </p>
+          <p className="fx-kicker fx-reveal">The film</p>
           <h2 id="film-title" className="fx-h2 fx-split fx-reveal">
-            <SplitWords parts={["See it in", { em: "50 seconds." }]} />
+            <SplitWords parts={["See it in 50 seconds."]} />
           </h2>
-          <p className="fx-lead fx-reveal" style={delay(120)}>
-            One load, from the terminal ticket to an approved invoice in QuickBooks. Turn the sound on.
-          </p>
         </header>
 
         <ScrollScale className="fx-film-frame">
@@ -26,12 +24,27 @@ export function Film() {
             src="/fuel-film.mp4"
             poster="/fuel-film-poster.jpg"
             title="Watch the film"
-            meta="0:50 · Sound on"
+            meta="0:50 · Sound optional"
             playEvent="film_play"
             completeEvent="film_complete"
             variant="film"
           />
         </ScrollScale>
+
+        <p className="fx-film-next fx-reveal">
+          Want to see it on a load of yours?{" "}
+          <TrackedLink
+            event="cta_book_film"
+            href={BOOK_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fx-inline-link"
+          >
+            Book a walkthrough
+            <ArrowRight aria-hidden="true" />
+            <span className="fx-sr"> (opens in new tab)</span>
+          </TrackedLink>
+        </p>
       </div>
     </section>
   );

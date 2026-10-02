@@ -4,11 +4,9 @@ import { Marquee } from "@/components/home/marquee";
 import { Film } from "@/components/home/film";
 import { Problem } from "@/components/home/problem";
 import { Pipeline } from "@/components/home/pipeline";
-import { Pillars } from "@/components/home/pillars";
-import { Stats } from "@/components/home/stats";
 import { CaseTeaser } from "@/components/home/case-teaser";
-import { About } from "@/components/home/about";
 import { Process } from "@/components/home/process";
+import { About } from "@/components/home/about";
 import { Faq } from "@/components/home/faq";
 import { FinalCta } from "@/components/home/final-cta";
 
@@ -21,11 +19,9 @@ export default function Home() {
         <Film />
         <Problem />
         <Pipeline />
-        <Pillars />
-        <Stats />
         <CaseTeaser />
-        <About />
         <Process />
+        <About />
         <Faq />
         <FinalCta />
       </main>

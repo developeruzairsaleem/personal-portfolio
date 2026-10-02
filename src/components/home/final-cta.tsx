@@ -13,12 +13,11 @@ export function FinalCta() {
         <div className="fx-end-arc" />
       </div>
       <div className="fx-wrap fx-end-in">
-        <p className="fx-kicker fx-reveal">20 minutes · Zoom or Google Meet</p>
         <h2 id="end-title" className="fx-h1 fx-split fx-reveal">
-          <SplitWords parts={["See it on your", { em: "own tickets." }]} />
+          <SplitWords parts={["Bring one load.", { em: "See where the typing stops." }]} />
         </h2>
         <p className="fx-lead fx-reveal" style={delay(120)}>
-          Bring one load you invoiced last week. You&apos;ll see the system running live in production and leave with a fixed price in writing.
+          20 minutes on Zoom or Google Meet. A fixed price in writing after.
         </p>
         <div className="fx-end-me fx-reveal" style={delay(160)}>
           <span className="fx-avatar" style={{ width: 48, height: 48 }}>
@@ -26,7 +25,7 @@ export function FinalCta() {
           </span>
           <p>
             <b>You talk to Uzair directly, not a sales rep.</b>
-            The engineer who builds it runs it and answers the emails.
+            <span>Same-day replies, US Eastern hours.</span>
           </p>
         </div>
         <div className="fx-end-cta fx-reveal" style={delay(220)}>
@@ -44,10 +43,11 @@ export function FinalCta() {
         </div>
         <div className="fx-end-alt fx-reveal" style={delay(280)}>
           <p>
-            Prefer email? Send your accounting software and the step your office still does by hand.{" "}
+            Prefer email?{" "}
             <TrackedLink event="cta_email" href={FIT_CHECK_HREF} className="fx-inline-link">
               Email Uzair
-            </TrackedLink>
+            </TrackedLink>{" "}
+            with the step your office still does by hand.
           </p>
           <CopyEmail />
         </div>

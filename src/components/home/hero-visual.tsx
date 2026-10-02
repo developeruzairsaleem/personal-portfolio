@@ -15,10 +15,12 @@ import { StagePill, UiBadge, UiLabel, UiRoot, UiSidebar, type Stage } from "@/co
  */
 
 // ms before advancing from step i to i + 1
-const SCRIPT = [650, 800, 1100, 850, 420, 260, 260, 260, 260, 760, 950, 1050];
-const LAST = SCRIPT.length; // 12
+// The last step (13) scrolls back to the five tax lines and holds there with
+// the QuickBooks chip lit: the whole story in one frame (also the reduced-motion frame).
+const SCRIPT = [650, 800, 1100, 850, 420, 260, 260, 260, 260, 760, 950, 1050, 1400];
+const LAST = SCRIPT.length; // 13
 const HOLD = 3800;
-const LINE_AT = [0, 0.16, 0.24, 0.34, 0.46, 0.5, 0.53, 0.56, 0.59, 0.62, 0.68, 0.8, 1];
+const LINE_AT = [0, 0.16, 0.24, 0.34, 0.46, 0.5, 0.53, 0.56, 0.59, 0.62, 0.68, 0.8, 1, 1];
 
 const TAXES: [string, string, string][] = [
   ["Federal Excise Tax - Gasoline", "$0.183", "$1,555.50"],
@@ -38,6 +40,7 @@ const ROWS: { name: string; sub: string; bol: string; raw: string; gal: string; 
 const PATH = "M262 17 C 470 17, 614 8, 614 96 L 614 330 C 614 470, 470 488, 330 488 L 214 488";
 
 function anchorFor(s: number) {
+  if (s >= 13) return "taxes";
   if (s >= 12) return "qb";
   if (s >= 11) return "invoice";
   if (s >= 10) return "approve";
@@ -91,7 +94,8 @@ export function HeroVisual() {
     if (!view || !content) return;
     const target = content.querySelector<HTMLElement>(`[data-anchor="${anchor}"]`);
     const max = Math.max(0, content.scrollHeight - view.clientHeight);
-    const y = target ? Math.min(max, Math.max(0, target.offsetTop - 10)) : 0;
+    // Snap to the row's top edge so no half-clipped row peeks above it.
+    const y = target ? Math.min(max, Math.max(0, target.offsetTop - 4)) : 0;
     content.style.transform = `translate3d(0, ${-y}px, 0)`;
   }, [anchor]);
 
@@ -110,6 +114,7 @@ export function HeroVisual() {
       ref={ref}
       className="hs"
       data-fading={fading || undefined}
+      data-hold={s >= LAST || undefined}
       role="img"
       aria-label="Illustration of the real back office with demo data: a DTN ticket and truck GPS bring in a delivery for Delaware Valley Fuel, it is priced with five fuel tax lines, the office clicks Approve and invoice, and it posts to QuickBooks as invoice 10485."
     >
@@ -321,7 +326,7 @@ export function HeroVisual() {
                 <section data-anchor="invoice" className="hs-sec" data-on={s >= 11 || undefined}>
                   <UiLabel>Invoice</UiLabel>
                   <div className="hs-invoice">
-                    <b>#SR-20261001-0005</b>
+                    <b>#INV-20261001-0005</b>
                     <span>8,500 gal · $26,398.50 · sent</span>
                     <span>Invoice date (= ship date): Oct 1, 2026, 6:10 AM EDT</span>
                   </div>

@@ -2,47 +2,39 @@ import { ArrowRight } from "lucide-react";
 import { TrackedLink } from "@/app/tracked-link";
 import { BOOK_HREF } from "@/app/service-contact";
 import { SplitWords, delay } from "@/components/site/split";
-import { ScrollTimeline } from "@/components/site/timeline";
 
 const STEPS = [
   {
     title: "A 20-minute walkthrough",
-    paras: [
-      "You walk through how one load goes from ticket to invoice today. Uzair shows you the system running live in production.",
-      "You leave with a clear picture of what would change and a fixed price in writing. Nothing to send beforehand.",
-    ],
+    text: "Walk through one of your loads, then see the system running live.",
   },
   {
     title: "Run it side by side",
-    paras: [
-      "The system is set up on your real tickets while your office keeps working the old way.",
-      "You compare its invoices with yours. It goes live only when they match.",
-    ],
+    text: "It's set up on your real tickets while your office works the old way.",
   },
   {
     title: "Go live, with support that stays",
-    paras: [
-      "Monthly support covers fixes, tax rate changes and new charges, handled by the engineer who built it. No ticket queue, no account manager.",
-      "It runs in your own cloud account, so you own the system and the data.",
-    ],
+    text: (
+      <>
+        A <b>flat monthly fee</b> covers fixes, tax rate changes and new charges. It runs in your own cloud account,
+        so you&apos;re never locked in.
+      </>
+    ),
   },
 ];
 
 export function Process() {
   return (
     <section id="process" className="fx-sec fx-process" aria-labelledby="process-title">
-      <div className="fx-wrap fx-process-grid">
+      <div className="fx-wrap">
         <div className="fx-process-head">
-          <p className="fx-kicker fx-reveal">
-            <b>08</b> Getting started
-          </p>
-          <h2 id="process-title" className="fx-h2 fx-split fx-reveal">
-            <SplitWords parts={["From first call", { em: "to go-live." }]} />
-          </h2>
-          <p className="fx-lead fx-reveal" style={delay(120)}>
-            Nothing changes for your office until the new invoices match the old ones.
-          </p>
-          <div className="fx-reveal" style={delay(200)}>
+          <div>
+            <p className="fx-kicker fx-reveal">Getting started</p>
+            <h2 id="process-title" className="fx-h2 fx-h2-sm fx-split fx-reveal">
+              <SplitWords parts={["Nothing changes until the invoices match."]} />
+            </h2>
+          </div>
+          <div className="fx-reveal" style={delay(160)}>
             <TrackedLink
               event="cta_book_mid"
               href={BOOK_HREF}
@@ -56,7 +48,20 @@ export function Process() {
             </TrackedLink>
           </div>
         </div>
-        <ScrollTimeline items={STEPS} />
+
+        <ol className="fx-process-steps">
+          {STEPS.map((s, i) => (
+            <li key={s.title} className="fx-reveal" style={delay(i * 110)}>
+              <span className="fx-step-n" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="fx-h3">{s.title}</h3>
+                <p>{s.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

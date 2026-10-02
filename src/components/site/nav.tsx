@@ -13,7 +13,7 @@ const NAV = [
   { href: "/#how", label: "How it works" },
   { href: "/work/satraj", label: "Case study" },
   { href: "/#about", label: "About" },
-  { href: "/demo", label: "Walkthrough" },
+  { href: "/demo", label: "Demo" },
   { href: "/#faq", label: "FAQ" },
 ];
 
@@ -65,7 +65,8 @@ export function Nav() {
             rel="noopener noreferrer"
             className="fx-nav-cta"
           >
-            Book a call
+            <span className="fx-nav-cta-long">Book a walkthrough</span>
+            <span className="fx-nav-cta-short">Book a call</span>
             <ArrowUpRight aria-hidden="true" />
             <span className="fx-sr"> (opens in new tab)</span>
           </TrackedLink>

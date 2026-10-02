@@ -43,11 +43,16 @@ describe('Home page (fuel distributor redesign)', () => {
     expect(html).toContain('id="film"')
     expect(html).toContain('href="#film"')
     expect(html).toMatch(/<video[^>]*src="\/fuel-film\.mp4"[^>]*poster="\/fuel-film-poster\.jpg"[^>]*preload="metadata"/)
-    expect(html).toMatch(/<video[^>]*src="\/fuel-demo-v3\.mp4"/)
+  })
+
+  it('keeps the screen recording one click away, loaded only when opened', () => {
+    expect(text).toContain('Watch the live Sat-Raj system')
+    expect(html).not.toMatch(/<video[^>]*src="\/fuel-demo-v3\.mp4"/)
+    expect(html.match(/<video[\s>]/g)).toHaveLength(1)
   })
 
   it('renders every section the nav and CTAs point to', () => {
-    for (const id of ['main', 'how', 'build', 'case', 'process', 'faq', 'contact']) {
+    for (const id of ['main', 'film', 'how', 'build', 'case', 'process', 'about', 'faq', 'contact']) {
       expect(html).toContain(`id="${id}"`)
     }
   })
@@ -71,6 +76,36 @@ describe('Home page (fuel distributor redesign)', () => {
     expect(text).toContain('We already have fuel software.')
     expect(text).toContain("You're not local. What if something breaks?")
     expect(text).toContain('What does it cost?')
+    expect(text).toContain('How long does it take?')
+  })
+
+  it('drops the cut copy', () => {
+    for (const s of ['Turn the sound on', "here's what replaces it", 'Also shipped', "We'll look", 'Three jobs your office repeats', 'No. 0001', '24 customers', 'Anyone on the team', 'Sound familiar?', 'Engagement', 'The fuel system, end to end']) {
+      expect(text).not.toContain(s)
+    }
+  })
+
+  it('keeps the risk reversal and hero proof', () => {
+    expect(text).toContain('Nothing changes until the invoices match.')
+    expect(html).toContain('href="#case"')
+    expect(text).toContain('NJ & PA fuel distributor')
+    expect(text).toContain('on QuickBooks Desktop')
+    expect(text).toContain('How it was built')
+  })
+
+  it('says each headline fact once', () => {
+    const count = (s: string) => text.split(s).length - 1
+    expect(count('45–60')).toBe(1)
+    expect(count('5 years')).toBe(1)
+    expect(count('one click')).toBe(1)
+    expect(count('own cloud account')).toBe(1)
+    expect(count('Same-day replies')).toBe(1)
+    expect(count('Book a 20-min walkthrough')).toBe(3)
+  })
+
+  it('speaks about Uzair in third person', () => {
+    expect(text).not.toMatch(/\b(he|him|his|I|me|my)\b/)
+    expect(text).not.toMatch(/\bWe'll\b/)
   })
 
   it('links LinkedIn, email and the résumé in the footer', () => {

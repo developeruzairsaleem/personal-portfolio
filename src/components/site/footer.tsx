@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EMAIL, LINKS, GithubIcon, LinkedinIcon } from "@/app/site-chrome";
+import { EMAIL, GithubIcon, LINKS, LinkedinIcon } from "@/app/site-chrome";
 import { Brand } from "./brand";
 
 export function Footer() {
@@ -11,9 +11,10 @@ export function Footer() {
             <Link href="/" className="fx-brand" aria-label="Uzair Saleem, home">
               <Brand size={44} />
             </Link>
-            <p>Uzair Saleem builds and runs back-office software for gasoline and diesel distributors.</p>
           </div>
           <nav className="fx-footer-links" aria-label="Footer">
+            <Link href="/work/satraj">Case study</Link>
+            <Link href="/demo">Demo</Link>
             <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer">
               <LinkedinIcon />
               LinkedIn<span className="fx-sr"> (opens in new tab)</span>
@@ -22,14 +23,12 @@ export function Footer() {
               <GithubIcon />
               GitHub<span className="fx-sr"> (opens in new tab)</span>
             </a>
-            <a href={LINKS.email}>{EMAIL}</a>
-            <Link href="/work/satraj">Case study</Link>
-            <Link href="/demo">Walkthrough</Link>
             <Link href={LINKS.resume}>Résumé</Link>
+            <a href={LINKS.email}>{EMAIL}</a>
           </nav>
         </div>
         <div className="fx-footer-base">
-          <span>© {new Date().getFullYear()} Uzair Saleem · Software engineer</span>
+          <span>© {new Date().getFullYear()} Uzair Saleem · Software &amp; product engineer</span>
           <span>Sample data on this site is illustrative.</span>
         </div>
       </div>

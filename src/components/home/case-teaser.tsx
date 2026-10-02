@@ -1,83 +1,71 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { DemoPlayer } from "@/app/demo-player";
 import { OWNER_QUOTE } from "@/app/owner-quote";
+import { Counter } from "@/components/site/counter";
 import { SplitWords, delay } from "@/components/site/split";
+import { DemoReveal } from "./demo-reveal";
 
-const FACTS = [
+/** Before/after at Sat-Raj. Every number is from the résumé or the case study. */
+const BOARD: { label: string; before: string; now: ReactNode }[] = [
+  { label: "Daily price run", before: "45–60 min", now: "Under 90 sec" },
+  { label: "People who can run pricing", before: "1 person", now: "Whole office" },
   {
-    k: "Pricing",
-    v: "The daily price run went from 45–60 minutes of spreadsheet and email work to one reviewed click.",
-  },
-  {
-    k: "Deliveries",
-    v: "BOLs used to be typed into Sheets, then again into QuickBooks. Now they're pulled once and matched.",
-  },
-  {
-    k: "Invoices",
-    v: "Each load is invoiced with its fuel and tax lines and synced to QuickBooks with its invoice number.",
-  },
-  {
-    k: "Audit trail",
-    v: "Every price sent and every invoice synced can be looked up by date and customer.",
+    label: "Times a ticket is typed",
+    before: "2",
+    now: <Counter from={2} to={0} duration={1.6} delay={0.5} />,
   },
 ];
 
 export function CaseTeaser() {
   return (
     <section id="case" className="fx-sec fx-case" aria-labelledby="case-title">
-      <div className="fx-wrap">
-        <div className="fx-case-grid">
-          <div className="fx-case-copy">
-            <p className="fx-kicker fx-reveal">
-              <b>06</b> Case study · live in production
-            </p>
-            <h2 id="case-title" className="fx-h2 fx-split fx-reveal">
-              <SplitWords parts={["Sat-Raj, Inc."]} />
-            </h2>
-            <p className="fx-case-place fx-reveal" style={delay(60)}>
-              <span className="fx-em">Voorhees, New Jersey</span>
-            </p>
-            <p className="fx-lead fx-reveal" style={delay(100)}>
-              Sat-Raj has supplied gasoline and diesel to stations in New Jersey and Pennsylvania since 1992. Their
-              back office ran on Google Sheets and retyping.
-            </p>
-            <p className="fx-body fx-reveal" style={delay(160)}>
-              Uzair replaced it with one system: DTN terminal prices and tickets, Samsara deliveries, customer pricing,
-              delivery review and QuickBooks invoicing, and still runs and extends it every week. Recent additions:
-              the Top Tier additive charge and a payables view. Supplier invoice checks are next.
-            </p>
-            <div className="fx-case-links fx-reveal" style={delay(220)}>
-              <Link href="/work/satraj" className="fx-link">
-                Read the full case study <ArrowRight aria-hidden="true" />
-              </Link>
-              <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="fx-link fx-link-quiet">
-                satraj.inc <ArrowUpRight aria-hidden="true" />
-                <span className="fx-sr"> (opens in new tab)</span>
-              </a>
-            </div>
-          </div>
+      <div className="fx-case-glow" aria-hidden="true" />
+      <div className="fx-wrap fx-case-grid">
+        <header className="fx-case-head">
+          <p className="fx-kicker fx-reveal">Case study · live in production</p>
+          <h2 id="case-title" className="fx-h2 fx-h2-sm fx-split fx-reveal">
+            <SplitWords parts={[{ em: "Sat-Raj, Inc." }, "stopped retyping tickets."]} />
+          </h2>
+        </header>
 
-          <div className="fx-case-proof fx-reveal" style={delay(120)}>
-            <p className="fx-proof-label">
-              <span className="fx-live-dot" aria-hidden="true" /> See the real system
-            </p>
-            <DemoPlayer />
-            <p className="fx-proof-note">Real screens from the Sat-Raj back office, running on fictional demo data.</p>
-          </div>
-        </div>
-
-        <ul className="fx-facts">
-          {FACTS.map((f, i) => (
-            <li key={f.k} className="fx-fact fx-spot fx-reveal" style={delay(i * 90)}>
-              <p className="fx-fact-k">
-                <span>{String(i + 1).padStart(2, "0")}</span>
-                {f.k}
+        <ul className="fx-board">
+          {BOARD.map((b, i) => (
+            <li key={b.label} className="fx-board-item fx-reveal" style={delay(i * 110)}>
+              <p className="fx-board-label">{b.label}</p>
+              <p className="fx-board-was">
+                <span className="fx-sr">Before: </span>
+                <span aria-hidden="true">Was </span>
+                {b.before}
               </p>
-              <p className="fx-fact-v">{f.v}</p>
+              <p className="fx-board-now">
+                <span className="fx-sr">Now: </span>
+                <span className="fx-board-big">{b.now}</span>
+              </p>
             </li>
           ))}
         </ul>
+
+        <div className="fx-case-story">
+          <p className="fx-case-text fx-reveal" style={delay(100)}>
+            A New Jersey and Pennsylvania gasoline and diesel supplier since 1992, on QuickBooks Desktop. Uzair rebuilt
+            its back office as one system, matched the old spreadsheet&apos;s prices to the cent, and still runs it
+            every week.
+          </p>
+          <div className="fx-case-links fx-reveal" style={delay(160)}>
+            <Link href="/work/satraj" className="fx-link">
+              Full case study <ArrowRight aria-hidden="true" />
+            </Link>
+            <a href="https://satraj.inc" target="_blank" rel="noopener noreferrer" className="fx-link fx-link-quiet">
+              satraj.inc <ArrowUpRight aria-hidden="true" />
+              <span className="fx-sr"> (opens in new tab)</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="fx-case-demo fx-reveal" style={delay(120)}>
+          <DemoReveal />
+        </div>
 
         {OWNER_QUOTE && (
           <figure className="fx-quote fx-reveal">

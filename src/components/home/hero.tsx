@@ -1,10 +1,10 @@
-import { ArrowRight, Check, Play } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, Play } from "lucide-react";
 import { TrackedLink } from "@/app/tracked-link";
 import { BOOK_HREF } from "@/app/service-contact";
 import { SplitWords, delay } from "@/components/site/split";
 import { HeroVisual } from "./hero-visual";
 
-const ASSURE = ["You keep your accounting software", "Your office approves every invoice", "Fixed price, in writing"];
+const ASSURE = ["QuickBooks Desktop & Online", "You approve every invoice", "Fixed price, in writing"];
 
 export function Hero() {
   return (
@@ -26,7 +26,8 @@ export function Hero() {
       <div className="fx-wrap fx-hero-in">
         <p className="fx-pill fx-load" style={delay(60)}>
           <span className="fx-live-dot" aria-hidden="true" />
-          Back-office software for gasoline &amp; diesel distributors
+          <span className="fx-pill-long">Back-office software for gasoline &amp; diesel distributors</span>
+          <span className="fx-pill-short">For gasoline &amp; diesel distributors</span>
         </p>
 
         <h1 id="hero-title" className="fx-h1 fx-split-load">
@@ -36,9 +37,8 @@ export function Hero() {
         <div className="fx-hero-cols">
           <div className="fx-hero-copy">
             <p className="fx-lead fx-load" style={delay(520)}>
-              Uzair Saleem builds and runs back-office software for gasoline and diesel distributors. Delivery tickets
-              arrive from the terminal and truck GPS, get priced with every tax line, and post to QuickBooks, or the
-              accounting system you already run, once your office approves them.
+              Uzair Saleem builds and runs the system that does the typing for you: DTN tickets and truck GPS in, priced
+              QuickBooks invoices with every tax line out.
             </p>
 
             <div className="fx-cta-row fx-load" style={delay(640)}>
@@ -61,7 +61,16 @@ export function Hero() {
               </TrackedLink>
             </div>
 
-            <ul className="fx-assure fx-load" style={delay(760)}>
+            <TrackedLink event="proof_link_hero" href="#case" className="fx-hero-proof fx-load" style={delay(760)}>
+              <span className="fx-live-dot fx-live-dot-green" aria-hidden="true" />
+              <span>
+                <span className="fx-proof-long">Running every day at a</span>
+                <span className="fx-proof-short">Live at a</span> NJ &amp; PA fuel distributor
+              </span>
+              <ArrowDown aria-hidden="true" />
+            </TrackedLink>
+
+            <ul className="fx-assure fx-load" style={delay(860)}>
               {ASSURE.map((a) => (
                 <li key={a}>
                   <Check aria-hidden="true" strokeWidth={2.6} />

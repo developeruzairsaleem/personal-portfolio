@@ -2,7 +2,7 @@
 
 import { useId, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, FileText } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, FileText } from "lucide-react";
 import { SplitWords, delay } from "@/components/site/split";
 
 type SysLink = { label: string; href: string; kind: "page" | "site" | "pdf" };
@@ -10,6 +10,8 @@ type SysLink = { label: string; href: string; kind: "page" | "site" | "pdf" };
 type System = {
   key: string;
   tab: string;
+  /** Short label for the phone chip row: the product, not a category. */
+  chip: string;
   sub: string;
   tag: string;
   status: string;
@@ -26,14 +28,14 @@ type System = {
 const SYSTEMS: System[] = [
   {
     key: "fuel",
-    tab: "Fuel pricing & invoicing",
+    tab: "Fuel back office",
+    chip: "Fuel back office",
     sub: "Sat-Raj, Inc. · NJ & PA",
     tag: "Wholesale fuel",
     status: "Live · supported weekly",
-    title: "From 39 spreadsheet tabs to one system the office trusts.",
+    title: "Tickets, prices, taxes and QuickBooks in one system the office trusts.",
     meta: [
       ["Role", "Lead engineer, end to end"],
-      ["Built", "Jan–Apr 2026, extended since"],
       ["Runs on", "Next.js, PostgreSQL, AWS"],
     ],
     flow: [
@@ -42,19 +44,20 @@ const SYSTEMS: System[] = [
       ["Review queue", "GPS site match, mismatches"],
       ["QuickBooks Desktop", "Web Connector, no duplicates"],
     ],
-    does: "Supplier costs arrive from DTN every day. Customer prices are calculated per location and sent to every customer in one click. Delivery tickets come in from DTN and Samsara, get checked and approved by the office, and post to QuickBooks Desktop with every federal and state tax line.",
+    does: "The first deliverable was a map: 39 hand-edited pricing spreadsheets, a master tax and margin template and a freight matrix, rebuilt as one data model. Supplier costs now arrive from DTN daily, delivery tickets from DTN and Samsara, and approved invoices post to QuickBooks Desktop through the Web Connector with retries and duplicate checks.",
     hard: "Trust. The first price run had to match the old spreadsheet to the cent, so the pricing math is pinned to the legacy rates in tests. Samsara geofences don't always line up with a customer's site, so unclear drops wait in a review queue instead of being guessed, and every confirmed address is remembered. When one terminal's feed swapped gross and net gallons, the fix and a repair of the affected history shipped together.",
     outcomes: [
-      ["45–60 min → 1 click", "daily customer price run"],
-      ["To the cent", "launch prices matched the old spreadsheet"],
+      ["Jan–Apr 2026", "first build, extended since"],
       ["NJ + PA", "tax rules by state and fuel type"],
+      ["DTN + Samsara", "tickets pulled in once, never retyped"],
     ],
     links: [{ label: "Read the case study", href: "/work/satraj", kind: "page" }],
   },
   {
     key: "revenue",
-    tab: "Subscription revenue analytics",
-    sub: "Indiecator · Stripe & Paddle",
+    tab: "Revenue analytics",
+    chip: "Indiecator",
+    sub: "Indiecator",
     tag: "SaaS analytics",
     status: "Live",
     title: "Revenue numbers rebuilt from what customers actually paid.",
@@ -83,8 +86,9 @@ const SYSTEMS: System[] = [
   },
   {
     key: "market",
-    tab: "Gaming services marketplace",
-    sub: "Diffed.gg · players hire coaches",
+    tab: "Coaching marketplace",
+    chip: "Diffed.gg",
+    sub: "Diffed.gg",
     tag: "Marketplace & payments",
     status: "Live",
     title: "A full marketplace, checkout to payout, in about two months.",
@@ -110,8 +114,9 @@ const SYSTEMS: System[] = [
   },
   {
     key: "video",
-    tab: "Video rendering engine",
-    sub: "AI reel generator · Germany",
+    tab: "Video engine",
+    chip: "AI reels",
+    sub: "AI reels · Germany",
     tag: "Media pipelines",
     status: "Shipped",
     title: "Video renders cut from minutes to seconds.",
@@ -145,6 +150,8 @@ function LinkIcon({ kind }: { kind: SysLink["kind"] }) {
 export function Systems() {
   const uid = useId().replace(/:/g, "");
   const [active, setActive] = useState(0);
+  // One "How it was built" state shared by every tab.
+  const [open, setOpen] = useState(false);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 
   function onKey(e: KeyboardEvent<HTMLDivElement>) {
@@ -169,12 +176,8 @@ export function Systems() {
       <header className="fx-sys-head">
         <p className="fx-kicker fx-reveal">Selected systems</p>
         <h3 className="fx-sys-title fx-split fx-reveal">
-          <SplitWords parts={["Different industries.", { em: "Same discipline." }]} />
+          <SplitWords parts={["What Uzair has built."]} />
         </h3>
-        <p className="fx-lead fx-reveal" style={delay(100)}>
-          Four industries, one standard: software that real businesses run on every day. Fuel comes first; the
-          others show the same engineering habits under different pressure.
-        </p>
       </header>
 
       <div className="fx-sys-grid fx-reveal" style={delay(120)}>
@@ -192,13 +195,14 @@ export function Systems() {
               aria-controls={`sys-panel-${uid}-${s.key}`}
               tabIndex={i === active ? 0 : -1}
               className="fx-sys-tab"
+              data-other-start={i === 1 || undefined}
               onClick={() => setActive(i)}
             >
-              <span className="fx-sys-tab-n">{String(i + 1).padStart(2, "0")}</span>
               <span className="fx-sys-tab-text">
                 <b>{s.tab}</b>
                 <span>{s.sub}</span>
               </span>
+              <span className="fx-sys-chip">{s.chip}</span>
             </button>
           ))}
         </div>
@@ -222,35 +226,6 @@ export function Systems() {
               </div>
               <h4 className="fx-sys-h">{s.title}</h4>
 
-              <dl className="fx-sys-meta">
-                {s.meta.map(([k, v]) => (
-                  <div key={k}>
-                    <dt>{k}</dt>
-                    <dd>{v}</dd>
-                  </div>
-                ))}
-              </dl>
-
-              <ol className="fx-sys-flow" aria-label="How data moves through it">
-                {s.flow.map(([k, v], n) => (
-                  <li key={k} style={{ "--n": n } as CSSProperties}>
-                    <b>{k}</b>
-                    <span>{v}</span>
-                  </li>
-                ))}
-              </ol>
-
-              <div className="fx-sys-cols">
-                <div>
-                  <p className="fx-sys-label">What it does</p>
-                  <p>{s.does}</p>
-                </div>
-                <div>
-                  <p className="fx-sys-label">The hard part</p>
-                  <p>{s.hard}</p>
-                </div>
-              </div>
-
               <ul className="fx-sys-outcomes" role="list">
                 {s.outcomes.map(([k, v]) => (
                   <li key={k}>
@@ -260,32 +235,73 @@ export function Systems() {
                 ))}
               </ul>
 
-              {s.links.length > 0 && (
-                <div className="fx-sys-links">
-                  {s.links.map((l) =>
-                    l.kind === "page" ? (
-                      <Link key={l.href} href={l.href} className="fx-link">
-                        {l.label} <LinkIcon kind={l.kind} />
-                      </Link>
-                    ) : (
-                      <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="fx-link fx-link-quiet">
-                        {l.label} <LinkIcon kind={l.kind} />
-                        <span className="fx-sr"> (opens in new tab)</span>
-                      </a>
-                    ),
-                  )}
+              <div className="fx-sys-actions">
+                {s.links.length > 0 && (
+                  <div className="fx-sys-links">
+                    {s.links.map((l) =>
+                      l.kind === "page" ? (
+                        <Link key={l.href} href={l.href} className="fx-link">
+                          {l.label} <LinkIcon kind={l.kind} />
+                        </Link>
+                      ) : (
+                        <a
+                          key={l.href}
+                          href={l.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="fx-link fx-link-quiet"
+                        >
+                          {l.label} <LinkIcon kind={l.kind} />
+                          <span className="fx-sr"> (opens in new tab)</span>
+                        </a>
+                      ),
+                    )}
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  className="fx-more"
+                  aria-expanded={open}
+                  aria-controls={`sys-more-${uid}-${s.key}`}
+                  onClick={() => setOpen((o) => !o)}
+                >
+                  {open ? "Hide details" : "How it was built"}
+                  <ChevronDown aria-hidden="true" />
+                </button>
+              </div>
+              <div id={`sys-more-${uid}-${s.key}`} className="fx-sys-detail" hidden={!open}>
+                <dl className="fx-sys-meta">
+                  {s.meta.map(([k, v]) => (
+                    <div key={k}>
+                      <dt>{k}</dt>
+                      <dd>{v}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <ol className="fx-sys-flow" aria-label="How data moves through it">
+                  {s.flow.map(([k, v], n) => (
+                    <li key={k} style={{ "--n": n } as CSSProperties}>
+                      <b>{k}</b>
+                      <span>{v}</span>
+                    </li>
+                  ))}
+                </ol>
+                <div className="fx-sys-cols">
+                  <div>
+                    <h5 className="fx-sys-label">What it does</h5>
+                    <p>{s.does}</p>
+                  </div>
+                  <div>
+                    <h5 className="fx-sys-label">The hard part</h5>
+                    <p>{s.hard}</p>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           </article>
         ))}
       </div>
-
-      <p className="fx-sys-also fx-reveal">
-        <b>Also shipped:</b> per-warehouse delivery pricing and address checks across 12,000 German postal codes for a
-        B2B marketplace, and a headless-browser data pipeline that runs five browsers in parallel for 80% more
-        throughput.
-      </p>
     </div>
   );
 }

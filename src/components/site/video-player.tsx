@@ -23,6 +23,8 @@ export type VideoPlayerProps = {
   completeEvent: string;
   id?: string;
   variant?: "film" | "screen";
+  /** Start playing on mount: for players revealed by a visitor's click. */
+  autoStart?: boolean;
 };
 
 /**
@@ -39,6 +41,7 @@ export function VideoPlayer({
   completeEvent,
   id,
   variant = "screen",
+  autoStart = false,
 }: VideoPlayerProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -61,6 +64,17 @@ export function VideoPlayer({
   }, [started]);
 
   useEffect(() => () => window.clearTimeout(idleTimer.current), []);
+
+  // Revealed by a click, so the browser still allows sound; fall back to muted.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!autoStart || !v) return;
+    void v.play().catch(() => {
+      v.muted = true;
+      setMuted(true);
+      void v.play().catch(() => {});
+    });
+  }, [autoStart]);
 
   function wake() {
     setIdle(false);
