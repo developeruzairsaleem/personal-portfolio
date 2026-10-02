@@ -17,17 +17,24 @@ const QA = [
     ],
   },
   {
+    q: "We're not on QuickBooks.",
+    a: [
+      "QuickBooks Desktop and Online are what I've built and run in production. Sage, NetSuite, Microsoft Dynamics and Xero all take invoices through an import or an API, so the same pipeline can post there instead.",
+      "We'll check your version and access on the call before anything is promised.",
+    ],
+  },
+  {
     q: "We already have fuel software.",
     a: [
-      "Then the question is which step still gets retyped. Often it's the hop between the dispatch system and QuickBooks.",
+      "Then the question is which step still gets retyped. Often it's the hop between the dispatch system and the accounting system.",
       "If your current software already covers it, I'll tell you that.",
     ],
   },
   {
     q: "You're not local. What if something breaks?",
     a: [
-      "I work US Eastern business hours and answer the same day. Sat-Raj emails me and it gets fixed.",
-      "The system lives in your own cloud account and your books stay in QuickBooks, so you're never locked in.",
+      "I work US Eastern business hours and answer the same day. Clients email me and it gets fixed.",
+      "The system lives in your own cloud account and your books stay in your own accounting system, so you're never locked in.",
     ],
   },
   {

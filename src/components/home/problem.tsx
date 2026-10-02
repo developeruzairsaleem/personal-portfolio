@@ -112,7 +112,7 @@ export function Problem() {
         </ul>
 
         <p className="fx-problem-close fx-reveal">
-          That was Sat-Raj&apos;s office. <span className="fx-em">Here&apos;s what it runs on now.</span>
+          If that sounds like your office, <span className="fx-em">here&apos;s what replaces it.</span>
           <ArrowDown aria-hidden="true" className="fx-problem-arrow" />
         </p>
       </div>

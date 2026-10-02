@@ -91,13 +91,13 @@ export function About() {
           </h2>
           <p className="fx-lead fx-reveal" style={delay(100)}>
             I&apos;m Uzair Saleem, a full-stack engineer with four years of building production systems where every
-            number has to reconcile back to its source: revenue ledgers, marketplaces, and now the back office of a
-            fuel distributor.
+            number has to reconcile back to its source: revenue ledgers, marketplaces, and now back-office software for
+            fuel distributors.
           </p>
           <p className="fx-body fx-reveal" style={delay(160)}>
-            At Sat-Raj I didn&apos;t start with screens. I started by reverse-engineering how the business actually
-            ran: 39 customer pricing tabs, a master tax and margin template, a freight matrix, and prices emailed to
-            customers one at a time. I turned that into one data model, and the first launch had to reproduce the
+            On a fuel project I don&apos;t start with screens. I start by reverse-engineering how the business
+            actually runs. At Sat-Raj that meant 39 customer pricing tabs, a master tax and margin template, a
+            freight matrix, and prices emailed to customers one at a time. I turned that into one data model, and the first launch had to reproduce the
             spreadsheet&apos;s prices exactly before anything else was allowed to change.
           </p>
           <p className="fx-body fx-reveal" style={delay(200)}>

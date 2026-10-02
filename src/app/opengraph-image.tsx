@@ -9,7 +9,7 @@ export const contentType = "image/png";
 // Dark "premium industrial" card matching the site and the ad film:
 // near-black ink, warm white type, one fuel-orange line from ticket to QuickBooks.
 export default async function OpengraphImage() {
-  const avatar = `data:image/jpeg;base64,${(await readFile(join(process.cwd(), "public/images/uzair-avatar.jpg"))).toString("base64")}`;
+  const avatar = `data:image/jpeg;base64,${(await readFile(join(process.cwd(), "public/images/uzair-avatar-hd.jpg"))).toString("base64")}`;
   const nodes = [
     { x: 120, label: "Ticket" },
     { x: 360, label: "Price" },
@@ -55,7 +55,7 @@ export default async function OpengraphImage() {
               border: "1px solid rgba(255,255,255,0.16)",
             }}
           >
-            For gasoline &amp; diesel distributors on QuickBooks
+            For gasoline &amp; diesel distributors
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export default async function OpengraphImage() {
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#8E97A3", marginTop: 6 }}>
-            <div style={{ display: "flex" }}>Running every day at Sat-Raj, a New Jersey fuel distributor</div>
+            <div style={{ display: "flex" }}>Pricing · delivery review · invoicing · every fuel tax line</div>
             <div style={{ display: "flex", color: "#FFB23F" }}>Book a 20-min walkthrough →</div>
           </div>
         </div>

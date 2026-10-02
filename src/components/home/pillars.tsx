@@ -41,7 +41,7 @@ const PILLARS = [
     lines: [
       "Approved deliveries become invoices with your items and every fuel tax line.",
       "Duplicate protection and a visible sync status for each invoice.",
-      "Works with QuickBooks Desktop or Online.",
+      "Posts to QuickBooks Desktop or Online. Sage, NetSuite, Microsoft Dynamics or Xero on request.",
     ],
     sr: "Illustration of the real delivery drawer with demo data: invoice SR-20261001-0005 posted to QuickBooks as invoice 10485, and every fuel and tax line checked against QuickBooks and matching.",
     Viz: InvoiceMock,

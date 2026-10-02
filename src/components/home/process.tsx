@@ -8,7 +8,7 @@ const STEPS = [
   {
     title: "A 20-minute walkthrough",
     paras: [
-      "You show me how one load goes from ticket to invoice today. I show you the system running at Sat-Raj.",
+      "You show me how one load goes from ticket to invoice today. I show you the system running live in production.",
       "You leave with a clear picture of what would change, and a fixed price in writing. No data to send beforehand.",
     ],
   },

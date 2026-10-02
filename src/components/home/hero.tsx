@@ -4,7 +4,7 @@ import { BOOK_HREF } from "@/app/service-contact";
 import { SplitWords, delay } from "@/components/site/split";
 import { HeroVisual } from "./hero-visual";
 
-const ASSURE = ["You keep QuickBooks", "Your office approves every invoice", "Fixed price, in writing"];
+const ASSURE = ["You keep your accounting software", "Your office approves every invoice", "Fixed price, in writing"];
 
 export function Hero() {
   return (
@@ -26,7 +26,7 @@ export function Hero() {
       <div className="fx-wrap fx-hero-in">
         <p className="fx-pill fx-load" style={delay(60)}>
           <span className="fx-live-dot" aria-hidden="true" />
-          For gasoline &amp; diesel distributors on QuickBooks
+          Back-office software for gasoline &amp; diesel distributors
         </p>
 
         <h1 id="hero-title" className="fx-h1 fx-split-load">
@@ -36,9 +36,9 @@ export function Hero() {
         <div className="fx-hero-cols">
           <div className="fx-hero-copy">
             <p className="fx-lead fx-load" style={delay(520)}>
-              I build and run the back office for Sat-Raj, a New Jersey fuel distributor. Tickets come in from the
-              terminal and truck GPS, get priced with every tax line, get approved by the office, and land in
-              QuickBooks as invoices.
+              I build and run back-office software for gasoline and diesel distributors. Delivery tickets come in
+              from the terminal and truck GPS, get priced with every tax line, get approved by your office, and post
+              to QuickBooks or the accounting system you already use.
             </p>
 
             <div className="fx-cta-row fx-load" style={delay(640)}>

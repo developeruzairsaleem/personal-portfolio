@@ -18,11 +18,11 @@ export function FinalCta() {
           <SplitWords parts={["See it on your", { em: "own tickets." }]} />
         </h2>
         <p className="fx-lead fx-reveal" style={delay(120)}>
-          Bring one load you invoiced last week. I&apos;ll show you the system running at Sat-Raj, and you leave with a fixed price in writing.
+          Bring one load you invoiced last week. I&apos;ll show you the system running live in production, and you leave with a fixed price in writing.
         </p>
         <div className="fx-end-me fx-reveal" style={delay(160)}>
           <span className="fx-avatar" style={{ width: 48, height: 48 }}>
-            <Image src="/images/uzair-avatar.jpg" alt="" width={48} height={48} sizes="48px" />
+            <Image src="/images/uzair-avatar-hd.jpg" alt="" width={48} height={48} sizes="48px" />
           </span>
           <p>
             <b>You&apos;ll talk to me, not a sales rep.</b>

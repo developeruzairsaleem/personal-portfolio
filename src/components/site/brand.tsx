@@ -8,11 +8,11 @@ export function Brand({ role = true, size = 40 }: { role?: boolean; size?: numbe
   return (
     <>
       <span className="fx-avatar" style={{ width: size, height: size }}>
-        <Image src="/images/uzair-avatar.jpg" alt="" width={size} height={size} sizes={`${size}px`} priority />
+        <Image src="/images/uzair-avatar-hd.jpg" alt="" width={size} height={size} sizes={`${size}px`} priority />
       </span>
       <span className="fx-brand-text">
         <span className="fx-brand-name">Uzair Saleem</span>
-        {role && <span className="fx-brand-role">Fuel back-office engineer</span>}
+        {role && <span className="fx-brand-role">Software &amp; product engineer</span>}
       </span>
     </>
   );

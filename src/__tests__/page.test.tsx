@@ -23,7 +23,7 @@ const escapeAttr = (s: string) => s.replace(/&/g, '&amp;').replace(/'/g, '&#x27;
 describe('Home page (fuel distributor redesign)', () => {
   it('leads with the outcome headline and who it is for', () => {
     expect(text).toContain('Stop retyping delivery tickets into QuickBooks.')
-    expect(text).toContain('For gasoline & diesel distributors on QuickBooks')
+    expect(text).toContain('Back-office software for gasoline & diesel distributors')
     expect(html.match(/<h1[\s>]/g)).toHaveLength(1)
   })
 

@@ -43,10 +43,10 @@ const STEPS = [
     data: "$26,398.50 invoice",
   },
   {
-    label: "QuickBooks",
+    label: "Accounting",
     icon: BookCheck,
-    title: "Lands in QuickBooks",
-    text: "Desktop or Online, with duplicate protection and a visible sync status for each invoice.",
+    title: "Lands in your books",
+    text: "QuickBooks Desktop or Online, or your accounting system, with duplicate protection and a visible sync status for each invoice.",
     data: "QuickBooks #10485",
   },
 ];
