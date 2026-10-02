@@ -49,7 +49,7 @@ export function Faq() {
       <div className="fx-wrap fx-faq-grid">
         <div className="fx-faq-head">
           <p className="fx-kicker fx-reveal">
-            <b>08</b> Questions
+            <b>09</b> Questions
           </p>
           <h2 id="faq-title" className="fx-h2 fx-split fx-reveal">
             <SplitWords parts={["The obvious", { em: "questions." }]} />

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { EMAIL, LINKS, LinkedinIcon } from "@/app/site-chrome";
+import { EMAIL, LINKS, GithubIcon, LinkedinIcon } from "@/app/site-chrome";
+import { Brand } from "./brand";
 
 export function Footer() {
   return (
@@ -7,11 +8,8 @@ export function Footer() {
       <div className="fx-wrap">
         <div className="fx-footer-top">
           <div className="fx-footer-id">
-            <Link href="/" className="fx-brand">
-              <span className="fx-monogram" aria-hidden="true">
-                US
-              </span>
-              <span className="fx-brand-name">Uzair Saleem</span>
+            <Link href="/" className="fx-brand" aria-label="Uzair Saleem, home">
+              <Brand size={44} />
             </Link>
             <p>I build and run back offices for gasoline and diesel distributors on QuickBooks.</p>
           </div>
@@ -19,6 +17,10 @@ export function Footer() {
             <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer">
               <LinkedinIcon />
               LinkedIn<span className="fx-sr"> (opens in new tab)</span>
+            </a>
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer">
+              <GithubIcon />
+              GitHub<span className="fx-sr"> (opens in new tab)</span>
             </a>
             <a href={LINKS.email}>{EMAIL}</a>
             <Link href="/work/satraj">Case study</Link>

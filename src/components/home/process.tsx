@@ -34,7 +34,7 @@ export function Process() {
       <div className="fx-wrap fx-process-grid">
         <div className="fx-process-head">
           <p className="fx-kicker fx-reveal">
-            <b>07</b> Getting started
+            <b>08</b> Getting started
           </p>
           <h2 id="process-title" className="fx-h2 fx-split fx-reveal">
             <SplitWords parts={["From first call", { em: "to go-live." }]} />

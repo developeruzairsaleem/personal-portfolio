@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const alt = "Uzair Saleem · Stop retyping delivery tickets into QuickBooks";
@@ -6,7 +8,8 @@ export const contentType = "image/png";
 
 // Dark "premium industrial" card matching the site and the ad film:
 // near-black ink, warm white type, one fuel-orange line from ticket to QuickBooks.
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const avatar = `data:image/jpeg;base64,${(await readFile(join(process.cwd(), "public/images/uzair-avatar.jpg"))).toString("base64")}`;
   const nodes = [
     { x: 120, label: "Ticket" },
     { x: 360, label: "Price" },
@@ -33,22 +36,13 @@ export default function OpengraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 52,
-                height: 52,
-                borderRadius: 14,
-                border: "2px solid #FF8B2B",
-                fontSize: 20,
-                fontWeight: 700,
-                color: "#F4EFE6",
-              }}
-            >
-              US
-            </div>
+            <img
+              src={avatar}
+              alt=""
+              width={56}
+              height={56}
+              style={{ width: 56, height: 56, borderRadius: 28, border: "2px solid rgba(255,255,255,0.22)" }}
+            />
             <div style={{ display: "flex", fontSize: 30, fontWeight: 700, letterSpacing: "-0.02em" }}>Uzair Saleem</div>
           </div>
           <div

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { TrackedLink } from "@/app/tracked-link";
 import { BOOK_HREF, FIT_CHECK_HREF } from "@/app/service-contact";
@@ -19,7 +20,16 @@ export function FinalCta() {
         <p className="fx-lead fx-reveal" style={delay(120)}>
           Bring one load you invoiced last week. I&apos;ll show you the system running at Sat-Raj, and you leave with a fixed price in writing.
         </p>
-        <div className="fx-end-cta fx-reveal" style={delay(200)}>
+        <div className="fx-end-me fx-reveal" style={delay(160)}>
+          <span className="fx-avatar" style={{ width: 48, height: 48 }}>
+            <Image src="/images/uzair-avatar.jpg" alt="" width={48} height={48} sizes="48px" />
+          </span>
+          <p>
+            <b>You&apos;ll talk to me, not a sales rep.</b>
+            I build it, I run it, and I answer the emails.
+          </p>
+        </div>
+        <div className="fx-end-cta fx-reveal" style={delay(220)}>
           <TrackedLink
             event="cta_book_end"
             href={BOOK_HREF}

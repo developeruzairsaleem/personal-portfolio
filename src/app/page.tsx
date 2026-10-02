@@ -7,6 +7,7 @@ import { Pipeline } from "@/components/home/pipeline";
 import { Pillars } from "@/components/home/pillars";
 import { Stats } from "@/components/home/stats";
 import { CaseTeaser } from "@/components/home/case-teaser";
+import { About } from "@/components/home/about";
 import { Process } from "@/components/home/process";
 import { Faq } from "@/components/home/faq";
 import { FinalCta } from "@/components/home/final-cta";
@@ -23,6 +24,7 @@ export default function Home() {
         <Pillars />
         <Stats />
         <CaseTeaser />
+        <About />
         <Process />
         <Faq />
         <FinalCta />
