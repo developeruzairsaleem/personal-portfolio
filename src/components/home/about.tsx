@@ -57,7 +57,7 @@ export function About() {
         <div className="fx-about-side">
           <figure className="fx-portrait fx-reveal">
             <Image
-              src="/images/uzair-portrait.jpg"
+              src="/images/uzair-portrait-blazer.jpg"
               alt="Uzair Saleem"
               width={820}
               height={1024}

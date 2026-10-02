@@ -2053,7 +2053,7 @@ html:not(.js) .fx-strike::after { transform: scaleX(1); }
     0 50px 120px -50px rgba(0, 0, 0, 0.95),
     0 30px 80px -40px rgba(255, 106, 19, 0.35);
 }
-.fx-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; filter: saturate(0.92) contrast(1.05) brightness(0.93); }
+.fx-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: saturate(0.95) contrast(1.04) brightness(0.95); }
 .fx-portrait::after {
   content: "";
   position: absolute;

@@ -75,7 +75,7 @@ const personSchema = {
   description:
     "Designs, builds and runs back-office automation for family-run fuel distributors: delivery tickets matched to customers and prices, invoices created in QuickBooks Desktop with fuel taxes itemized.",
   url: SITE_URL,
-  image: `${SITE_URL}/images/uzair-portrait.jpg`,
+  image: `${SITE_URL}/images/uzair-portrait-blazer.jpg`,
   email: "uzair@uzairsaleem.dev",
   address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
   sameAs: [
