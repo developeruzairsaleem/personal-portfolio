@@ -38,7 +38,7 @@ const WORKFLOWS = [
   },
   {
     title: "Support the system as the operation changes",
-    text: "I built the application and provide ongoing development and support. The work includes changes to pricing rules, customer mappings, delivery handling and accounting integration, alongside the screens the office uses to review them.",
+    text: "Uzair built the application and provides ongoing development and support. The work includes changes to pricing rules, customer mappings, delivery handling and accounting integration, alongside the screens the office uses to review them.",
     detail: "For a new project, we agree who handles exceptions, what is monitored, how to fall back to the existing process and what ongoing support covers.",
   },
 ];
@@ -72,8 +72,8 @@ export default function SatrajCaseStudy() {
             </p>
             <dl className="cs-meta fx-load" style={delay(600)}>
               <div>
-                <dt>My role</dt>
-                <dd>Developer and ongoing support</dd>
+                <dt>Role</dt>
+                <dd>Lead engineer, build and ongoing support</dd>
               </div>
               <div>
                 <dt>Accounting</dt>
@@ -120,11 +120,11 @@ export default function SatrajCaseStudy() {
             <div className="cs-prose">
               <p className="fx-reveal">
                 Fuel billing brings together delivery quantities, customer locations, changing prices and accounting
-                items. I built a shared application for Sat-Raj to prepare prices, review delivery information and send
+                items. Uzair built a shared application for Sat-Raj to prepare prices, review delivery information and send
                 approved invoice jobs to QuickBooks Desktop.
               </p>
               <p className="fx-reveal" style={delay(100)}>
-                The project is an example of the work I can build around an existing operation. The starting point for
+                The project is an example of what can be built around an existing operation. The starting point for
                 another company is one repeated manual step, its source data and the result the office needs.
               </p>
             </div>
@@ -134,7 +134,7 @@ export default function SatrajCaseStudy() {
         <section className="fx-sec cs-built" aria-labelledby="cs-built-title">
           <div className="fx-wrap cs-two">
             <div className="cs-sticky">
-              <p className="fx-kicker fx-reveal">What I built</p>
+              <p className="fx-kicker fx-reveal">What was built</p>
               <h2 id="cs-built-title" className="fx-h2 fx-split fx-reveal">
                 <SplitWords parts={["Five workflows,", { em: "one system." }]} />
               </h2>

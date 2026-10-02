@@ -11,7 +11,7 @@ export function Footer() {
             <Link href="/" className="fx-brand" aria-label="Uzair Saleem, home">
               <Brand size={44} />
             </Link>
-            <p>I build and run back-office software for gasoline and diesel distributors.</p>
+            <p>Uzair Saleem builds and runs back-office software for gasoline and diesel distributors.</p>
           </div>
           <nav className="fx-footer-links" aria-label="Footer">
             <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer">

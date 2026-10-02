@@ -36,9 +36,9 @@ export function Hero() {
         <div className="fx-hero-cols">
           <div className="fx-hero-copy">
             <p className="fx-lead fx-load" style={delay(520)}>
-              I build and run back-office software for gasoline and diesel distributors. Delivery tickets come in
-              from the terminal and truck GPS, get priced with every tax line, get approved by your office, and post
-              to QuickBooks or the accounting system you already use.
+              Uzair Saleem builds and runs back-office software for gasoline and diesel distributors. Delivery tickets
+              arrive from the terminal and truck GPS, get priced with every tax line, and post to QuickBooks, or the
+              accounting system you already run, once your office approves them.
             </p>
 
             <div className="fx-cta-row fx-load" style={delay(640)}>

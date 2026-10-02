@@ -8,21 +8,21 @@ const STEPS = [
   {
     title: "A 20-minute walkthrough",
     paras: [
-      "You show me how one load goes from ticket to invoice today. I show you the system running live in production.",
-      "You leave with a clear picture of what would change, and a fixed price in writing. No data to send beforehand.",
+      "You walk through how one load goes from ticket to invoice today. Uzair shows you the system running live in production.",
+      "You leave with a clear picture of what would change and a fixed price in writing. Nothing to send beforehand.",
     ],
   },
   {
     title: "Run it side by side",
     paras: [
-      "I set it up on your real tickets while your office keeps working the old way.",
+      "The system is set up on your real tickets while your office keeps working the old way.",
       "You compare its invoices with yours. It goes live only when they match.",
     ],
   },
   {
-    title: "Go live, then I keep it running",
+    title: "Go live, with support that stays",
     paras: [
-      "Monthly support covers fixes, tax rate changes and new charges. You deal with me directly.",
+      "Monthly support covers fixes, tax rate changes and new charges, handled by the engineer who built it. No ticket queue, no account manager.",
       "It runs in your own cloud account, so you own the system and the data.",
     ],
   },

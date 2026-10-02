@@ -43,9 +43,9 @@ export function CaseTeaser() {
               back office ran on Google Sheets and retyping.
             </p>
             <p className="fx-body fx-reveal" style={delay(160)}>
-              I replaced it with one system: DTN terminal prices and tickets, Samsara deliveries, customer pricing,
-              delivery review and QuickBooks invoicing. I still run and extend it every week. Recent additions: the
-              Top Tier additive charge and a payables view. Supplier invoice checks are next.
+              Uzair replaced it with one system: DTN terminal prices and tickets, Samsara deliveries, customer pricing,
+              delivery review and QuickBooks invoicing, and still runs and extends it every week. Recent additions:
+              the Top Tier additive charge and a payables view. Supplier invoice checks are next.
             </p>
             <div className="fx-case-links fx-reveal" style={delay(220)}>
               <Link href="/work/satraj" className="fx-link">

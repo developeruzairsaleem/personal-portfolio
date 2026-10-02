@@ -84,7 +84,7 @@ export function Pillars() {
       <div className="fx-wrap">
         <header className="fx-sec-head">
           <p className="fx-kicker fx-reveal">
-            <b>04</b> What I build
+            <b>04</b> What gets built
           </p>
           <h2 id="build-title" className="fx-h2 fx-split fx-reveal">
             <SplitWords parts={["Three jobs your office repeats", { em: "every day." }]} />
@@ -100,7 +100,7 @@ export function Pillars() {
           onMouseEnter={() => setHold(true)}
           onMouseLeave={() => setHold(false)}
         >
-          <div className="fx-tabs" role="tablist" aria-label="What I build" aria-orientation="vertical" onKeyDown={onKey}>
+          <div className="fx-tabs" role="tablist" aria-label="What gets built" aria-orientation="vertical" onKeyDown={onKey}>
             {PILLARS.map((p, i) => {
               const on = i === current;
               return (

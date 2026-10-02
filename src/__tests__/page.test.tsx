@@ -36,7 +36,7 @@ describe('Home page (fuel distributor redesign)', () => {
 
   it('offers the email fit check as the secondary CTA', () => {
     expect(html).toContain(`href="${escapeAttr(FIT_CHECK_HREF)}"`)
-    expect(text).toContain('Or email me')
+    expect(text).toContain('Email Uzair')
   })
 
   it('has the film section, with a lazy video and a hero link to it', () => {

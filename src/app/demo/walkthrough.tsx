@@ -34,7 +34,7 @@ export function Walkthrough() {
             <SplitWords parts={["From delivery ticket to", { em: "reviewed invoice." }]} />
           </h1>
           <p className="fx-lead fx-load" style={delay(400)}>
-            An interactive illustration of a workflow I built and run in production.
+            An interactive illustration of a workflow Uzair built and runs in production.
             These are sample records, not a connection to live books. Rates are
             illustrative and are not current tax guidance. Click through the three steps.
           </p>

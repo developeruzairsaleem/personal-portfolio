@@ -18,15 +18,15 @@ export function FinalCta() {
           <SplitWords parts={["See it on your", { em: "own tickets." }]} />
         </h2>
         <p className="fx-lead fx-reveal" style={delay(120)}>
-          Bring one load you invoiced last week. I&apos;ll show you the system running live in production, and you leave with a fixed price in writing.
+          Bring one load you invoiced last week. You&apos;ll see the system running live in production and leave with a fixed price in writing.
         </p>
         <div className="fx-end-me fx-reveal" style={delay(160)}>
           <span className="fx-avatar" style={{ width: 48, height: 48 }}>
             <Image src="/images/uzair-avatar-hd.jpg" alt="" width={48} height={48} sizes="48px" />
           </span>
           <p>
-            <b>You&apos;ll talk to me, not a sales rep.</b>
-            I build it, I run it, and I answer the emails.
+            <b>You talk to Uzair directly, not a sales rep.</b>
+            The engineer who builds it runs it and answers the emails.
           </p>
         </div>
         <div className="fx-end-cta fx-reveal" style={delay(220)}>
@@ -44,9 +44,9 @@ export function FinalCta() {
         </div>
         <div className="fx-end-alt fx-reveal" style={delay(280)}>
           <p>
-            Prefer email? Tell me your accounting software and the step your office still does by hand.{" "}
+            Prefer email? Send your accounting software and the step your office still does by hand.{" "}
             <TrackedLink event="cta_email" href={FIT_CHECK_HREF} className="fx-inline-link">
-              Or email me
+              Email Uzair
             </TrackedLink>
           </p>
           <CopyEmail />
