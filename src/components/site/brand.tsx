@@ -12,7 +12,7 @@ export function Brand({ role = true, size = 40 }: { role?: boolean; size?: numbe
       </span>
       <span className="fx-brand-text">
         <span className="fx-brand-name">Uzair Saleem</span>
-        {role && <span className="fx-brand-role">Software &amp; product engineer</span>}
+        {role && <span className="fx-brand-role">Developer &amp; automation specialist</span>}
       </span>
     </>
   );

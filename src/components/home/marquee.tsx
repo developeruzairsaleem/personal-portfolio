@@ -1,19 +1,19 @@
 const ITEMS = [
+  "n8n",
+  "Next.js & Node.js",
+  "PostgreSQL",
+  "OpenAI & LLM APIs",
+  "Stripe & Paddle",
   "QuickBooks Desktop",
-  "DTN tickets & rack prices",
-  "Samsara truck GPS",
+  "Remotion & MediaBunny",
 ];
 
-/**
- * Production integrations strip. Plain text names only: no third-party logos. Always one
- * row: it scrolls on its own, or (reduced motion) sideways under the visitor's
- * control, so the viewport is focusable for keyboard scrolling.
- */
+/** Tools and integrations used in production builds. */
 export function Marquee() {
   return (
-    <section className="fx-marquee" aria-label="In production with">
-      <p className="fx-marquee-label">In production with</p>
-      <div className="fx-marquee-viewport" tabIndex={0} aria-label="In production with list, scrolls sideways">
+    <section className="fx-marquee" aria-label="Stack and integrations">
+      <p className="fx-marquee-label">Stack &amp; integrations</p>
+      <div className="fx-marquee-viewport" tabIndex={0} aria-label="Stack list, scrolls sideways">
         <div className="fx-marquee-track">
           <ul className="fx-marquee-list">
             {ITEMS.map((t) => (

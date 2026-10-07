@@ -5,16 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { TrackedLink } from "@/app/tracked-link";
-import { BOOK_HREF } from "@/app/service-contact";
+import { CONTACT_HREF } from "@/app/service-contact";
 import { useScrolledPast } from "./hooks";
 import { Brand } from "./brand";
 
 const NAV = [
-  { href: "/#how", label: "How it works" },
-  { href: "/work/satraj", label: "Case study" },
+  { href: "/#work", label: "Work" },
+  { href: "/#automation", label: "Automation" },
   { href: "/#about", label: "About" },
-  { href: "/demo", label: "Demo" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/resume", label: "Résumé" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Nav() {
@@ -24,7 +24,6 @@ export function Nav() {
   const [openedOn, setOpenedOn] = useState(pathname);
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  // Close the menu whenever the route changes.
   if (open && openedOn !== pathname) {
     setOpen(false);
     setOpenedOn(pathname);
@@ -58,17 +57,10 @@ export function Nav() {
             ))}
           </nav>
 
-          <TrackedLink
-            event="cta_book_nav"
-            href={BOOK_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fx-nav-cta"
-          >
-            <span className="fx-nav-cta-long">Book a walkthrough</span>
-            <span className="fx-nav-cta-short">Book a call</span>
+          <TrackedLink event="cta_contact_nav" href={CONTACT_HREF} className="fx-nav-cta">
+            <span className="fx-nav-cta-long">Get in touch</span>
+            <span className="fx-nav-cta-short">Contact</span>
             <ArrowUpRight aria-hidden="true" />
-            <span className="fx-sr"> (opens in new tab)</span>
           </TrackedLink>
 
           <button

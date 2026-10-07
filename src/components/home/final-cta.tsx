@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { TrackedLink } from "@/app/tracked-link";
-import { BOOK_HREF, FIT_CHECK_HREF } from "@/app/service-contact";
+import { CONTACT_HREF } from "@/app/service-contact";
 import { CopyEmail } from "@/app/copy-email";
+import { LINKS } from "@/app/site-chrome";
 import { SplitWords, delay } from "@/components/site/split";
 
 export function FinalCta() {
@@ -14,40 +16,43 @@ export function FinalCta() {
       </div>
       <div className="fx-wrap fx-end-in">
         <h2 id="end-title" className="fx-h1 fx-split fx-reveal">
-          <SplitWords parts={["Bring one load.", { em: "See where the typing stops." }]} />
+          <SplitWords parts={["Have a workflow", { em: "eating your week?" }]} />
         </h2>
         <p className="fx-lead fx-reveal" style={delay(120)}>
-          20 minutes on Zoom or Google Meet. A fixed price in writing after.
+          Email or book a call. Share where support, reporting, or delivery hurts most — I&apos;ll reply with whether
+          automation, custom software, or both is the right fix.
         </p>
         <div className="fx-end-me fx-reveal" style={delay(160)}>
           <span className="fx-avatar" style={{ width: 48, height: 48 }}>
             <Image src="/images/uzair-avatar-hd.jpg" alt="" width={48} height={48} sizes="48px" />
           </span>
           <p>
-            <b>You talk to Uzair directly, not a sales rep.</b>
-            <span>Same-day replies, US Eastern hours.</span>
+            <b>You talk to Uzair directly.</b>
+            <span>Same-day replies · WhatsApp available on request</span>
           </p>
         </div>
         <div className="fx-end-cta fx-reveal" style={delay(220)}>
-          <TrackedLink
-            event="cta_book_end"
-            href={BOOK_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fx-btn fx-btn-xl fx-magnetic"
-          >
-            Book a 20-min walkthrough
+          <TrackedLink event="cta_contact_end" href={CONTACT_HREF} className="fx-btn fx-btn-xl fx-magnetic">
+            Email Uzair
             <ArrowRight className="fx-arrow" aria-hidden="true" />
-            <span className="fx-sr"> (opens in new tab)</span>
           </TrackedLink>
+          <Link href={LINKS.resume} className="fx-btn fx-btn-ghost fx-btn-xl">
+            Résumé &amp; PDF
+          </Link>
         </div>
         <div className="fx-end-alt fx-reveal" style={delay(280)}>
           <p>
-            Prefer email?{" "}
-            <TrackedLink event="cta_email" href={FIT_CHECK_HREF} className="fx-inline-link">
-              Email Uzair
-            </TrackedLink>{" "}
-            with the step your office still does by hand.
+            Prefer a call?{" "}
+            <TrackedLink
+              event="cta_calendly"
+              href={LINKS.calendly}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fx-inline-link"
+            >
+              Book 30 minutes
+            </TrackedLink>
+            .
           </p>
           <CopyEmail />
         </div>

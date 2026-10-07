@@ -13,8 +13,8 @@ export function Footer() {
             </Link>
           </div>
           <nav className="fx-footer-links" aria-label="Footer">
-            <Link href="/work/satraj">Case study</Link>
-            <Link href="/demo">Demo</Link>
+            <Link href="/#work">Work</Link>
+            <Link href="/#automation">Automation</Link>
             <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer">
               <LinkedinIcon />
               LinkedIn<span className="fx-sr"> (opens in new tab)</span>
@@ -28,12 +28,12 @@ export function Footer() {
           </nav>
         </div>
         <div className="fx-footer-base">
-          <span>© {new Date().getFullYear()} Uzair Saleem · Software &amp; product engineer</span>
-          <span>Sample data on this site is illustrative.</span>
+          <span>© {new Date().getFullYear()} Uzair Saleem · Developer &amp; automation specialist</span>
+          <Link href="/uzair-saleem-resume.pdf">Download résumé (PDF)</Link>
         </div>
       </div>
       <p className="fx-footer-giant" aria-hidden="true">
-        Ticket in. <span className="fx-em">Invoice out.</span>
+        Build. <span className="fx-em">Automate.</span>
       </p>
     </footer>
   );

@@ -27,13 +27,41 @@ type System = {
 // Facts come from the résumé and the case studies in /public/case-studies.
 const SYSTEMS: System[] = [
   {
+    key: "video",
+    tab: "AI reels automator",
+    chip: "Reels pipeline",
+    sub: "Design&Desktop · Germany",
+    tag: "Media + n8n",
+    status: "Shipped",
+    title: "Generate, render, and publish reels without opening an editor.",
+    meta: [
+      ["Role", "Full-stack engineer"],
+      ["Stack", "Remotion, MediaBunny, n8n"],
+      ["Outcome", "2–10 min → ~10 s per clip"],
+    ],
+    flow: [
+      ["Reel spec", "scenes, text and media"],
+      ["Render", "Remotion + WebCodecs in-browser"],
+      ["Encode", "MediaBunny pipeline"],
+      ["Publish", "n8n → Instagram"],
+    ],
+    does: "An AI reel generator plus an automated language-learning channel: React compositions render each frame, a rebuilt encoder cuts render time from minutes to seconds, and n8n publishes finished reels to Instagram on a schedule.",
+    hard: "Speed and reliability without a render farm. Browser WebCodecs encoding replaced a slow export path, while n8n handles credentials, retries, and posting so one broken API does not silently skip a day.",
+    outcomes: [
+      ["~10 s", "typical render per clip"],
+      ["Zero manual edit", "render → publish"],
+      ["n8n", "orchestration & posting"],
+    ],
+    links: [],
+  },
+  {
     key: "fuel",
-    tab: "Fuel back office",
-    chip: "Fuel back office",
+    tab: "Fuel operations",
+    chip: "Satraj.inc",
     sub: "Sat-Raj, Inc. · NJ & PA",
-    tag: "Wholesale fuel",
+    tag: "End-to-end ops automation",
     status: "Live · supported weekly",
-    title: "Tickets, prices, taxes and QuickBooks in one system the office trusts.",
+    title: "Dispatch to invoicing: pricing, tickets, taxes, and QuickBooks in one system.",
     meta: [
       ["Role", "Lead engineer, end to end"],
       ["Runs on", "Next.js, PostgreSQL, AWS"],
@@ -51,7 +79,10 @@ const SYSTEMS: System[] = [
       ["NJ + PA", "tax rules by state and fuel type"],
       ["DTN + Samsara", "tickets pulled in once, never retyped"],
     ],
-    links: [{ label: "Read the case study", href: "/work/satraj", kind: "page" }],
+    links: [
+      { label: "satraj.inc", href: "https://satraj.inc", kind: "site" },
+      { label: "Read the case study", href: "/work/satraj", kind: "page" },
+    ],
   },
   {
     key: "revenue",
@@ -110,34 +141,10 @@ const SYSTEMS: System[] = [
       ["3 apps", "customer, provider and admin"],
       ["Whole cents", "no floating-point money"],
     ],
-    links: [{ label: "Case study (PDF)", href: "/case-studies/diffed.pdf", kind: "pdf" }],
-  },
-  {
-    key: "video",
-    tab: "Video engine",
-    chip: "AI reels",
-    sub: "AI reels · Germany",
-    tag: "Media pipelines",
-    status: "Shipped",
-    title: "Video renders cut from minutes to seconds.",
-    meta: [
-      ["Role", "Full-stack engineer"],
-      ["Where", "Design&Desktop, Germany"],
-      ["Runs on", "MediaBunny, Remotion, n8n"],
+    links: [
+      { label: "diffed-swart.vercel.app", href: "https://diffed-swart.vercel.app/", kind: "site" },
+      { label: "Case study (PDF)", href: "/case-studies/diffed.pdf", kind: "pdf" },
     ],
-    flow: [
-      ["Reel spec", "scenes, text and media"],
-      ["Frames", "drawn frame by frame"],
-      ["Encode", "WebCodecs, via MediaBunny"],
-      ["Publish", "n8n workflow to Instagram"],
-    ],
-    does: "An AI tool that generates short video reels. Its rendering engine was rebuilt to encode directly in the browser, and a second pipeline renders language-learning reels from React components and publishes them to Instagram automatically, without anyone opening a video editor.",
-    hard: "Speed without a render farm. The old in-browser pipeline took 2 to 10 minutes per clip. Rebuilt on MediaBunny, which hands each frame to the browser's own video encoder through WebCodecs, the same clip renders in about 10 seconds. The automated reels are Remotion compositions passed to an n8n workflow that publishes them. The 50-second film at the top of this page was made the same way: React components, rendered in code.",
-    outcomes: [
-      ["2–10 min → ~10 s", "render time per clip"],
-      ["Zero editing", "reels render and publish on their own"],
-    ],
-    links: [],
   },
 ];
 
@@ -174,9 +181,9 @@ export function Systems() {
   return (
     <div className="fx-wrap fx-sys">
       <header className="fx-sys-head">
-        <p className="fx-kicker fx-reveal">Selected systems</p>
+        <p className="fx-kicker fx-reveal">Selected work</p>
         <h3 className="fx-sys-title fx-split fx-reveal">
-          <SplitWords parts={["What Uzair has built."]} />
+          <SplitWords parts={["Products, platforms,", { em: "and automations." }]} />
         </h3>
       </header>
 

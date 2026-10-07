@@ -28,9 +28,9 @@ const jetMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem · Software Engineer for Fuel Distributors";
+const TITLE = "Uzair Saleem · Full-Stack Developer & Automation Specialist";
 const DESCRIPTION =
-  "Stop retyping delivery tickets into QuickBooks. Pricing, delivery review and invoicing with every fuel tax line, built for gasoline and diesel distributors. QuickBooks Desktop runs in production; Online and other systems are scoped per client. Book a 20-minute walkthrough.";
+  "5+ years building production software and n8n automations: SaaS analytics (Indiecator), marketplaces (Diffed), and end-to-end operations automation (Satraj). Next.js, Node, PostgreSQL, AI workflows for support, reporting, and delivery.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,10 +41,9 @@ export const metadata: Metadata = {
   creator: "Uzair Saleem",
   publisher: "Uzair Saleem",
   keywords: [
-    "fuel distributor software", "fuel jobber back office", "QuickBooks Desktop invoicing automation",
-    "delivery ticket to QuickBooks", "Samsara BOL automation",
-    "petroleum marketer operations", "fuel price sheet automation",
-    "fuel tax itemization QuickBooks", "Uzair Saleem", "software engineer for fuel distributors",
+    "full-stack developer", "automation specialist", "n8n developer", "AI workflow automation",
+    "Next.js engineer", "community management automation", "customer support automation",
+    "Indiecator", "Diffed", "Satraj", "Uzair Saleem",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -71,9 +70,9 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Uzair Saleem",
-  jobTitle: "Software Engineer for Fuel Distributors",
+  jobTitle: "Full-Stack Developer & Automation Specialist",
   description:
-    "Designs, builds and runs back-office automation for family-run fuel distributors: delivery tickets matched to customers and prices, invoices created in QuickBooks Desktop with fuel taxes itemized.",
+    "Builds production web apps and n8n automations: SaaS analytics, marketplaces, and operations platforms with AI-assisted support and reporting workflows.",
   url: SITE_URL,
   image: `${SITE_URL}/images/uzair-portrait-blazer.jpg`,
   email: "uzair@uzairsaleem.dev",
@@ -83,29 +82,9 @@ const personSchema = {
     "https://www.linkedin.com/in/uzair-saleem-5a399825a/",
   ],
   knowsAbout: [
-    "Fuel distribution operations", "Petroleum marketers and jobbers",
-    "QuickBooks Desktop invoicing", "Fuel excise tax itemization", "Samsara delivery documents",
-    "Bill of lading processing", "Daily fuel pricing", "Next.js", "TypeScript", "PostgreSQL", "AWS",
+    "n8n workflow automation", "AI customer support", "Next.js", "TypeScript", "PostgreSQL",
+    "SaaS analytics", "Marketplace development", "Operations automation", "QuickBooks integrations",
   ],
-};
-
-// What the business is, for crawlers and AI classifiers: a service for fuel
-// distributors, not a software product or an analytics company.
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Uzair Saleem · Back-office automation for fuel distributors",
-  url: SITE_URL,
-  description: DESCRIPTION,
-  serviceType: "Back-office automation for fuel distributors: delivery ticket capture, price matching, QuickBooks Desktop invoicing with itemized fuel taxes",
-  areaServed: { "@type": "Country", name: "United States" },
-  audience: {
-    "@type": "BusinessAudience",
-    audienceType: "Gasoline and diesel distributors, petroleum marketers and jobbers",
-  },
-  founder: { "@type": "Person", name: "Uzair Saleem", url: SITE_URL },
-  knowsAbout: ["Fuel distribution", "QuickBooks Desktop", "Samsara", "Fuel excise taxes", "Daily fuel pricing"],
-  sameAs: ["https://www.linkedin.com/in/uzair-saleem-5a399825a/"],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -124,17 +103,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        />
-        <script
-          id="vtag-ai-js"
-          async
-          src="https://r2.leadsy.ai/tag.js"
-          data-pid="1jUoCufoSSHGmab1O"
-          data-version="062024"
         />
       </body>
     </html>

@@ -7,18 +7,18 @@ import { useMediaQuery } from "@/components/site/hooks";
 const PRINCIPLES = [
   {
     icon: MapIcon,
-    k: "Model the business first",
-    v: "The first deliverable is a map of how your office runs.",
+    k: "Map the workflow first",
+    v: "Before code or n8n nodes: where data enters, who approves it, and what “done” looks like.",
   },
   {
     icon: GitCompare,
-    k: "Reconcile everything",
-    v: "Your office sees a mismatch before a customer does.",
+    k: "Automate with audit trails",
+    v: "Logs, retries, and human review queues so support and finance can trust the output.",
   },
   {
     icon: ShieldCheck,
-    k: "Build for the office, not the demo",
-    v: "Every price sent and invoice synced leaves an audit trail.",
+    k: "Own the stack end to end",
+    v: "APIs, databases, and workflows in your accounts — not a black box on someone else's SaaS.",
   },
 ];
 
