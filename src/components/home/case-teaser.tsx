@@ -1,20 +1,13 @@
-import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { OWNER_QUOTE } from "@/app/owner-quote";
-import { Counter } from "@/components/site/counter";
 import { SplitWords, delay } from "@/components/site/split";
 import { DemoReveal } from "./demo-reveal";
 
-/** Before/after at Sat-Raj. Every number is from the résumé or the case study. */
-const BOARD: { label: string; before: string; now: ReactNode }[] = [
-  { label: "Daily price run", before: "45–60 min", now: "Under 90 sec" },
-  { label: "People who can run pricing", before: "1 person", now: "Whole office" },
-  {
-    label: "Times a ticket is typed",
-    before: "2",
-    now: <Counter from={2} to={0} duration={1.6} delay={0.5} />,
-  },
+const BOARD = [
+  { label: "Daily price run", before: "Spreadsheet and email steps", now: "One reviewed run" },
+  { label: "Pricing handoff", before: "Separate files", now: "Shared office workflow" },
+  { label: "Delivery tickets", before: "Copied between records", now: "Imported and reviewed" },
 ];
 
 export function CaseTeaser() {

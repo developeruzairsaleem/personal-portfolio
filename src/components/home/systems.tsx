@@ -44,7 +44,7 @@ const SYSTEMS: System[] = [
       ["Review queue", "GPS site match, mismatches"],
       ["QuickBooks Desktop", "Web Connector, no duplicates"],
     ],
-    does: "The first deliverable was a map: 39 hand-edited pricing spreadsheets, a master tax and margin template and a freight matrix, rebuilt as one data model. Supplier costs now arrive from DTN daily, delivery tickets from DTN and Samsara, and approved invoices post to QuickBooks Desktop through the Web Connector with retries and duplicate checks.",
+    does: "The first deliverable was a map of the pricing spreadsheets, tax and margin template and freight matrix, rebuilt as one data model. Supplier costs now arrive from DTN daily, delivery tickets from DTN and Samsara, and approved invoices post to QuickBooks Desktop through the Web Connector with retries and duplicate checks.",
     hard: "Trust. The first price run had to match the old spreadsheet to the cent, so the pricing math is pinned to the legacy rates in tests. Samsara geofences don't always line up with a customer's site, so unclear drops wait in a review queue instead of being guessed, and every confirmed address is remembered. When one terminal's feed swapped gross and net gallons, the fix and a repair of the affected history shipped together.",
     outcomes: [
       ["Jan–Apr 2026", "first build, extended since"],

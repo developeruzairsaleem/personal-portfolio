@@ -46,7 +46,7 @@ const WORKFLOWS = [
 const RESULTS = [
   {
     k: "Pricing",
-    v: "The daily price run went from 45–60 minutes of spreadsheet and email work to one reviewed click.",
+    v: "The daily price run moved from separate spreadsheet and email steps into one reviewed workflow.",
   },
   {
     k: "Deliveries",

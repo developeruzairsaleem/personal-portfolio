@@ -95,7 +95,7 @@ describe('Home page (fuel distributor redesign)', () => {
 
   it('says each headline fact once', () => {
     const count = (s: string) => text.split(s).length - 1
-    expect(count('45–60')).toBe(1)
+    expect(count('One reviewed run')).toBe(1)
     expect(count('5 years')).toBe(1)
     expect(count('one click')).toBe(1)
     expect(count('own cloud account')).toBe(1)
