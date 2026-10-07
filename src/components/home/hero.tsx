@@ -4,7 +4,7 @@ import { BOOK_HREF } from "@/app/service-contact";
 import { SplitWords, delay } from "@/components/site/split";
 import { HeroVisual } from "./hero-visual";
 
-const ASSURE = ["QuickBooks Desktop & Online", "You approve every invoice", "Fixed price, in writing"];
+const ASSURE = ["QuickBooks Desktop live", "You approve every invoice", "Fixed price, in writing"];
 
 export function Hero() {
   return (

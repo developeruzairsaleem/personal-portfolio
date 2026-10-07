@@ -30,7 +30,7 @@ const jetMono = JetBrains_Mono({
 const SITE_URL = "https://uzairsaleem.dev";
 const TITLE = "Uzair Saleem · Software Engineer for Fuel Distributors";
 const DESCRIPTION =
-  "Stop retyping delivery tickets into QuickBooks. Pricing, delivery review and invoicing with every fuel tax line, built for gasoline and diesel distributors and running in production today. QuickBooks Desktop and Online, or your accounting system. Book a 20-minute walkthrough.";
+  "Stop retyping delivery tickets into QuickBooks. Pricing, delivery review and invoicing with every fuel tax line, built for gasoline and diesel distributors. QuickBooks Desktop runs in production; Online and other systems are scoped per client. Book a 20-minute walkthrough.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

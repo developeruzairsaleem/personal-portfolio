@@ -37,7 +37,7 @@ const STEPS = [
   {
     icon: BookCheck,
     title: "Posted to QuickBooks",
-    text: "Once per load. Desktop or Online.",
+    text: "Once per approved load on Desktop. Other systems scoped separately.",
     data: "QuickBooks #10485",
   },
 ];

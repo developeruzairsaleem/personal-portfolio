@@ -23,7 +23,7 @@ const QA = [
   },
   {
     q: "We're not on QuickBooks.",
-    a: "QuickBooks Desktop and Online run in production today. Sage, NetSuite, Dynamics and Xero take invoices by import or API, checked before anything is promised.",
+    a: "The live Sat-Raj system posts to QuickBooks Desktop. If you use QuickBooks Online or another accounting system, we first check your data, available integration and approval process, then quote that work separately.",
   },
   {
     q: "We don't use Samsara.",
