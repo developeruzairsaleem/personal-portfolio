@@ -23,7 +23,8 @@
     "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "resume": "node scripts/generate-resume.mjs"
+    "resume": "node scripts/generate-resume.mjs",
+    "resume:docx": "node scripts/generate-resume-docx.mts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -41,6 +42,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "docx": "^9.6.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "jest": "^30.2.0",

@@ -28,9 +28,9 @@ const jetMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
-const TITLE = "Uzair Saleem · Full-Stack Developer & Automation Specialist";
+const TITLE = "Uzair Saleem · Full-Stack Engineer";
 const DESCRIPTION =
-  "5+ years building production software and n8n automations: SaaS analytics (Indiecator), marketplaces (Diffed), and end-to-end operations automation (Satraj). Next.js, Node, PostgreSQL, AI workflows for support, reporting, and delivery.";
+  "Full-stack engineer. I build data pipelines, billing workflows and AI automations and ship them to production: Indiecator, Satraj, Diffed.gg. Next.js, Node, PostgreSQL, n8n. Open to full-time remote roles, works US hours.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,9 +41,8 @@ export const metadata: Metadata = {
   creator: "Uzair Saleem",
   publisher: "Uzair Saleem",
   keywords: [
-    "full-stack developer", "automation specialist", "n8n developer", "AI workflow automation",
-    "Next.js engineer", "community management automation", "customer support automation",
-    "Indiecator", "Diffed", "Satraj", "Uzair Saleem",
+    "full-stack engineer", "remote full-stack engineer", "Next.js engineer", "Node.js engineer",
+    "data pipelines", "n8n", "AI automation", "Indiecator", "Diffed", "Satraj", "Uzair Saleem",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -61,7 +60,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07090C",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f6f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e0f12" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -70,9 +72,9 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Uzair Saleem",
-  jobTitle: "Full-Stack Developer & Automation Specialist",
+  jobTitle: "Full-Stack Engineer",
   description:
-    "Builds production web apps and n8n automations: SaaS analytics, marketplaces, and operations platforms with AI-assisted support and reporting workflows.",
+    "Builds data pipelines, billing workflows and AI automations in production: SaaS analytics, marketplaces and operations platforms.",
   url: SITE_URL,
   image: `${SITE_URL}/images/uzair-portrait-blazer.jpg`,
   email: "uzair@uzairsaleem.dev",
@@ -82,7 +84,7 @@ const personSchema = {
     "https://www.linkedin.com/in/uzair-saleem-5a399825a/",
   ],
   knowsAbout: [
-    "n8n workflow automation", "AI customer support", "Next.js", "TypeScript", "PostgreSQL",
+    "n8n workflow automation", "LLM integrations", "Next.js", "TypeScript", "PostgreSQL",
     "SaaS analytics", "Marketplace development", "Operations automation", "QuickBooks integrations",
   ],
 };

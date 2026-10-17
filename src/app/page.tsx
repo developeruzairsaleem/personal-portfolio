@@ -1,20 +1,18 @@
-import { SiteShell } from "@/components/site/shell";
-import { Hero } from "@/components/home/hero";
-import { Marquee } from "@/components/home/marquee";
-import { Automation } from "@/components/home/automation";
-import { About } from "@/components/home/about";
-import { FinalCta } from "@/components/home/final-cta";
+import "@/components/portfolio/portfolio.css";
+import { Contact, Experience, Hero, PfFooter, PfNav, Stack, Work } from "@/components/portfolio/sections";
 
 export default function Home() {
   return (
-    <SiteShell>
+    <div className="pf">
+      <PfNav />
       <main id="main">
         <Hero />
-        <Marquee />
-        <Automation />
-        <About />
-        <FinalCta />
+        <Work />
+        <Experience />
+        <Stack />
+        <Contact />
       </main>
-    </SiteShell>
+      <PfFooter />
+    </div>
   );
 }

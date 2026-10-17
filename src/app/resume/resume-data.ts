@@ -1,5 +1,7 @@
-// Single source of truth for the resume. Rendered to /resume (HTML) and to
-// public/uzair-saleem-resume.pdf via scripts/generate-resume.mjs. Edit here only.
+// Single source of truth for the resume. Rendered to /resume (HTML), to
+// public/uzair-saleem-resume.pdf via scripts/generate-resume.mjs, and to
+// public/uzair-saleem-resume.docx via scripts/generate-resume-docx.mts.
+// The home page reads EXPERIENCE from here too. Edit here only.
 
 export type ContactItem = { label: string; href?: string };
 
@@ -28,8 +30,10 @@ export type Education = {
 
 export const NAME = "Uzair Saleem";
 
+export const HEADLINE = "Full-Stack Engineer";
+
 export const CONTACT: ContactItem[] = [
-  { label: "Islamabad, PK" },
+  { label: "Islamabad, PK (works US hours)" },
   { label: "uzair@uzairsaleem.dev", href: "mailto:uzair@uzairsaleem.dev" },
   { label: "uzairsaleem.dev", href: "https://uzairsaleem.dev" },
   { label: "linkedin.com/in/uzair-saleem", href: "https://www.linkedin.com/in/uzair-saleem-5a399825a/" },
@@ -38,18 +42,19 @@ export const CONTACT: ContactItem[] = [
 ];
 
 export const SUMMARY =
-  "Full-stack developer and automation specialist with 5+ years shipping production software: SaaS analytics, marketplaces, and operations platforms. I build Next.js and Node backends, PostgreSQL data models, and n8n workflows (webhooks, AI steps, scheduled jobs) so support, reporting, and delivery stop living in inboxes and spreadsheets.";
+  "Full-stack engineer who ships to production. I build data pipelines, billing workflows and AI automations with Next.js, Node, PostgreSQL and n8n. I have been writing production code since 2021 for clients in the US and Europe, and I work US hours from Islamabad.";
 
+// Bullets can mark a key result as **bold**.
 export const EXPERIENCE: Experience[] = [
   {
     company: "Rocket Devs",
     role: "Full-Stack Engineer",
-    location: "Remote (US / EU / MENA)",
+    location: "Remote (US / EU)",
     dates: "Jul 2025 – Present",
     bullets: [
-      "Built Indiecator (indiecator.com), a revenue-analytics platform connecting Stripe or Paddle with MRR, ARR, retention, and net expansion, drillable to the customer behind each metric.",
-      "Engineered a recurring-revenue ledger from invoices and live billing events, with **three idempotent ingestion paths** (webhooks, daily reconciliation, 2-year backfill) into multi-tenant Postgres.",
-      "Automated Satraj's fuel operations end to end — daily pricing, delivery capture, office approval, and QuickBooks Desktop invoicing — replacing manual retyping across dispatch and back office (satraj.inc).",
+      "Engineered data intensive ETL pipelines for Indiecator (indiecator.com) that sync years of Stripe and Paddle billing history without downtime: a **2-year backfill**, live webhooks and a nightly reconciliation, all idempotent, into multi-tenant Postgres.",
+      "Built the revenue ledger behind MRR, ARR, churn and retention from real invoices, so every number drills down to the customers behind it.",
+      "Integrated and shipped Satraj's complete billing workflow from dispatch to QuickBooks Desktop (satraj.inc). It handles messy data from DTN and Samsara, sends unclear deliveries to an office review queue, and syncs invoices with retries and duplicate checks. **The whole office runs real invoices through it.**",
     ],
   },
   {
@@ -58,10 +63,10 @@ export const EXPERIENCE: Experience[] = [
     location: "Remote (Germany)",
     dates: "Jan 2025 – Jul 2025",
     bullets: [
-      "Rebuilt an AI reel generator's in-browser video pipeline on MediaBunny, cutting render times from 2–10 minutes to **about 10 seconds** per clip.",
-      "Built an automated reel pipeline: Remotion compositions render language-learning videos; **n8n publishes to Instagram** on a schedule without manual editing.",
-      "Raised restaurant-data scraping throughput **80%** with parallel headless Chromium workers for a listings dashboard.",
-      "Shipped per-warehouse delivery pricing and checkout address validation for a German B2B marketplace (12,000 postal codes).",
+      "Built an AI integrated reel generator and shipped its n8n workflow that posts finished reels to Instagram on a schedule.",
+      "Rebuilt the in-browser video pipeline on MediaBunny. Render time went from 2–10 minutes to **about 10 seconds** per clip.",
+      "Raised restaurant-data scraping throughput by **80%** with parallel headless Chromium workers for a listings dashboard.",
+      "Shipped per-warehouse delivery pricing and checkout address validation across 12,000 postal codes for a German B2B marketplace.",
     ],
   },
   {
@@ -70,9 +75,9 @@ export const EXPERIENCE: Experience[] = [
     location: "Islamabad",
     dates: "Feb 2023 – Dec 2024",
     bullets: [
-      "Owned B2B SaaS builds end to end for agency clients: schema, API, frontend, and deployment.",
-      "Led Diffed.gg (diffed-swart.vercel.app), a three-sided gaming marketplace — checkout, live provider matching, wallet payouts, and admin tooling — shipped in **~2 months** with a team of three.",
-      "Designed a configuration-driven ranking engine so admins could onboard any game's rank structure without code changes.",
+      "Led Diffed.gg (diffed-swart.vercel.app), a gaming coaching marketplace with checkout, live provider matching, wallets, payouts and admin tools. Shipped in **about 2 months** with a team of three.",
+      "Designed a config-driven rank engine so admins can add any game's rank system without code changes.",
+      "Owned client SaaS builds end to end: schema, API, frontend and deployment.",
     ],
   },
   {
@@ -81,44 +86,44 @@ export const EXPERIENCE: Experience[] = [
     location: "Islamabad",
     dates: "Dec 2021 – Feb 2022",
     bullets: [
-      "Shipped production features across multiple client B2B SaaS products (frontend and backend).",
+      "Shipped production features across several client B2B SaaS products, frontend and backend.",
     ],
   },
 ];
 
 export const PROJECTS: Project[] = [
   {
-    name: "Satraj · fuel operations automation",
+    name: "Satraj · fuel billing, dispatch to QuickBooks",
     link: { label: "satraj.inc", href: "https://satraj.inc" },
     blurb:
-      "Dispatch through invoicing for a NJ/PA fuel wholesaler: DTN and Samsara ingestion, pricing engine, review queues, and QuickBooks Desktop sync — live in production.",
+      "Daily DTN pricing, delivery tickets from DTN and Samsara, an office review queue, and QuickBooks Desktop invoice sync. Live in production.",
   },
   {
-    name: "Indiecator",
+    name: "Indiecator · revenue analytics",
     link: { label: "indiecator.com", href: "https://indiecator.com" },
     blurb:
-      "Revenue analytics for Stripe and Paddle. MRR, ARR, churn, and retention from a movement ledger tied to real invoices, with drill-down to customers.",
+      "MRR, ARR, churn and retention for Stripe and Paddle, from a ledger tied to real invoices. Code is public on GitHub.",
   },
   {
-    name: "Diffed.gg",
+    name: "Diffed.gg · gaming marketplace",
     link: { label: "diffed-swart.vercel.app", href: "https://diffed-swart.vercel.app/" },
     blurb:
-      "Gaming coaching marketplace: cross-game ranks, Stripe/PayPal checkout, live chat, provider wallets, and admin verification.",
+      "Card and PayPal checkout, live chat, provider wallets and admin verification, with separate apps for customers, providers and admins.",
   },
   {
-    name: "AI reels automator",
-    link: { label: "Portfolio case study", href: "https://uzairsaleem.dev/#work" },
+    name: "AI reel generator · n8n posting",
+    link: { label: "uzairsaleem.dev/#work", href: "https://uzairsaleem.dev/#work" },
     blurb:
-      "Remotion render pipeline + MediaBunny encoding + n8n workflow to generate and publish short-form reels automatically.",
+      "Remotion renders, MediaBunny encoding and an n8n workflow that publishes reels to Instagram on a schedule.",
   },
 ];
 
 export const SKILLS: SkillGroup[] = [
   { label: "Languages", items: ["TypeScript", "JavaScript", "SQL", "Python"] },
   { label: "Frameworks", items: ["Next.js", "React", "Node.js", "Express", "Socket.IO"] },
-  { label: "Automation & AI", items: ["n8n", "Webhooks", "OpenAI / LLM APIs", "Remotion", "Headless browser jobs"] },
   { label: "Data & infra", items: ["PostgreSQL", "Supabase", "Redis", "Prisma", "AWS", "Docker", "GitHub Actions"] },
-  { label: "Integrations", items: ["Stripe", "Paddle", "PayPal", "QuickBooks Desktop", "Stripe webhooks"] },
+  { label: "Automation & AI", items: ["n8n", "LLM APIs", "Webhooks", "Remotion", "Headless Chromium"] },
+  { label: "Integrations", items: ["Stripe", "Paddle", "PayPal", "QuickBooks Desktop", "Samsara", "DTN"] },
 ];
 
 export const EDUCATION: Education = {

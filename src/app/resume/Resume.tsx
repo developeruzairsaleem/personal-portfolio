@@ -1,5 +1,6 @@
 import {
   NAME,
+  HEADLINE,
   CONTACT,
   SUMMARY,
   EXPERIENCE,
@@ -29,6 +30,7 @@ export default function Resume() {
     <article className="resume">
       <header className="r-head">
         <h1 className="r-name">{NAME}</h1>
+        <p className="r-headline">{HEADLINE}</p>
         <p className="r-contact">
           {CONTACT.map((c, i) => (
             <span key={c.label}>

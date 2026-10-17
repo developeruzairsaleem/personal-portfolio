@@ -2,21 +2,26 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Uzair Saleem · Stop retyping delivery tickets into QuickBooks";
+export const alt = "Uzair Saleem · Full-stack engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Dark "premium industrial" card matching the site and the ad film:
-// near-black ink, warm white type, one fuel-orange line from ticket to QuickBooks.
+// Same paper, ink and cobalt as the home page.
+const PAPER = "#f7f6f2";
+const INK = "#15161a";
+const MUTED = "#555963";
+const LINE = "#e2dfd7";
+const ACCENT = "#1f56cc";
+const GREEN = "#1c7c52";
+
+const PROOF = [
+  ["Indiecator", "ETL pipelines for years of billing data"],
+  ["Satraj", "Billing workflow, dispatch to QuickBooks"],
+  ["AI reels", "Generator plus n8n auto posting"],
+];
+
 export default async function OpengraphImage() {
-  const avatar = `data:image/jpeg;base64,${(await readFile(join(process.cwd(), "public/images/uzair-avatar-hd.jpg"))).toString("base64")}`;
-  const nodes = [
-    { x: 120, label: "Ticket" },
-    { x: 360, label: "Price" },
-    { x: 600, label: "Review" },
-    { x: 840, label: "Invoice" },
-    { x: 1080, label: "QuickBooks" },
-  ];
+  const portrait = `data:image/jpeg;base64,${(await readFile(join(process.cwd(), "public/images/uzair-portrait-blazer.jpg"))).toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -24,74 +29,70 @@ export default async function OpengraphImage() {
           height: "100%",
           width: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          backgroundColor: "#07090C",
-          backgroundImage:
-            "radial-gradient(circle at 88% 8%, rgba(255,106,19,0.38), rgba(255,106,19,0) 46%), radial-gradient(circle at 0% 100%, rgba(255,178,63,0.14), rgba(255,178,63,0) 40%)",
-          color: "#F4EFE6",
-          padding: "64px 72px 56px",
-          position: "relative",
+          backgroundColor: PAPER,
+          color: INK,
+          padding: "60px 64px",
+          gap: 56,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <img
-              src={avatar}
-              alt=""
-              width={56}
-              height={56}
-              style={{ width: 56, height: 56, borderRadius: 28, border: "2px solid rgba(255,255,255,0.22)" }}
-            />
-            <div style={{ display: "flex", fontSize: 30, fontWeight: 700, letterSpacing: "-0.02em" }}>Uzair Saleem</div>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                fontSize: 22,
+                fontWeight: 600,
+                padding: "8px 18px",
+                borderRadius: 999,
+                border: `1px solid ${LINE}`,
+                backgroundColor: "#ffffff",
+                alignSelf: "flex-start",
+              }}
+            >
+              <div style={{ display: "flex", width: 12, height: 12, borderRadius: 6, backgroundColor: GREEN }} />
+              Open to full-time remote roles
+            </div>
+            <div style={{ display: "flex", marginTop: 34, fontSize: 30, color: MUTED }}>Uzair Saleem · Full-stack engineer</div>
+            <div
+              style={{
+                display: "flex",
+                marginTop: 14,
+                fontSize: 60,
+                fontWeight: 800,
+                lineHeight: 1.04,
+                letterSpacing: "-0.04em",
+              }}
+            >
+              I build data pipelines, billing workflows and AI automations.
+            </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 22,
-              color: "#C3C9D1",
-              padding: "10px 20px",
-              borderRadius: 999,
-              border: "1px solid rgba(255,255,255,0.16)",
-            }}
-          >
-            For gasoline &amp; diesel distributors
-          </div>
-        </div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 84, fontWeight: 800, lineHeight: 1.0, letterSpacing: "-0.045em" }}>
-            Stop retyping delivery
-          </div>
-          <div style={{ display: "flex", fontSize: 84, fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.045em" }}>
-            <span>tickets&nbsp;</span>
-            <span style={{ color: "#FF8B2B", fontStyle: "italic", fontWeight: 600 }}>into QuickBooks.</span>
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <svg width="1056" height="56" viewBox="0 0 1200 56" style={{ display: "flex" }}>
-            <path
-              d="M120 28 Q240 4 360 28 Q480 52 600 28 Q720 4 840 28 Q960 52 1080 28"
-              fill="none"
-              stroke="#FF6A13"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {nodes.map((n, i) => (
-              <circle key={n.label} cx={n.x} cy={28} r={i === 4 ? 13 : 11} fill={i === 4 ? "#34D399" : "#FFB23F"} />
-            ))}
-          </svg>
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#9AA3AE", padding: "0 10px" }}>
-            {nodes.map((n) => (
-              <div key={n.label} style={{ display: "flex" }}>
-                {n.label}
+          <div style={{ display: "flex", flexDirection: "column", borderTop: `1px solid ${LINE}` }}>
+            {PROOF.map(([k, v]) => (
+              <div
+                key={k}
+                style={{ display: "flex", gap: 16, fontSize: 23, padding: "12px 0", borderBottom: `1px solid ${LINE}` }}
+              >
+                <div style={{ display: "flex", width: 150, color: ACCENT, fontWeight: 700 }}>{k}</div>
+                <div style={{ display: "flex", color: MUTED }}>{v}</div>
               </div>
             ))}
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#8E97A3", marginTop: 6 }}>
-            <div style={{ display: "flex" }}>Pricing · delivery review · invoicing · every fuel tax line</div>
-            <div style={{ display: "flex", color: "#FFB23F" }}>Book a 20-min walkthrough →</div>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 300 }}>
+          <img
+            src={portrait}
+            alt=""
+            width={300}
+            height={375}
+            style={{ width: 300, height: 375, borderRadius: 24, objectFit: "cover" }}
+          />
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 22, color: MUTED, gap: 4 }}>
+            <div style={{ display: "flex", color: ACCENT, fontWeight: 700 }}>uzairsaleem.dev</div>
+            <div style={{ display: "flex" }}>Islamabad · works US hours</div>
           </div>
         </div>
       </div>

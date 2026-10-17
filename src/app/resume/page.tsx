@@ -5,7 +5,7 @@ import "./resume.css";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: "Résumé of Uzair Saleem — full-stack developer and automation specialist (5+ years).",
+  description: "Résumé of Uzair Saleem, full-stack engineer. Data pipelines, billing workflows and AI automations in production.",
   robots: { index: false, follow: true },
 };
 
@@ -13,7 +13,7 @@ export default function ResumePage() {
   return (
     <div className="resume-page">
       <div className="resume-toolbar">
-        <Link href="/">← uzair-saleem</Link>
+        <Link href="/">← uzairsaleem.dev</Link>
         <a className="download" href="/uzair-saleem-resume.pdf" target="_blank" rel="noopener noreferrer">
           Download PDF
         </a>

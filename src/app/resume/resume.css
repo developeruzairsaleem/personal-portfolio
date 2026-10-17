@@ -112,6 +112,11 @@
   letter-spacing: 0.01em;
   margin: 0 0 3px;
 }
+.r-headline {
+  font-size: 13.5px;
+  font-style: italic;
+  margin: 0 0 3px;
+}
 .r-contact {
   font-size: 12.2px;
   margin: 0;
