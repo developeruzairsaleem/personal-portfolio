@@ -1,36 +1,34 @@
 import type { Metadata, Viewport } from "next";
-import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import "@/components/portfolio/portfolio.css";
 
-// Display + body. The blog and résumé still reference --font-inter, which
-// globals.css points at this face so the whole site loads one sans family.
-const interTight = Inter_Tight({
-  variable: "--font-tight",
+// Headlines only. Bold, a little quirky, readable at 80px and at 20px.
+const display = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Accent face: one or two italic words per headline, never body copy.
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-serif",
-  weight: "400",
-  style: "italic",
+// Body copy.
+const body = Geist({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetMono = JetBrains_Mono({
+// Small labels, dates and tags.
+const mono = Geist_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
   display: "swap",
 });
 
 const SITE_URL = "https://uzairsaleem.dev";
 const TITLE = "Uzair Saleem · Full-Stack Engineer";
 const DESCRIPTION =
-  "Full-stack engineer. I build data pipelines, billing workflows and AI automations and ship them to production: Indiecator, Satraj, Diffed.gg. Next.js, Node, PostgreSQL, n8n. Open to full-time remote roles, works US hours.";
+  "Full-stack engineer open to full-time remote roles. I've shipped a billing system, a revenue analytics product and a gaming marketplace with Next.js, TypeScript, Node and Postgres. Based in Islamabad, works US hours.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -42,7 +40,7 @@ export const metadata: Metadata = {
   publisher: "Uzair Saleem",
   keywords: [
     "full-stack engineer", "remote full-stack engineer", "Next.js engineer", "Node.js engineer",
-    "data pipelines", "n8n", "AI automation", "Indiecator", "Diffed", "Satraj", "Uzair Saleem",
+    "TypeScript", "PostgreSQL", "Stripe integration", "Indiecator", "Diffed", "Sat-Raj", "Uzair Saleem",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -60,10 +58,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f6f2" },
-    { media: "(prefers-color-scheme: dark)", color: "#0e0f12" },
-  ],
+  themeColor: "#0b0b0c",
   width: "device-width",
   initialScale: 1,
 };
@@ -74,7 +69,7 @@ const personSchema = {
   name: "Uzair Saleem",
   jobTitle: "Full-Stack Engineer",
   description:
-    "Builds data pipelines, billing workflows and AI automations in production: SaaS analytics, marketplaces and operations platforms.",
+    "Full-stack engineer who has shipped a billing system, a revenue analytics product and a gaming marketplace.",
   url: SITE_URL,
   image: `${SITE_URL}/images/uzair-portrait-blazer.jpg`,
   email: "uzair@uzairsaleem.dev",
@@ -84,19 +79,15 @@ const personSchema = {
     "https://www.linkedin.com/in/uzair-saleem-5a399825a/",
   ],
   knowsAbout: [
-    "n8n workflow automation", "LLM integrations", "Next.js", "TypeScript", "PostgreSQL",
-    "SaaS analytics", "Marketplace development", "Operations automation", "QuickBooks integrations",
+    "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Stripe", "SaaS analytics",
+    "Marketplace development", "QuickBooks integrations", "n8n workflow automation",
   ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Lets CSS hide scroll-reveal content only when JS can reveal it. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
-      <body className={`${interTight.variable} ${instrumentSerif.variable} ${jetMono.variable} antialiased`}>
+      <body className={`${display.variable} ${body.variable} ${mono.variable} antialiased`}>
         <a href="#main" className="skip-link">
           Skip to content
         </a>

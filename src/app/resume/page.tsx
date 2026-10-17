@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import Resume from "./Resume";
 import "./resume.css";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: "Résumé of Uzair Saleem, full-stack engineer. Data pipelines, billing workflows and AI automations in production.",
+  description: "Résumé of Uzair Saleem, full-stack engineer. Next.js, TypeScript, Node and Postgres. Billing, data pipelines and marketplaces in production.",
   robots: { index: false, follow: true },
 };
+
+// The résumé is a paper document, so the browser bar should be light here.
+export const viewport: Viewport = { themeColor: "#ededed" };
 
 export default function ResumePage() {
   return (

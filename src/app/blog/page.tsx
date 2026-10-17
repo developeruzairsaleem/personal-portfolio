@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SiteShell } from "@/components/portfolio/chrome";
 import { posts } from "./posts";
-import { Nav, Footer } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Writing",
   description:
-    "Essays on building production software: payments, data, and shipping with AI in the loop. By Uzair Saleem.",
+    "Short essays by Uzair Saleem on shipping production software: payments, data that has to stay correct, and working with AI in the loop.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Writing · Uzair Saleem",
-    description: "Essays on building production software: payments, data, and shipping with AI in the loop.",
+    description: "Short essays on shipping production software: payments, data and working with AI in the loop.",
     url: "/blog",
     type: "website",
   },
@@ -18,38 +18,36 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <>
-      <Nav />
-
-      <main id="main" className="wrap">
-        <section className="intro">
-          <p className="eyebrow fade">writing</p>
-          <h1 className="fade d1">Notes on building software.</h1>
-          <p className="sub fade d1">
-            Short essays on the parts of shipping production software that don&apos;t fit on a ticket:
-            payments, data that has to stay correct, and working with AI in the loop.
+    <SiteShell>
+      <header className="page-head">
+        <div className="wrap">
+          <p className="label">Writing</p>
+          <h1 className="page-title">Notes from building things.</h1>
+          <p className="page-sub">
+            Short essays on payments, data that has to stay correct, and working with AI in the loop.
           </p>
-        </section>
+        </div>
+      </header>
 
-        <section className="block">
-          <p className="label"><span>all entries</span><span className="x">{posts.length} posts</span></p>
-          <div className="post-list">
-            {posts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="post-row">
-                <span className="post-meta">
-                  <span>{post.tag}</span>
-                  <span>{post.date}</span>
-                  <span>{post.readTime} read</span>
-                </span>
-                <span className="post-title">{post.title}</span>
-                <span className="post-excerpt">{post.excerpt}</span>
-              </Link>
+      <section className="list-end" aria-label="All posts">
+        <div className="wrap">
+          <ul className="posts">
+            {posts.map((p) => (
+              <li key={p.slug} className="post-row">
+                <p className="post-meta">
+                  <span>{p.tag}</span>
+                  <span>{p.date}</span>
+                  <span>{p.readTime} read</span>
+                </p>
+                <h2 className="post-name">
+                  <Link href={`/blog/${p.slug}`}>{p.title}</Link>
+                </h2>
+                <p className="post-excerpt">{p.excerpt}</p>
+              </li>
             ))}
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </>
+          </ul>
+        </div>
+      </section>
+    </SiteShell>
   );
 }

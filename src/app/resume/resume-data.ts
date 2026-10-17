@@ -12,6 +12,9 @@ export type Experience = {
   location: string;
   dates: string;
   bullets: string[];
+  /** Home page only: one plain line, and the case study it links to. */
+  line?: string;
+  work?: string;
 };
 
 export type Project = {
@@ -43,7 +46,7 @@ export const CONTACT: ContactItem[] = [
 ];
 
 export const SUMMARY =
-  "Full-stack engineer who ships to production. I build data pipelines, billing workflows and AI automations with Next.js, Node, PostgreSQL and n8n. I have been writing production code since 2021 for clients in the US and Europe, and I work US hours from Islamabad.";
+  "Full-stack engineer writing production code since 2021. I have shipped a billing system for a fuel distributor, the data pipelines behind a revenue analytics product, and a gaming marketplace with payouts, using Next.js, TypeScript, Node and PostgreSQL. I work with teams in the US and Europe, on US hours from Islamabad.";
 
 // Bullets can mark a key result as **bold**.
 export const EXPERIENCE: Experience[] = [
@@ -53,6 +56,8 @@ export const EXPERIENCE: Experience[] = [
     role: "Full-Stack Engineer, contract",
     location: "Remote (New Jersey, US)",
     dates: "Jan 2026 – Present",
+    line: "The billing system a fuel distributor's whole office runs on.",
+    work: "satraj",
     bullets: [
       "Integrated and shipped a complete billing workflow from dispatch to QuickBooks Desktop for a gasoline and diesel distributor in NJ and PA. **The whole office runs real invoices through it every day.**",
       "Built the pricing engine from rack costs, freight, margins and NJ/PA fuel taxes. It had to match the old spreadsheet to the cent, so the math is pinned to the legacy rates in tests.",
@@ -66,6 +71,8 @@ export const EXPERIENCE: Experience[] = [
     role: "Full-Stack Engineer",
     location: "Remote (US / EU)",
     dates: "Jul 2025 – Present",
+    line: "The data pipelines behind Indiecator, a revenue analytics product.",
+    work: "indiecator",
     bullets: [
       "Engineered data intensive ETL pipelines for Indiecator (indiecator.com) that sync years of Stripe and Paddle billing history without downtime: a **2-year backfill**, live webhooks and a nightly reconciliation, all idempotent, into multi-tenant Postgres.",
       "Built the revenue ledger behind MRR, ARR, churn and retention from real invoices, so every number drills down to the customers behind it.",
@@ -76,6 +83,8 @@ export const EXPERIENCE: Experience[] = [
     role: "Full-Stack Engineer",
     location: "Remote (Germany)",
     dates: "Jan 2025 – Jul 2025",
+    line: "An AI reel generator, restaurant data scraping and a German B2B marketplace.",
+    work: "reels",
     bullets: [
       "Built an AI integrated reel generator and shipped its n8n workflow that posts finished reels to Instagram on a schedule.",
       "Rebuilt the in-browser video pipeline on MediaBunny. Render time went from 2–10 minutes to **about 10 seconds** per clip.",
@@ -88,6 +97,8 @@ export const EXPERIENCE: Experience[] = [
     role: "Full-Stack Engineer",
     location: "Islamabad",
     dates: "Feb 2023 – Dec 2024",
+    line: "Led the three-person team that built Diffed.gg. Built client SaaS products end to end.",
+    work: "diffed",
     bullets: [
       "Led Diffed.gg (diffed-swart.vercel.app), a gaming coaching marketplace with checkout, live provider matching, wallets, payouts and admin tools. Shipped in **about 2 months** with a team of three.",
       "Designed a config-driven rank engine so admins can add any game's rank system without code changes.",
@@ -99,6 +110,7 @@ export const EXPERIENCE: Experience[] = [
     role: "Full-Stack Engineer Intern",
     location: "Islamabad",
     dates: "Dec 2021 – Feb 2022",
+    line: "Shipped features across several client SaaS products.",
     bullets: [
       "Shipped production features across several client B2B SaaS products, frontend and backend.",
     ],

@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      // The résumé stays reachable by direct link for job applications but is
-      // not part of the business site; keep crawlers and classifiers off it.
+      // The résumé lists a phone number. Keep it reachable by link for job
+      // applications, but out of search results.
       disallow: ["/resume"],
     },
     sitemap: "https://uzairsaleem.dev/sitemap.xml",

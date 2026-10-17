@@ -6,19 +6,13 @@ export const alt = "Uzair Saleem · Full-stack engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Same paper, ink and cobalt as the home page.
-const PAPER = "#f7f6f2";
-const INK = "#15161a";
-const MUTED = "#555963";
-const LINE = "#e2dfd7";
-const ACCENT = "#1f56cc";
-const GREEN = "#1c7c52";
-
-const PROOF = [
-  ["Indiecator", "ETL pipelines for years of billing data"],
-  ["Satraj", "Billing workflow, dispatch to QuickBooks"],
-  ["AI reels", "Generator plus n8n auto posting"],
-];
+// Same dark page and lime accent as the site.
+const BG = "#0b0b0c";
+const INK = "#f4f2ed";
+const MUTED = "#b4b2ba";
+const LINE = "#3a3a41";
+const ACCENT = "#d4ff3f";
+const GREEN = "#5ee59a";
 
 export default async function OpengraphImage() {
   const portrait = `data:image/jpeg;base64,${(await readFile(join(process.cwd(), "public/images/uzair-portrait-blazer.jpg"))).toString("base64")}`;
@@ -29,10 +23,10 @@ export default async function OpengraphImage() {
           height: "100%",
           width: "100%",
           display: "flex",
-          backgroundColor: PAPER,
+          backgroundColor: BG,
           color: INK,
-          padding: "60px 64px",
-          gap: 56,
+          padding: "64px 72px",
+          gap: 64,
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
@@ -42,57 +36,64 @@ export default async function OpengraphImage() {
                 display: "flex",
                 alignItems: "center",
                 gap: 12,
-                fontSize: 22,
+                fontSize: 23,
                 fontWeight: 600,
-                padding: "8px 18px",
+                padding: "9px 20px 9px 16px",
                 borderRadius: 999,
                 border: `1px solid ${LINE}`,
-                backgroundColor: "#ffffff",
                 alignSelf: "flex-start",
               }}
             >
               <div style={{ display: "flex", width: 12, height: 12, borderRadius: 6, backgroundColor: GREEN }} />
-              Open to full-time remote roles
+              Available now for full-time remote roles
             </div>
-            <div style={{ display: "flex", marginTop: 34, fontSize: 30, color: MUTED }}>Uzair Saleem · Full-stack engineer</div>
             <div
               style={{
                 display: "flex",
-                marginTop: 14,
-                fontSize: 60,
+                flexWrap: "wrap",
+                marginTop: 40,
+                fontSize: 58,
                 fontWeight: 800,
                 lineHeight: 1.04,
-                letterSpacing: "-0.04em",
+                letterSpacing: "-0.035em",
               }}
             >
-              I build data pipelines, billing workflows and AI automations.
+              <span>I&apos;m a full-stack engineer.&nbsp;</span>
+              <span>I&apos;ve shipped&nbsp;</span>
+              <span style={{ color: ACCENT }}>a billing system,&nbsp;</span>
+              <span style={{ color: ACCENT }}>a revenue dashboard&nbsp;</span>
+              <span>and&nbsp;</span>
+              <span style={{ color: ACCENT }}>a gaming marketplace.</span>
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", borderTop: `1px solid ${LINE}` }}>
-            {PROOF.map(([k, v]) => (
-              <div
-                key={k}
-                style={{ display: "flex", gap: 16, fontSize: 23, padding: "12px 0", borderBottom: `1px solid ${LINE}` }}
-              >
-                <div style={{ display: "flex", width: 150, color: ACCENT, fontWeight: 700 }}>{k}</div>
-                <div style={{ display: "flex", color: MUTED }}>{v}</div>
-              </div>
-            ))}
+          <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 25, color: MUTED }}>
+            <div style={{ display: "flex" }}>Next.js · TypeScript · Node · Postgres</div>
+            <div style={{ display: "flex", color: ACCENT, fontWeight: 700 }}>uzairsaleem.dev</div>
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 300 }}>
-          <img
-            src={portrait}
-            alt=""
-            width={300}
-            height={375}
-            style={{ width: 300, height: 375, borderRadius: 24, objectFit: "cover" }}
-          />
-          <div style={{ display: "flex", flexDirection: "column", fontSize: 22, color: MUTED, gap: 4 }}>
-            <div style={{ display: "flex", color: ACCENT, fontWeight: 700 }}>uzairsaleem.dev</div>
-            <div style={{ display: "flex" }}>Islamabad · works US hours</div>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", width: 300 }}>
+          <div style={{ display: "flex", position: "relative", width: 300, height: 375 }}>
+            <div
+              style={{
+                position: "absolute",
+                top: 8,
+                left: 14,
+                width: 300,
+                height: 375,
+                borderRadius: 30,
+                backgroundColor: ACCENT,
+                transform: "rotate(4deg)",
+              }}
+            />
+            <img
+              src={portrait}
+              alt=""
+              width={300}
+              height={375}
+              style={{ position: "absolute", top: 0, left: 0, width: 300, height: 375, borderRadius: 30, objectFit: "cover" }}
+            />
           </div>
         </div>
       </div>

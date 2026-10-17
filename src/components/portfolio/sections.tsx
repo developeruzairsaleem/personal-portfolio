@@ -1,146 +1,129 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Code2, FileText, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileText, Mail } from "lucide-react";
 import { TrackedLink } from "@/app/tracked-link";
 import { HIRE_HREF } from "@/app/service-contact";
 import { EMAIL, GithubIcon, LINKS, LinkedinIcon } from "@/app/site-chrome";
-import { EXPERIENCE, SKILLS } from "@/app/resume/resume-data";
-import { WORK, type WorkLink } from "./work-data";
+import { posts } from "@/app/blog/posts";
+import { EDUCATION, EXPERIENCE, SKILLS } from "@/app/resume/resume-data";
+import { External, PDF } from "./chrome";
+import { WORK } from "./work-data";
 
-const PDF = "/uzair-saleem-resume.pdf";
-
-function bold(text: string) {
-  return text.split("**").map((seg, i) => (i % 2 === 1 ? <strong key={i}>{seg}</strong> : seg));
+/** "Jan 2026 – Present" reads better as "Jan 2026 to now" on the page. */
+function plainDates(dates: string) {
+  return dates.replace(" – ", " to ").replace("Present", "now");
 }
-
-function External({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
-  return (
-    <a href={href} className={className} target="_blank" rel="noopener noreferrer">
-      {children}
-      <span className="pf-sr"> (opens in new tab)</span>
-    </a>
-  );
-}
-
-export function PfNav() {
-  return (
-    <header className="pf-nav">
-      <div className="pf-wrap pf-nav-in">
-        <Link href="/" className="pf-brand">
-          <Image src="/images/uzair-avatar-hd.jpg" alt="" width={28} height={28} />
-          Uzair Saleem
-        </Link>
-        <nav className="pf-nav-links" aria-label="Main">
-          <Link href="/#work">Work</Link>
-          <Link href="/#experience">Experience</Link>
-          <Link href="/resume">Résumé</Link>
-        </nav>
-        <TrackedLink event="cta_hire_nav" href={HIRE_HREF} className="pf-btn pf-btn-sm">
-          Email me
-        </TrackedLink>
-      </div>
-    </header>
-  );
-}
-
-const PROOF = [
-  { id: "indiecator", text: "Engineered data intensive ETL pipelines for indiecator.com that handle years of billing data without downtime." },
-  { id: "satraj", text: "Integrated and shipped a complete billing workflow from dispatch to QuickBooks for satraj.inc, handling messy real-world data." },
-  { id: "reels", text: "Built an AI integrated reel generator and shipped its n8n workflow for automatic social media posting." },
-];
 
 export function Hero() {
   return (
-    <section className="pf-hero" aria-labelledby="hero-title">
-      <div className="pf-wrap pf-hero-grid">
-        <div className="pf-hero-copy">
-          <p className="pf-status">
-            <span className="pf-dot" aria-hidden="true" />
-            Open to full-time remote roles
+    <section className="hero" aria-labelledby="hero-title">
+      <div className="wrap hero-grid">
+        <div className="hero-in">
+          <p className="chip">
+            <span className="dot" aria-hidden="true" />
+            Available now for full-time remote roles
           </p>
-          <p className="pf-eyebrow">Uzair Saleem · Full-stack engineer</p>
-          <h1 id="hero-title" className="pf-h1">
-            I build data pipelines, billing workflows and AI automations, and ship them to production.
+          <h1 id="hero-title" className="hero-title">
+            I&apos;m a full-stack engineer. I&apos;ve shipped <a href="#satraj">a billing system</a>,{" "}
+            <a href="#indiecator">a revenue dashboard</a> and <a href="#diffed">a gaming marketplace</a>.
           </h1>
-
-          <ul className="pf-proof">
-            {PROOF.map((p) => (
-              <li key={p.id}>
-                <a href={`#${p.id}`}>
-                  <span>{p.text}</span>
-                  <ArrowRight aria-hidden="true" />
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="pf-cta">
-            <TrackedLink event="cta_hire_hero" href={HIRE_HREF} className="pf-btn">
+          <p className="hero-sub">
+            I&apos;ve been writing production code since 2021, I&apos;ve led a small team, and I stay on after launch to fix
+            what breaks.
+          </p>
+          <div className="cta-row">
+            <TrackedLink event="cta_hire_hero" href={HIRE_HREF} className="btn">
               <Mail aria-hidden="true" /> Email me
             </TrackedLink>
-            <a href={PDF} className="pf-btn pf-btn-ghost" target="_blank" rel="noopener noreferrer">
+            <a href={PDF} className="btn btn-ghost" target="_blank" rel="noopener noreferrer">
               <FileText aria-hidden="true" /> Résumé (PDF)
             </a>
-            <External href={LINKS.github} className="pf-icon-btn">
+            <External href={LINKS.github} className="icon-btn">
               <GithubIcon />
-              <span className="pf-sr">GitHub</span>
+              <span className="sr">GitHub</span>
             </External>
-            <External href={LINKS.linkedin} className="pf-icon-btn">
+            <External href={LINKS.linkedin} className="icon-btn">
               <LinkedinIcon />
-              <span className="pf-sr">LinkedIn</span>
+              <span className="sr">LinkedIn</span>
             </External>
           </div>
-
-          <p className="pf-meta">Islamabad, Pakistan · I work US hours · Writing production code since 2021</p>
         </div>
 
-        <figure className="pf-portrait">
-          <Image
-            src="/images/uzair-portrait-blazer.jpg"
-            alt="Uzair Saleem"
-            width={820}
-            height={1024}
-            priority
-            sizes="(max-width: 860px) 160px, 360px"
-          />
-        </figure>
+        <div className="portrait-wrap">
+          <figure className="portrait">
+            <Image
+              src="/images/uzair-portrait-blazer.jpg"
+              alt="Uzair Saleem"
+              width={820}
+              height={1024}
+              priority
+              sizes="(max-width: 820px) 132px, 340px"
+            />
+            <figcaption>Islamabad · UTC+5</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   );
 }
 
-function WorkLinkIcon({ kind }: { kind: WorkLink["kind"] }) {
-  if (kind === "pdf") return <FileText aria-hidden="true" />;
-  if (kind === "code") return <Code2 aria-hidden="true" />;
-  if (kind === "page") return <ArrowRight aria-hidden="true" />;
-  return <ArrowUpRight aria-hidden="true" />;
+const FACTS: [string, string, string][] = [
+  ["Role", "Full-stack engineer", "Backend and product roles too"],
+  ["Stack", "Next.js, TypeScript, Node, Postgres", "Also Stripe, Redis, AWS and n8n"],
+  ["Based", "Islamabad (UTC+5)", "Works US hours"],
+  ["Available", "Now", "Full-time remote, employee or contractor"],
+];
+
+export function Facts() {
+  return (
+    <section className="facts" aria-label="At a glance">
+      <div className="wrap">
+        <dl>
+          {FACTS.map(([k, v, sub]) => (
+            <div key={k}>
+              <dt>{k}</dt>
+              <dd>
+                {v}
+                <span>{sub}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
 }
 
 export function Work() {
   return (
-    <section id="work" className="pf-sec" aria-labelledby="work-title">
-      <div className="pf-wrap">
-        <header className="pf-sec-head">
-          <p className="pf-label">Selected work</p>
-          <h2 id="work-title" className="pf-h2">
-            Four projects, all shipped. Three are live right now.
+    <section id="work" className="sec" aria-labelledby="work-title">
+      <div className="wrap">
+        <header className="sec-head">
+          <p className="label">Selected work</p>
+          <h2 id="work-title" className="h2">
+            Things I&apos;ve shipped
           </h2>
+          <p className="sec-sub">Four projects I built and shipped. Open one for the story behind it.</p>
         </header>
 
-        <div className="pf-work">
+        <div className="tiles">
           {WORK.map((w, i) => (
-            <article key={w.id} id={w.id} className="pf-card" aria-labelledby={`${w.id}-title`}>
-              <div className="pf-card-media">
+            <article key={w.slug} id={w.slug} className="tile reveal" aria-labelledby={`${w.slug}-title`}>
+              <div className={`tile-media${w.image?.fit === "contain" ? " is-contain" : ""}${w.flow ? " is-flow" : ""}`}>
+                <span className="tile-status">
+                  <span className="dot" aria-hidden="true" />
+                  {w.status}
+                </span>
                 {w.image ? (
                   <Image
                     src={w.image.src}
                     alt={w.image.alt}
                     width={w.image.width}
                     height={w.image.height}
-                    sizes="(max-width: 960px) 88vw, 500px"
+                    sizes="(max-width: 820px) 92vw, 560px"
                   />
                 ) : (
-                  <ol className="pf-flow" aria-label="How a reel moves through the pipeline">
+                  <ol className="flow" aria-label="How a reel moves through the pipeline">
                     {w.flow?.map(([k, v]) => (
                       <li key={k}>
                         <b>{k}</b>
@@ -151,41 +134,35 @@ export function Work() {
                 )}
               </div>
 
-              <div className="pf-card-body">
-                <p className="pf-card-kicker">
-                  <span className="pf-num">{String(i + 1).padStart(2, "0")}</span>
+              <div className="tile-body">
+                <p className="tile-kicker">
+                  <b>{String(i + 1).padStart(2, "0")}</b>
                   <span>{w.kicker}</span>
-                  <span className="pf-pill">{w.status}</span>
                 </p>
-                <h3 id={`${w.id}-title`} className="pf-h3">
-                  {w.title}
+                <h3 id={`${w.slug}-title`} className="tile-title">
+                  <Link href={`/work/${w.slug}`}>{w.title}</Link>
                 </h3>
-                <p className="pf-card-summary">{w.summary}</p>
-                <ul className="pf-points">
-                  {w.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-                <ul className="pf-tags" aria-label="Stack">
+                <p className="tile-one">{w.oneLiner}</p>
+                <p className="tile-result">
+                  <span>Result</span>
+                  {w.result}
+                </p>
+                <ul className="tags" aria-label="Stack">
                   {w.stack.map((s) => (
                     <li key={s}>{s}</li>
                   ))}
                 </ul>
-                {w.links.length > 0 && (
-                  <div className="pf-card-links">
-                    {w.links.map((l) =>
-                      l.kind === "page" ? (
-                        <Link key={l.href} href={l.href} className="pf-link">
-                          {l.label} <WorkLinkIcon kind={l.kind} />
-                        </Link>
-                      ) : (
-                        <External key={l.href} href={l.href} className="pf-link">
-                          {l.label} <WorkLinkIcon kind={l.kind} />
-                        </External>
-                      ),
-                    )}
-                  </div>
-                )}
+                <div className="tile-foot">
+                  <span className="tile-more" aria-hidden="true">
+                    Case study <ArrowRight />
+                  </span>
+                  {w.links.map((l) => (
+                    <External key={l.href} href={l.href} className="link">
+                      {l.label} <ArrowUpRight aria-hidden="true" />
+                    </External>
+                  ))}
+                  {w.note && <span className="tile-note">{w.note}</span>}
+                </div>
               </div>
             </article>
           ))}
@@ -197,37 +174,83 @@ export function Work() {
 
 export function Experience() {
   return (
-    <section id="experience" className="pf-sec" aria-labelledby="exp-title">
-      <div className="pf-wrap pf-split">
-        <header className="pf-sec-head">
-          <p className="pf-label">Experience</p>
-          <h2 id="exp-title" className="pf-h2">
-            Where I have worked
+    <section id="experience" className="sec" aria-labelledby="exp-title">
+      <div className="wrap split">
+        <header className="sec-head">
+          <p className="label">Experience</p>
+          <h2 id="exp-title" className="h2">
+            Where I&apos;ve worked
           </h2>
-          <a href={PDF} className="pf-link" target="_blank" rel="noopener noreferrer">
+          <a href={PDF} className="link" target="_blank" rel="noopener noreferrer">
             Full résumé (PDF) <FileText aria-hidden="true" />
           </a>
         </header>
 
-        <ol className="pf-jobs">
-          {EXPERIENCE.map((job) => (
-            <li key={`${job.company} ${job.dates}`} className="pf-job">
-              <div className="pf-job-head">
-                <h3 className="pf-job-title">
-                  {job.role} <span>· {job.company}</span>
-                </h3>
-                <p className="pf-job-meta">
-                  {job.dates} · {job.location}
-                </p>
-              </div>
-              <ul className="pf-points">
-                {job.bullets.map((b) => (
-                  <li key={b}>{bold(b)}</li>
-                ))}
-              </ul>
+        <div>
+          <ol className="jobs">
+            {EXPERIENCE.map((job) => {
+              const company = job.company.replace(/\s*\(.*\)$/, "");
+              return (
+                <li key={`${job.company} ${job.dates}`} className="job reveal">
+                  <p className="job-dates">{plainDates(job.dates)}</p>
+                  <div>
+                    <h3 className="job-title">
+                      {job.work ? (
+                        <Link href={`/work/${job.work}`} className="job-cover">
+                          {company} <span>· {job.role}</span>
+                        </Link>
+                      ) : (
+                        <>
+                          {company} <span>· {job.role}</span>
+                        </>
+                      )}
+                    </h3>
+                    {job.line && <p className="job-line">{job.line}</p>}
+                  </div>
+                  <span className="job-go" aria-hidden="true">
+                    {job.work && <ArrowRight />}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+          <div className="edu">
+            <p className="job-dates">{plainDates(EDUCATION.dates)}</p>
+            <h3 className="job-title">
+              {EDUCATION.degree} <span>· {EDUCATION.school}</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Writing() {
+  return (
+    <section id="writing" className="sec" aria-labelledby="writing-title">
+      <div className="wrap split">
+        <header className="sec-head">
+          <p className="label">Writing</p>
+          <h2 id="writing-title" className="h2">
+            How I think about the work
+          </h2>
+        </header>
+        <ul className="posts">
+          {posts.map((p) => (
+            <li key={p.slug} className="post-row reveal">
+              <p className="post-meta">
+                <span>{p.tag}</span>
+                <span>{p.date}</span>
+                <span>{p.readTime} read</span>
+              </p>
+              <h3 className="post-name">
+                <Link href={`/blog/${p.slug}`}>{p.title}</Link>
+              </h3>
+              <p className="post-excerpt">{p.excerpt}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   );
@@ -235,23 +258,19 @@ export function Experience() {
 
 export function Stack() {
   return (
-    <section id="stack" className="pf-sec" aria-labelledby="stack-title">
-      <div className="pf-wrap pf-split">
-        <header className="pf-sec-head">
-          <p className="pf-label">Stack</p>
-          <h2 id="stack-title" className="pf-h2">
+    <section id="stack" className="sec" aria-labelledby="stack-title">
+      <div className="wrap split">
+        <header className="sec-head">
+          <p className="label">Stack</p>
+          <h2 id="stack-title" className="h2">
             What I work with
           </h2>
         </header>
-        <dl className="pf-stack">
+        <dl className="stack">
           {SKILLS.map((g) => (
             <div key={g.label}>
               <dt>{g.label}</dt>
-              <dd>
-                {g.items.map((s) => (
-                  <span key={s}>{s}</span>
-                ))}
-              </dd>
+              <dd>{g.items.join(", ")}</dd>
             </div>
           ))}
         </dl>
@@ -261,26 +280,27 @@ export function Stack() {
 }
 
 const TERMS = [
-  ["Role", "Full-time remote, as a full-stack, backend or product engineer."],
-  ["Hours", "I work US hours from Islamabad (UTC+5), so you get full overlap with your team."],
-  ["Setup", "Contract or employment both work. Deel, Payoneer or a wire transfer are all fine."],
+  ["Role", "Full-time remote. Full-stack, backend or product engineer."],
+  ["Hours", "US hours from Islamabad (UTC+5)."],
+  ["Paperwork", "Employee or contractor. Deel, Payoneer or a wire all work."],
   ["Start", "Available now."],
 ];
 
-export function Contact() {
+/** The lime call-to-action panel, used at the bottom of the home page and every case study. */
+export function HireCta({ title = "Hiring? Let’s talk.", event = "end" }: { title?: string; event?: string }) {
   return (
-    <section id="contact" className="pf-sec pf-contact" aria-labelledby="contact-title">
-      <div className="pf-wrap pf-split">
-        <header className="pf-sec-head">
-          <p className="pf-label">Hiring</p>
-          <h2 id="contact-title" className="pf-h2">
-            Hiring for a full-stack role? Email me.
+    <section id="contact" className="cta-sec" aria-labelledby={`contact-title-${event}`}>
+      <div className="wrap">
+        <div className="cta-panel">
+          <p className="label">Contact</p>
+          <h2 id={`contact-title-${event}`} className="h2">
+            {title}
           </h2>
-          <TrackedLink event="cta_hire_email" href={HIRE_HREF} className="pf-email">
+          <TrackedLink event={`cta_hire_email_${event}`} href={HIRE_HREF} className="cta-email">
             {EMAIL}
           </TrackedLink>
-          <div className="pf-cta">
-            <TrackedLink event="cta_hire_end" href={HIRE_HREF} className="pf-btn">
+          <div className="cta-row">
+            <TrackedLink event={`cta_hire_${event}`} href={HIRE_HREF} className="btn btn-dark">
               <Mail aria-hidden="true" /> Email me
             </TrackedLink>
             <TrackedLink
@@ -288,38 +308,25 @@ export function Contact() {
               href={LINKS.calendly}
               target="_blank"
               rel="noopener noreferrer"
-              className="pf-btn pf-btn-ghost"
+              className="btn btn-outline-dark"
             >
               Book a 30-minute call
+              <span className="sr"> (opens in new tab)</span>
             </TrackedLink>
+            <a href={PDF} className="btn btn-outline-dark" target="_blank" rel="noopener noreferrer">
+              <FileText aria-hidden="true" /> Résumé
+            </a>
           </div>
-        </header>
-        <dl className="pf-terms">
-          {TERMS.map(([k, v]) => (
-            <div key={k}>
-              <dt>{k}</dt>
-              <dd>{v}</dd>
-            </div>
-          ))}
-        </dl>
+          <dl className="terms">
+            {TERMS.map(([k, v]) => (
+              <div key={k}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
     </section>
-  );
-}
-
-export function PfFooter() {
-  return (
-    <footer className="pf-footer">
-      <div className="pf-wrap pf-footer-in">
-        <span>© {new Date().getFullYear()} Uzair Saleem</span>
-        <nav aria-label="Footer">
-          <External href={LINKS.github}>GitHub</External>
-          <External href={LINKS.linkedin}>LinkedIn</External>
-          <Link href={LINKS.resume}>Résumé</Link>
-          <a href={PDF}>PDF</a>
-          <a href={LINKS.email}>{EMAIL}</a>
-        </nav>
-      </div>
-    </footer>
   );
 }
