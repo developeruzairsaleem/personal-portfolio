@@ -7,6 +7,7 @@ export type ContactItem = { label: string; href?: string };
 
 export type Experience = {
   company: string;
+  href?: string;
   role: string;
   location: string;
   dates: string;
@@ -47,6 +48,20 @@ export const SUMMARY =
 // Bullets can mark a key result as **bold**.
 export const EXPERIENCE: Experience[] = [
   {
+    company: "Sat-Raj, Inc. (satraj.inc)",
+    href: "https://satraj.inc",
+    role: "Full-Stack Engineer, contract",
+    location: "Remote (New Jersey, US)",
+    dates: "Jan 2026 – Present",
+    bullets: [
+      "Integrated and shipped a complete billing workflow from dispatch to QuickBooks Desktop for a gasoline and diesel distributor in NJ and PA. **The whole office runs real invoices through it every day.**",
+      "Built the pricing engine from rack costs, freight, margins and NJ/PA fuel taxes. It had to match the old spreadsheet to the cent, so the math is pinned to the legacy rates in tests.",
+      "Pulled supplier prices and delivery tickets from DTN and Samsara, so nothing gets retyped into Sheets and QuickBooks. Unclear GPS stops go to an office review queue instead of being guessed.",
+      "Synced approved invoices to QuickBooks Desktop through the Web Connector with fuel and tax lines, retries and duplicate checks.",
+      "Own fixes and features in production, like repairing history after a terminal feed swapped gross and net gallons, a Top Tier additive charge and a payables view.",
+    ],
+  },
+  {
     company: "Rocket Devs",
     role: "Full-Stack Engineer",
     location: "Remote (US / EU)",
@@ -54,7 +69,6 @@ export const EXPERIENCE: Experience[] = [
     bullets: [
       "Engineered data intensive ETL pipelines for Indiecator (indiecator.com) that sync years of Stripe and Paddle billing history without downtime: a **2-year backfill**, live webhooks and a nightly reconciliation, all idempotent, into multi-tenant Postgres.",
       "Built the revenue ledger behind MRR, ARR, churn and retention from real invoices, so every number drills down to the customers behind it.",
-      "Integrated and shipped Satraj's complete billing workflow from dispatch to QuickBooks Desktop (satraj.inc). It handles messy data from DTN and Samsara, sends unclear deliveries to an office review queue, and syncs invoices with retries and duplicate checks. **The whole office runs real invoices through it.**",
     ],
   },
   {
@@ -93,12 +107,6 @@ export const EXPERIENCE: Experience[] = [
 
 export const PROJECTS: Project[] = [
   {
-    name: "Satraj · fuel billing, dispatch to QuickBooks",
-    link: { label: "satraj.inc", href: "https://satraj.inc" },
-    blurb:
-      "Daily DTN pricing, delivery tickets from DTN and Samsara, an office review queue, and QuickBooks Desktop invoice sync. Live in production.",
-  },
-  {
     name: "Indiecator · revenue analytics",
     link: { label: "indiecator.com", href: "https://indiecator.com" },
     blurb:
@@ -108,13 +116,7 @@ export const PROJECTS: Project[] = [
     name: "Diffed.gg · gaming marketplace",
     link: { label: "diffed-swart.vercel.app", href: "https://diffed-swart.vercel.app/" },
     blurb:
-      "Card and PayPal checkout, live chat, provider wallets and admin verification, with separate apps for customers, providers and admins.",
-  },
-  {
-    name: "AI reel generator · n8n posting",
-    link: { label: "uzairsaleem.dev/#work", href: "https://uzairsaleem.dev/#work" },
-    blurb:
-      "Remotion renders, MediaBunny encoding and an n8n workflow that publishes reels to Instagram on a schedule.",
+      "Card and PayPal checkout, live chat, provider wallets and admin verification.",
   },
 ];
 

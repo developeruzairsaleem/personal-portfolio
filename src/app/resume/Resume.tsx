@@ -53,7 +53,15 @@ export default function Resume() {
         {EXPERIENCE.map((job) => (
           <div className="r-entry" key={`${job.company} ${job.dates}`}>
             <div className="r-entry-row">
-              <span className="r-entry-title">{job.company}</span>
+              <span className="r-entry-title">
+                {job.href ? (
+                  <a href={job.href} target="_blank" rel="noopener noreferrer">
+                    {job.company}
+                  </a>
+                ) : (
+                  job.company
+                )}
+              </span>
               <span className="r-entry-date">{job.dates}</span>
             </div>
             <div className="r-entry-row r-entry-sub">

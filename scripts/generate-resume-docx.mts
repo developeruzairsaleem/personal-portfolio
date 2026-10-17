@@ -48,12 +48,13 @@ function heading(text: string) {
   });
 }
 
-function row(left: string, right: string, opts: { bold?: boolean; italics?: boolean } = {}) {
+function row(left: string, right: string, opts: { bold?: boolean; italics?: boolean; href?: string } = {}) {
+  const leftRun = new TextRun({ text: left, bold: opts.bold, italics: opts.italics, font: FONT, size: 21, color: INK, underline: opts.href ? {} : undefined });
   return new Paragraph({
     spacing: { before: opts.bold ? 100 : 0, after: 0 },
     tabStops: [{ type: TabStopType.RIGHT, position: RIGHT_TAB }],
     children: [
-      new TextRun({ text: left, bold: opts.bold, italics: opts.italics, font: FONT, size: 21, color: INK }),
+      opts.href ? new ExternalHyperlink({ link: opts.href, children: [leftRun] }) : leftRun,
       new TextRun({ text: `\t${right}`, italics: opts.italics, font: FONT, size: 19, color: MUTED }),
     ],
   });
@@ -93,7 +94,7 @@ const doc = new Document({
 
         heading("Experience"),
         ...EXPERIENCE.flatMap((job) => [
-          row(job.company, job.dates, { bold: true }),
+          row(job.company, job.dates, { bold: true, href: job.href }),
           row(job.role, job.location, { italics: true }),
           ...job.bullets.map(bullet),
         ]),
