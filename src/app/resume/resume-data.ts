@@ -108,7 +108,7 @@ export const EXPERIENCE: Experience[] = [
     company: "Apifiny",
     role: "Full-Stack Engineer Intern",
     location: "Islamabad",
-    dates: "Dec 2021 – Feb 2022",
+    dates: "Dec 2022 – Jan 2023",
     line: "Shipped features across several client SaaS products.",
     bullets: [
       "Shipped production features across several client B2B SaaS products, frontend and backend.",

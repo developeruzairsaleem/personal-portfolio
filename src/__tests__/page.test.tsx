@@ -153,6 +153,12 @@ describe('Résumé document', () => {
     expect(resume).toContain('n8n')
   })
 
+  it('dates the Apifiny internship Dec 2022 to Jan 2023', () => {
+    expect(resume).toContain('Dec 2022 – Jan 2023')
+    expect(resume).not.toContain('Dec 2021')
+    expect(resume).not.toContain('Feb 2022')
+  })
+
   it('lists the BSCS without dates and says 3 to 4 years', () => {
     expect(resume).toContain('BSCS (Bachelor of Computer Science)')
     expect(resume).toContain('3 to 4 years')
