@@ -89,6 +89,17 @@ describe('Home page (job-focused portfolio)', () => {
     expect(text).not.toContain('ETL')
   })
 
+  it('shows the degree as a BSCS with no education dates', () => {
+    expect(text).toContain('BSCS (Bachelor of Computer Science)')
+    expect(text).not.toContain('Artificial Intelligence')
+    expect(text).not.toContain('2019')
+  })
+
+  it('says 3 to 4 years instead of a start year', () => {
+    expect(text).toContain('for 3 to 4 years')
+    expect(text).not.toContain('since 2021')
+  })
+
   it('never uses em or en dashes in visible copy', () => {
     expect(text).not.toContain('—')
     expect(text).not.toContain('–')
@@ -128,7 +139,7 @@ describe('Résumé document', () => {
   it('renders the name, headline and summary', () => {
     expect(resume).toContain('Uzair Saleem')
     expect(resume).toContain('Full-Stack Engineer')
-    expect(SUMMARY).toContain('since 2021')
+    expect(SUMMARY).toContain('3 to 4 years')
   })
 
   it('links to the live projects', () => {
@@ -140,6 +151,14 @@ describe('Résumé document', () => {
   it('carries his own proof points', () => {
     expect(resume).toContain('Engineered data intensive ETL pipelines')
     expect(resume).toContain('n8n')
+  })
+
+  it('lists the BSCS without dates and says 3 to 4 years', () => {
+    expect(resume).toContain('BSCS (Bachelor of Computer Science)')
+    expect(resume).toContain('3 to 4 years')
+    expect(resume).not.toContain('Artificial Intelligence')
+    expect(resume).not.toContain('2019')
+    expect(resume).not.toContain('since 2021')
   })
 
   it('never uses em dashes', () => {

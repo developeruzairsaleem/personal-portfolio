@@ -125,7 +125,7 @@ const doc = new Document({
         ),
 
         heading("Education"),
-        row(EDUCATION.school, EDUCATION.dates, { bold: true }),
+        row(EDUCATION.school, "", { bold: true }),
         row(EDUCATION.degree, EDUCATION.location, { italics: true }),
       ],
     },

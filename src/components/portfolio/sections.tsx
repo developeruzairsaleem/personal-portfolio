@@ -28,8 +28,8 @@ export function Hero() {
             <a href="#indiecator">a revenue dashboard</a> and <a href="#diffed">a gaming marketplace</a>.
           </h1>
           <p className="hero-sub">
-            I&apos;ve been writing production code since 2021, I&apos;ve led a small team, and I stay on after launch to fix
-            what breaks.
+            I&apos;ve been writing production code for 3 to 4 years, I&apos;ve led a small team, and I stay on after launch to
+            fix what breaks.
           </p>
           <div className="cta-row">
             <TrackedLink event="cta_hire_hero" href={HIRE_HREF} className="btn">
@@ -215,7 +215,7 @@ export function Experience() {
             })}
           </ol>
           <div className="edu">
-            <p className="job-dates">{plainDates(EDUCATION.dates)}</p>
+            <p className="job-dates">Education</p>
             <h3 className="job-title">
               {EDUCATION.degree} <span>· {EDUCATION.school}</span>
             </h3>

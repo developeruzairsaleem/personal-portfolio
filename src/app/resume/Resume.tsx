@@ -109,7 +109,6 @@ export default function Resume() {
         <div className="r-entry">
           <div className="r-entry-row">
             <span className="r-entry-title">{EDUCATION.school}</span>
-            <span className="r-entry-date">{EDUCATION.dates}</span>
           </div>
           <div className="r-entry-row r-entry-sub">
             <span>{EDUCATION.degree}</span>

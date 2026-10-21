@@ -29,7 +29,6 @@ export type Education = {
   degree: string;
   school: string;
   location: string;
-  dates: string;
 };
 
 export const NAME = "Uzair Saleem";
@@ -46,7 +45,7 @@ export const CONTACT: ContactItem[] = [
 ];
 
 export const SUMMARY =
-  "Full-stack engineer writing production code since 2021. I have shipped a billing system for a fuel distributor, the data pipelines behind a revenue analytics product, and a gaming marketplace with payouts, using Next.js, TypeScript, Node and PostgreSQL. I work with teams in the US and Europe, on US hours from Islamabad.";
+  "Full-stack engineer with 3 to 4 years of production experience. I have shipped a billing system for a fuel distributor, the data pipelines behind a revenue analytics product, and a gaming marketplace with payouts, using Next.js, TypeScript, Node and PostgreSQL. I work with teams in the US and Europe, on US hours from Islamabad.";
 
 // Bullets can mark a key result as **bold**.
 export const EXPERIENCE: Experience[] = [
@@ -141,8 +140,7 @@ export const SKILLS: SkillGroup[] = [
 ];
 
 export const EDUCATION: Education = {
-  degree: "BS, Artificial Intelligence",
+  degree: "BSCS (Bachelor of Computer Science)",
   school: "SZABIST University",
   location: "Islamabad",
-  dates: "Feb 2019 – Jan 2023",
 };
